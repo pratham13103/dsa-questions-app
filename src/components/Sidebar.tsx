@@ -43,13 +43,13 @@ const Sidebar = ({ topics, onSelectQuestion }: SidebarProps) => {
           {openTopicId === topic.id && (
             <ul className="space-y-2 ml-4 mt-2">
               {topic.questions.map((question) => (
-                <li
-                  key={question.id}
-                  onClick={() => onSelectQuestion(question)}
-                  className="cursor-pointer text-lg text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-700 p-2 rounded-lg transition duration-300"
-                >
-                  {question.title}
-                </li>
+              <li
+              key={question.id}
+              onClick={() => onSelectQuestion(question)}
+              className="cursor-pointer text-lg text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-700 p-2 rounded-lg transition duration-300"
+            >
+              {question.id}. {question.title}
+            </li>            
               ))}
             </ul>
           )}
