@@ -9,7 +9,7 @@
           "output": "[0,1]",
           "explaination": "Because nums[0] + nums[1] == 9, we return [0, 1]."
         },
-        "answer": "def twoSum(nums, target):\n    hashmap = {}\n    for i, num in enumerate(nums):\n        if target - num in hashmap:\n            return [hashmap[target-num], i]\n        hashmap[num] = i"
+        "answer": "class Solution:\n    def twoSum(self, nums, target):\n        hashmap = {}\n        for i, num in enumerate(nums):\n            if target - num in hashmap:\n                return [hashmap[target - num], i]\n            hashmap[num] = i"
       }
     ]
 }
