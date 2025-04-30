@@ -1,0 +1,368 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "title": "Find Maximum Subarray",
+        "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.\n\n| Test Cases | nums                | Expected Output | Notes                            |\n|------------|----------------------|------------------|----------------------------------|\n| 1          | [-2,1,-3,4,-1,2,1,-5,4] | 6                | [4,-1,2,1] has the largest sum   |\n| 2          | [1]                   | 1                | Only one element                 |\n| 3          | [5,4,-1,7,8]          | 23               | Whole array is the max subarray |",
+        "example": {
+          "input": "[-2,1,-3,4,-1,2,1,-5,4]",
+          "output": "6",
+          "explanation": "The subarray [4,-1,2,1] has the largest sum = 6."
+        },
+        "answer": "class Solution:\n    def maxSubArray(self, nums):\n        max_sum = curr_sum = nums[0]\n        for num in nums[1:]:\n            curr_sum = max(num, curr_sum + num)\n            max_sum = max(max_sum, curr_sum)\n        return max_sum"
+      },
+      {
+        "id": 2,
+        "title": "Remove Duplicates from Sorted Array",
+        "description": "Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once and return the new length.\n\n| Test Cases | nums                | Expected Output | Notes                     |\n|------------|----------------------|------------------|----------------------------|\n| 1          | [1,1,2]              | 2                | Unique values: [1,2]       |\n| 2          | [0,0,1,1,1,2,2,3,3,4] | 5                | Unique values: [0,1,2,3,4] |",
+        "example": {
+          "input": "[1,1,2]",
+          "output": "2",
+          "explanation": "After removing duplicates, the first two elements are [1,2]."
+        },
+        "answer": "class Solution:\n    def removeDuplicates(self, nums):\n        if not nums:\n            return 0\n        i = 0\n        for j in range(1, len(nums)):\n            if nums[j] != nums[i]:\n                i += 1\n                nums[i] = nums[j]\n        return i + 1"
+      },
+      {
+        "id": 3,
+        "title": "Find Maximum Number",
+        "description": "Return the largest number in the given array.\n\n| Test Cases | nums             | Expected Output | Notes                            |\n|------------|------------------|------------------|----------------------------------|\n| 1          | [1, 2, 3, 4, 5]   | 5                | Positive integers                |\n| 2          | [-1, -2, -3, -4]  | -1               | All negative numbers             |\n| 3          | [5]              | 5                | Single element array             |\n| 4          | [0, 10, 2, 8]     | 10               | Mix of small and large numbers   |",
+        "example": {
+          "input": "[1, 5, 3, 9]",
+          "output": "9",
+          "explanation": "The largest number is 9."
+        },
+        "answer": "class Solution:\n    def findMax(self, nums):\n        return max(nums)"
+      },
+      {
+        "id": 4,
+        "title": "Find Minimum Number",
+        "description": "Return the smallest number in the given array.\n\n| Test Cases | nums             | Expected Output | Notes                          |\n|------------|------------------|------------------|-------------------------------|\n| 1          | [1, 2, 3, 4, 5]   | 1                | Basic positive numbers         |\n| 2          | [-1, -2, -3, -4]  | -4               | All negative numbers           |\n| 3          | [10]             | 10               | Single element                 |\n| 4          | [5, 0, -5]        | -5               | Mixed values                   |",
+        "example": {
+          "input": "[10, -1, 4, 6]",
+          "output": "-1",
+          "explanation": "The smallest number is -1."
+        },
+        "answer": "class Solution:\n    def findMin(self, nums):\n        return min(nums)"
+      },
+      {
+        "id": 5,
+        "title": "Sum of All Elements",
+        "description": "Return the sum of all elements in the array.\n\n| Test Cases | nums             | Expected Output | Notes                      |\n|------------|------------------|------------------|-----------------------------|\n| 1          | [1, 2, 3, 4]      | 10               | Simple sum                 |\n| 2          | [0, 0, 0]         | 0                | All zeros                  |\n| 3          | [-1, -2, -3]      | -6               | All negative numbers       |\n| 4          | [10]              | 10               | Single element             |",
+        "example": {
+          "input": "[1, 1, 1, 1]",
+          "output": "4",
+          "explanation": "Sum of all elements is 4."
+        },
+        "answer": "class Solution:\n    def arraySum(self, nums):\n        return sum(nums)"
+      },
+      {
+        "id": 6,
+        "title": "Count Even Numbers",
+        "description": "Return the count of even numbers in the array.\n\n| Test Cases | nums             | Expected Output | Notes                      |\n|------------|------------------|------------------|-----------------------------|\n| 1          | [1, 2, 3, 4]      | 2                | Two even numbers          |\n| 2          | [1, 3, 5, 7]      | 0                | All odd                   |\n| 3          | [2, 4, 6, 8]      | 4                | All even                  |\n| 4          | [0]               | 1                | Zero is even              |",
+        "example": {
+          "input": "[1, 2, 3, 6]",
+          "output": "2",
+          "explanation": "2 and 6 are even."
+        },
+        "answer": "class Solution:\n    def countEvens(self, nums):\n        return sum(1 for num in nums if num % 2 == 0)"
+      },
+      {
+        "id": 7,
+        "title": "Count Odd Numbers",
+        "description": "Return the count of odd numbers in the array.\n\n| Test Cases | nums             | Expected Output | Notes                      |\n|------------|------------------|------------------|-----------------------------|\n| 1          | [1, 2, 3, 4]      | 2                | Two odd numbers           |\n| 2          | [2, 4, 6, 8]      | 0                | All even                  |\n| 3          | [1, 3, 5, 7]      | 4                | All odd                   |\n| 4          | [0]               | 0                | Zero is not odd           |",
+        "example": {
+          "input": "[1, 2, 3, 6]",
+          "output": "2",
+          "explanation": "1 and 3 are odd."
+        },
+        "answer": "class Solution:\n    def countOdds(self, nums):\n        return sum(1 for num in nums if num % 2 != 0)"
+      },
+      {
+        "id": 8,
+        "title": "Count Positive and Negative Numbers",
+        "description": "Return how many positive and negative numbers are in the array.\n\n| Test Cases | nums                  | Expected Output | Notes                      |\n|------------|-----------------------|------------------|-----------------------------|\n| 1          | [1, -1, 2, -2, 3]      | (3, 2)           | Mixed positive and negative|\n| 2          | [-1, -2, -3]           | (0, 3)           | All negative               |\n| 3          | [1, 2, 3]              | (3, 0)           | All positive               |\n| 4          | [0, -1, 1]             | (1, 1)           | Zero ignored               |",
+        "example": {
+          "input": "[1, -2, 3, -4, 5]",
+          "output": "(3, 2)",
+          "explanation": "3 positives and 2 negatives."
+        },
+        "answer": "class Solution:\n    def countPosNeg(self, nums):\n        pos = sum(1 for x in nums if x > 0)\n        neg = sum(1 for x in nums if x < 0)\n        return pos, neg"
+      },
+      {
+        "id": 9,
+        "title": "Reverse an Array",
+        "description": "Return the array in reversed order.\n\n| Test Cases | nums             | Expected Output | Notes                      |\n|------------|------------------|------------------|-----------------------------|\n| 1          | [1, 2, 3]         | [3, 2, 1]        | Simple reverse            |\n| 2          | [5]               | [5]              | Single element            |\n| 3          | []                | []               | Empty array               |\n| 4          | [4, 5, 6, 7, 8]    | [8, 7, 6, 5, 4]   | Larger list               |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "[3, 2, 1]",
+          "explanation": "Array reversed."
+        },
+        "answer": "class Solution:\n    def reverseArray(self, nums):\n        return nums[::-1]"
+      },
+      {
+        "id": 10,
+        "title": "Check if Array is Sorted",
+        "description": "Return true if array is sorted in non-decreasing order.\n\n| Test Cases | nums              | Expected Output | Notes                      |\n|------------|-------------------|------------------|-----------------------------|\n| 1          | [1, 2, 3, 4]       | True             | Increasing                 |\n| 2          | [4, 3, 2, 1]       | False            | Decreasing                 |\n| 3          | [1, 1, 1]          | True             | All same values           |\n| 4          | [1]                | True             | Single element            |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "True",
+          "explanation": "Array is sorted."
+        },
+        "answer": "class Solution:\n    def isSorted(self, nums):\n        return all(nums[i] <= nums[i+1] for i in range(len(nums)-1))"
+      },
+      {
+        "id": 11,
+        "title": "Find Second Largest",
+        "description": "Return the second largest element in array or -1 if not possible.\n\n| Test Cases | nums               | Expected Output | Notes                      |\n|------------|--------------------|------------------|-----------------------------|\n| 1          | [1, 2, 3, 4]        | 3                | Distinct values           |\n| 2          | [5, 5, 5]           | -1               | All same values           |\n| 3          | [9]                 | -1               | Single element            |\n| 4          | [10, 20, 10]        | 10               | Repeated second largest   |",
+        "example": {
+          "input": "[1, 4, 2, 4]",
+          "output": "2",
+          "explanation": "Second largest is 2."
+        },
+        "answer": "class Solution:\n    def secondLargest(self, nums):\n        unique = list(set(nums))\n        if len(unique) < 2:\n            return -1\n        unique.sort(reverse=True)\n        return unique[1]"
+      },
+      {
+        "id": 12,
+        "title": "Find the Missing Number",
+        "description": "Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.\n\n| Test Cases | nums                 | Expected Output | Notes                        |\n|------------|----------------------|-----------------|------------------------------|\n| 1          | [3, 0, 1]            | 2               | Missing in middle            |\n| 2          | [0, 1]               | 2               | Missing at end               |\n| 3          | [1, 2, 3]            | 0               | Missing at beginning         |\n| 4          | [0]                  | 1               | Small array                  |\n| 5          | [1]                  | 0               | Small array                  |\n| 6          | [9,6,4,2,3,5,7,0,1]  | 8               | Larger array                 |\n| 7          | [2, 0]               | 1               | Missing in middle            |\n| 8          | [4, 1, 2, 0]         | 3               | Missing in middle            |\n| 9          | [5, 3, 1, 0, 2]      | 4               | Missing in middle            |\n| 10         | [10,9,8,7,6,5,4,3,2,1] | 0            | Missing zero                 |",
+        "example": {
+            "input": "[3, 0, 1]",
+            "output": "2",
+            "explanation": "The array contains 3 elements from 0 to 3, and 2 is missing."
+        },
+        "answer": "class Solution:\n    def missingNumber(self, nums):\n        n = len(nums)\n        expected_sum = n * (n + 1) // 2\n        actual_sum = sum(nums)\n        return expected_sum - actual_sum"
+       },
+    {
+        "id": 13,
+        "title": "Find the Pivot Index",
+        "description": "Given an array of integers nums, calculate the pivot index of this array. The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the right of the index. If no such index exists, return -1. If there are multiple pivot indexes, return the left-most one.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [1, 7, 3, 6, 5, 6]  | 3               | Pivot in middle              |\n| 2          | [2, 1, -1]          | 0               | Pivot at beginning           |\n| 3          | [1, 2, 3]           | -1              | No pivot                     |\n| 4          | [0, 0, 0, 0]        | 0               | All zeros                    |\n| 5          | [5]                 | 0               | Single element               |\n| 6          | [1, 2]              | -1              | Two elements, no pivot       |\n| 7          | [-1, -1, -1, -1]    | -1              | All negative, no pivot       |\n| 8          | [1, -1, 2, -2, 3]   | -1              | Mixed, no pivot              |\n| 9          | [1, 2, 3, 0, 3, 2, 1] | 3             | Pivot in middle              |\n| 10         | [-1, 1, 0]          | 2               | Pivot at end                 |",
+        "example": {
+            "input": "[1, 7, 3, 6, 5, 6]",
+            "output": "3",
+            "explanation": "The sum of the numbers to the left of index 3 is 1 + 7 + 3 = 11, and the sum to the right is 5 + 6 = 11."
+        },
+        "answer": "class Solution:\n    def pivotIndex(self, nums):\n        total_sum = sum(nums)\n        left_sum = 0\n        for i in range(len(nums)):\n            if left_sum == total_sum - left_sum - nums[i]:\n                return i\n            left_sum += nums[i]\n        return -1"
+    },
+    {
+        "id": 14,
+        "title": "Find the Missing Number",
+        "description": "Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.\n\n| Test Cases | nums                 | Expected Output | Notes                        |\n|------------|----------------------|-----------------|------------------------------|\n| 1          | [3, 0, 1]            | 2               | Missing in middle            |\n| 2          | [0, 1]               | 2               | Missing at end               |\n| 3          | [1, 2, 3]            | 0               | Missing at beginning         |\n| 4          | [0]                  | 1               | Small array                  |\n| 5          | [1]                  | 0               | Small array                  |\n| 6          | [9,6,4,2,3,5,7,0,1]  | 8               | Larger array                 |\n| 7          | [2, 0]               | 1               | Missing in middle            |\n| 8          | [4, 1, 2, 0]         | 3               | Missing in middle            |\n| 9          | [5, 3, 1, 0, 2]      | 4               | Missing in middle            |\n| 10         | [10,9,8,7,6,5,4,3,2,1] | 0            | Missing zero                 |",
+        "example": {
+            "input": "[3, 0, 1]",
+            "output": "2",
+            "explanation": "The array contains 3 elements from 0 to 3, and 2 is missing."
+        },
+        "answer": "class Solution:\n    def missingNumber(self, nums):\n        n = len(nums)\n        expected_sum = n * (n + 1) // 2\n        actual_sum = sum(nums)\n        return expected_sum - actual_sum"
+    },
+    {
+        "id": 15,
+        "title": "Find the Pivot Index",
+        "description": "Given an array of integers nums, calculate the pivot index of this array. The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the right of the index. If no such index exists, return -1. If there are multiple pivot indexes, return the left-most one.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [1, 7, 3, 6, 5, 6]  | 3               | Pivot in middle              |\n| 2          | [2, 1, -1]          | 0               | Pivot at beginning           |\n| 3          | [1, 2, 3]           | -1              | No pivot                     |\n| 4          | [0, 0, 0, 0]        | 0               | All zeros                    |\n| 5          | [5]                 | 0               | Single element               |\n| 6          | [1, 2]              | -1              | Two elements, no pivot       |\n| 7          | [-1, -1, -1, -1]    | -1              | All negative, no pivot       |\n| 8          | [1, -1, 2, -2, 3]   | -1              | Mixed, no pivot              |\n| 9          | [1, 2, 3, 0, 3, 2, 1] | 3             | Pivot in middle              |\n| 10         | [-1, 1, 0]          | 2               | Pivot at end                 |",
+        "example": {
+            "input": "[1, 7, 3, 6, 5, 6]",
+            "output": "3",
+            "explanation": "The sum of the numbers to the left of index 3 is 1 + 7 + 3 = 11, and the sum to the right is 5 + 6 = 11."
+        },
+        "answer": "class Solution:\n    def pivotIndex(self, nums):\n        total_sum = sum(nums)\n        left_sum = 0\n        for i in range(len(nums)):\n            if left_sum == total_sum - left_sum - nums[i]:\n                return i\n            left_sum += nums[i]\n        return -1"
+    },
+    {
+        "id": 16,
+        "title": "Maximum Subarray Sum",
+        "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [-2,1,-3,4,-1,2,1,-5,4] | 6           | Subarray [4,-1,2,1]          |\n| 2          | [1]                 | 1               | Single element               |\n| 3          | [5,4,-1,7,8]        | 23              | Entire array                 |\n| 4          | [-1]                | -1              | Single negative element      |\n| 5          | [-2,-1]             | -1              | Least negative               |\n| 6          | [1,2,3,-2,5]        | 9               | Subarray [1,2,3,-2,5]        |\n| 7          | [0,0,0]             | 0               | All zeros                    |\n| 8          | [1,-2,3,10,-4,7,2,-5] | 18          | Subarray [3,10,-4,7,2]       |\n| 9          | [1,2,3,4]           | 10              | Entire array                 |\n| 10         | [-1,-2,-3,-4]       | -1              | Least negative               |",
+        "example": {
+            "input": "[-2,1,-3,4,-1,2,1,-5,4]",
+            "output": "6",
+            "explanation": "The subarray [4,-1,2,1] has the largest sum = 6."
+        },
+        "answer": "class Solution:\n    def maxSubArray(self, nums):\n        max_current = max_global = nums[0]\n        for num in nums[1:]:\n            max_current = max(num, max_current + num)\n            if max_current > max_global:\n                max_global = max_current\n        return max_global"
+    },
+    {
+        "id": 17,
+        "title": "Rotate Array",
+        "description": "Given an array, rotate the array to the right by k steps, where k is non-negative.\n\n| Test Cases | nums                | k   | Expected Output    | Notes                        |\n|------------|---------------------|-----|--------------------|------------------------------|\n| 1          | [1,2,3,4,5,6,7]     | 3   | [5,6,7,1,2,3,4]    | Rotate right by 3            |\n| 2          | [-1,-100,3,99]      | 2   | [3,99,-1,-100]     | Rotate right by 2            |\n| 3          | [1,2]               | 0   | [1,2]              | No rotation                  |\n| 4          | [1]                 | 1   | [1]                | Single element               |\n| 5          | [1,2,3]             | 4   | [3,1,2]            | k > len(nums)                |\n| 6          | [1,2,3,4,5]         | 2   | [4,5,1,2,3]        | Rotate right by 2            |\n| 7          | [1,2,3,4,5]         | 5   | [1,2,3,4,5]        | k = len(nums)                |\n| 8          | [1,2,3,4,5]         | 7   | [4,5,1,2,3]        | k > len(nums)                |\n| 9          | [1,2,3,4,5,6]       | 1   | [6,1,2,3,4,5]      | Rotate right by 1            |\n| 10         | [1,2,3,4,5,6]       | 6   | [1,2,3,4,5,6]      | k = len(nums)                |",
+        "example": {
+            "input": "[1,2,3,4,5,6,7], k = 3",
+            "output": "[5,6,7,1,2,3,4]",
+            "explanation": "Rotate the array to the right by 3 steps."
+        },
+        "answer": "class Solution:\n    def rotate(self, nums, k):\n        k = k % len(nums)\n        nums[:] = nums[-k:] + nums[:-k]"
+    },
+    {
+        "id": 18,
+        "title": "Find the Duplicate Number",
+        "description": "Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive. There is only one duplicate number in nums, return this duplicate number.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [1,3,4,2,2]         | 2               | Duplicate is 2               |\n| 2          | [3,1,3,4,2]         | 3               | Duplicate is 3               |\n| 3          | [1,1]               | 1               | Duplicate is 1               |\n| 4          | [1,2,3,4,4]         | 4               | Duplicate is 4               |\n| 5          | [2,2,2,2,2]         | 2               | All elements are duplicates  |\n| 6          | [1,2,3,1]           | 1               | Duplicate is 1               |\n| 7          | [4,3,1,4,2]         | 4               | Duplicate is 4               |\n| 8          | [1,4,4,2,3]         | 4               | Duplicate is 4               |\n| 9          | [1,2,3,4,5,5]       | 5               | Duplicate is 5               |\n| 10         | [10,9,8,7,6,5,4,3,2,1,1] | 1          | Duplicate is 1               |",
+        "example": {
+            "input": "[1,3,4,2,2]",
+            "output": "2",
+            "explanation": "The duplicate number is 2."
+        },
+        "answer": "class Solution:\n    def findDuplicate(self, nums):\n        slow = fast = nums[0]\n        while True:\n            slow = nums[slow]\n            fast = nums[nums[fast]]\n            if slow == fast:\n                break\n        slow = nums[0]\n        while slow != fast:\n            slow = nums[slow]\n            fast = nums[fast]\n        return slow"
+    },
+    {
+        "id": 19,
+        "title": "Merge Sorted Arrays",
+        "description": "Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.\n\n| Test Cases | nums1                | m   | nums2       | n   | Expected Output    | Notes                        |\n|------------|----------------------|-----|-------------|-----|--------------------|------------------------------|\n| 1          | [1,2,3,0,0,0]        | 3   | [2,5,6]     | 3   | [1,2,2,3,5,6]      | Merge two sorted arrays      |\n| 2          | [1]                  | 1   | []          | 0   | [1]                | Merge with empty array       |\n| 3          | [0]                  | 0   | [1]         | 1   | [1]                | Merge with empty nums1       |\n| 4          | [4,5,6,0,0,0]        | 3   | [1,2,3]     | 3   | [1,2,3,4,5,6]      | Merge with smaller nums2     |\n| 5          | [1,2,3,0,0,0]        | 3   | [4,5,6]     | 3   | [1,2,3,4,5,6]      | Merge with larger nums2      |\n| 6          | [1,3,5,0,0,0]        | 3   | [2,4,6]     | 3   | [1,2,3,4,5,6]      | Interleaved merge            |\n| 7          | [2,0]                | 1   | [1]         | 1   | [1,2]              | Merge with single elements   |\n| 8          | [1,2,4,5,6,0]        | 5   | [3]         | 1   | [1,2,3,4,5,6]      | Merge single element         |\n| 9          | [1,2,3,4,5,6]        | 6   | []          | 0   | [1,2,3,4,5,6]      | Merge with empty nums2       |\n| 10         | [0,0,0,0,0]          | 0   | [1,2,3,4,5] | 5   | [1,2,3,4,5]        | Merge into empty nums1       |",
+        "example": {
+            "input": "nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3",
+            "output": "[1,2,2,3,5,6]",
+            "explanation": "The arrays are merged into a single sorted array."
+        },
+        "answer": "class Solution:\n    def merge(self, nums1, m, nums2, n):\n        i, j, k = m-1, n-1, m+n-1\n        while i >= 0 and j >= 0:\n            if nums1[i] > nums2[j]:\n                nums1[k] = nums1[i]\n                i -= 1\n            else:\n                nums1[k] = nums2[j]\n                j -= 1\n            k -= 1\n        while j >= 0:\n            nums1[k] = nums2[j]\n            j -= 1\n            k -= 1"
+    },
+    {
+        "id": 20,
+        "title": "Majority Element",
+        "description": "Given an array nums of size n, return the majority element. The majority element is the element that appears more than ⌊n / 2⌋ times.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [3,2,3]             | 3               | Majority element is 3        |\n| 2          | [2,2,1,1,1,2,2]     | 2               | Majority element is 2        |\n| 3          | [1]                 | 1               | Single element               |\n| 4          | [1,2,3,4,5,5,5,5,5] | 5               | Majority element is 5        |\n| 5          | [1,1,2,2,3,3,4,4,4] | 4               | Majority element is 4        |\n| 6          | [1,1,1,1]           | 1               | All elements are the same    |\n| 7          | [1,2,3,4]           | None            | No majority element          |\n| 8          | [1,1,2,2]           | None            | No majority element          |\n| 9          | [1,1,1,2,2,2]       | None            | No majority element          |\n| 10         | [1,1,1,1,2,2,2,2,2] | 2               | Majority element is 2        |",
+        "example": {
+            "input": "[3,2,3]",
+            "output": "3",
+            "explanation": "3 appears twice, which is more than half of the array size."
+        },
+        "answer": "class Solution:\n    def majorityElement(self, nums):\n        candidate = None\n        count = 0\n        for num in nums:\n            if count == 0:\n                candidate = num\n            count += (1 if num == candidate else -1)\n        return candidate if nums.count(candidate) > len(nums) // 2 else None"
+    },
+    {
+        "id": 21,
+        "title": "Kth Largest Element in an Array",
+        "description": "Given an integer array nums and an integer k, return the kth largest element in the array.\n\n| Test Cases | nums                | k   | Expected Output | Notes                        |\n|------------|---------------------|-----|-----------------|------------------------------|\n| 1          | [3,2,1,5,6,4]       | 2   | 5               | Second largest is 5          |\n| 2          | [3,2,3,1,2,4,5,5,6] | 4   | 4               | Fourth largest is 4          |\n| 3          | [1]                 | 1   | 1               | Single element               |\n| 4          | [1,2,3,4,5]         | 1   | 5               | Largest element              |\n| 5          | [1,2,3,4,5]         | 5   | 1               | Smallest element             |\n| 6          | [5,4,3,2,1]         | 3   | 3               | Middle element               |\n| 7          | [1,1,1,1]           | 2   | 1               | All elements are the same    |\n| 8          | [1,2,3,4,5,6]       | 3   | 4               | Third largest is 4           |\n| 9          | [1,2,3,4,5,6]       | 6   | 1               | Smallest element             |\n| 10         | [1,2,3,4,5,6]       | 1   | 6               | Largest element              |",
+        "example": {
+            "input": "[3,2,1,5,6,4], k = 2",
+            "output": "5",
+            "explanation": "The second largest element is 5."
+        },
+        "answer": "import heapq\nclass Solution:\n    def findKthLargest(self, nums, k):\n        return heapq.nlargest(k, nums)[-1]"
+    },
+    {
+        "id": 22,
+        "title": "Intersection of Two Arrays",
+        "description": "Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.\n\n| Test Cases | nums1               | nums2               | Expected Output | Notes                        |\n|------------|---------------------|---------------------|-----------------|------------------------------|\n| 1          | [1,2,2,1]           | [2,2]               | [2]             | Intersection is 2            |\n| 2          | [4,9,5]             | [9,4,9,8,4]         | [4,9]           | Intersection is 4 and 9      |\n| 3          | [1,2,3]             | [4,5,6]             | []              | No intersection              |\n| 4          | [1,1,1,1]           | [1,1]               | [1]             | Intersection is 1            |\n| 5          | [1,2,3,4]           | [2,3,4,5]           | [2,3,4]         | Intersection is 2,3,4        |\n| 6          | [1,2,3,4,5]         | [6,7,8,9,10]        | []              | No intersection              |\n| 7          | [1,2,3,4,5]         | [5,4,3,2,1]         | [1,2,3,4,5]     | All elements intersect       |\n| 8          | [1,2,3,4,5]         | [3,4,5,6,7]         | [3,4,5]         | Intersection is 3,4,5        |\n| 9          | [1,2,3,4,5]         | [1,2,3,4,5]         | [1,2,3,4,5]     | Identical arrays             |\n| 10         | [1,2,3,4,5]         | [6,7,8,9,10]        | []              | No intersection              |",
+        "example": {
+            "input": "[1,2,2,1], [2,2]",
+            "output": "[2]",
+            "explanation": "The intersection is 2."
+        },
+        "answer": "class Solution:\n    def intersection(self, nums1, nums2):\n        return list(set(nums1) & set(nums2))"
+    },
+    {
+        "id": 23,
+        "title": "Find Minimum in Rotated Sorted Array",
+        "description": "Suppose an array of length n sorted in ascending order is rotated between 1 and n times. Given the sorted rotated array nums, return the minimum element of this array.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [3,4,5,1,2]         | 1               | Minimum is 1                 |\n| 2          | [4,5,6,7,0,1,2]     | 0               | Minimum is 0                 |\n| 3          | [11,13,15,17]       | 11              | Not rotated, minimum is 11   |\n| 4          | [1]                 | 1               | Single element               |\n| 5          | [2,1]               | 1               | Rotated once                 |\n| 6          | [1,2,3,4,5]         | 1               | Not rotated                  |\n| 7          | [5,4,3,2,1]         | 1               | Rotated fully                |\n| 8          | [1,2,3,4,5,6]       | 1               | Not rotated                  |\n| 9          | [6,5,4,3,2,1]       | 1               | Rotated fully                |\n| 10         | [1,2,3,4,5,6,7]     | 1               | Not rotated                  |",
+        "example": {
+            "input": "[3,4,5,1,2]",
+            "output": "1",
+            "explanation": "The minimum element is 1."
+        },
+        "answer": "class Solution:\n    def findMin(self, nums):\n        left, right = 0, len(nums) - 1\n        while left < right:\n            mid = (left + right) // 2\n            if nums[mid] > nums[right]:\n                left = mid + 1\n            else:\n                right = mid\n        return nums[left]"
+    },
+    {
+        "id": 24,
+        "title": "Find Peak Element",
+        "description": "A peak element is an element that is strictly greater than its neighbors. Given an integer array nums, find a peak element, and return its index.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [1,2,3,1]           | 2               | Peak at index 2 (3)          |\n| 2          | [1,2,1,3,5,6,4]     | 1 or 5          | Peaks at index 1 (2) or 5 (6)|\n| 3          | [1]                 | 0               | Single element               |\n| 4          | [1,2]               | 1               | Peak at index 1 (2)          |\n| 5          | [2,1]               | 0               | Peak at index 0 (2)          |\n| 6          | [1,2,3,4,5]         | 4               | Peak at index 4 (5)          |\n| 7          | [5,4,3,2,1]         | 0               | Peak at index 0 (5)          |\n| 8          | [1,3,2,1]           | 1               | Peak at index 1 (3)          |\n| 9          | [1,2,3,4,3,2,1]     | 3               | Peak at index 3 (4)          |\n| 10         | [1,2,3,4,5,6,7]     | 6               | Peak at index 6 (7)          |",
+        "example": {
+            "input": "[1,2,3,1]",
+            "output": "2",
+            "explanation": "3 is a peak element at index 2."
+        },
+        "answer": "class Solution:\n    def findPeakElement(self, nums):\n        left, right = 0, len(nums) - 1\n        while left < right:\n            mid = (left + right) // 2\n            if nums[mid] < nums[mid + 1]:\n                left = mid + 1\n            else:\n                right = mid\n        return left"
+    },
+    {
+        "id": 25,
+        "title": "Search in Rotated Sorted Array",
+        "description": "Given the array nums after the rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.\n\n| Test Cases | nums                | target | Expected Output | Notes                        |\n|------------|---------------------|--------|-----------------|------------------------------|\n| 1          | [4,5,6,7,0,1,2]     | 0      | 4               | Target is 0 at index 4       |\n| 2          | [4,5,6,7,0,1,2]     | 3      | -1              | Target not found             |\n| 3          | [1]                 | 0      | -1              | Single element, not found    |\n| 4          | [1]                 | 1      | 0               | Single element, found        |\n| 5          | [1,3]               | 3      | 1               | Target at index 1            |\n| 6          | [3,1]               | 1      | 1               | Rotated, target at index 1   |\n| 7          | [1,3,5]             | 5      | 2               | Target at index 2            |\n| 8          | [5,1,3]             | 5      | 0               | Target at index 0            |\n| 9          | [1,3,5]             | 2      | -1              | Target not found             |\n| 10         | [1,3,5]             | 1      | 0               | Target at index 0            |",
+        "example": {
+            "input": "[4,5,6,7,0,1,2], target = 0",
+            "output": "4",
+            "explanation": "0 is at index 4."
+        },
+        "answer": "class Solution:\n    def search(self, nums, target):\n        left, right = 0, len(nums) - 1\n        while left <= right:\n            mid = (left + right) // 2\n            if nums[mid] == target:\n                return mid\n            if nums[left] <= nums[mid]:\n                if nums[left] <= target < nums[mid]:\n                    right = mid - 1\n                else:\n                    left = mid + 1\n            else:\n                if nums[mid] < target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid - 1\n        return -1"
+    },
+    {
+        "id": 26,
+        "title": "Find First and Last Position of Element in Sorted Array",
+        "description": "Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.\n\n| Test Cases | nums                | target | Expected Output | Notes                        |\n|------------|---------------------|--------|-----------------|------------------------------|\n| 1          | [5,7,7,8,8,10]      | 8      | [3,4]           | First at 3, last at 4        |\n| 2          | [5,7,7,8,8,10]      | 6      | [-1,-1]         | Target not found             |\n| 3          | []                  | 0      | [-1,-1]         | Empty array                  |\n| 4          | [1]                 | 1      | [0,0]           | Single element               |\n| 5          | [1,2,3,3,3,3,4,5]   | 3      | [2,5]           | Multiple occurrences         |\n| 6          | [1,2,3,4,5]         | 3      | [2,2]           | Single occurrence            |\n| 7          | [1,1,1,1,1]         | 1      | [0,4]           | All elements are target      |\n| 8          | [1,2,3,4,5]         | 6      | [-1,-1]         | Target not found             |\n| 9          | [1,2,3,4,5]         | 0      | [-1,-1]         | Target not found             |\n| 10         | [1,2,3,4,5]         | 5      | [4,4]           | Target at end                |",
+        "example": {
+            "input": "[5,7,7,8,8,10], target = 8",
+            "output": "[3,4]",
+            "explanation": "8 starts at index 3 and ends at index 4."
+        },
+        "answer": "class Solution:\n    def searchRange(self, nums, target):\n        def findFirst(nums, target):\n            left, right = 0, len(nums) - 1\n            while left <= right:\n                mid = (left + right) // 2\n                if nums[mid] < target:\n                    left = mid + 1\n                else:\n                    right = mid - 1\n            return left if left < len(nums) and nums[left] == target else -1\n        \n        def findLast(nums, target):\n            left, right = 0, len(nums) - 1\n            while left <= right:\n                mid = (left + right) // 2\n                if nums[mid] > target:\n                    right = mid - 1\n                else:\n                    left = mid + 1\n            return right if right >= 0 and nums[right] == target else -1\n        \n        first = findFirst(nums, target)\n        if first == -1:\n            return [-1, -1]\n        last = findLast(nums, target)\n        return [first, last]"
+    },
+    {
+        "id": 27,
+        "title": "Find Smallest Letter Greater Than Target",
+        "description": "Given a list of sorted characters letters containing only lowercase letters, and a target letter, find the smallest element in the list that is larger than the given target.\n\n| Test Cases | letters             | target | Expected Output | Notes                        |\n|------------|---------------------|--------|-----------------|------------------------------|\n| 1          | ['c','f','j']       | 'a'    | 'c'             | Smallest greater than 'a'    |\n| 2          | ['c','f','j']       | 'c'    | 'f'             | Smallest greater than 'c'    |\n| 3          | ['c','f','j']       | 'd'    | 'f'             | Smallest greater than 'd'    |\n| 4          | ['a','b']           | 'z'    | 'a'             | Wrap around                  |\n| 5          | ['c','f','j']       | 'j'    | 'c'             | Wrap around                  |\n| 6          | ['a']               | 'a'    | 'a'             | Single element               |\n| 7          | ['a','b','c']       | 'b'    | 'c'             | Smallest greater than 'b'    |\n| 8          | ['a','b','c']       | 'c'    | 'a'             | Wrap around                  |\n| 9          | ['a','b','c']       | 'd'    | 'a'             | Wrap around                  |\n| 10         | ['a','b','c']       | 'z'    | 'a'             | Wrap around                  |",
+        "example": {
+            "input": "['c','f','j'], target = 'a'",
+            "output": "'c'",
+            "explanation": "'c' is the smallest letter greater than 'a'."
+        },
+        "answer": "class Solution:\n    def nextGreatestLetter(self, letters, target):\n        for letter in letters:\n            if letter > target:\n                return letter\n        return letters[0]"
+    },
+    {
+        "id": 28,
+        "title": "Longest Consecutive Sequence",
+        "description": "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [100,4,200,1,3,2]   | 4               | Sequence [1,2,3,4]           |\n| 2          | [0,3,7,2,5,8,4,6,0,1] | 9             | Sequence [0,1,2,3,4,5,6,7,8] |\n| 3          | []                  | 0               | Empty array                  |\n| 4          | [1]                 | 1               | Single element               |\n| 5          | [1,2,3,4,5]         | 5               | Already consecutive          |\n| 6          | [1,3,5,7,9]         | 1               | No consecutive numbers       |\n| 7          | [1,2,0,1]           | 3               | Sequence [0,1,2]             |\n| 8          | [9,1,4,7,3,-1,0,5,8,-1,6] | 7         | Sequence [-1,0,1,3,4,5,6]    |\n| 9          | [1,2,3,4,5,6,7,8,9] | 9               | Entire array is consecutive  |\n| 10         | [1,2,3,4,5,6,7,8,9,10] | 10           | Entire array is consecutive  |",
+        "example": {
+            "input": "[100,4,200,1,3,2]",
+            "output": "4",
+            "explanation": "The longest consecutive sequence is [1,2,3,4]."
+        },
+        "answer": "class Solution:\n    def longestConsecutive(self, nums):\n        if not nums:\n            return 0\n        num_set = set(nums)\n        max_length = 0\n        for num in num_set:\n            if num - 1 not in num_set:\n                current_num = num\n                current_length = 1\n                while current_num + 1 in num_set:\n                    current_num += 1\n                    current_length += 1\n                max_length = max(max_length, current_length)\n        return max_length"
+    },
+    {
+        "id": 29,
+        "title": "Subarray with Given Sum",
+        "description": "Given an unsorted array of nonnegative integers, find a continuous subarray which adds to a given number.\n\n| Test Cases | arr                 | sum  | Expected Output | Notes                        |\n|------------|---------------------|------|-----------------|------------------------------|\n| 1          | [1,4,20,3,10,5]     | 33   | [2,4]           | Subarray [20,3,10] sums to 33|\n| 2          | [1,4,0,0,3,10,5]    | 7    | [1,4]           | Subarray [4,0,0,3] sums to 7 |\n| 3          | [1,4]               | 0    | []              | No subarray sums to 0        |\n| 4          | [1,2,3,4,5]         | 9    | [2,4]           | Subarray [3,4,5] sums to 9   |\n| 5          | [1,2,3,4,5]         | 15   | [0,4]           | Entire array sums to 15      |\n| 6          | [1,2,3,4,5]         | 16   | []              | No subarray sums to 16       |\n| 7          | [0,0,0,0]           | 0    | [0,0]           | Any subarray of zeros        |\n| 8          | [1,2,3,4,5]         | 3    | [0,1]           | Subarray [1,2] sums to 3     |\n| 9          | [1,2,3,4,5]         | 5    | [4,4]           | Subarray [5] sums to 5       |\n| 10         | [1,2,3,4,5]         | 1    | [0,0]           | Subarray [1] sums to 1       |",
+        "example": {
+            "input": "[1,4,20,3,10,5], sum = 33",
+            "output": "[2,4]",
+            "explanation": "Subarray from index 2 to 4 sums to 33."
+        },
+        "answer": "class Solution:\n    def subarraySum(self, nums, k):\n        current_sum = 0\n        start = 0\n        for end in range(len(nums)):\n            current_sum += nums[end]\n            while current_sum > k and start <= end:\n                current_sum -= nums[start]\n                start += 1\n            if current_sum == k:\n                return [start, end]\n        return []"
+    },
+    {
+        "id": 30,
+        "title": "Maximum Product Subarray",
+        "description": "Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [2,3,-2,4]          | 6               | Subarray [2,3] has product 6 |\n| 2          | [-2,0,-1]           | 0               | Subarray [0] has product 0   |\n| 3          | [0,2]               | 2               | Subarray [2] has product 2   |\n| 4          | [-1,-3,-10,-4]      | 120             | Subarray [-1,-3,-10,-4]      |\n| 5          | [2,3,4,5]           | 120             | Entire array has product 120 |\n| 6          | [-2,3,-4]           | 24              | Subarray [-2,3,-4] has product 24 |\n| 7          | [1,2,3,4,5,0]       | 120             | Subarray [1,2,3,4,5]         |\n| 8          | [-1,2,3,4,5]        | 120             | Subarray [2,3,4,5]           |\n| 9          | [1,2,3,4,5,6]       | 720             | Entire array has product 720 |\n| 10         | [-1,-2,-3,-4]       | 24              | Subarray [-1,-2,-3,-4]       |",
+        "example": {
+            "input": "[2,3,-2,4]",
+            "output": "6",
+            "explanation": "The subarray [2,3] has the largest product 6."
+        },
+        "answer": "class Solution:\n    def maxProduct(self, nums):\n        if not nums:\n            return 0\n        max_prod = min_prod = result = nums[0]\n        for num in nums[1:]:\n            if num < 0:\n                max_prod, min_prod = min_prod, max_prod\n            max_prod = max(num, max_prod * num)\n            min_prod = min(num, min_prod * num)\n            result = max(result, max_prod)\n        return result"
+    },
+    {
+        "id": 31,
+        "title": "3Sum",
+        "description": "Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [-1,0,1,2,-1,-4]    | [[-1,-1,2],[-1,0,1]] | Two unique triplets         |\n| 2          | [0,0,0]             | [[0,0,0]]       | One triplet                  |\n| 3          | [1,2,3,4]           | []              | No triplets sum to zero      |\n| 4          | [-2,0,1,1,2]        | [[-2,0,2],[-2,1,1]] | Two unique triplets         |\n| 5          | [1,-1,-1,0]         | [[-1,0,1]]      | One triplet                  |\n| 6          | [0,1,1]             | []              | No triplets sum to zero      |\n| 7          | [-1,0,1,0]          | [[-1,0,1]]      | One triplet                  |\n| 8          | [1,2,-2,-1]         | []              | No triplets sum to zero      |\n| 9          | [1,2,3,-1,-2,-3]    | [[-3,1,2],[-2,1,1]] | Two unique triplets         |\n| 10         | [0,0,0,0]           | [[0,0,0]]       | One triplet                  |",
+        "example": {
+            "input": "[-1,0,1,2,-1,-4]",
+            "output": "[[-1,-1,2],[-1,0,1]]",
+            "explanation": "These are the unique triplets that sum to zero."
+        },
+        "answer": "class Solution:\n    def threeSum(self, nums):\n        nums.sort()\n        result = []\n        for i in range(len(nums) - 2):\n            if i > 0 and nums[i] == nums[i - 1]:\n                continue\n            left, right = i + 1, len(nums) - 1\n            while left < right:\n                total = nums[i] + nums[left] + nums[right]\n                if total == 0:\n                    result.append([nums[i], nums[left], nums[right]])\n                    while left < right and nums[left] == nums[left + 1]:\n                        left += 1\n                    while left < right and nums[right] == nums[right - 1]:\n                        right -= 1\n                    left += 1\n                    right -= 1\n                elif total < 0:\n                    left += 1\n                else:\n                    right -= 1\n        return result"
+    },
+    {
+        "id": 32,
+        "title": "Next Permutation",
+        "description": "Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [1,2,3]             | [1,3,2]         | Next permutation             |\n| 2          | [3,2,1]             | [1,2,3]         | Smallest permutation         |\n| 3          | [1,1,5]             | [1,5,1]         | Next permutation             |\n| 4          | [1]                 | [1]             | Single element               |\n| 5          | [1,3,2]             | [2,1,3]         | Next permutation             |\n| 6          | [2,3,1]             | [3,1,2]         | Next permutation             |\n| 7          | [1,2]               | [2,1]           | Next permutation             |\n| 8          | [2,1]               | [1,2]           | Smallest permutation         |\n| 9          | [1,2,3,4]           | [1,2,4,3]       | Next permutation             |\n| 10         | [4,3,2,1]           | [1,2,3,4]       | Smallest permutation         |",
+        "example": {
+            "input": "[1,2,3]",
+            "output": "[1,3,2]",
+            "explanation": "The next permutation of [1,2,3] is [1,3,2]."
+        },
+        "answer": "class Solution:\n    def nextPermutation(self, nums):\n        i = len(nums) - 2\n        while i >= 0 and nums[i] >= nums[i + 1]:\n            i -= 1\n        if i >= 0:\n            j = len(nums) - 1\n            while nums[j] <= nums[i]:\n                j -= 1\n            nums[i], nums[j] = nums[j], nums[i]\n        nums[i + 1:] = reversed(nums[i + 1:])"
+    },
+    {
+        "id": 33,
+        "title": "Longest Increasing Subsequence",
+        "description": "Given an unsorted array of integers, find the length of the longest increasing subsequence.\n\n| Test Cases | nums                | Expected Output | Notes                        |\n|------------|---------------------|-----------------|------------------------------|\n| 1          | [10,9,2,5,3,7,101,18] | 4             | Subsequence [2,3,7,101]      |\n| 2          | [0,1,0,3,2,3]       | 4               | Subsequence [0,1,2,3]        |\n| 3          | [7,7,7,7,7,7,7]     | 1               | All elements are equal       |\n| 4          | [1,3,6,7,9,4,10,5,6] | 6            | Subsequence [1,3,6,7,9,10]   |\n| 5          | [1,2,3,4,5]         | 5               | Entire array is increasing   |\n| 6          | [5,4,3,2,1]         | 1               | No increasing subsequence    |\n| 7          | [1]                 | 1               | Single element               |\n| 8          | [1,2,3,4,5,6,7,8,9] | 9               | Entire array is increasing   |\n| 9          | [9,8,7,6,5,4,3,2,1] | 1               | No increasing subsequence    |\n| 10         | [1,2,3,4,5,6,7,8,9,10] | 10           | Entire array is increasing   |",
+        "example": {
+            "input": "[10,9,2,5,3,7,101,18]",
+            "output": "4",
+            "explanation": "The longest increasing subsequence is [2,3,7,101]."
+        },
+        "answer": "class Solution:\n    def lengthOfLIS(self, nums):\n        if not nums:\n            return 0\n        dp = [1] * len(nums)\n        for i in range(1, len(nums)):\n            for j in range(i):\n                if nums[i] > nums[j]:\n                    dp[i] = max(dp[i], dp[j] + 1)\n        return max(dp)"
+    }
+    ]
+  }
+  
