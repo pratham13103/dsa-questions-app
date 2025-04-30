@@ -10,6 +10,17 @@
           "explaination": "Because nums[0] + nums[1] == 9, we return [0, 1]."
         },
         "answer": "class Solution:\n    def twoSum(self, nums, target):\n        hashmap = {}\n        for i, num in enumerate(nums):\n            if target - num in hashmap:\n                return [hashmap[target - num], i]\n            hashmap[num] = i"
+      },
+      {
+        "id": 2,
+        "title": "Check for Duplicates",
+        "description": "Description: Check if any value appears at least twice.\n\n| Test Cases | nums               | Expected Output | Notes                                |\n|------------|--------------------|-----------------|--------------------------------------|\n| 1          | [1, 2, 3, 4, 5, 1] | True            | The value '1' appears twice          |\n| 2          | [1, 2, 3, 4, 5]    | False           | No duplicates present                |\n| 3          | [3, 3, 3, 3]       | True            | The value '3' appears multiple times |\n| 4          | [0, -1, 2, -1]     | True            | Negative numbers are included        |\n| 5          | [10, 20, 30]       | False           | No duplicates in a small list        |",
+        "example": {
+          "input": "[1, 2, 3, 4, 5, 1]",
+          "output": "True",
+          "explanation": "The value '1' appears twice in the list."
+        },
+        "answer": "class Solution:\n    def containsDuplicate(self, nums):\n        seen = set()\n        for num in nums:\n            if num in seen:\n                return True\n            seen.add(num)\n        return False"
       }
     ]
 }
