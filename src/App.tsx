@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import QuestionViewer from "./components/QuestionViewer";
 import ThemeToggle from "./components/ThemeToggle";
 import hashingData from "./data/hashing.json"; // Importing hashing.json
+import arrayData from "./data/arrays.json";
 
 export interface Question {
   id: number;
@@ -11,7 +12,7 @@ export interface Question {
   example: {
     input: string;
     output: string;
-    explaination: string;
+    explanation: string;
   };
   answer: string;
 }
@@ -32,6 +33,11 @@ function App() {
       id: "hashing",
       name: "Hashing",
       questions: hashingData.questions,
+    },
+    {
+      id: "arrays",
+      name: "Arrays",
+      questions: arrayData.questions,
     },
   ];
 
