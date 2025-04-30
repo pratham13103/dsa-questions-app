@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import QuestionViewer from "./components/QuestionViewer";
 import ThemeToggle from "./components/ThemeToggle";
-import hashingData from "./data/hashing.json"; // Importing hashing.json
+import hashingData from "./data/hashing.json";
+import BTData from "./data/BT.json";
+import DivideAndConquerData from "./data/DivideAndConquer.json";
+
 
 export interface Question {
   id: number;
@@ -11,7 +14,7 @@ export interface Question {
   example: {
     input: string;
     output: string;
-    explaination: string;
+    explanation?: string;  // Make explanation optional
   };
   answer: string;
 }
@@ -26,12 +29,21 @@ function App() {
   const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
-  // Mapping both Hashing and Binary Tree topics
   const topics: Topic[] = [
     {
       id: "hashing",
       name: "Hashing",
       questions: hashingData.questions,
+    },
+    {
+      id: "BT",
+      name: "Binary tree",
+      questions: BTData.questions,
+    },
+    {
+      id: "D&C",
+      name: "Divide and Conquer",
+      questions: DivideAndConquerData.questions,
     },
   ];
 

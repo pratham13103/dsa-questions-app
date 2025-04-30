@@ -1,0 +1,226 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "title": "Binary Tree Inorder Traversal",
+        "description": "Traverse a binary tree in inorder (Left, Root, Right).\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,null,2,3]  | [1,3,2]         | Basic case       |\n| 2         | [1]           | [1]             | Single node      |\n| 3         | []            | []              | Empty tree       |\n| 4         | [1,2]         | [2,1]           | Left child only  |\n| 5         | [1,null,2]    | [1,2]           | Right child only |\n| 6         | [3,1,2]       | [1,3,2]         | Balanced tree    |\n| 7         | [4,2,5,1,3]   | [1,2,4,3,5]     | Multiple levels  |\n| 8         | [1,2,null,3]  | [2,1,3]         | Left skewed      |\n| 9         | [1,null,2]    | [1,2]           | Right skewed     |\n| 10        | [5,3,6,2,4]   | [2,3,4,5,6]     | Tree with full nodes |",
+        "example": {
+          "input": "[1,null,2,3]",
+          "output": "[1,3,2]",
+          "explanation": "Visit left first, then root, then right."
+        },
+        "answer": "def inorderTraversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        dfs(node.left)\n        res.append(node.val)\n        dfs(node.right)\n    dfs(root)\n    return res"
+      },
+      {
+        "id": 2,
+        "title": "Binary Tree Preorder Traversal",
+        "description": "Traverse a binary tree in preorder (Root, Left, Right).\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,null,2,3]  | [1,2,3]         | Basic case       |\n| 2         | [1]           | [1]             | Single node      |\n| 3         | []            | []              | Empty tree       |\n| 4         | [1,2]         | [1,2]           | Left child only  |\n| 5         | [1,null,2]    | [1,2]           | Right child only |\n| 6         | [3,1,2]       | [3,1,2]         | Balanced tree    |\n| 7         | [4,2,5,1,3]   | [4,2,1,3,5]     | Multiple levels  |\n| 8         | [1,2,null,3]  | [1,2,3]         | Left skewed      |\n| 9         | [1,null,2,null,3] | [1,2,3]      | Right skewed     |\n| 10        | [5,3,6,2,4]   | [5,3,2,4,6]     | Tree with full nodes |",
+        "example": {
+          "input": "[1,null,2,3]",
+          "output": "[1,2,3]",
+          "explanation": "Visit root first, then left, then right."
+        },
+        "answer": "def preorderTraversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        res.append(node.val)\n        dfs(node.left)\n        dfs(node.right)\n    dfs(root)\n    return res"
+      },
+      {
+        "id": 3,
+        "title": "Binary Tree Postorder Traversal",
+        "description": "Traverse a binary tree in postorder (Left, Right, Root).\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,null,2,3]  | [3,2,1]         | Basic case       |\n| 2         | [1]           | [1]             | Single node      |\n| 3         | []            | []              | Empty tree       |\n| 4         | [1,2]         | [2,1]           | Left child only  |\n| 5         | [1,null,2]    | [2,1]           | Right child only |\n| 6         | [3,1,2]       | [1,2,3]         | Balanced tree    |\n| 7         | [4,2,5,1,3]   | [1,3,2,5,4]     | Multiple levels  |\n| 8         | [1,2,null,3]  | [3,2,1]         | Left skewed      |\n| 9         | [1,null,2,null,3] | [3,2,1]      | Right skewed     |\n| 10        | [5,3,6,2,4]   | [2,4,3,6,5]     | Tree with full nodes |",
+        "example": {
+          "input": "[1,null,2,3]",
+          "output": "[3,2,1]",
+          "explanation": "Visit left first, then right, then root."
+        },
+        "answer": "def postorderTraversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        dfs(node.left)\n        dfs(node.right)\n        res.append(node.val)\n    dfs(root)\n    return res"
+      },
+      {
+        "id": 4,
+        "title": "Level Order Traversal (BFS)",
+        "description": "Print level-by-level nodes of the binary tree.\n\n| Test Case | Input             | Expected Output   | Notes             |\n|-----------|-------------------|-------------------|-------------------|\n| 1         | [3,9,20,null,null,15,7] | [[3],[9,20],[15,7]] | Basic case       |\n| 2         | [1]               | [[1]]             | Single node       |\n| 3         | []                | []                | Empty tree        |\n| 4         | [1,2,3]           | [[1],[2,3]]       | Balanced tree     |\n| 5         | [1,null,2]        | [[1],[2]]         | Right skewed      |\n| 6         | [1,2,null,3]      | [[1],[2],[3]]     | Left skewed       |\n| 7         | [1,2,3,4,5,6]     | [[1],[2,3],[4,5,6]] | Multiple levels  |\n| 8         | [4,2,7,1,3]       | [[4],[2,7],[1,3]] | Tree with varying levels |\n| 9         | [1,2,null,4]      | [[1],[2],[4]]     | Tree with sparse branches |\n| 10        | [1,2,3,4,5,6,7]   | [[1],[2,3],[4,5,6,7]] | Full tree        |",
+        "example": {
+          "input": "[3,9,20,null,null,15,7]",
+          "output": "[[3],[9,20],[15,7]]",
+          "explanation": "Level by level traversal of the tree."
+        },
+        "answer": "from collections import deque\n\ndef levelOrder(root):\n    if not root: return []\n    queue = deque([root])\n    res = []\n    while queue:\n        level = []\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        res.append(level)\n    return res"
+      },
+      {
+        "id": 5,
+        "title": "Maximum Depth of Binary Tree",
+        "description": "Find the maximum depth (height) of the tree.\n\n| Test Case | Input             | Expected Output | Notes             |\n|-----------|-------------------|-----------------|-------------------|\n| 1         | [3,9,20,null,null,15,7] | 3               | Basic case       |\n| 2         | [1]               | 1               | Single node       |\n| 3         | []                | 0               | Empty tree        |\n| 4         | [1,2,3]           | 2               | Balanced tree     |\n| 5         | [1,null,2]        | 2               | Right skewed      |\n| 6         | [1,2,null,3]      | 3               | Left skewed       |\n| 7         | [1,2,3,4,5]       | 3               | Multiple levels   |\n| 8         | [1,2,3,4,5,6]     | 4               | Full tree         |\n| 9         | [1,2,3,null,4]    | 4               | Tree with varying nodes |\n| 10        | [1,2,3,4,5,6]     | 4               | Full tree         |",
+        "example": {
+          "input": "[3,9,20,null,null,15,7]",
+          "output": "3",
+          "explanation": "Depth of the tree is 3."
+        },
+        "answer": "def maxDepth(root):\n    if not root: return 0\n    return 1 + max(maxDepth(root.left), maxDepth(root.right))"
+      },
+      {
+        "id": 6,
+        "title": "Minimum Depth of Binary Tree",
+        "description": "Find the minimum depth (from root to nearest leaf).\n\n| Test Case | Input             | Expected Output | Notes             |\n|-----------|-------------------|-----------------|-------------------|\n| 1         | [2,null,3,null,4,null,5,null,6] | 5               | Deep tree        |\n| 2         | [1]               | 1               | Single node       |\n| 3         | []                | 0               | Empty tree        |\n| 4         | [1,2]             | 2               | Balanced tree     |\n| 5         | [1,null,2]        | 2               | Right skewed      |\n| 6         | [1,2,null,3]      | 3               | Left skewed       |\n| 7         | [1,2,3,4,5]       | 3               | Shallow tree      |\n| 8         | [1,2,3,4,5,6]     | 3               | Full tree         |\n| 9         | [1,2,3,null,4]    | 3               | Tree with sparse branches |\n| 10        | [1,2,3,4,5]       | 3               | Full tree         |",
+        "example": {
+          "input": "[2,null,3,null,4,null,5,null,6]",
+          "output": "5",
+          "explanation": "Depth of the tree is 5."
+        },
+        "answer": "def minDepth(root):\n    if not root: return 0\n    if not root.left: return 1 + minDepth(root.right)\n    if not root.right: return 1 + minDepth(root.left)\n    return 1 + min(minDepth(root.left), minDepth(root.right))"
+      },
+      {
+        "id": 7,
+        "title": "Check if Tree is Symmetric",
+        "description": "Check if the tree is a mirror of itself.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,2,3,4,4,3] | True            | Symmetric tree   |\n| 2         | [1,2,2,3,4,5]   | False           | Asymmetric tree  |\n| 3         | [1,2,2,3,4,5,6] | False           | Asymmetric tree  |\n| 4         | [1,2,3]         | False           | Missing symmetry |\n| 5         | []              | True            | Empty tree       |\n| 6         | [1]             | True            | Single node      |\n| 7         | [1,2,2]         | True            | Simple symmetric |\n| 8         | [1,2,2,3,4]     | False           | Missing symmetry |\n| 9         | [1,2,2,3,4,4]   | True            | Full symmetry    |\n| 10        | [1,2,2,3,4,4,3] | True            | Full symmetry    |",
+        "example": {
+          "input": "[1,2,2,3,4,4,3]",
+          "output": "True",
+          "explanation": "The tree is symmetric as left and right subtrees are mirror images."
+        },
+        "answer": "def isSymmetric(root):\n    def isMirror(t1, t2):\n        if not t1 and not t2: return True\n        if not t1 or not t2: return False\n        return (t1.val == t2.val and\n                isMirror(t1.left, t2.right) and\n                isMirror(t1.right, t2.left))\n    return isMirror(root, root)"
+      },
+      {
+        "id": 8,
+        "title": "Check if Two Trees are Identical",
+        "description": "Check if two trees are the same.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,3]       | True            | Identical trees  |\n| 2         | [1,2,3]       | True            | Identical trees  |\n| 3         | [1,2]         | False           | Different shapes |\n| 4         | []            | True            | Empty trees      |\n| 5         | [1]           | True            | Single node      |\n| 6         | [1,2]         | False           | Different shapes |\n| 7         | [1,2,3]       | True            | Identical trees  |\n| 8         | [2,3]         | False           | Missing node     |\n| 9         | [1,2,3]       | True            | Identical trees  |\n| 10        | [5,3,6,2,4]   | False           | Trees differ     |",
+        "example": {
+          "input": "[1,2,3]",
+          "output": "True",
+          "explanation": "The two trees are identical as all nodes are in the same structure."
+        },
+        "answer": "def isSameTree(p, q):\n    if not p and not q: return True\n    if not p or not q: return False\n    return (p.val == q.val and\n            isSameTree(p.left, q.left) and\n            isSameTree(p.right, q.right))"
+      },
+      {
+        "id": 9,
+        "title": "Diameter of Binary Tree",
+        "description": "Find the longest path between any two nodes.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,3,4,5]   | 3               | Basic case       |\n| 2         | [1]           | 0               | Single node      |\n| 3         | []            | 0               | Empty tree       |\n| 4         | [1,2,3]       | 2               | Balanced tree    |\n| 5         | [1,null,2]    | 1               | Right skewed     |\n| 6         | [1,2,null,3]  | 2               | Left skewed      |\n| 7         | [1,2,3,4,5]   | 3               | Multiple levels  |\n| 8         | [1,2,3,4,5,6] | 4               | Full tree        |\n| 9         | [1,2,3,4]     | 3               | Sparse branches  |\n| 10        | [5,3,6,2,4]   | 3               | Multiple levels  |",
+        "example": {
+          "input": "[1,2,3,4,5]",
+          "output": "3",
+          "explanation": "The longest path is from node 4 to node 5."
+        },
+        "answer": "def diameterOfBinaryTree(root):\n    diameter = 0\n    def dfs(node):\n        nonlocal diameter\n        if not node: return 0\n        left = dfs(node.left)\n        right = dfs(node.right)\n        diameter = max(diameter, left + right)\n        return 1 + max(left, right)\n    dfs(root)\n    return diameter"
+      },
+      {
+        "id": 10,
+        "title": "Invert a Binary Tree",
+        "description": "Flip the binary tree left-right.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [4,2,7,1,3,6,9] | [4,7,2,9,6,3,1] | Basic case       |\n| 2         | [1]           | [1]             | Single node      |\n| 3         | []            | []              | Empty tree       |\n| 4         | [1,2,3]       | [1,3,2]         | Simple swap      |\n| 5         | [1,2,null,3]  | [1,3,null,2]    | Left skewed      |\n| 6         | [1,null,2]    | [1,2]           | Right skewed     |\n| 7         | [1,2,3,4,5]   | [1,3,2,5,4]     | Multiple levels  |\n| 8         | [1,2,3,4,5,6] | [1,3,2,5,4,6]   | Full tree        |\n| 9         | [1,2,3,4]     | [1,3,2,4]       | Sparse branches  |\n| 10        | [1,2,3,4,5]   | [1,3,2,5,4]     | Varying levels   |",
+        "example": {
+          "input": "[4,2,7,1,3,6,9]",
+          "output": "[4,7,2,9,6,3,1]",
+          "explanation": "Swap the left and right subtrees of each node."
+        },
+        "answer": "def invertTree(root):\n    if not root: return None\n    root.left, root.right = invertTree(root.right), invertTree(root.left)\n    return root"
+      },
+      {
+        "id": 11,
+        "title": "Path Sum",
+        "description": "Check if tree has a root-to-leaf path that sums to a given value.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [5,4,8,11,null,13,4,7,2,null,null,null,1], TargetSum: 22 | True | Valid path with sum 22 |\n| 2         | [1,2,3], TargetSum: 3 | True | Valid path with sum 3 |\n| 3         | [1,2,3], TargetSum: 5 | False | No valid path with sum 5 |\n| 4         | [1,2,3], TargetSum: 6 | False | No valid path with sum 6 |\n| 5         | [3,9,20,null,null,15,7], TargetSum: 38 | True | Valid path with sum 38 |\n| 6         | [3,9,20,null,null,15,7], TargetSum: 22 | True | Valid path with sum 22 |\n| 7         | [1,2,3], TargetSum: 1 | False | No valid path with sum 1 |\n| 8         | [1,-2,-3,1,3,-2,null,-1], TargetSum: -1 | True | Valid path with sum -1 |\n| 9         | [1,2,3,4,5], TargetSum: 10 | True | Valid path with sum 10 |\n| 10        | [1,2,3,4], TargetSum: 7 | True | Valid path with sum 7 |",
+        "example": {
+          "input": "[5,4,8,11,null,13,4,7,2,null,null,null,1], TargetSum: 22",
+          "output": "True",
+          "explanation": "The root-to-leaf path 5 -> 4 -> 11 -> 7 sums up to 22."
+        },
+        "answer": "def hasPathSum(root, targetSum):\n    if not root: return False\n    if not root.left and not root.right:\n        return root.val == targetSum\n    return (hasPathSum(root.left, targetSum-root.val) or\n            hasPathSum(root.right, targetSum-root.val))"
+      },
+      {
+        "id": 12,
+        "title": "Sum of Left Leaves",
+        "description": "Find the sum of all left leaf nodes.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [3,9,20,null,null,15,7] | 24 | Left leaf nodes are 9 and 15. Sum = 9 + 15 = 24 |\n| 2         | [1,2,3,4,5]   | 4  | Left leaf node is 4 |\n| 3         | [1,2,3]       | 2  | Left leaf node is 2 |\n| 4         | [1,2,null,3]  | 3  | Left leaf node is 3 |\n| 5         | [1,null,2]    | 0  | No left leaves |\n| 6         | [1,2,3,4,5]   | 4  | Left leaf node is 4 |\n| 7         | [5,4,6,7,8]   | 7  | Left leaf node is 7 |\n| 8         | [1,2,3,4,5]   | 4  | Left leaf node is 4 |\n| 9         | [2,4,5,6,7]   | 6  | Left leaf node is 6 |\n| 10        | [1,2,3,4,5]   | 4  | Left leaf node is 4 |",
+        "example": {
+          "input": "[3,9,20,null,null,15,7]",
+          "output": "24",
+          "explanation": "The left leaf node values are 9 and 15, so the sum is 24."
+        },
+        "answer": "def sumOfLeftLeaves(root):\n    if not root: return 0\n    ans = 0\n    if root.left and not root.left.left and not root.left.right:\n        ans += root.left.val\n    return ans + sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right)"
+      },
+      {
+        "id": 13,
+        "title": "Count Complete Tree Nodes",
+        "description": "Count nodes of a complete binary tree.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,3,4,5,6] | 6 | Full binary tree with 6 nodes |\n| 2         | [1,2,3,4,5]   | 5  | Tree missing last leaf node |\n| 3         | [1,2,3]       | 3  | Tree has 3 nodes |\n| 4         | [1,2,null,3]  | 3  | Left-skewed tree with 3 nodes |\n| 5         | [1,2,3,4]     | 4  | Full binary tree with 4 nodes |\n| 6         | [1,2,3,4,5]   | 5  | Tree has 5 nodes |\n| 7         | [1]           | 1  | Single node tree |\n| 8         | [1,2]         | 2  | Simple two-node tree |\n| 9         | [1,2,3,null]  | 3  | Tree with 3 nodes, one missing right child |\n| 10        | [1,2,3,4,5,6,7] | 7 | Full binary tree with 7 nodes |",
+        "example": {
+          "input": "[1,2,3,4,5,6]",
+          "output": "6",
+          "explanation": "The tree has 6 nodes in total."
+        },
+        "answer": "def countNodes(root):\n    if not root: return 0\n    return 1 + countNodes(root.left) + countNodes(root.right)"
+      },
+      {
+        "id": 14,
+        "title": "Right Side View",
+        "description": "Return the rightmost nodes at each level.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,3,null,5,null,4] | [1,3,4] | Rightmost nodes are 1, 3, and 4 |\n| 2         | [1,2,3,4,5,6] | [1,3,6] | Rightmost nodes are 1, 3, and 6 |\n| 3         | [1,2]         | [1,2]   | Rightmost nodes are 1 and 2 |\n| 4         | [1,2,3,4,5]   | [1,3,5] | Rightmost nodes are 1, 3, and 5 |\n| 5         | [1]           | [1]     | Single node tree |\n| 6         | [1,2,3]       | [1,3]   | Rightmost nodes are 1 and 3 |\n| 7         | [1,2,3,4,5]   | [1,3,5] | Rightmost nodes are 1, 3, and 5 |\n| 8         | [1,2,3,4,5,6] | [1,3,6] | Rightmost nodes are 1, 3, and 6 |\n| 9         | [1,2,3,4]     | [1,3,4] | Rightmost nodes are 1, 3, and 4 |\n| 10        | [1,2,3,4,5]   | [1,3,5] | Rightmost nodes are 1, 3, and 5 |",
+        "example": {
+          "input": "[1,2,3,null,5,null,4]",
+          "output": "[1,3,4]",
+          "explanation": "The rightmost nodes at each level are 1, 3, and 4."
+        },
+        "answer": "def rightSideView(root):\n    res = []\n    def dfs(node, level):\n        if not node: return\n        if level == len(res):\n            res.append(node.val)\n        dfs(node.right, level+1)\n        dfs(node.left, level+1)\n    dfs(root, 0)\n    return res"
+      },
+      {
+        "id": 15,
+        "title": "Left Side View",
+        "description": "Return the leftmost nodes at each level.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,3,4,5,null,6] | [1,2,4] | Leftmost nodes are 1, 2, and 4 |\n| 2         | [1,2,3,4,5,6] | [1,2,4] | Leftmost nodes are 1, 2, and 4 |\n| 3         | [1,2,3,4]     | [1,2,4] | Leftmost nodes are 1, 2, and 4 |\n| 4         | [1,2,3]       | [1,2]   | Leftmost nodes are 1 and 2 |\n| 5         | [1]           | [1]     | Single node tree |\n| 6         | [1,2,3]       | [1,2]   | Leftmost nodes are 1 and 2 |\n| 7         | [1,2,3,4,5]   | [1,2,4] | Leftmost nodes are 1, 2, and 4 |\n| 8         | [1,2,3,4,5,6] | [1,2,4] | Leftmost nodes are 1, 2, and 4 |\n| 9         | [1,2,3,4]     | [1,2,4] | Leftmost nodes are 1, 2, and 4 |\n| 10        | [1,2,3,4,5]   | [1,2,4] | Leftmost nodes are 1, 2, and 4 |",
+        "example": {
+          "input": "[1,2,3,4,5,null,6]",
+          "output": "[1,2,4]",
+          "explanation": "The leftmost nodes at each level are 1, 2, and 4."
+        },
+        "answer": "def leftSideView(root):\n    res = []\n    def dfs(node, level):\n        if not node: return\n        if level == len(res):\n            res.append(node.val)\n        dfs(node.left, level+1)\n        dfs(node.right, level+1)\n    dfs(root, 0)\n    return res"
+      },
+      {
+        "id": 16,
+        "title": "Check if Tree is Balanced",
+        "description": "Tree is height-balanced if depth difference ≤ 1.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [3,9,20,null,null,15,7] | True | Tree is balanced |\n| 2         | [1,2,3,4,5]   | False | Tree is not balanced |\n| 3         | [1,2,3,null,null,4] | False | Left side is deeper |\n| 4         | [1,2,3]       | True | Tree is balanced |\n| 5         | [1]           | True | Single node tree |\n| 6         | [1,2,3,4]     | False | Tree is unbalanced |\n| 7         | [1,2,null,3]  | False | Left subtree deeper |\n| 8         | [1,2,3,4,5]   | False | Left side deeper |\n| 9         | [1,2]         | True | Tree is balanced |\n| 10        | [1,2,3,null,4] | False | Right side deeper |",
+        "example": {
+          "input": "[3,9,20,null,null,15,7]",
+          "output": "True",
+          "explanation": "The tree is balanced because the difference in heights is ≤ 1."
+        },
+        "answer": "def isBalanced(root):\n    def height(node):\n        if not node: return 0\n        left_height = height(node.left)\n        right_height = height(node.right)\n        if left_height == -1 or right_height == -1 or abs(left_height - right_height) > 1:\n            return -1\n        return 1 + max(left_height, right_height)\n    return height(root) != -1"
+      },
+      {
+        "id": 17,
+        "title": "Symmetric Tree",
+        "description": "Check if tree is symmetric around its center.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [1,2,2,3,4,4,3] | True | Tree is symmetric |\n| 2         | [1,2,2,null,3,null,3] | False | Tree is not symmetric |\n| 3         | [1,2,2,3,4,4] | False | Tree is not symmetric |\n| 4         | [1,2,2,3,3]   | True | Tree is symmetric |\n| 5         | [1,2,3]       | False | Tree is not symmetric |\n| 6         | [1,2,2,3]     | False | Tree is not symmetric |\n| 7         | [1,2,2,null,3] | False | Tree is not symmetric |\n| 8         | [1,2]         | False | Tree is not symmetric |\n| 9         | [1,2,3,4]     | False | Tree is not symmetric |\n| 10        | [1,2,3]       | False | Tree is not symmetric |",
+        "example": {
+          "input": "[1,2,2,3,4,4,3]",
+          "output": "True",
+          "explanation": "The tree is symmetric because left and right subtrees are mirror images of each other."
+        },
+        "answer": "def isSymmetric(root):\n    def mirror(left, right):\n        if not left and not right: return True\n        if not left or not right: return False\n        return left.val == right.val and mirror(left.left, right.right) and mirror(left.right, right.left)\n    return mirror(root, root)"
+      },
+      {
+        "id": 18,
+        "title": "Maximum Depth of Binary Tree",
+        "description": "Find the maximum depth of a binary tree.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [3,9,20,null,null,15,7] | 3  | Depth is 3 |\n| 2         | [1,2,3,4,5,6] | 3  | Depth is 3 |\n| 3         | [1,2,3,4,5]   | 3  | Depth is 3 |\n| 4         | [1,2,3,null,4] | 3  | Depth is 3 |\n| 5         | [1,2,3]       | 2  | Depth is 2 |\n| 6         | [1,2]         | 2  | Depth is 2 |\n| 7         | [1]           | 1  | Depth is 1 |\n| 8         | [1,2,3,4,5]   | 3  | Depth is 3 |\n| 9         | [1,2,3,4]     | 3  | Depth is 3 |\n| 10        | [1,2,3,4,5]   | 3  | Depth is 3 |",
+        "example": {
+          "input": "[3,9,20,null,null,15,7]",
+          "output": "3",
+          "explanation": "The tree has a depth of 3, with the longest path being from the root to the leaf node 7."
+        },
+        "answer": "def maxDepth(root):\n    if not root: return 0\n    return 1 + max(maxDepth(root.left), maxDepth(root.right))"
+      },
+      {
+        "id": 19,
+        "title": "Balanced Binary Tree",
+        "description": "Determine if a binary tree is balanced.\n\n| Test Case | Input         | Expected Output | Notes            |\n|-----------|---------------|-----------------|------------------|\n| 1         | [3,9,20,null,null,15,7] | True | Balanced tree |\n| 2         | [1,2,3,4,5]   | False | Not balanced |\n| 3         | [1,2,3,4]     | False | Not balanced |\n| 4         | [1,2,3]       | True | Balanced tree |\n| 5         | [1]           | True | Single node tree |\n| 6         | [1,2,3,4]     | False | Not balanced |\n| 7         | [1,2,null,3]  | False | Not balanced |\n| 8         | [1,2,3,4,5]   | False | Not balanced |\n| 9         | [1,2]         | True | Balanced tree |\n| 10        | [1,2,3,null,4] | False | Not balanced |",
+        "example": {
+          "input": "[3,9,20,null,null,15,7]",
+          "output": "True",
+          "explanation": "The tree is balanced because the difference in heights is ≤ 1."
+        },
+        "answer": "def isBalanced(root):\n    def height(node):\n        if not node: return 0\n        left_height = height(node.left)\n        right_height = height(node.right)\n        if left_height == -1 or right_height == -1 or abs(left_height - right_height) > 1:\n            return -1\n        return 1 + max(left_height, right_height)\n    return height(root) != -1"
+      },
+      {
+        "id": 20,
+        "title": "Find Duplicate Subtrees",
+        "description": "Find all duplicate subtrees in binary tree.\n\n| Test Case | Input                           | Expected Output  | Notes               |\n|-----------|---------------------------------|------------------|---------------------|\n| 1         | [1,2,3,4,null,2,4,null,null,4]  | [[2,4],[4]]       | Duplicate subtrees  |\n| 2         | [1,2,3,null,null,2,3,null]      | [[2,3]]           | Simple case         |\n| 3         | [1,1,1,1,null,null,1]           | [[1,1]]           | Identical subtrees  |\n| 4         | [3,2,1,4,null,2,5]              | []                | No duplicate        |\n| 5         | [1,2,3,4,5,2,4]                | [[2,4]]           | Duplicate on right  |\n| 6         | [1,2,3,4,5,3,4]                | [[3,4]]           | Duplicate on left   |\n| 7         | [1,2,3,2,4,5,4]                | [[2,4],[4]]       | Multiple duplicates |\n| 8         | [1,2,3,4,5]                    | []                | No duplicates       |\n| 9         | [3,2,1,2,1,3,4]                | [[2,1]]           | Duplicate subtree   |\n| 10        | [1,1,2,2,3,3]                  | [[2,3]]           | Identical subtrees  |",
+        "example": {
+          "input": "[1,2,3,4,null,2,4,null,null,4]",
+          "output": "[[2,4],[4]]",
+          "explanation": "There are two duplicate subtrees [2,4] and [4] in the tree."
+        },
+        "answer": "from collections import defaultdict\n\ndef findDuplicateSubtrees(root):\n    count = defaultdict(int)\n    res = []\n    def dfs(node):\n        if not node: return \"#\"\n        serial = f\"{node.val},{dfs(node.left)},{dfs(node.right)}\"\n        count[serial] += 1\n        if count[serial] == 2:\n            res.append(node)\n        return serial\n    dfs(root)\n    return res"
+      }
+      
+    ]
+  }
+  

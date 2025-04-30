@@ -1,0 +1,150 @@
+{
+    "questions": [
+        {
+          "id": 1,
+          "title": "Binary Search",
+          "description": "Search element in a sorted array.\n\n| Test Case | Input Array         | Target | Expected Output | Notes                  |\n|-----------|----------------------|--------|------------------|-------------------------|\n| 1         | [1,3,5,7,9]          | 5      | 2                | Found at middle         |\n| 2         | [1,2,3,4,5,6]        | 1      | 0                | Found at beginning      |\n| 3         | [1,2,3,4,5,6]        | 6      | 5                | Found at end            |\n| 4         | [1,2,3,4,5,6]        | 4      | 3                | Middle element          |\n| 5         | [10,20,30,40,50]     | 35     | -1               | Not present             |\n| 6         | [2,4,6,8,10,12,14]   | 7      | -1               | Not found               |\n| 7         | [1]                  | 1      | 0                | Single element match    |\n| 8         | [1]                  | 0      | -1               | Single element no match |\n| 9         | []                   | 1      | -1               | Empty array             |\n| 10        | [1,2,3,4,5,6,7,8,9]  | 8      | 7                | Found at second last    |",
+          "example": {
+            "input": "[1,3,5,7,9], Target: 5",
+            "output": "2",
+            "explanation": "Element 5 is present at index 2."
+          },
+          "answer": "def binarySearch(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid+1\n        else:\n            high = mid-1\n    return -1"
+        },
+        {
+            "id": 2,
+            "title": "Merge Sort",
+            "description": "Sort array using merge sort.\n\n| Test Case | Input         | Expected Output | Notes                    |\n|-----------|---------------|-----------------|--------------------------|\n| 1         | [5,2,3,1]     | [1,2,3,5]       | Basic unsorted input     |\n| 2         | [1]           | [1]             | Single element           |\n| 3         | [2,1]         | [1,2]           | Two elements             |\n| 4         | [4,3,2,1]     | [1,2,3,4]       | Reversed list            |\n| 5         | []            | []              | Empty input              |\n| 6         | [10,9,8,7,6]  | [6,7,8,9,10]    | Odd-length reversed list |\n| 7         | [1,2,3,4]     | [1,2,3,4]       | Already sorted           |\n| 8         | [4,5,2,3,1]   | [1,2,3,4,5]     | Unordered list           |\n| 9         | [0,0,0]       | [0,0,0]         | Duplicates               |\n| 10        | [3,1,2,2]     | [1,2,2,3]       | Repeated elements        |",
+            "example": {
+              "input": "[5,2,3,1]",
+              "output": "[1,2,3,5]",
+              "explanation": "Merge sort recursively divides and merges arrays to sort them."
+            },
+            "answer": "def mergeSort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr)//2\n    left = mergeSort(arr[:mid])\n    right = mergeSort(arr[mid:])\n    return merge(left, right)\n\ndef merge(left, right):\n    result = []\n    i=j=0\n    while i<len(left) and j<len(right):\n        if left[i]<right[j]:\n            result.append(left[i])\n            i+=1\n        else:\n            result.append(right[j])\n            j+=1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result"
+          },
+          {
+            "id": 3,
+            "title": "Quick Sort",
+            "description": "Sort using quick sort.\n\n| Test Case | Input                       | Expected Output    | Notes                        |\n|-----------|-----------------------------|---------------------|------------------------------|\n| 1         | [3,6,8,10,1,2,1]            | [1,1,2,3,6,8,10]    | Random unsorted array        |\n| 2         | [5,4,3,2,1]                 | [1,2,3,4,5]         | Reverse sorted               |\n| 3         | [1,2,3,4,5]                 | [1,2,3,4,5]         | Already sorted               |\n| 4         | [7]                         | [7]                | Single element               |\n| 5         | []                          | []                 | Empty array                  |\n| 6         | [10, -1, 2, 5, 0, -3]       | [-3,-1,0,2,5,10]    | Includes negatives           |\n| 7         | [5,5,5,5]                   | [5,5,5,5]          | All elements equal           |\n| 8         | [9,8,7,6,5,4,3,2,1,0]       | [0,1,2,3,4,5,6,7,8,9] | Large reverse sorted       |\n| 9         | [3,1,2,1,3,1,2]             | [1,1,1,2,2,3,3]     | Duplicates and random order  |\n| 10        | [100, 10, 1]                | [1,10,100]         | Power of 10 variation        |",
+            "example": {
+              "input": "[3,6,8,10,1,2,1]",
+              "output": "[1,1,2,3,6,8,10]",
+              "explanation": "Quick sort sorts the input array efficiently by recursive partitioning."
+            },
+            "answer": "def quickSort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr)//2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quickSort(left) + middle + quickSort(right)"
+          },
+          {
+            "id": 4,
+            "title": "Find Minimum and Maximum in Array",
+            "description": "Find the minimum and maximum values in an array using Divide & Conquer approach.\n\n| Test Case | Input                            | Expected Output  | Notes                        |\n|-----------|----------------------------------|------------------|------------------------------|\n| 1         | [100, 11, 445, 1, 330, 3000]     | Min: 1, Max: 3000| Example with random values   |\n| 2         | [5, 1, 4, 7, 3, 2]               | Min: 1, Max: 7   | Random values                |\n| 3         | [-10, -20, -30, -5]              | Min: -30, Max: -5 | All negative values          |\n| 4         | [1, 1, 1, 1]                    | Min: 1, Max: 1   | Identical elements           |\n| 5         | [9, 5, 3, 6, 8, 7]               | Min: 3, Max: 9   | Random values                |\n| 6         | [45, 67, 32, 89, 21, 3]          | Min: 3, Max: 89  | Random values                |\n| 7         | [0, -1, -5, -2, -3]              | Min: -5, Max: 0  | Mixed negative and zero      |\n| 8         | [1000, 500, 3000, 100, 900]      | Min: 100, Max: 3000| Example with large numbers  |\n| 9         | [10, 20, 30, 40, 50, 60]         | Min: 10, Max: 60 | Increasing order             |\n| 10        | [2, 3, 7, 9, 0, 1]               | Min: 0, Max: 9   | Random values                |",
+            "example": {
+              "input": "[100, 11, 445, 1, 330, 3000]",
+              "output": "Min: 1, Max: 3000",
+              "explanation": "The minimum value is 1, and the maximum value is 3000."
+            },
+            "answer": "def findMinMax(arr, low, high):\n    if low == high:\n        return (arr[low], arr[low])\n    if high == low+1:\n        return (min(arr[low], arr[high]), max(arr[low], arr[high]))\n    mid = (low + high)//2\n    min1, max1 = findMinMax(arr, low, mid)\n    min2, max2 = findMinMax(arr, mid+1, high)\n    return (min(min1, min2), max(max1, max2))"
+          },
+          {
+            "id": 5,
+            "title": "Find k-th Smallest Element",
+            "description": "Find the k-th smallest element in an array using quick select.\n\n| Test Case | Input                                     | Expected Output | Notes                        |\n|-----------|-------------------------------------------|-----------------|------------------------------|\n| 1         | [7, 10, 4, 3, 20, 15], k=3              | 7               | Standard test case           |\n| 2         | [5, 2, 9, 1, 6, 3], k=4                 | 6               | Random values                |\n| 3         | [11, 12, 15, 13, 18, 14], k=2            | 12              | Small test case              |\n| 4         | [1, 3, 5, 7, 9, 2], k=5                 | 9               | Sorted array                 |\n| 5         | [100, 50, 75, 25, 10, 60, 35], k=4       | 50              | Unsorted values              |\n| 6         | [-5, -1, -3, -10, -2], k=3               | -3              | All negative numbers         |\n| 7         | [1, 1, 1, 1], k=3                       | 1               | All identical elements       |\n| 8         | [0, 5, 10, 15, 20], k=2                 | 5               | Increasing order             |\n| 9         | [6, 3, 8, 1, 4], k=1                    | 1               | Single smallest element      |\n| 10        | [10, 20, 30, 40, 50], k=5                | 50              | Largest element in sorted array |",
+            "example": {
+              "input": "[7, 10, 4, 3, 20, 15], k=3",
+              "output": "7",
+              "explanation": "The 3rd smallest element in the array is 7."
+            },
+            "answer": "def kthSmallest(arr, k):\n    arr.sort()\n    return arr[k-1]"
+          },
+          {
+            "id": 6,
+            "title": "Majority Element (More than n/2 times)",
+            "description": "Find the majority element in an array, i.e., the element that appears more than n/2 times.\n\n| Test Case | Input                              | Expected Output | Notes               |\n|-----------|------------------------------------|-----------------|---------------------|\n| 1         | [2,2,1,1,1,2,2]                   | 2               | Standard test case   |\n| 2         | [3,3,4,2,4,4,2,4,4]               | 4               | Majority element     |\n| 3         | [1,2,3,4,5]                       | 1               | No majority element  |\n| 4         | [5,5,5,5,5,1,2,3]                 | 5               | Single majority      |\n| 5         | [10,10,10,20,20,30,30,10]         | 10              | Majority on left     |\n| 6         | [7,7,7,9,9,9,7,7]                 | 7               | Majority on right    |\n| 7         | [8,8,9,9,9,9,8]                   | 9               | Majority in middle   |\n| 8         | [4,4,4,4,1,1,1,1]                 | 4               | Majority of 4's      |\n| 9         | [2,2,2,2,1,1,1]                   | 2               | Majority of 2's      |\n| 10        | [1,1,1,2,3,4,5]                   | 1               | Clear majority       |",
+            "example": {
+              "input": "[2,2,1,1,1,2,2]",
+              "output": "2",
+              "explanation": "The majority element (appearing more than n/2 times) in the array is 2."
+            },
+            "answer": "def majorityElement(nums):\n    count, candidate = 0, None\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n    return candidate"
+          },
+          {
+            "id": 7,
+            "title": "Count Inversions in Array",
+            "description": "Count the number of pairs (i, j) such that arr[i] > arr[j] and i < j.\n\n| Test Case | Input                            | Expected Output | Notes                     |\n|-----------|----------------------------------|-----------------|---------------------------|\n| 1         | [2,4,1,3,5]                      | 3               | Standard test case         |\n| 2         | [1,20,6,4,5]                     | 5               | Inversions in sequence     |\n| 3         | [1,2,3,4,5]                      | 0               | No inversions              |\n| 4         | [5,4,3,2,1]                      | 10              | Reverse sorted             |\n| 5         | [10,9,8,7,6,5]                   | 15              | Reverse sorted large       |\n| 6         | [1,3,2,3,1]                      | 4               | Multiple inversions        |\n| 7         | [1,1,1,1,1]                      | 0               | All elements equal         |\n| 8         | [1,3,5,2,4,6]                    | 3               | Some inversions present    |\n| 9         | [7,5,6,4,3,2]                    | 10              | Larger number of inversions|\n| 10        | [9,8,7,6,5,4,3,2,1]              | 36              | Fully reversed sequence    |",
+            "example": {
+              "input": "[2,4,1,3,5]",
+              "output": "3",
+              "explanation": "There are 3 inversions: (2,1), (4,1), (4,3)."
+            },
+            "answer": "def mergeSortCount(arr):\n    if len(arr) <= 1:\n        return arr, 0\n    mid = len(arr)//2\n    left, invLeft = mergeSortCount(arr[:mid])\n    right, invRight = mergeSortCount(arr[mid:])\n    merged, invSplit = mergeCount(left, right)\n    return merged, invLeft + invRight + invSplit\n\ndef mergeCount(left, right):\n    result, i, j, inv = [], 0, 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            inv += len(left) - i\n            j += 1\n    result += left[i:]\n    result += right[j:]\n    return result, inv"
+          },
+          {
+            "id": 8,
+            "title": "Median of Two Sorted Arrays",
+            "description": "Find the median from two sorted arrays.\n\n| Test Case | Input                                          | Expected Output | Notes                      |\n|-----------|------------------------------------------------|-----------------|----------------------------|\n| 1         | [1,3] and [2]                                  | 2.0             | Simple case                |\n| 2         | [1,2] and [3,4]                                | 2.5             | Median is average of two middle elements |\n| 3         | [0,0] and [0,0]                                | 0.0             | Same elements              |\n| 4         | [1,2,3,4,5] and [6,7,8,9,10]                  | 5.5             | Larger arrays              |\n| 5         | [1, 4] and [2, 3]                              | 2.5             | Small arrays               |\n| 6         | [1,2,3] and [4,5]                              | 3.0             | Median is single element   |\n| 7         | [1,3,8,9] and [2,4,6,7]                        | 4.5             | Median is between two numbers |\n| 8         | [1, 3, 8] and [4, 5, 7]                        | 4.0             | Median is a single element |\n| 9         | [5,6] and [1, 2, 3, 4, 7]                      | 4.0             | Odd combined length        |\n| 10        | [1, 4, 6, 8] and [2, 3, 5, 7]                  | 4.5             | Even combined length       |",
+            "example": {
+              "input": "[1,3] and [2]",
+              "output": "2.0",
+              "explanation": "After merging the arrays, the combined list is [1, 2, 3]. The median is 2."
+            },
+            "answer": "def findMedianSortedArrays(nums1, nums2):\n    nums = sorted(nums1 + nums2)\n    n = len(nums)\n    if n % 2 == 0:\n        return (nums[n//2 - 1] + nums[n//2]) / 2\n    else:\n        return nums[n//2]"
+          },
+          {
+            "id": 9,
+            "title": "Power Function (x^n)",
+            "description": "Calculate x^n.\n\n| Test Case | Input                | Expected Output | Notes                      |\n|-----------|----------------------|-----------------|----------------------------|\n| 1         | x=2, n=10             | 1024            | Simple case                |\n| 2         | x=3, n=3              | 27              | Small integers             |\n| 3         | x=5, n=0              | 1               | Power of 0                 |\n| 4         | x=1, n=1000           | 1               | Power with x = 1           |\n| 5         | x=10, n=2             | 100             | Square of 10               |\n| 6         | x=2, n=-3             | 0.125           | Negative exponent          |\n| 7         | x=7, n=4              | 2401            | Power with large exponent  |\n| 8         | x=0, n=5              | 0               | Power of 0                 |\n| 9         | x=4, n=0.5            | 2               | Square root calculation    |\n| 10        | x=2, n=1000           | 1073741824      | Large exponent             |",
+            "example": {
+              "input": "x=2, n=10",
+              "output": "1024",
+              "explanation": "The value of 2 raised to the power 10 is 1024."
+            },
+            "answer": "def power(x, n):\n    if n == 0:\n        return 1\n    temp = power(x, n//2)\n    if n % 2 == 0:\n        return temp * temp\n    else:\n        return x * temp * temp"
+          },
+          {
+            "id": 10,
+            "title": "Multiply Large Numbers",
+            "description": "Multiply two big integers.\n\n| Test Case | Input                | Expected Output | Notes                      |\n|-----------|----------------------|-----------------|----------------------------|\n| 1         | '123', '456'          | 56088           | Simple multiplication      |\n| 2         | '999', '999'          | 998001          | Large numbers               |\n| 3         | '1', '1000'           | 1000            | One operand is small        |\n| 4         | '0', '1000'           | 0               | Multiplication with 0       |\n| 5         | '123456789', '987654321' | 121932631112635269 | Very large numbers         |\n| 6         | '1234', '5678'        | 7006652         | Large but manageable        |\n| 7         | '999999', '999999'    | 999998000001    | Test with multiple 9's      |\n| 8         | '1', '1'              | 1               | Both operands are 1         |\n| 9         | '50', '2'             | 100             | Small multiplication        |\n| 10        | '1000', '10000'       | 10000000        | Larger numbers              |",
+            "example": {
+              "input": "'123', '456'",
+              "output": "56088",
+              "explanation": "Multiplying 123 and 456 gives 56088."
+            },
+            "answer": "def multiply(num1, num2):\n    return str(int(num1)*int(num2))"
+          },
+          {
+            "id": 11,
+            "title": "Merge K Sorted Lists",
+            "description": "Merge k sorted linked lists into one sorted list.\n\n| Test Case | Input                     | Expected Output     | Notes                         |\n|-----------|---------------------------|---------------------|-------------------------------|\n| 1         | [[1,4,5], [1,3,4], [2,6]]  | [1,1,2,3,4,4,5,6]   | Simple case                   |\n| 2         | [[1,2], [3,4], [5,6]]      | [1,2,3,4,5,6]       | Merging sorted lists          |\n| 3         | [[], [], []]               | []                  | Empty lists                   |\n| 4         | [[1], [1], [1]]            | [1,1,1]             | Identical lists               |\n| 5         | [[1,2,3], [1,3,5], [2,4]]  | [1,1,2,2,3,3,4,5]   | Lists with overlapping values |\n| 6         | [[1,2], [1,4], [2,5]]      | [1,1,2,2,4,5]       | Different ranges              |\n| 7         | [[2,3], [4,5], [1,2]]      | [1,2,2,3,4,5]       | Merging with different values |\n| 8         | [[0,1], [2,3], [4,5]]      | [0,1,2,3,4,5]       | Increasing sequences          |\n| 9         | [[1,1], [1,1], [1,1]]      | [1,1,1,1,1,1]       | Identical values in all lists |\n| 10        | [[10,20], [5,15], [0,30]]  | [0,5,10,15,20,30]   | Mixed numbers                 |",
+            "example": {
+              "input": "[[1,4,5], [1,3,4], [2,6]]",
+              "output": "[1,1,2,3,4,4,5,6]",
+              "explanation": "Merging the three sorted lists into one sorted list gives [1,1,2,3,4,4,5,6]."
+            },
+            "answer": "import heapq\n\ndef mergeKLists(lists):\n    heap = []\n    for l in lists:\n        for val in l:\n            heapq.heappush(heap, val)\n    result = []\n    while heap:\n        result.append(heapq.heappop(heap))\n    return result"
+          },
+          {
+            "id": 13,
+            "title": "Closest Pair of Points",
+            "description": "Find the minimum distance between two points.\n\n| Test Case | Input                     | Expected Output | Notes                      |\n|-----------|---------------------------|-----------------|----------------------------|\n| 1         | [(2,3), (12,30), (40,50), (5,1), (12,10), (3,4)] | 1.4142          | Standard distance         |\n| 2         | [(1,1), (1,2), (2,2)]     | 1               | Simple distance            |\n| 3         | [(1,1), (5,5), (9,9)]     | 5.6569          | Larger distance            |\n| 4         | [(1,0), (2,0), (3,0)]     | 1               | Simple case                |\n| 5         | [(0,0), (0,1), (0,2)]     | 1               | Points in a vertical line  |\n| 6         | [(1,1), (4,5), (9,0)]     | 4.2426          | Random points              |\n| 7         | [(2,1), (2,5), (2,9)]     | 4               | Same x-coordinate          |\n| 8         | [(5,3), (6,1), (7,0)]     | 1.4142          | Close points               |\n| 9         | [(0,0), (10,10), (20,20)] | 14.1421         | Far points                 |\n| 10        | [(1,1), (1,2), (2,3)]     | 1.4142          | Points forming an angle    |",
+            "example": {
+              "input": "[(2,3), (12,30), (40,50), (5,1), (12,10), (3,4)]",
+              "output": "1.4142",
+              "explanation": "The closest pair of points is (2,3) and (3,4) with a distance of 1.4142."
+            },
+            "answer": "import math\n\ndef dist(p1, p2):\n    return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)\n\ndef closestPair(points):\n    points.sort()\n    return closestUtil(points)\n\ndef closestUtil(points):\n    n = len(points)\n    if n <= 3:\n        return min(dist(points[i], points[j]) for i in range(n) for j in range(i+1, n))\n    mid = n//2\n    d = min(closestUtil(points[:mid]), closestUtil(points[mid:]))\n    mid_x = points[mid][0]\n    strip = [p for p in points if abs(p[0]-mid_x) < d]\n    strip.sort(key=lambda x: x[1])\n    for i in range(len(strip)):\n        for j in range(i+1, len(strip)):\n            if (strip[j][1] - strip[i][1]) >= d:\n                break\n            d = min(d, dist(strip[i], strip[j]))\n    return d"
+          },
+          {
+            "id": 14,
+            "title": "Strassen’s Matrix Multiplication",
+            "description": "Multiply two matrices faster than normal multiplication.\n\n| Test Case | Input                          | Expected Output      | Notes                      |\n|-----------|--------------------------------|----------------------|----------------------------|\n| 1         | A = [[1,2],[3,4]], B=[[5,6],[7,8]] | [[19,22], [43,50]] | Standard case               |\n| 2         | A = [[2,1],[1,2]], B=[[2,3],[3,4]] | [[7,10], [8,11]]    | Simple matrix              |\n| 3         | A = [[0,1],[1,0]], B=[[1,0],[0,1]] | [[0,1], [1,0]]      | Identity matrix            |\n| 4         | A = [[1,0,0],[0,1,0],[0,0,1]], B=[[1,2,3],[4,5,6],[7,8,9]] | [[1,2,3],[4,5,6],[7,8,9]] | Identity multiplication     |\n| 5         | A = [[1,2],[3,4],[5,6]], B=[[7,8],[9,10],[11,12]] | [[58,64],[139,154],[220,244]] | Higher dimensions         |\n| 6         | A = [[1,1,1],[1,1,1],[1,1,1]], B=[[1,1,1],[1,1,1],[1,1,1]] | [[3,3,3],[3,3,3],[3,3,3]] | All ones                   |\n| 7         | A = [[2,3,4],[5,6,7],[8,9,10]], B=[[1,0,0],[0,1,0],[0,0,1]] | [[2,3,4],[5,6,7],[8,9,10]] | Mixed numbers             |\n| 8         | A = [[1]], B=[[2]]              | [[2]]               | Single element matrices    |\n| 9         | A = [[5,6],[7,8]], B=[[1,1],[2,2]] | [[17,17],[23,23]]    | Small test case             |\n| 10        | A = [[1,1,1,1],[1,1,1,1]], B=[[2,2],[2,2]] | [[4,4],[4,4]]    | Non-square dimensions      |",
+            "example": {
+              "input": "A = [[1,2],[3,4]], B=[[5,6],[7,8]]",
+              "output": "[[19,22], [43,50]]",
+              "explanation": "Normal multiplication gives the result [[19,22], [43,50]]"
+            },
+            "answer": "def strassen(A, B):\n    if len(A) == 1:\n        return [[A[0][0] * B[0][0]]]\n    a, b, c, d = A[0][0], A[0][1], A[1][0], A[1][1]\n    e, f, g, h = B[0][0], B[0][1], B[1][0], B[1][1]\n    p1 = (a+d) * (e+h)\n    p2 = (c+d) * e\n    p3 = a * (f-h)\n    p4 = d * (g-e)\n    p5 = (a+b) * h\n    p6 = (c-a) * (e+f)\n    p7 = (b-d) * (g+h)\n    return [[p1 + p4 - p5 + p7, p3 + p5], [p2 + p4, p1 + p3 - p2 + p6]]"
+          }
+          
+                                                                                                
+      ]
+}
+      
