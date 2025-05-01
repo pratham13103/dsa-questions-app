@@ -5,7 +5,7 @@ import ThemeToggle from "./components/ThemeToggle";
 import hashingData from "./data/hashing.json";
 import BTData from "./data/BT.json";
 import DivideAndConquerData from "./data/DivideAndConquer.json";
-
+import linkedListData from "./data/linkedlist.json"; // Importing linked list data
 
 export interface Question {
   id: number;
@@ -14,7 +14,7 @@ export interface Question {
   example: {
     input: string;
     output: string;
-    explanation?: string;  // Make explanation optional
+    explanation?: string;  // Explanation is optional
   };
   answer: string;
 }
@@ -37,7 +37,7 @@ function App() {
     },
     {
       id: "BT",
-      name: "Binary tree",
+      name: "Binary Tree",
       questions: BTData.questions,
     },
     {
@@ -45,13 +45,19 @@ function App() {
       name: "Divide and Conquer",
       questions: DivideAndConquerData.questions,
     },
+    {
+      id: "linkedlist", // Added Linked List topic
+      name: "Linked List",
+      questions: linkedListData.questions, // Include the linked list questions
+    },
   ];
 
   useEffect(() => {
+    const rootElement = document.documentElement;
     if (darkMode) {
-      document.documentElement.classList.add("dark");
+      rootElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      rootElement.classList.remove("dark");
     }
   }, [darkMode]);
 
@@ -67,3 +73,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+

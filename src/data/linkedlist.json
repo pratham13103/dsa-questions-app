@@ -1,0 +1,235 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "title": "Reverse a singly linked list",
+        "description": "Write a function that reverses a singly linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1, 2, 3]   | None   | [3, 2, 1]       | Standard case |\n| 2          | [5, 6, 7]   | None   | [7, 6, 5]       | Simple input |\n| 3          | []          | None   | []              | Empty list |\n| 4          | [1]         | None   | [1]             | Single element |\n| 5          | [10, 20]    | None   | [20, 10]        | Two element list |\n| 6          | [1, 2, 3, 4] | None   | [4, 3, 2, 1]   | Even number of elements |\n| 7          | [100, 200]  | None   | [200, 100]      | Two large values |\n| 8          | [10, 100, 1000] | None | [1000, 100, 10] | Larger values |\n| 9          | [0, 0, 0]   | None   | [0, 0, 0]       | All zeros |\n| 10         | [1, 2]      | None   | [2, 1]          | Small list |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "[3, 2, 1]",
+          "explanation": "Reversing the list results in [3, 2, 1]."
+        },
+        "answer": "class Solution:\n    def reverseList(self, head):\n        prev = None\n        curr = head\n        while curr:\n            next_node = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next_node\n        return prev"
+      },
+      {
+        "id": 2,
+        "title": "Detect a loop in a singly linked list",
+        "description": "Write a function to detect if a loop exists in a singly linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1, 2, 3]   | Loop at 2   | True        | Standard case |\n| 2          | [1, 2]      | No loop    | False        | Small list |\n| 3          | [1, 2, 3, 4, 5] | Loop at 4 | True | Larger list with loop |\n| 4          | []          | No loop    | False        | Empty list |\n| 5          | [1]         | No loop    | False        | Single element |\n| 6          | [1, 2, 3, 4] | Loop at 3  | True        | List with a loop |\n| 7          | [10, 20, 30] | Loop at 20 | True        | Simple loop test |\n| 8          | [5, 6, 7, 8] | No loop    | False        | No loop present |\n| 9          | [1, 2, 3, 4, 5] | No loop    | False        | No loop |\n| 10         | [1, 2]      | Loop at 1  | True        | Only two nodes |",
+        "example": {
+          "input": "[1, 2, 3] with loop at 2",
+          "output": "True",
+          "explanation": "The list contains a loop, so the function returns True."
+        },
+        "answer": "class Solution:\n    def hasCycle(self, head):\n        slow = head\n        fast = head\n        while fast and fast.next:\n            slow = slow.next\n            fast = fast.next.next\n            if slow == fast:\n                return True\n        return False"
+      },
+      {
+        "id": 3,
+        "title": "Remove duplicates from a sorted singly linked list",
+        "description": "Write a function to remove duplicates from a sorted singly linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1, 1, 2, 3] | None   | [1, 2, 3]       | Duplicates removed |\n| 2          | [5, 5, 5, 6] | None   | [5, 6]          | Duplicates removed |\n| 3          | [1, 1, 1, 1] | None   | [1]             | All elements are duplicates |\n| 4          | []          | None   | []              | Empty list |\n| 5          | [1, 2, 3]   | None   | [1, 2, 3]       | No duplicates |\n| 6          | [10, 10, 10, 10, 10] | None | [10] | All identical elements |\n| 7          | [2, 2, 3]   | None   | [2, 3]          | Two duplicates |\n| 8          | [0, 1, 1, 2] | None   | [0, 1, 2]       | Sorted input |\n| 9          | [4, 5, 5, 5, 6] | None | [4, 5, 6] | Removing duplicates |\n| 10         | [7, 7, 8, 8, 8] | None | [7, 8] | Multiple duplicates |",
+        "example": {
+          "input": "[1, 1, 2, 3]",
+          "output": "[1, 2, 3]",
+          "explanation": "Duplicates have been removed from the sorted list."
+        },
+        "answer": "class Solution:\n    def deleteDuplicates(self, head):\n        current = head\n        while current and current.next:\n            if current.val == current.next.val:\n                current.next = current.next.next\n            else:\n                current = current.next\n        return head"
+      },
+      {
+        "id": 4,
+        "title": "Add two numbers represented by linked lists",
+        "description": "Write a function to add two numbers represented by linked lists, where each node contains a single digit. The digits are stored in reverse order.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [2, 4, 3], [5, 6, 4]  | None | [7, 0, 8] | Standard case |\n| 2          | [1], [9] | None | [0, 1] | Single element lists |\n| 3          | [9, 9], [1] | None | [0, 0, 1] | Carry over case |\n| 4          | [1, 2], [3, 4] | None | [4, 6] | Simple add |\n| 5          | [9, 9], [9, 9] | None | [8, 9, 1] | Large numbers |\n| 6          | [5, 6], [5, 6] | None | [0, 2, 1] | Simple sum |\n| 7          | [0], [0] | None | [0] | Zero case |\n| 8          | [1, 9], [9, 9] | None | [0, 9, 1] | Multiple carries |\n| 9          | [1, 1, 1], [9, 9, 9] | None | [0, 1, 1, 1] | Larger numbers |\n| 10         | [2, 5], [7] | None | [9, 5] | Different length lists |",
+        "example": {
+          "input": "[2, 4, 3], [5, 6, 4]",
+          "output": "[7, 0, 8]",
+          "explanation": "The sum of [2, 4, 3] and [5, 6, 4] is [7, 0, 8]."
+        },
+        "answer": "class Solution:\n    def addTwoNumbers(self, l1, l2):\n        carry = 0\n        dummy = ListNode(0)\n        current = dummy\n        while l1 or l2 or carry:\n            val1 = l1.val if l1 else 0\n            val2 = l2.val if l2 else 0\n            total = val1 + val2 + carry\n            carry = total // 10\n            current.next = ListNode(total % 10)\n            current = current.next\n            if l1: l1 = l1.next\n            if l2: l2 = l2.next\n        return dummy.next"
+      },
+      {
+        "id": 5,
+        "title": "Find the middle element (Fast and Slow Pointers)",
+        "description": "Write a function to find the middle element of a singly linked list using fast and slow pointers.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1, 2, 3, 4, 5] | None | 3 | Odd number of elements |\n| 2          | [1, 2, 3, 4] | None | 2 | Even number of elements |\n| 3          | [1, 2, 3] | None | 2 | Odd list |\n| 4          | [5, 6, 7, 8, 9] | None | 7 | Middle element |\n| 5          | [10, 20, 30] | None | 20 | Simple list |\n| 6          | [1, 2] | None | 1 | Two elements |\n| 7          | [0, 1, 2, 3] | None | 2 | Medium element |\n| 8          | [0, 0, 0, 0, 0] | None | 0 | Repeating elements |\n| 9          | [4, 5, 6, 7] | None | 5 | Even sized list |\n| 10         | [3, 4, 5, 6, 7] | None | 5 | Larger list |\n",
+        "example": {
+          "input": "[1, 2, 3, 4, 5]",
+          "output": "3",
+          "explanation": "The middle element of the list is 3."
+        },
+        "answer": "class Solution:\n    def middleNode(self, head):\n        slow = head\n        fast = head\n        while fast and fast.next:\n            slow = slow.next\n            fast = fast.next.next\n        return slow"
+      },
+      {
+        "id": 6,
+        "title": "Merge two sorted linked lists",
+        "description": "Write a function to merge two sorted linked lists into a single sorted list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1, 2, 4], [1, 3, 4] | None | [1, 1, 2, 3, 4, 4] | Merging two sorted lists |\n| 2          | [1, 2], [1, 2] | None | [1, 1, 2, 2] | Equal elements |\n| 3          | [0], [5] | None | [0, 5] | Simple merge |\n| 4          | [1, 3, 5], [2, 4, 6] | None | [1, 2, 3, 4, 5, 6] | Sorted list |\n| 5          | [1, 2, 3], [4, 5] | None | [1, 2, 3, 4, 5] | Sorted merge |\n| 6          | [1], [2] | None | [1, 2] | Two element merge |\n| 7          | [10, 20], [5, 15] | None | [5, 10, 15, 20] | Different values |\n| 8          | [], [5, 10] | None | [5, 10] | Empty list merge |\n| 9          | [1, 4], [2, 3] | None | [1, 2, 3, 4] | Different lengths |\n| 10         | [5, 6, 7], [1, 2] | None | [1, 2, 5, 6, 7] | Another merge case |",
+        "example": {
+          "input": "[1, 2, 4], [1, 3, 4]",
+          "output": "[1, 1, 2, 3, 4, 4]",
+          "explanation": "After merging, the result is [1, 1, 2, 3, 4, 4]."
+        },
+        "answer": "class Solution:\n    def mergeTwoLists(self, l1, l2):\n        if not l1 or not l2:\n            return l1 or l2\n        if l1.val < l2.val:\n            l1.next = self.mergeTwoLists(l1.next, l2)\n            return l1\n        else:\n            l2.next = self.mergeTwoLists(l1, l2.next)\n            return l2"
+      },
+      {
+        "id": 7,
+        "title": "Flatten a multilevel doubly linked list",
+        "description": "Write a function to flatten a multilevel doubly linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1->2->3], 3->[4->5] | None | [1->2->3->4->5] | One level of nesting |\n| 2          | [1->2], 2->[3], 3->[4] | None | [1->2->3->4] | Multiple nested levels |\n| 3          | [1] | None | [1] | Single node |\n| 4          | [] | None | [] | Empty list |\n| 5          | [1->2->3], 2->[4->5], 5->[6] | None | [1->2->4->5->6->3] | Deep nesting |\n| 6          | [1->2->3], 1->[4], 4->[5] | None | [1->4->5->2->3] | Child before sibling |\n| 7          | [10], 10->[20], 20->[30->40] | None | [10->20->30->40] | Complex multilevel |\n| 8          | [1->2], 1->[3->4], 4->[5] | None | [1->3->4->5->2] | Mid-child node |\n| 9          | [1], 1->[2], 2->[3], 3->[4] | None | [1->2->3->4] | Deep chain |\n| 10         | [1->2->3], 2->[] | None | [1->2->3] | Empty child list |",
+        "example": {
+          "input": "[1->2->3], where 3 has child [4->5]",
+          "output": "[1->2->3->4->5]",
+          "explanation": "Children are flattened into the main list."
+        },
+        "answer": "def flatten(head):\n if not head:\n return None;\n stack, curr = [], head;\n while curr:\n if curr.child:\n if curr.next:\n stack.append(curr.next);\n curr.next = curr.child;\n curr.next.prev = curr;\n curr.child = None;\n elif not curr.next and stack:\n curr.next = stack.pop()"
+      },
+      {
+        "id": 8,
+        "title": "Convert a Binary Tree to Doubly Linked List",
+        "description": "Convert a binary tree to a doubly linked list in in-order fashion.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [10,5,15] | None | [5<->10<->15] | Balanced tree |\n| 2          | [10,null,20] | None | [10<->20] | Right skewed tree |\n| 3          | [10,null] | None | [10] | Single node |\n| 4          | [] | None | [] | Empty tree |\n| 5          | [1,2,3,4,5,6,7] | None | [4<->2<->5<->1<->6<->3<->7] | Full tree |\n| 6          | [1] | None | [1] | Single node tree |\n| 7          | [3,2,4,1] | None | [1<->2<->3<->4] | Subtree balancing |\n| 8          | [10,6,14,4,8,12,16] | None | [4<->6<->8<->10<->12<->14<->16] | Full tree |\n| 9          | [2,1,null,null,null] | None | [1<->2] | Two nodes left-only |\n| 10         | [2,null,3,null,4] | None | [2<->3<->4] | Right path only |",
+        "example": {
+          "input": "Binary tree [10,5,15]",
+          "output": "[5<->10<->15]",
+          "explanation": "In-order traversal creates the doubly linked list."
+        },
+        "answer": "def btreeToList(root):\n def inorder(node):\n if node:\n inorder(node.left);\n node.left = self.prev;\n if self.prev:\n self.prev.right = node;\n self.prev = node;\n inorder(root);\n return self.head"
+      },
+      {
+        "id": 9,
+        "title": "Rotate a linked list by k nodes",
+        "description": "Rotate a singly linked list to the right by k nodes.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1,2,3,4,5] | 2 | [4,5,1,2,3] | Basic rotation |\n| 2          | [1,2,3,4,5] | 5 | [1,2,3,4,5] | Full rotation |\n| 3          | [1,2,3] | 0 | [1,2,3] | Zero rotation |\n| 4          | [1] | 3 | [1] | Single node |\n| 5          | [] | 1 | [] | Empty list |\n| 6          | [10,20,30] | 1 | [30,10,20] | Rotate by 1 |\n| 7          | [10,20,30,40] | 6 | [30,40,10,20] | Rotate more than length |\n| 8          | [5,10,15] | 2 | [10,15,5] | Mid rotation |\n| 9          | [1,2] | 1 | [2,1] | Swap nodes |\n| 10         | [1,2,3,4,5] | 3 | [3,4,5,1,2] | Rotate by 3 |",
+        "example": {
+          "input": "[1,2,3,4,5] rotated by 2",
+          "output": "[4,5,1,2,3]",
+          "explanation": "Last 2 nodes move to the front."
+        },
+        "answer": "def rotate(head, k):\n if not head or k == 0:\n return head;\n temp, count = head, 1;\n while temp.next and count < k:\n temp = temp.next;\n count += 1;\n new_head = temp.next;\n temp.next = None;\n tail = new_head;\n while tail.next:\n tail = tail.next;\n tail.next = head;\n return new_head"
+      },
+      {
+        "id": 10,
+        "title": "Check if a linked list is a palindrome",
+        "description": "Check if the elements of the linked list form a palindrome.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1,2,3,2,1] | None | true | Odd length palindrome |\n| 2          | [1,2,2,1] | None | true | Even length palindrome |\n| 3          | [1,2,3] | None | false | Not a palindrome |\n| 4          | [1] | None | true | Single element |\n| 5          | [] | None | true | Empty list is valid |\n| 6          | [1,2,1] | None | true | Symmetric list |\n| 7          | [1,2,3,4] | None | false | Increasing sequence |\n| 8          | [10,20,10] | None | true | Non-consecutive values |\n| 9          | [7,8,9,8,7] | None | true | Mirror numbers |\n| 10         | [1,2,3,4,5] | None | false | Straight sequence |",
+        "example": {
+          "input": "[1,2,3,2,1]",
+          "output": "true",
+          "explanation": "List reads the same forward and backward."
+        },
+        "answer": "def isPalindrome(head):\n fast, slow = head, head;\n stack = [];\n while fast and fast.next:\n stack.append(slow.data);\n slow = slow.next;\n fast = fast.next.next;\n while slow:\n if stack.pop() != slow.data:\n return False;\n slow = slow.next;\n return True"
+      },
+      {
+        "id": 11,
+        "title": "Delete a node without head pointer",
+        "description": "Delete a node from a singly linked list given only access to that node.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1,2,3,4,5] | 3 | [1,2,4,5] | Normal deletion |\n| 2          | [1,2,3] | 2 | [1,3] | Middle node |\n| 3          | [1,2] | 1 | [2] | First node simulation |\n| 4          | [1,2] | 2 | Error | Last node can't be deleted |\n| 5          | [1] | 1 | Error | Single node case |\n| 6          | [10,20,30,40] | 20 | [10,30,40] | Normal deletion |\n| 7          | [10,20,30] | 30 | Error | Last node deletion invalid |\n| 8          | [5,6,7,8] | 6 | [5,7,8] | Middle node |\n| 9          | [5,6] | 5 | [6] | First node |\n| 10         | [100] | 100 | Error | Only one node, can't delete |",
+        "example": {
+          "input": "[1,2,3,4,5] with node 3 deleted",
+          "output": "[1,2,4,5]",
+          "explanation": "Node 3 is deleted, the list links 2 to 4."
+        },
+        "answer": "def deleteNode(node):\n node.data = node.next.data;\n node.next = node.next.next"
+      },
+      {
+        "id": 12,
+        "title": "Merge two sorted linked lists",
+        "description": "Merge two sorted linked lists into one sorted linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1,3,5], [2,4,6] | None | [1,2,3,4,5,6] | Basic merge |\n| 2          | [1], [2] | None | [1,2] | Two nodes |\n| 3          | [1,2,3], [] | None | [1,2,3] | One empty list |\n| 4          | [], [4,5] | None | [4,5] | Other list empty |\n| 5          | [1,2], [3,4,5] | None | [1,2,3,4,5] | Uneven lengths |\n| 6          | [], [] | None | [] | Empty lists |\n| 7          | [5,10], [3,8] | None | [3,5,8,10] | Random order |\n| 8          | [2,3], [1,4] | None | [1,2,3,4] | Simple merge |\n| 9          | [10,20], [5,15] | None | [5,10,15,20] | Middle insertion |\n| 10         | [1,3,5], [2,4,6,8] | None | [1,2,3,4,5,6,8] | Different lengths |",
+        "example": {
+          "input": "[1,3,5], [2,4,6]",
+          "output": "[1,2,3,4,5,6]",
+          "explanation": "Lists are merged by comparing nodes."
+        },
+        "answer": "def mergeTwoLists(l1, l2):\n dummy = ListNode(0);\n current = dummy;\n while l1 and l2:\n if l1.val < l2.val:\n current.next, l1 = l1, l1.next;\n else:\n current.next, l2 = l2, l2.next;\n current = current.next;\n current.next = l1 if l1 else l2;\n return dummy.next"
+      },         
+      {
+        "id": 13,
+        "title": "Sort a linked list using Merge Sort",
+        "description": "Sort a linked list using merge sort algorithm.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [4, 2, 1, 3]     | None   | [1, 2, 3, 4]     | Random unsorted list |\n| 2          | [1]              | None   | [1]              | Single element list |\n| 3          | []               | None   | []               | Empty list |\n| 4          | [5, 4, 3, 2, 1]   | None   | [1, 2, 3, 4, 5]   | Reverse order |\n| 5          | [1, 3, 2]         | None   | [1, 2, 3]         | Minor shuffle |\n| 6          | [7, 7, 7]         | None   | [7, 7, 7]         | Duplicate elements |\n| 7          | [2, 4, 3, 1]       | None   | [1, 2, 3, 4]       | Random order |\n| 8          | [9, 8, 7, 6]       | None   | [6, 7, 8, 9]       | Descending input |\n| 9          | [10, -1, 0, 5]     | None   | [-1, 0, 5, 10]     | Mixed values |\n| 10         | [1, 2, 3, 4, 5]    | None   | [1, 2, 3, 4, 5]    | Already sorted |",
+        "example": {
+          "input": "[4, 2, 1, 3]",
+          "output": "[1, 2, 3, 4]",
+          "explanation": "Merge sort divides and merges sorted halves."
+        },
+        "answer": "def mergeSort(head):\n    if not head or not head.next:\n        return head\n    mid = getMiddle(head)\n    left = mergeSort(head)\n    right = mergeSort(mid)\n    return merge(left, right)\n\ndef getMiddle(head):\n    slow, fast = head, head\n    while fast.next and fast.next.next:\n        slow = slow.next\n        fast = fast.next.next\n    mid = slow.next\n    slow.next = None\n    return mid\n\ndef merge(left, right):\n    if not left:\n        return right\n    if not right:\n        return left\n    if left.val < right.val:\n        left.next = merge(left.next, right)\n        return left\n    else:\n        right.next = merge(left, right.next)\n        return right"
+      },
+      
+      {
+        "id": 14,
+        "title": "Implement a circular linked list and traverse it",
+        "description": "Create a circular linked list and write a function to traverse it.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [1, 2, 3]        | None   | 1->2->3->1       | Basic case |\n| 2          | [1]              | None   | 1->1             | Single node circular |\n| 3          | []               | None   | Empty            | No nodes |\n| 4          | [10, 20]         | None   | 10->20->10       | Two elements |\n| 5          | [5, 10, 15]      | None   | 5->10->15->5     | Odd nodes |\n| 6          | [1, 2, 3, 4, 5]  | None   | 1->2->3->4->5->1 | Even nodes |\n| 7          | [7]              | None   | 7->7             | Repeats back to itself |\n| 8          | [100, 200]       | None   | 100->200->100    | Custom values |\n| 9          | [8, 6, 4, 2]      | None   | 8->6->4->2->8     | Descending order |\n| 10         | [1, 3, 5, 7, 9]   | None   | 1->3->5->7->9->1  | Odd numbers only |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "1->2->3->1",
+          "explanation": "Traversal stops when it loops to the start node."
+        },
+        "answer": "class CircularLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            new_node.next = self.head\n        else:\n            temp = self.head\n            while temp.next != self.head:\n                temp = temp.next\n            temp.next = new_node\n            new_node.next = self.head\n\n    def traverse(self):\n        if not self.head:\n            return\n        temp = self.head\n        while True:\n            print(temp.data, end=' -> ')\n            temp = temp.next\n            if temp == self.head:\n                break\n        print(temp.data) # To show the cycle back to the head"
+      },
+      
+      {
+        "id": 15,
+        "title": "Insert a node in a sorted circular linked list",
+        "description": "Insert a node into a sorted circular linked list.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [1, 3, 5]        | 4      | 1->3->4->5->1    | Insert in middle |\n| 2          | [1]              | 0      | 0->1->0          | Insert before single node |\n| 3          | []               | 10     | 10->10           | Insert in empty list |\n| 4          | [2, 4, 6]        | 1      | 1->2->4->6->1    | Insert at start |\n| 5          | [2, 4, 6]        | 7      | 2->4->6->7->2    | Insert at end |\n| 6          | [5, 10, 15]      | 10     | 5->10->10->15->5 | Insert duplicate |\n| 7          | [3, 5, 9]        | 7      | 3->5->7->9->3    | Middle insert |\n| 8          | [1, 2, 3]        | 4      | 1->2->3->4->1    | Insert after last |\n| 9          | [10]             | 5      | 5->10->5         | Smaller than one node |\n| 10         | [10]             | 15     | 10->15->10       | Larger than one node |",
+        "example": {
+          "input": "[1, 3, 5], insert 4",
+          "output": "1->3->4->5->1",
+          "explanation": "Node 4 is inserted between 3 and 5."
+        },
+        "answer": "class SortedCircularLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def insert(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            new_node.next = self.head\n        else:\n            current = self.head\n            while current.next != self.head and current.data < data:\n                current = current.next\n            new_node.next = current.next\n            current.next = new_node\n            if current == self.head and data < self.head.data:\n                self.head = new_node"
+      },
+      
+      {
+        "id": 16,
+        "title": "Find the intersection point of two linked lists",
+        "description": "Find the node at which two singly linked lists intersect.\n\n| Test Cases | List A         | List B         | Expected Output | Notes |\n|------------|----------------|----------------|------------------|-------|\n| 1          | [1,2,3,4,5]     | [9,4,5]        | 4                | Intersect at 4 |\n| 2          | [1,2,3]         | [4,5,6]        | None             | No intersection |\n| 3          | [1]             | [1]            | 1                | Same node |\n| 4          | []              | []             | None             | Empty lists |\n| 5          | [10,20]         | [15,20]        | 20               | Common node at end |\n| 6          | [5,6,7]         | [6,7,8]        | 6                | Intersect at start |\n| 7          | [1,2]           | [2,3]          | 2                | Small intersection |\n| 8          | [100,200]       | [300,400]      | None             | No intersection |\n| 9          | [3,4,5]         | [2,4,5]        | 4                | Intersect in middle |\n| 10         | [5,10,15]       | [10,15,20]     | 10               | Common node at start |",
+        "example": {
+          "input": "[1, 2, 3, 4, 5], [9, 4, 5]",
+          "output": "4",
+          "explanation": "Lists intersect at node with value 4."
+        },
+        "answer": "def findIntersection(headA, headB):\n    lenA = getLength(headA)\n    lenB = getLength(headB)\n    if lenA > lenB:\n        for _ in range(lenA - lenB):\n            headA = headA.next\n    elif lenB > lenA:\n        for _ in range(lenB - lenA):\n            headB = headB.next\n    while headA != headB:\n        headA = headA.next\n        headB = headB.next\n    return headA\n\ndef getLength(head):\n    length = 0\n    while head:\n        length += 1\n        head = head.next\n    return length"
+      },
+      
+      {
+        "id": 17,
+        "title": "Reverse a linked list",
+        "description": "Reverse the entire linked list.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [1, 2, 3]        | None   | 3->2->1          | Reversal |\n| 2          | [4, 5, 6]        | None   | 6->5->4          | Reverse order |\n| 3          | [1]              | None   | 1                | Single node |\n| 4          | []               | None   | Empty            | Empty list |\n| 5          | [5, 6, 7, 8]     | None   | 8->7->6->5       | Four elements |\n| 6          | [10, 9, 8]       | None   | 8->9->10         | Reverse large |\n| 7          | [100, 200]       | None   | 200->100         | Two elements |\n| 8          | [1, 3, 5, 7]     | None   | 7->5->3->1       | Odd elements |\n| 9          | [8, 10]          | None   | 10->8            | Two elements reverse |\n| 10         | [2, 4]           | None   | 4->2             | Two elements small reverse |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "3->2->1",
+          "explanation": "Reversal of the entire list."
+        },
+        "answer": "def reverseList(head):\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev"
+      },
+      
+      {
+        "id": 18,
+        "title": "Detect a cycle in a linked list",
+        "description": "Check if a linked list contains a cycle.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [1, 2, 3]        | None   | False            | No cycle |\n| 2          | [4, 5, 6]        | 5      | True             | Cycle present |\n| 3          | [7, 8, 9]        | None   | False            | No cycle |\n| 4          | [1]              | None   | False            | Single node, no cycle |\n| 5          | [5, 10]          | None   | False            | No cycle |\n| 6          | [2, 4, 5]        | 5      | True             | Cycle in middle |\n| 7          | [100]            | None   | False            | No cycle |\n| 8          | [8, 5]           | 8      | True             | Cycle to head |\n| 9          | [2, 5, 7]        | None   | False            | No cycle |\n| 10         | [6, 4, 2]        | None   | False            | No cycle |",
+        "example": {
+          "input": "[1, 2, 3], cycle at 2",
+          "output": "True",
+          "explanation": "List has a cycle that starts at node with value 2."
+        },
+        "answer": "def hasCycle(head):\n    slow, fast = head, head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    return False"
+      },
+      
+      {
+        "id": 19,
+        "title": "Flatten a multilevel linked list",
+        "description": "Flatten a linked list where each node can have a child pointer to another list.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [1, 2, 3]        | None   | 1->2->3          | No child nodes |\n| 2          | [1, 2]           | [3]    | 1->2->3          | One child list |\n| 3          | [1, 2, 3]        | [4]    | 1->2->3->4       | Child after last node |\n| 4          | []               | None   | Empty            | No list |\n| 5          | [1, 2, 3]        | [4, 5] | 1->2->3->4->5    | Child in middle |\n| 6          | [6, 7]           | None   | 6->7             | No child node |\n| 7          | [10, 20]         | [30]   | 10->20->30       | Child node insertion |\n| 8          | [5]              | [6]    | 5->6             | Single node with child |\n| 9          | [1, 2, 3, 4]     | [5, 6] | 1->2->3->4->5->6 | Flattened list |\n| 10         | [1]              | [2]    | 1->2             | Single node with child |",
+        "example": {
+          "input": "[1, 2, 3], [4, 5]",
+          "output": "1->2->3->4->5",
+          "explanation": "Flattening merges child list into the main list."
+        },
+        "answer": "def flatten(head):\n    if not head:\n        return None\n    current = head\n    while current:\n        if current.child:\n            child = current.child\n            while child.next:\n                child = child.next\n            child.next = current.next\n            current.next = current.child\n            current.child = None\n        current = current.next\n    return head"
+      },
+      
+      {
+        "id": 20,
+        "title": "Merge two sorted linked lists",
+        "description": "Merge two sorted linked lists into a single sorted list.\n\n| Test Cases | Input Array     | Target | Expected Output | Notes |\n|------------|------------------|--------|------------------|-------|\n| 1          | [1, 3, 5], [2, 4, 6] | None   | [1, 2, 3, 4, 5, 6] | Simple merge |\n| 2          | [1], [2]         | None   | [1, 2]           | Merge single node lists |\n| 3          | [], [1, 2]       | None   | [1, 2]           | One list empty |\n| 4          | [1, 3, 5], []    | None   | [1, 3, 5]        | Other list empty |\n| 5          | [2, 3], [1, 4]   | None   | [1, 2, 3, 4]     | Unequal length lists |\n| 6          | [1, 2, 4], [3, 5] | None   | [1, 2, 3, 4, 5]  | Ordered merge |\n| 7          | [10, 20, 30], [5, 15] | None   | [5, 10, 15, 20, 30] | Reverse elements |\n| 8          | [1], [1]         | None   | [1, 1]           | Duplicate element |\n| 9          | [5, 7], [2, 3, 6] | None   | [2, 3, 5, 6, 7]  | Mixed list merge |\n| 10         | [1, 2], [1, 2]   | None   | [1, 1, 2, 2]     | Merge duplicates |",
+        "example": {
+          "input": "[1, 3, 5], [2, 4, 6]",
+          "output": "[1, 2, 3, 4, 5, 6]",
+          "explanation": "Merge both sorted lists into a single sorted list."
+        },
+        "answer": "def mergeTwoLists(l1, l2):\n    if not l1:\n        return l2\n    if not l2:\n        return l1\n    if l1.val < l2.val:\n        l1.next = mergeTwoLists(l1.next, l2)\n        return l1\n    else:\n        l2.next = mergeTwoLists(l1, l2.next)\n        return l2"
+      }
+      
+      
+      
+    ]
+  }
+  
