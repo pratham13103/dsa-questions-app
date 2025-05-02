@@ -10,6 +10,7 @@ import arrayData from "./data/arrays.json";
 import stringData from "./data/strings.json";
 import sortingData from "./data/sorting.json";
 import recursionData from "./data/recursion.json";
+import backtrackingData from "./data/backtracking.json";
 
 export interface Question {
   id: number;
@@ -73,6 +74,11 @@ function App() {
       id: "recursion", // Added Linked List topic
       name: "Recusrion",
       questions: recursionData.questions, // Include the linked list questions
+    },
+    {
+      id: "backtracking", // Added Linked List topic
+      name: "Backtracking",
+      questions: backtrackingData.questions, // Include the linked list questions
     }
 
   ];
