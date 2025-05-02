@@ -9,6 +9,7 @@ import linkedListData from "./data/linkedlist.json"; // Importing linked list da
 import arrayData from "./data/arrays.json";
 import stringData from "./data/strings.json";
 import sortingData from "./data/sorting.json";
+import recursionData from "./data/recursion.json";
 
 export interface Question {
   id: number;
@@ -67,7 +68,13 @@ function App() {
       id: "sorting", // Added Linked List topic
       name: "Sorting",
       questions: sortingData.questions, // Include the linked list questions
+    },
+    {
+      id: "recursion", // Added Linked List topic
+      name: "Recusrion",
+      questions: recursionData.questions, // Include the linked list questions
     }
+
   ];
 
   useEffect(() => {

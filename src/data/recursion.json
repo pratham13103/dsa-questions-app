@@ -1,0 +1,225 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "title": "Calculate the factorial of a number using recursion",
+        "description": "Write a recursive function to calculate the factorial of a non-negative integer `n`.\n\n### Test Cases\n\n| Input | Output | Explanation |\n|-------|--------|-------------|\n| 0     | 1      | Base case: 0! = 1 |\n| 1     | 1      | Base case: 1! = 1 |\n| 2     | 2      | 2 × 1 = 2 |\n| 3     | 6      | 3 × 2 × 1 = 6 |\n| 4     | 24     | 4 × 3 × 2 × 1 = 24 |\n| 5     | 120    | 5 × 4 × 3 × 2 × 1 = 120 |\n| 6     | 720    | 6! = 720 |\n| 7     | 5040   | 7! = 5040 |\n| 8     | 40320  | 8! = 40320 |\n| 9     | 362880 | 9! = 362880 |\n| 10    | 3628800| 10! = 3628800 |",
+        "example": {
+          "input": "5",
+          "output": "120",
+          "explanation": "5! = 5 × 4 × 3 × 2 × 1 = 120"
+        },
+        "answer": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    return n * factorial(n - 1)"
+      },
+      {
+        "id": 2,
+        "title": "Find the Nth Fibonacci number using recursion",
+        "description": "Write a recursive function to find the Nth term in the Fibonacci sequence.\n\n### Test Cases\n\n| Input | Output | Explanation |\n|-------|--------|-------------|\n| 0     | 0      | First term is 0 |\n| 1     | 1      | Second term is 1 |\n| 2     | 1      | 1st + 0th = 1 |\n| 3     | 2      | 2nd + 1st = 2 |\n| 4     | 3      | 3rd + 2nd = 3 |\n| 5     | 5      | 4th + 3rd = 5 |\n| 6     | 8      | 5th + 4th = 8 |\n| 7     | 13     | 6th + 5th = 13 |\n| 8     | 21     | 7th + 6th = 21 |\n| 9     | 34     | 8th + 7th = 34 |\n| 10    | 55     | 9th + 8th = 55 |",
+        "example": {
+          "input": "6",
+          "output": "8",
+          "explanation": "Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8..."
+        },
+        "answer": "def fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)"
+      },
+      {
+        "id": 3,
+        "title": "Find the sum of first N natural numbers using recursion",
+        "description": "Return the sum of the first `N` natural numbers using recursion.\n\n### Test Cases\n\n| Input | Output | Explanation |\n|-------|--------|-------------|\n| 0     | 0      | No numbers to sum |\n| 1     | 1      | Only 1 |\n| 2     | 3      | 1 + 2 = 3 |\n| 3     | 6      | 1 + 2 + 3 = 6 |\n| 4     | 10     | 1 + 2 + 3 + 4 = 10 |\n| 5     | 15     | 1 to 5 sum |\n| 6     | 21     | 1 to 6 sum |\n| 7     | 28     | 1 to 7 sum |\n| 8     | 36     | 1 to 8 sum |\n| 9     | 45     | 1 to 9 sum |\n| 10    | 55     | 1 to 10 sum |",
+        "example": {
+          "input": "5",
+          "output": "15",
+          "explanation": "1 + 2 + 3 + 4 + 5 = 15"
+        },
+        "answer": "def sum_natural(n):\n    if n == 0:\n        return 0\n    return n + sum_natural(n - 1)"
+      },
+      {
+        "id": 4,
+        "title": "Calculate a raised to the power b using recursion",
+        "description": "Compute `a^b` using recursive multiplication.\n\n### Test Cases\n\n| Input  | Output | Explanation |\n|--------|--------|-------------|\n| 2, 0   | 1      | Anything^0 = 1 |\n| 2, 1   | 2      | 2 |\n| 2, 2   | 4      | 2 × 2 = 4 |\n| 2, 3   | 8      | 2 × 2 × 2 = 8 |\n| 3, 3   | 27     | 3 × 3 × 3 = 27 |\n| 5, 2   | 25     | 5 × 5 = 25 |\n| 10, 1  | 10     | Base × 1 |\n| 10, 2  | 100    | 10^2 |\n| 1, 100 | 1      | 1^any = 1 |\n| 0, 5   | 0      | 0^5 = 0 |\n| 0, 0   | 1      | Conventionally 0^0 = 1 |",
+        "example": {
+          "input": "2, 3",
+          "output": "8",
+          "explanation": "2 × 2 × 2 = 8"
+        },
+        "answer": "def power(a, b):\n    if b == 0:\n        return 1\n    return a * power(a, b - 1)"
+      },
+      {
+        "id": 5,
+        "title": "Print numbers from 1 to N using recursion",
+        "description": "Recursively print numbers in order from 1 to `N`.\n\n### Test Cases\n\n| Input | Output           | Explanation |\n|-------|------------------|-------------|\n| 1     | 1                | Just 1 |\n| 2     | 1 2              | 1 to 2 |\n| 3     | 1 2 3            | 1 to 3 |\n| 4     | 1 2 3 4          | 1 to 4 |\n| 5     | 1 2 3 4 5        | 1 to 5 |\n| 6     | 1 2 3 4 5 6      | 1 to 6 |\n| 7     | 1 2 3 4 5 6 7    | 1 to 7 |\n| 8     | 1 2 3 4 5 6 7 8  | 1 to 8 |\n| 9     | 1 to 9           | 1 2 3 ... 9 |\n| 10    | 1 to 10          | 1 2 3 ... 10 |",
+        "example": {
+          "input": "5",
+          "output": "1 2 3 4 5",
+          "explanation": "Prints numbers from 1 to 5"
+        },
+        "answer": "def print_numbers(n):\n    if n == 0:\n        return\n    print_numbers(n - 1)\n    print(n, end=' ')"
+      },
+      {
+        "id": 6,
+        "title": "Reverse a string using recursion",
+        "description": "Reverse the characters of a string using recursion.\n\n### Test Cases\n\n| Input     | Output    |\n|-----------|-----------|\n| \"a\"       | \"a\"       |\n| \"ab\"      | \"ba\"      |\n| \"abc\"     | \"cba\"     |\n| \"race\"    | \"ecar\"    |\n| \"madam\"   | \"madam\"   |\n| \"hello\"   | \"olleh\"   |\n| \"world\"   | \"dlrow\"   |\n| \"recursion\"|\"noisrucer\"|\n| \"python\"  | \"nohtyp\"  |\n| \"OpenAI\"  | \"IAnepO\"  |",
+        "example": {
+          "input": "\"hello\"",
+          "output": "\"olleh\"",
+          "explanation": "Reverses the order of characters"
+        },
+        "answer": "def reverse_string(s):\n    if len(s) == 0:\n        return s\n    return reverse_string(s[1:]) + s[0]"
+      },
+      {
+        "id": 7,
+        "title": "Check if a string is a palindrome using recursion",
+        "description": "Determine whether a string reads the same backward.\n\n### Test Cases\n\n| Input     | Output |\n|-----------|--------|\n| \"a\"       | True   |\n| \"aa\"      | True   |\n| \"ab\"      | False  |\n| \"aba\"     | True   |\n| \"racecar\" | True   |\n| \"hello\"   | False  |\n| \"madam\"   | True   |\n| \"abcba\"   | True   |\n| \"abcd\"    | False  |\n| \"noon\"    | True   |",
+        "example": {
+          "input": "\"madam\"",
+          "output": "True",
+          "explanation": "The string is the same forward and backward"
+        },
+        "answer": "def is_palindrome(s):\n    if len(s) <= 1:\n        return True\n    if s[0] != s[-1]:\n        return False\n    return is_palindrome(s[1:-1])"
+      },
+      {
+        "id": 8,
+        "title": "Sum of digits of a number using recursion",
+        "description": "Find the sum of digits of a given integer using recursion.\n\n### Test Cases\n\n| Input | Output |\n|-------|--------|\n| 0     | 0      |\n| 1     | 1      |\n| 12    | 3      |\n| 123   | 6      |\n| 999   | 27     |\n| 111   | 3      |\n| 1001  | 2      |\n| 456   | 15     |\n| 789   | 24     |\n| 1000  | 1      |",
+        "example": {
+          "input": "123",
+          "output": "6",
+          "explanation": "1 + 2 + 3 = 6"
+        },
+        "answer": "def sum_of_digits(n):\n    if n == 0:\n        return 0\n    return n % 10 + sum_of_digits(n // 10)"
+      },
+      {
+        "id": 9,
+        "title": "Count total digits in a number using recursion",
+        "description": "Count how many digits are in the given number using recursion.\n\n### Test Cases\n\n| Input  | Output |\n|--------|--------|\n| 0      | 0      |\n| 1      | 1      |\n| 10     | 2      |\n| 100    | 3      |\n| 12345  | 5      |\n| 9999   | 4      |\n| 101010 | 6      |\n| 8      | 1      |\n| 11     | 2      |\n| 111111 | 6      |",
+        "example": {
+          "input": "12345",
+          "output": "5",
+          "explanation": "The number has 5 digits"
+        },
+        "answer": "def count_digits(n):\n    if n == 0:\n        return 0\n    return 1 + count_digits(n // 10)"
+      },
+      {
+        "id": 10,
+        "title": "Check if an array is sorted in increasing order using recursion",
+        "description": "Determine if a list is sorted strictly in increasing order.\n\n### Test Cases\n\n| Input               | Output |\n|---------------------|--------|\n| [1, 2, 3, 4]        | True   |\n| [1, 2, 2, 3]        | False  |\n| [10, 20, 30, 40]    | True   |\n| [5, 4, 3, 2, 1]     | False  |\n| [1]                 | True   |\n| []                  | True   |\n| [3, 5, 7, 9]        | True   |\n| [1, 3, 2, 4]        | False  |\n| [0, 1, 2, 3]        | True   |\n| [2, 2, 2]           | False  |",
+        "example": {
+          "input": "[1, 2, 3, 4]",
+          "output": "True",
+          "explanation": "All elements are in increasing order"
+        },
+        "answer": "def is_sorted(arr, index=0):\n    if index == len(arr) - 1:\n        return True\n    if arr[index] >= arr[index + 1]:\n        return False\n    return is_sorted(arr, index + 1)"
+      },
+      {
+        "id": 11,
+        "title": "Find GCD of two numbers using recursion",
+        "description": "Find the greatest common divisor (GCD) of two integers using Euclidean recursion.\n\n### Test Cases\n\n| a  | b  | Output | Explanation |\n|----|----|--------|-------------|\n| 4  | 6  | 2      | GCD of 4 and 6 is 2 |\n| 10 | 15 | 5      | GCD of 10 and 15 is 5 |\n| 100| 25 | 25     | 25 is the largest divisor of both |\n| 8  | 12 | 4      | 4 divides both |\n| 17 | 19 | 1      | Co-prime |\n| 36 | 60 | 12     | 12 is common factor |\n| 27 | 9  | 9      | 9 divides both |\n| 81 | 153| 9      | GCD is 9 |\n| 0  | 5  | 5      | GCD(0, b) = b |\n| 5  | 0  | 5      | GCD(a, 0) = a |\n| 0  | 0  | 0      | Defined as 0 here |",
+        "example": {
+          "input": "36, 60",
+          "output": "12",
+          "explanation": "GCD(36, 60) = 12 using Euclidean method"
+        },
+        "answer": "def gcd(a, b):\n    if b == 0:\n        return a\n    return gcd(b, a % b)"
+      },
+      {
+        "id": 12,
+        "title": "Sum of digits of a number using recursion",
+        "description": "Return the sum of digits of a number using recursion.\n\n### Test Cases\n\n| Input | Output | Explanation |\n|--------|--------|-------------|\n| 0      | 0      | Sum of 0 is 0 |\n| 5      | 5      | One digit |\n| 12     | 3      | 1 + 2 = 3 |\n| 123    | 6      | 1 + 2 + 3 = 6 |\n| 999    | 27     | 9 + 9 + 9 = 27 |\n| 1111   | 4      | 1+1+1+1 = 4 |\n| 4567   | 22     | 4+5+6+7 = 22 |\n| 88888  | 40     | 8*5 = 40 |\n| 1001   | 2      | 1+0+0+1 |\n| 2024   | 8      | 2+0+2+4 = 8 |\n| 10000  | 1      | Only one non-zero digit |",
+        "example": {
+          "input": "1234",
+          "output": "10",
+          "explanation": "1 + 2 + 3 + 4 = 10"
+        },
+        "answer": "def digit_sum(n):\n    if n == 0:\n        return 0\n    return n % 10 + digit_sum(n // 10)"
+      },
+      {
+        "id": 13,
+        "title": "Convert a number to binary using recursion",
+        "description": "Convert a positive integer to its binary representation.\n\n### Test Cases\n\n| Input | Output  | Explanation |\n|-------|---------|-------------|\n| 0     | \"\"      | Empty if zero (optional base case) |\n| 1     | \"1\"     | Binary of 1 |\n| 2     | \"10\"    | 2 in binary |\n| 3     | \"11\"    | 3 in binary |\n| 4     | \"100\"   | Binary of 4 |\n| 5     | \"101\"   | Binary of 5 |\n| 8     | \"1000\"  | Power of 2 |\n| 10    | \"1010\"  | Binary of 10 |\n| 15    | \"1111\"  | Max 4-bit |\n| 16    | \"10000\" | Next power of 2 |\n| 31    | \"11111\" | All 1s in 5 bits |",
+        "example": {
+          "input": "10",
+          "output": "1010",
+          "explanation": "Binary of 10 is 1010"
+        },
+        "answer": "def to_binary(n):\n    if n == 0:\n        return ''\n    return to_binary(n // 2) + str(n % 2)"
+      },
+      {
+        "id": 14,
+        "title": "Sum of elements in an array using recursion",
+        "description": "Calculate sum of all array elements using recursion.\n\n### Test Cases\n\n| Input             | Output | Explanation |\n|-------------------|--------|-------------|\n| []                | 0      | Empty list |\n| [1]               | 1      | One element |\n| [1, 2, 3]         | 6      | 1+2+3 |\n| [5, 5, 5, 5]      | 20     | Sum of 5s |\n| [10, -5, 3]       | 8      | Include negatives |\n| [-1, -1, -1]      | -3     | All negatives |\n| [0, 0, 0]         | 0      | All zeroes |\n| [1, 2, 3, 4, 5]   | 15     | 1 to 5 |\n| [100, 200]        | 300    | Big values |\n| [9, 8, 7, 6, 5]   | 35     | Sum down |\n| [2, 4, 6, 8]      | 20     | Even numbers |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "6",
+          "explanation": "1 + 2 + 3 = 6"
+        },
+        "answer": "def array_sum(arr):\n    if len(arr) == 0:\n        return 0\n    return arr[0] + array_sum(arr[1:])"
+      },
+      {
+        "id": 15,
+        "title": "Find maximum element in an array using recursion",
+        "description": "Find the largest element in an array using recursion.\n\n### Test Cases\n\n| Input              | Output | Explanation |\n|--------------------|--------|-------------|\n| [1]                | 1      | One element |\n| [1, 2, 3]          | 3      | Increasing order |\n| [5, 2, 9, 4]       | 9      | Max is 9 |\n| [10, -1, 3, 8]     | 10     | Max is first |\n| [-1, -2, -3]       | -1     | All negative |\n| [0, 0, 0]          | 0      | All same |\n| [99, 23, 45, 99]   | 99     | Repeated max |\n| [8, 4, 2, 10]      | 10     | Max at end |\n| [50, 100, 90]      | 100    | Mid max |\n| [7, 11, 9, 13]     | 13     | Max at end |\n| [1, 2, 3, 10]      | 10     | Max is last |",
+        "example": {
+          "input": "[5, 2, 9, 4]",
+          "output": "9",
+          "explanation": "9 is the largest"
+        },
+        "answer": "def find_max(arr):\n    if len(arr) == 1:\n        return arr[0]\n    return max(arr[0], find_max(arr[1:]))"
+      },
+      {
+        "id": 16,
+        "title": "Find length of a string using recursion",
+        "description": "Find the number of characters in a string.\n\n### Test Cases\n\n| Input      | Output | Explanation |\n|------------|--------|-------------|\n| \"\"         | 0      | Empty string |\n| \"a\"        | 1      | One character |\n| \"ab\"       | 2      | Two chars |\n| \"abc\"      | 3      | Three chars |\n| \"hello\"    | 5      | Five chars |\n| \"recursion\"| 9      | Count each |\n| \"12345\"    | 5      | Includes digits |\n| \"A B C\"    | 5      | Includes spaces |\n| \"python\"   | 6      | 6 letters |\n| \"end\"      | 3      | Simple word |\n| \"longstringexample\"| 18 | Longer string |",
+        "example": {
+          "input": "\"hello\"",
+          "output": "5",
+          "explanation": "5 characters"
+        },
+        "answer": "def string_length(s):\n    if s == '':\n        return 0\n    return 1 + string_length(s[1:])"
+      },
+      {
+        "id": 17,
+        "title": "Replace all occurrences of 'pi' with '3.14' using recursion",
+        "description": "Replace 'pi' in the string with '3.14' recursively.\n\n### Test Cases\n\n| Input        | Output         |\n|--------------|----------------|\n| \"\"           | \"\"             |\n| \"p\"          | \"p\"            |\n| \"pi\"         | \"3.14\"         |\n| \"pip\"        | \"3.14p\"        |\n| \"abcpi\"      | \"abc3.14\"      |\n| \"pipipi\"     | \"3.143.143.14\" |\n| \"apple\"      | \"apple\"        |\n| \"pipiabc\"    | \"3.143.14abc\"  |\n| \"xyz\"        | \"xyz\"          |\n| \"piabpi\"     | \"3.14ab3.14\"   |\n| \"pipi\"       | \"3.143.14\"     |",
+        "example": {
+          "input": "\"pipiabc\"",
+          "output": "\"3.143.14abc\"",
+          "explanation": "Replaces all 'pi' with '3.14'"
+        },
+        "answer": "def replace_pi(s):\n    if len(s) < 2:\n        return s\n    if s[:2] == 'pi':\n        return '3.14' + replace_pi(s[2:])\n    return s[0] + replace_pi(s[1:])"
+      },
+      {
+        "id": 18,
+        "title": "Check if array is sorted using recursion",
+        "description": "Check whether an array is sorted in non-decreasing order.\n\n### Test Cases\n\n| Input          | Output | Explanation |\n|----------------|--------|-------------|\n| []             | True   | Empty is sorted |\n| [1]            | True   | One element |\n| [1, 2, 3]      | True   | Increasing |\n| [3, 2, 1]      | False  | Decreasing |\n| [5, 5, 5]      | True   | Equal values allowed |\n| [1, 2, 1]      | False  | Decreasing at end |\n| [0, 1, 2, 3]   | True   | Properly sorted |\n| [1, 2, 4, 3]   | False  | Out of order |\n| [2, 2, 2, 3]   | True   | Duplicates OK |\n| [9, 10, 11]    | True   | Sorted |\n| [1, 3, 2]      | False  | Unsorted middle |",
+        "example": {
+          "input": "[1, 2, 3]",
+          "output": "True",
+          "explanation": "Sorted in increasing order"
+        },
+        "answer": "def is_sorted(arr):\n    if len(arr) <= 1:\n        return True\n    return arr[0] <= arr[1] and is_sorted(arr[1:])"
+      },
+      {
+        "id": 19,
+        "title": "Insert a character between duplicates in a string using recursion",
+        "description": "Insert '*' between two identical consecutive characters.\n\n### Test Cases\n\n| Input     | Output     |\n|-----------|------------|\n| \"\"        | \"\"         |\n| \"a\"       | \"a\"        |\n| \"aa\"      | \"a*a\"      |\n| \"ab\"      | \"ab\"       |\n| \"aab\"     | \"a*ab\"     |\n| \"abb\"     | \"ab*b\"     |\n| \"aabb\"    | \"a*ab*b\"   |\n| \"aabbcc\"  | \"a*ab*bc*c\"|\n| \"abc\"     | \"abc\"      |\n| \"xxyy\"    | \"x*xy*y\"   |\n| \"yyzz\"    | \"y*yzz\"    |",
+        "example": {
+          "input": "\"aabb\"",
+          "output": "\"a*ab*b\"",
+          "explanation": "Insert * between adjacent duplicates"
+        },
+        "answer": "def insert_stars(s):\n    if len(s) <= 1:\n        return s\n    if s[0] == s[1]:\n        return s[0] + '*' + insert_stars(s[1:])\n    return s[0] + insert_stars(s[1:])"
+      },
+      {
+        "id": 20,
+        "title": "Count number of zeros in a number using recursion",
+        "description": "Count how many times 0 appears in a number.\n\n### Test Cases\n\n| Input   | Output | Explanation |\n|---------|--------|-------------|\n| 0       | 1      | Base case |\n| 5       | 0      | No zero |\n| 10      | 1      | One zero |\n| 101     | 1      | One zero in middle |\n| 1001    | 2      | Two zeroes |\n| 1000    | 3      | Three zeroes |\n| 123     | 0      | No zero |\n| 2020    | 2      | Two zeroes |\n| 100000  | 5      | Five zeroes |\n| 123004  | 2      | Two zeroes in middle |\n| 908070  | 3      | Three zeroes scattered |",
+        "example": {
+          "input": "1001",
+          "output": "2",
+          "explanation": "0s at index 1 and 2"
+        },
+        "answer": "def count_zero(n):\n    if n == 0:\n        return 1\n    if n < 10:\n        return 0\n    return (1 if n % 10 == 0 else 0) + count_zero(n // 10)"
+      }
+    ]
+  }
+  
