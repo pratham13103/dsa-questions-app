@@ -6,6 +6,7 @@ import hashingData from "./data/hashing.json";
 import BTData from "./data/BT.json";
 import DivideAndConquerData from "./data/DivideAndConquer.json";
 import linkedListData from "./data/linkedlist.json"; // Importing linked list data
+import arrayData from "./data/arrays.json";
 
 export interface Question {
   id: number;
@@ -50,6 +51,12 @@ function App() {
       name: "Linked List",
       questions: linkedListData.questions, // Include the linked list questions
     },
+    ,
+    {
+      id: "arrays", // Added Linked List topic
+      name: "Arrays",
+      questions: arrayData.questions, // Include the linked list questions
+    }
   ];
 
   useEffect(() => {
