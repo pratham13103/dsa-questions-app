@@ -1,0 +1,225 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "title": "Sort an Array of Integers in Ascending Order",
+        "description": "Given an unsorted array of integers, write a function to sort the array in ascending order.\n\n| Test Cases | nums                | Expected Output        | Notes                        |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | [5, 2, 9, 1, 5, 6]  | [1, 2, 5, 5, 6, 9]     | Normal case, simple integers |\n| 2          | [3, 1, 4, 1, 5, 9]  | [1, 1, 3, 4, 5, 9]     | Includes duplicates          |\n| 3          | [-5, -3, -1, -2]    | [-5, -3, -2, -1]       | Array with negative numbers  |\n| 4          | [0]                  | [0]                     | Single element               |\n| 5          | [1, 2, 3, 4, 5]     | [1, 2, 3, 4, 5]        | Already sorted               |\n| 6          | [9, 7, 5, 3, 1]     | [1, 3, 5, 7, 9]        | Array in reverse order      |\n| 7          | [2, 1]               | [1, 2]                  | Small array                  |\n| 8          | [7, 8, 7, 5, 6, 3]  | [3, 5, 6, 7, 7, 8]     | Duplicates and mixed values  |\n| 9          | [0, 2, 4, 6]        | [0, 2, 4, 6]           | Already sorted               |\n| 10         | [11, 13, 12, 15]    | [11, 12, 13, 15]       | Simple unsorted case        |\n",
+        "example": {
+          "input": "[5, 2, 9, 1, 5, 6]",
+          "output": "[1, 2, 5, 5, 6, 9]",
+          "explanation": "The array is sorted in ascending order."
+        },
+        "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      },
+      {
+        "id": 2,
+        "title": "Sort an Array of Strings by Length",
+        "description": "Given an array of strings, sort the array based on the lengths of the strings in ascending order.\n\n| Test Cases | strings            | Expected Output      | Notes                         |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | ['apple', 'banana', 'cherry'] | ['apple', 'banana', 'cherry'] | Already sorted               |\n| 2          | ['short', 'longest', 'tiny', 'large'] | ['tiny', 'short', 'large', 'longest'] | Sorting by string length    |\n| 3          | ['a', 'abc', 'ab']  | ['a', 'ab', 'abc']    | Varying string lengths       |\n| 4          | ['dog', 'cat', 'rabbit', 'elephant'] | ['cat', 'dog', 'rabbit', 'elephant'] | Mixed string lengths         |\n| 5          | ['one', 'two', 'three', 'four'] | ['one', 'two', 'four', 'three'] | Simple case                  |\n| 6          | ['programming', 'code', 'python'] | ['code', 'python', 'programming'] | Words with different lengths |\n| 7          | ['', 'a', 'ab']      | ['', 'a', 'ab']       | Includes empty string        |\n| 8          | ['large', 'big', 'tiny', 'small'] | ['big', 'tiny', 'small', 'large'] | Common words with different sizes |\n| 9          | ['apple', 'banana', 'kiwi'] | ['kiwi', 'apple', 'banana'] | Varied string lengths       |\n| 10         | ['long', 'tiny', 'huge', 'small'] | ['tiny', 'small', 'long', 'huge'] | Mixed length strings         |\n",
+        "example": {
+          "input": "['apple', 'banana', 'cherry']",
+          "output": "['apple', 'banana', 'cherry']",
+          "explanation": "The array is already sorted by string lengths."
+        },
+        "answer": "class Solution:\n    def sortByLength(self, strings):\n        return sorted(strings, key=len)"
+      },
+      {
+        "id": 3,
+        "title": "Sort an Array of Numbers in Descending Order",
+        "description": "Given an unsorted array of numbers, sort the array in descending order.\n\n| Test Cases | nums                | Expected Output        | Notes                        |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | [5, 2, 9, 1, 5, 6]  | [9, 6, 5, 5, 2, 1]     | Normal case, simple integers |\n| 2          | [1, 2, 3, 4, 5]     | [5, 4, 3, 2, 1]         | Already sorted in ascending  |\n| 3          | [9, 7, 5, 3, 1]     | [9, 7, 5, 3, 1]         | Reverse sorted case           |\n| 4          | [2, 4, 1, 3, 5]     | [5, 4, 3, 2, 1]         | Simple case                   |\n| 5          | [8, 3, 9, 12, 5]    | [12, 9, 8, 5, 3]        | Mixed values                  |\n| 6          | [-3, 4, 2, 0]       | [4, 2, 0, -3]           | Includes negative numbers     |\n| 7          | [1, 1, 1, 1, 1]     | [1, 1, 1, 1, 1]         | All identical values          |\n| 8          | [0, 2, 4, 6]        | [6, 4, 2, 0]           | Already sorted in ascending  |\n| 9          | [11, 10, 9]         | [11, 10, 9]            | Already sorted                |\n| 10         | [7, 8, 7, 5, 6, 3]  | [8, 7, 7, 6, 5, 3]     | Duplicates included           |\n",
+        "example": {
+          "input": "[5, 2, 9, 1, 5, 6]",
+          "output": "[9, 6, 5, 5, 2, 1]",
+          "explanation": "The array is sorted in descending order."
+        },
+        "answer": "class Solution:\n    def sortArrayDesc(self, nums):\n        return sorted(nums, reverse=True)"
+      },
+      {
+        "id": 4,
+        "title": "Sort a List of Strings Alphabetically",
+        "description": "Given a list of strings, sort them alphabetically in ascending order.\n\n| Test Cases | strings            | Expected Output        | Notes                        |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | ['banana', 'apple', 'cherry'] | ['apple', 'banana', 'cherry'] | Simple case                |\n| 2          | ['dog', 'cat', 'rabbit', 'elephant'] | ['cat', 'dog', 'elephant', 'rabbit'] | Mixed words             |\n| 3          | ['apple', 'banana', 'grape'] | ['apple', 'banana', 'grape'] | All lowercase letters      |\n| 4          | ['Watermelon', 'Apple', 'banana'] | ['Apple', 'Watermelon', 'banana'] | Case sensitivity        |\n| 5          | ['zebra', 'apple', 'kiwi'] | ['apple', 'kiwi', 'zebra'] | Random order               |\n| 6          | ['grape', 'orange', 'pear'] | ['grape', 'orange', 'pear'] | Sorted by alphabetical order |\n| 7          | ['one', 'two', 'three', 'four'] | ['four', 'one', 'three', 'two'] | Mixed alphabetic order  |\n| 8          | ['A', 'B', 'C', 'D']   | ['A', 'B', 'C', 'D']      | Already sorted              |\n| 9          | ['apple', 'apple', 'apple'] | ['apple', 'apple', 'apple'] | All identical values        |\n| 10         | ['word', 'apple', 'pear']  | ['apple', 'pear', 'word']  | Random order                |\n",
+        "example": {
+          "input": "['banana', 'apple', 'cherry']",
+          "output": "['apple', 'banana', 'cherry']",
+          "explanation": "The array is sorted alphabetically."
+        },
+        "answer": "class Solution:\n    def sortStrings(self, strings):\n        return sorted(strings)"
+      },
+      {
+        "id": 5,
+        "title": "Sort an Array of Numbers in Increasing Order of Frequency",
+        "description": "Given an array of integers, sort the array based on the frequency of the numbers in increasing order. If two numbers have the same frequency, they should be sorted in ascending order.\n\n| Test Cases | nums                | Expected Output        | Notes                        |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | [3, 3, 2, 1, 2, 1, 1] | [2, 2, 3, 3, 1, 1, 1]   | Normal case                  |\n| 2          | [1, 2, 3, 4, 5]     | [1, 2, 3, 4, 5]         | All numbers have the same frequency  |\n| 3          | [3, 3, 3, 2, 2, 1]  | [1, 2, 2, 3, 3, 3]     | Different frequencies       |\n| 4          | [1, 1, 1, 2, 2]     | [2, 2, 1, 1, 1]         | Two frequencies             |\n| 5          | [5, 5, 5, 2, 3, 2]  | [3, 2, 2, 5, 5, 5]     | Includes duplicates        |\n| 6          | [6, 6, 6, 7, 8, 9]  | [7, 8, 9, 6, 6, 6]     | Frequency sorting            |\n| 7          | [1, 1, 2, 2, 3]     | [3, 1, 1, 2, 2]         | Mixed frequencies            |\n| 8          | [4, 4, 4, 5, 5, 6]  | [6, 5, 5, 4, 4, 4]     | Frequencies in mixed order |\n| 9          | [10, 10, 20]        | [20, 10, 10]            | Frequency-based sorting    |\n| 10         | [1, 1, 2]           | [2, 1, 1]              | Small array with duplicates |\n",
+        "example": {
+          "input": "[3, 3, 2, 1, 2, 1, 1]",
+          "output": "[2, 2, 3, 3, 1, 1, 1]",
+          "explanation": "The numbers are sorted based on their frequency, and in case of equal frequency, by their values."
+        },
+        "answer": "class Solution:\n    def frequencySort(self, nums):\n        from collections import Counter\n        count = Counter(nums)\n        return sorted(nums, key=lambda x: (count[x], x))"
+      },
+      {
+        "id": 6,
+        "title": "Sort an Array of Numbers with Mixed Positive and Negative Values",
+        "description": "Given an array of integers containing both positive and negative values, sort the array in ascending order.\n\n| Test Cases | nums                     | Expected Output         | Notes                        |\n|------------|--------------------------|--------------------------|------------------------------|\n| 1          | [5, -2, 9, -1, 5, 6]     | [-2, -1, 5, 5, 6, 9]     | Normal case                  |\n| 2          | [-3, -2, -1, 0, 1, 2, 3] | [-3, -2, -1, 0, 1, 2, 3] | Already sorted               |\n| 3          | [10, -5, 3, 7, -1]       | [-5, -1, 3, 7, 10]       | Mixed positive and negative   |\n| 4          | [-10, -10, 5, 0]         | [-10, -10, 0, 5]         | Includes duplicate negatives  |\n| 5          | [0, -1, 2, -3, 1]        | [-3, -1, 0, 1, 2]        | Mixed small integers          |\n| 6          | [100, -200, 50, -100]    | [-200, -100, 50, 100]    | Larger values                 |\n| 7          | [4, -3, 2, 0]            | [-3, 0, 2, 4]            | Small positive/negative mix   |\n| 8          | [15, -7, 3, 9, -8]       | [-8, -7, 3, 9, 15]       | Random mix                   |\n| 9          | [-1, -1, -2, -2, 1]      | [-2, -2, -1, -1, 1]      | Repeated negative values      |\n| 10         | [7, -2, 4, -9, 3]        | [-9, -2, 3, 4, 7]        | Mixed numbers                 |\n",
+        "example": {
+          "input": "[5, -2, 9, -1, 5, 6]",
+          "output": "[-2, -1, 5, 5, 6, 9]",
+          "explanation": "The array is sorted with both positive and negative numbers in ascending order."
+        },
+        "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      },
+      {
+        "id": 7,
+        "title": "Sort an Array of Strings by Lexicographical Order",
+        "description": "Given an array of strings, sort the strings lexicographically (dictionary order). The comparison should be case-sensitive.\n\n| Test Cases | strings                   | Expected Output         | Notes                        |\n|------------|---------------------------|--------------------------|------------------------------|\n| 1          | ['apple', 'banana', 'cherry'] | ['apple', 'banana', 'cherry'] | Normal case                |\n| 2          | ['dog', 'cat', 'rabbit', 'elephant'] | ['cat', 'dog', 'elephant', 'rabbit'] | Sorted alphabetically   |\n| 3          | ['a', 'A', 'b', 'B']       | ['A', 'B', 'a', 'b']      | Case-sensitive sorting       |\n| 4          | ['Car', 'apple', 'banana', 'dog'] | ['Car', 'apple', 'banana', 'dog'] | Mixed capital letters     |\n| 5          | ['X', 'Z', 'Y']            | ['X', 'Y', 'Z']           | Single character strings    |\n| 6          | ['zebra', 'apple', 'kiwi'] | ['apple', 'kiwi', 'zebra'] | Random order                |\n| 7          | ['grape', 'orange', 'pear'] | ['grape', 'orange', 'pear'] | Already sorted             |\n| 8          | ['ant', 'zebra', 'elephant'] | ['ant', 'elephant', 'zebra'] | Longer strings              |\n| 9          | ['one', 'two', 'three']     | ['one', 'three', 'two']   | Simple alphabetical order   |\n| 10         | ['c', 'b', 'a']             | ['a', 'b', 'c']           | Single characters in reverse |\n",
+        "example": {
+          "input": "['apple', 'banana', 'cherry']",
+          "output": "['apple', 'banana', 'cherry']",
+          "explanation": "The array is sorted lexicographically in dictionary order."
+        },
+        "answer": "class Solution:\n    def sortStrings(self, strings):\n        return sorted(strings)"
+      },
+      {
+        "id": 8,
+        "title": "Sort an Array of Numbers with Negative, Zero, and Positive Values",
+        "description": "Given an array of integers with negative, zero, and positive values, sort the array in ascending order.\n\n| Test Cases | nums                | Expected Output        | Notes                        |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | [-5, 2, 9, 0, -1, 6] | [-5, -1, 0, 2, 6, 9]    | Mixed negative, zero, positive values |\n| 2          | [10, -5, 0, 3, -1]  | [-5, -1, 0, 3, 10]      | Random positive, negative, and zero    |\n| 3          | [7, 0, -3, -1, 8]    | [-3, -1, 0, 7, 8]       | Negative, zero, and positive values    |\n| 4          | [0, -2, 4, -1, 5]    | [-2, -1, 0, 4, 5]       | Mixed array                  |\n| 5          | [-5, -4, -2, -3]     | [-5, -4, -3, -2]         | All negative numbers          |\n| 6          | [1, 1, 0, 0, 0]      | [0, 0, 0, 1, 1]          | Duplicate values              |\n| 7          | [9, 8, 7, 6, 5]      | [5, 6, 7, 8, 9]          | Already sorted in reverse    |\n| 8          | [0, 2, 1, 3, 0]      | [0, 0, 1, 2, 3]          | Zero included                |\n| 9          | [3, 2, 1]            | [1, 2, 3]               | Already sorted in reverse    |\n| 10         | [10, 100, -10, 0]    | [-10, 0, 10, 100]        | Mixed positive, zero, and negative  |\n",
+        "example": {
+          "input": "[-5, 2, 9, 0, -1, 6]",
+          "output": "[-5, -1, 0, 2, 6, 9]",
+          "explanation": "The array is sorted in ascending order including negative, zero, and positive numbers."
+        },
+        "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      },
+      {
+        "id": 9,
+        "title": "Sort an Array of Strings by Length in Descending Order",
+        "description": "Given an array of strings, sort the strings by their length in descending order.\n\n| Test Cases | strings            | Expected Output      | Notes                        |\n|------------|---------------------|-------------------------|------------------------------|\n| 1          | ['apple', 'banana', 'kiwi'] | ['banana', 'apple', 'kiwi'] | Sorting by string length    |\n| 2          | ['dog', 'cat', 'rabbit', 'elephant'] | ['elephant', 'rabbit', 'dog', 'cat'] | Sorting strings by length  |\n| 3          | ['a', 'ab', 'abc', 'abcd'] | ['abcd', 'abc', 'ab', 'a'] | Different string lengths    |\n| 4          | ['short', 'tiny', 'longest', 'large'] | ['longest', 'short', 'large', 'tiny'] | Mixed lengths               |\n| 5          | ['apple', 'banana', 'cherry'] | ['banana', 'cherry', 'apple'] | Random length sorting      |\n| 6          | ['tiny', 'big', 'large'] | ['large', 'tiny', 'big'] | Varying sizes               |\n| 7          | ['one', 'three', 'two'] | ['three', 'one', 'two']  | Simple case with varying lengths || 8          | ['dog', 'fox', 'elephant'] | ['elephant', 'dog', 'fox'] | Mixed word lengths           |\n| 9          | ['blue', 'green', 'red'] | ['green', 'blue', 'red'] | Equal length strings       |\n| 10         | ['a', 'b', 'c']        | ['a', 'b', 'c']          | Identical length            |\n",
+        "example": {
+          "input": "['apple', 'banana', 'kiwi']",
+          "output": "['banana', 'apple', 'kiwi']",
+          "explanation": "The strings are sorted in descending order by length."
+        },
+        "answer": "class Solution:\n    def sortStringsByLength(self, strings):\n        return sorted(strings, key=len, reverse=True)"
+      },
+      {
+        "id": 10,
+        "title": "Sort an Array of Mixed Integers and Strings",
+        "description": "Given an array containing a mix of integers and strings, sort the array in ascending order. You can assume that each element is either an integer or a string.\n\n| Test Cases | elements                         | Expected Output                     | Notes                       |\n|------------|----------------------------------|----------------------------------|-----------------------------|\n| 1          | [1, 'banana', 3, 'apple', 2]     | [1, 2, 3, 'apple', 'banana']    | Mixed integers and strings   |\n| 2          | ['cat', 5, 'dog', 3, 1]          | [1, 3, 5, 'cat', 'dog']          | Random integers and strings  |\n| 3          | ['banana', 'apple', 2, 1, 'grape']| [1, 2, 'apple', 'banana', 'grape']| Strings and integers         |\n| 4          | [0, 'car', 'dog', 10, 'apple']    | [0, 10, 'apple', 'car', 'dog']   | Mixed string and integer     |\n| 5          | ['b', 'a', 'c', 3, 2, 1]          | [1, 2, 3, 'a', 'b', 'c']         | Simple mix                   |\n| 6          | ['apple', 5, 2, 'dog', 'cat']     | [2, 5, 'apple', 'cat', 'dog']    | Mixed types                  |\n| 7          | ['zebra', 'apple', 4, 1]          | [1, 4, 'apple', 'zebra']         | Random mix                   |\n| 8          | [1, 10, 20, 'hello', 'world']     | [1, 10, 20, 'hello', 'world']    | Mixed numbers and strings    |\n| 9          | ['foo', 3, 1, 'bar']              | [1, 3, 'bar', 'foo']             | Alphabetical and numbers     |\n| 10         | [0, 5, 'zebra', 'apple', 10]      | [0, 5, 10, 'apple', 'zebra']     | Mixed positive numbers       |\n",
+        "example": {
+          "input": "[1, 'banana', 3, 'apple', 2]",
+          "output": "[1, 2, 3, 'apple', 'banana']",
+          "explanation": "The integers are sorted in ascending order, and the strings follow alphabetically."
+        },
+        "answer": "class Solution:\n    def sortArray(self, elements):\n        return sorted(elements, key=lambda x: (isinstance(x, int), x))"
+      },
+      {
+        "id": 11,
+        "title": "Sort an Array of Floating-Point Numbers",
+        "description": "Given an array of floating-point numbers, sort the array in ascending order.\n\n| Test Cases | nums                           | Expected Output            | Notes                      |\n|------------|--------------------------------|----------------------------|----------------------------|\n| 1          | [3.14, 2.71, 1.41, 0.99]      | [0.99, 1.41, 2.71, 3.14]   | Basic floating points      |\n| 2          | [1.23, 3.45, 2.78, 0.12]      | [0.12, 1.23, 2.78, 3.45]   | Random float values        |\n| 3          | [1.1, 3.5, 2.2, 0.7]          | [0.7, 1.1, 2.2, 3.5]       | Sorted in ascending order  |\n| 4          | [5.5, 10.0, 7.3, 2.2]         | [2.2, 5.5, 7.3, 10.0]      | Mixed floating points      |\n| 5          | [3.0, 3.0, 3.0, 3.0]          | [3.0, 3.0, 3.0, 3.0]       | Identical floating values  |\n| 6          | [-1.1, -2.5, -3.2, 0.1]       | [-3.2, -2.5, -1.1, 0.1]    | Negative floating points   |\n| 7          | [2.0, 0.5, 1.5]               | [0.5, 1.5, 2.0]            | Small floating numbers     |\n| 8          | [3.3, 4.4, 2.2, 5.5, 1.1]     | [1.1, 2.2, 3.3, 4.4, 5.5]  | Random order               |\n| 9          | [-2.4, -1.2, 0.6, 1.3]        | [-2.4, -1.2, 0.6, 1.3]     | Mix of negative and positive floats |\n| 10         | [5.2, 3.4, 2.1, 1.7]          | [1.7, 2.1, 3.4, 5.2]       | Float sorting              |\n",
+        "example": {
+          "input": "[3.14, 2.71, 1.41, 0.99]",
+          "output": "[0.99, 1.41, 2.71, 3.14]",
+          "explanation": "The floating-point numbers are sorted in ascending order."
+        },
+        "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      },
+      {
+        "id": 12,
+        "title": "Sort an Array of Dates",
+        "description": "Given an array of dates in 'YYYY-MM-DD' format, sort them in chronological order.\n\n| Test Cases | dates                          | Expected Output            | Notes                     |\n|------------|--------------------------------|----------------------------|---------------------------|\n| 1          | ['2025-04-01', '2025-03-15', '2025-05-20'] | ['2025-03-15', '2025-04-01', '2025-05-20'] | Basic case                 |\n| 2          | ['2020-01-01', '2020-02-28', '2020-03-15'] | ['2020-01-01', '2020-02-28', '2020-03-15'] | Already sorted            |\n| 3          | ['2022-08-01', '2021-07-01', '2020-05-01'] | ['2020-05-01', '2021-07-01', '2022-08-01'] | Chronological sorting     |\n| 4          | ['2025-07-04', '2025-06-10', '2025-05-20'] | ['2025-05-20', '2025-06-10', '2025-07-04'] | Mixed future dates        |\n| 5          | ['2023-10-10', '2022-09-09', '2023-08-08'] | ['2022-09-09', '2023-08-08', '2023-10-10'] | Mixed year and month      |\n| 6          | ['2024-12-15', '2025-01-01', '2023-05-05'] | ['2023-05-05', '2024-12-15', '2025-01-01'] | Random future dates       |\n| 7          | ['2025-03-15', '2025-03-10', '2025-03-12'] | ['2025-03-10', '2025-03-12', '2025-03-15'] | Same year, sorted by date |\n| 8          | ['2022-12-25', '2021-11-11', '2020-01-01'] | ['2020-01-01', '2021-11-11', '2022-12-25'] | Sorting across years      |\n| 9          | ['2025-05-01', '2025-05-02', '2025-04-29'] | ['2025-04-29', '2025-05-01', '2025-05-02'] | Close date range          |\n| 10         | ['2023-07-01', '2023-06-15', '2023-06-30'] | ['2023-06-15', '2023-06-30', '2023-07-01'] | Month and day sorting     |\n",
+        "example": {
+          "input": "['2025-04-01', '2025-03-15', '2025-05-20']",
+          "output": "['2025-03-15', '2025-04-01', '2025-05-20']",
+          "explanation": "The dates are sorted in chronological order from earliest to latest."
+        },
+        "answer": "class Solution:\n    def sortDates(self, dates):\n        return sorted(dates)"
+      },
+      {
+        "id": 13,
+        "title": "Sort an Array of Characters",
+        "description": "Given an array of characters, sort them in lexicographical order.\n\n| Test Cases | characters                   | Expected Output            | Notes                        |\n|------------|------------------------------|----------------------------|------------------------------|\n| 1          | ['d', 'a', 'c', 'b']          | ['a', 'b', 'c', 'd']        | Basic case                   |\n| 2          | ['x', 'z', 'y']               | ['x', 'y', 'z']             | Sorted in lexicographical order |\n| 3          | ['h', 'e', 'l', 'l', 'o']     | ['e', 'h', 'l', 'l', 'o']   | String with duplicate letters |\n| 4          | ['m', 'n', 'o', 'k', 'l']     | ['k', 'l', 'm', 'n', 'o']   | Mixed order                  |\n| 5          | ['z', 'y', 'x', 'w']          | ['w', 'x', 'y', 'z']        | Reverse order                |\n| 6          | ['a', 'b', 'c', 'a', 'd']     | ['a', 'a', 'b', 'c', 'd']   | Repeated elements            |\n| 7          | ['u', 'v', 't', 'w', 'r']     | ['r', 't', 'u', 'v', 'w']   | Random order                 |\n| 8          | ['g', 'f', 'e', 'd', 'c']     | ['c', 'd', 'e', 'f', 'g']   | Reverse order                |\n| 9          | ['r', 's', 't', 'p']          | ['p', 'r', 's', 't']        | Alphabetical sorting         |\n| 10         | ['m', 'n', 'o', 'p', 'q']     | ['m', 'n', 'o', 'p', 'q']   | Already sorted               |\n",
+        "example": {
+          "input": "['d', 'a', 'c', 'b']",
+          "output": "['a', 'b', 'c', 'd']",
+          "explanation": "The characters are sorted in lexicographical order."
+        },
+        "answer": "class Solution:\n    def sortCharacters(self, characters):\n        return sorted(characters)"
+      },
+      {
+        "id": 14,
+        "title": "Sort an Array of Mixed Negative and Positive Numbers",
+        "description": "Given an array of mixed negative and positive integers, sort them in ascending order.\n\n| Test Cases | nums                           | Expected Output            | Notes                        |\n|------------|--------------------------------|----------------------------|------------------------------|\n| 1          | [3, -1, 0, -2, 1]              | [-2, -1, 0, 1, 3]          | Mixed negative and positive  |\n| 2          | [-5, -1, 0, 5, 3]              | [-5, -1, 0, 3, 5]          | Mix of negative and positive |\n| 3          | [10, -3, 4, -2, 0]             | [-3, -2, 0, 4, 10]         | Mixed with zero              |\n| 4          | [8, -7, 3, -1, 0]              | [-7, -1, 0, 3, 8]          | Random mixed integers        |\n| 5          | [3, 0, -5, -1, -3]             | [-5, -3, -1, 0, 3]         | Mixed negative and positive  |\n| 6          | [-1, 2, 0, -3, 1]              | [-3, -1, 0, 1, 2]          | Mix with zero                |\n| 7          | [-9, 4, -6, 1, 2]              | [-9, -6, 1, 2, 4]          | Random integers              |\n| 8          | [-8, -7, -5, -4, -1]           | [-8, -7, -5, -4, -1]       | Already sorted               |\n| 9          | [10, -10, 5, -5, 0]            | [-10, -5, 0, 5, 10]        | Negative, zero, positive     |\n| 10         | [3, 2, 1, 0, -1]               | [-1, 0, 1, 2, 3]           | Sorted mixed integers        |\n",
+        "example": {
+          "input": "[3, -1, 0, -2, 1]",
+          "output": "[-2, -1, 0, 1, 3]",
+          "explanation": "The integers are sorted in ascending order, with negative values first."
+        },
+        "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      },
+      {
+        "id": 15,
+        "title": "Sort a List of Strings by Length",
+        "description": "Given a list of strings, sort them in ascending order by their length.\n\n| Test Cases | strings                     | Expected Output            | Notes                          |\n|------------|-----------------------------|----------------------------|--------------------------------|\n| 1          | ['apple', 'banana', 'kiwi']  | ['kiwi', 'apple', 'banana'] | Sort by length                 |\n| 2          | ['cat', 'elephant', 'dog']   | ['cat', 'dog', 'elephant']  | Sorted by string length        |\n| 3          | ['a', 'aa', 'aaa']           | ['a', 'aa', 'aaa']          | Simple case                    |\n| 4          | ['grape', 'pear', 'orange']  | ['pear', 'grape', 'orange'] | Sorting by length              |\n| 5          | ['one', 'two', 'three', 'four'] | ['one', 'two', 'four', 'three'] | Mix of small and large words   |\n| 6          | ['zebra', 'elephant', 'cat'] | ['cat', 'zebra', 'elephant']| Simple alphabetic with length sort |\n| 7          | ['ball', 'bat', 'bottle']    | ['bat', 'ball', 'bottle']   | Sorted by length                |\n| 8          | ['apple', 'orange', 'banana']| ['apple', 'orange', 'banana']| Already sorted by length       |\n| 9          | ['dog', 'fish', 'whale']     | ['dog', 'fish', 'whale']    | Simple words                    |\n| 10         | ['abcdef', 'abcd', 'abc']    | ['abc', 'abcd', 'abcdef']   | Sorting by length               |\n",
+        "example": {
+          "input": "['apple', 'banana', 'kiwi']",
+          "output": "['kiwi', 'apple', 'banana']",
+          "explanation": "The strings are sorted by their lengths, shortest to longest."
+        },
+        "answer": "class Solution:\n    def sortStringsByLength(self, strings):\n        return sorted(strings, key=len)"
+      },
+      {
+        "id": 16,
+        "title": "Sort a List of Tuples Based on First Element",
+        "description": "Given a list of tuples, sort them based on the first element of each tuple in ascending order.\n\n| Test Cases | tuples                        | Expected Output            | Notes                           |\n|------------|-------------------------------|----------------------------|---------------------------------|\n| 1          | [(3, 'a'), (1, 'b'), (2, 'c')] | [(1, 'b'), (2, 'c'), (3, 'a')] | Sort by first element            |\n| 2          | [(10, 'apple'), (2, 'banana'), (5, 'cherry')] | [(2, 'banana'), (5, 'cherry'), (10, 'apple')] | Sort by first element            |\n| 3          | [(1, 'z'), (2, 'y'), (3, 'x')] | [(1, 'z'), (2, 'y'), (3, 'x')] | Already sorted                   |\n| 4          | [(6, 'dog'), (1, 'cat'), (5, 'mouse')] | [(1, 'cat'), (5, 'mouse'), (6, 'dog')] | Sorting based on first element    |\n| 5          | [(7, 'red'), (4, 'blue'), (9, 'green')] | [(4, 'blue'), (7, 'red'), (9, 'green')] | Random order                     |\n| 6          | [(8, 'a'), (5, 'b'), (3, 'c')] | [(3, 'c'), (5, 'b'), (8, 'a')] | Sort by first element             |\n| 7          | [(2, 'one'), (3, 'three'), (1, 'two')] | [(1, 'two'), (2, 'one'), (3, 'three')] | Sorted by first element           |\n| 8          | [(4, 'four'), (9, 'nine'), (2, 'two')] | [(2, 'two'), (4, 'four'), (9, 'nine')] | Sort based on the first number    |\n| 9          | [(10, 'x'), (1, 'y'), (2, 'z')] | [(1, 'y'), (2, 'z'), (10, 'x')] | Sorted based on first element     |\n| 10         | [(2, 'cat'), (6, 'dog'), (4, 'bird')] | [(2, 'cat'), (4, 'bird'), (6, 'dog')] | Sorted by the first element       |\n",
+        "example": {
+          "input": "[(3, 'a'), (1, 'b'), (2, 'c')]",
+          "output": "[(1, 'b'), (2, 'c'), (3, 'a')]",
+          "explanation": "The tuples are sorted by their first element in ascending order."
+        },
+        "answer": "class Solution:\n    def sortTuplesByFirstElement(self, tuples):\n        return sorted(tuples)"
+      },
+      {
+        "id": 17,
+        "title": "Sort an Array of Floating-Point Numbers",
+        "description": "Given an array of floating-point numbers, sort them in ascending order.\n\n| Test Cases | nums                           | Expected Output            | Notes                        |\n|------------|--------------------------------|----------------------------|------------------------------|\n| 1          | [3.1, 2.5, 4.3, 1.8]           | [1.8, 2.5, 3.1, 4.3]       | Simple case                   |\n| 2          | [0.1, 0.3, 0.2]                | [0.1, 0.2, 0.3]            | Sorting floating numbers       |\n| 3          | [10.5, 0.5, 7.2, 2.8]          | [0.5, 2.8, 7.2, 10.5]      | Mixed floating-point numbers   |\n| 4          | [5.5, 3.4, 2.1]                | [2.1, 3.4, 5.5]            | Sorting a few elements         |\n| 5          | [-2.1, 1.2, -3.5, 4.8]         | [-3.5, -2.1, 1.2, 4.8]     | Negative and positive numbers  |\n| 6          | [1.0, 1.0, 0.0]                | [0.0, 1.0, 1.0]            | Identical numbers              |\n| 7          | [2.2, 3.1, 1.9, 0.4]           | [0.4, 1.9, 2.2, 3.1]       | Random float values            |\n| 8          | [-10.5, 0.0, 3.6, -5.4]        | [-10.5, -5.4, 0.0, 3.6]    | Sorting mix of positive/negative|\n| 9          | [0.7, 0.2, 0.9, 0.5]           | [0.2, 0.5, 0.7, 0.9]       | Sorting small floating numbers || 10         | [7.1, 5.3, 8.8, 4.2]           | [4.2, 5.3, 7.1, 8.8]       | Floating numbers             |\n",
+        "example": {
+          "input": "[3.1, 2.5, 4.3, 1.8]",
+          "output": "[1.8, 2.5, 3.1, 4.3]",
+          "explanation": "The array of floating-point numbers is sorted in ascending order."
+        },
+        "answer": "class Solution:\n    def sortFloatArray(self, nums):\n        return sorted(nums)"
+      },
+      {
+        "id": 18,
+        "title": "Sort a List of Strings by Alphabetical Order",
+        "description": "Given a list of strings, sort them in alphabetical order.\n\n| Test Cases | strings                     | Expected Output            | Notes                        |\n|------------|-----------------------------|----------------------------|------------------------------|\n| 1          | ['apple', 'banana', 'cherry'] | ['apple', 'banana', 'cherry'] | Simple case                   |\n| 2          | ['grape', 'kiwi', 'orange']  | ['grape', 'kiwi', 'orange']  | Alphabetical order            |\n| 3          | ['zebra', 'lion', 'tiger']   | ['lion', 'tiger', 'zebra']   | Random order                  |\n| 4          | ['blue', 'green', 'red']     | ['blue', 'green', 'red']     | Sorting by alphabetical order |\n| 5          | ['sun', 'moon', 'stars']     | ['moon', 'stars', 'sun']     | Sorting simple strings        |\n| 6          | ['cucumber', 'apple', 'banana'] | ['apple', 'banana', 'cucumber'] | Strings starting with different letters |\n| 7          | ['dog', 'elephant', 'cat']   | ['cat', 'dog', 'elephant']   | Random strings                |\n| 8          | ['flying', 'catch', 'falling'] | ['catch', 'falling', 'flying'] | Sorting based on alphabetical order |\n| 9          | ['cat', 'dog', 'bat']        | ['bat', 'cat', 'dog']        | Sorting by first letter       |\n| 10         | ['ball', 'bat', 'boat']      | ['ball', 'bat', 'boat']      | Already sorted                |\n",
+        "example": {
+          "input": "['apple', 'banana', 'cherry']",
+          "output": "['apple', 'banana', 'cherry']",
+          "explanation": "The strings are sorted alphabetically."
+        },
+        "answer": "class Solution:\n    def sortStringsAlphabetically(self, strings):\n        return sorted(strings)"
+      },
+      {
+        "id": 19,
+        "title": "Sort a List of Dictionaries by a Key",
+        "description": "Given a list of dictionaries, sort the list by a specified key.\n\n| Test Cases | dicts                            | Expected Output             | Notes                           |\n|------------|----------------------------------|-----------------------------|---------------------------------|\n| 1          | [{'name': 'John', 'age': 30}, {'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 28}] | [{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 28}, {'name': 'John', 'age': 30}] | Sorting by 'age'               |\n| 2          | [{'name': 'Eve', 'age': 40}, {'name': 'Charlie', 'age': 35}] | [{'name': 'Charlie', 'age': 35}, {'name': 'Eve', 'age': 40}] | Sorting by 'age'               |\n| 3          | [{'name': 'Steve', 'age': 45}, {'name': 'Zara', 'age': 50}, {'name': 'Linda', 'age': 30}] | [{'name': 'Steve', 'age': 45}, {'name': 'Linda', 'age': 30}, {'name': 'Zara', 'age': 50}] | Sorting by 'age'               |\n| 4          | [{'name': 'David', 'age': 25}, {'name': 'Bob', 'age': 35}] | [{'name': 'David', 'age': 25}, {'name': 'Bob', 'age': 35}] | Sorting by 'age'               |\n| 5          | [{'name': 'Alex', 'age': 30}, {'name': 'Jason', 'age': 28}, {'name': 'Maria', 'age': 32}] | [{'name': 'Jason', 'age': 28}, {'name': 'Alex', 'age': 30}, {'name': 'Maria', 'age': 32}] | Sorting by 'age'               |\n| 6          | [{'name': 'Oscar', 'age': 28}, {'name': 'Jill', 'age': 30}] | [{'name': 'Oscar', 'age': 28}, {'name': 'Jill', 'age': 30}] | Sorting by 'age'               |\n| 7          | [{'name': 'Sophia', 'age': 22}, {'name': 'Amos', 'age': 35}] | [{'name': 'Sophia', 'age': 22}, {'name': 'Amos', 'age': 35}] | Sorting by 'age'               |\n| 8          | [{'name': 'Emily', 'age': 33}, {'name': 'Jack', 'age': 38}] | [{'name': 'Emily', 'age': 33}, {'name': 'Jack', 'age': 38}] | Sorting by 'age'               |\n| 9          | [{'name': 'Aiden', 'age': 40}, {'name': 'Liam', 'age': 25}] | [{'name': 'Liam', 'age': 25}, {'name': 'Aiden', 'age': 40}] | Sorting by 'age'               |\n| 10         | [{'name': 'Zach', 'age': 19}, {'name': 'Ryan', 'age': 29}] | [{'name': 'Zach', 'age': 19}, {'name': 'Ryan', 'age': 29}] | Sorting by 'age'               |\n",
+        "example": {
+          "input": "[{'name': 'John', 'age': 30}, {'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 28}]",
+          "output": "[{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 28}, {'name': 'John', 'age': 30}]",
+          "explanation": "The list of dictionaries is sorted by the 'age' key in ascending order."
+        },
+        "answer": "class Solution:\n    def sortDictsByKey(self, dicts, key):\n        return sorted(dicts, key=lambda x: x[key])"
+      },
+      {
+        "id": 20,
+        "title": "Sort an Array of Binary Numbers",
+        "description": "Given an array of binary numbers (strings), sort them in ascending order.\n\n| Test Cases | binaries                         | Expected Output            | Notes                         |\n|------------|----------------------------------|----------------------------|-------------------------------|\n| 1          | ['110', '101', '111', '100']     | ['100', '101', '110', '111'] | Sorting binary numbers         |\n| 2          | ['0', '1', '0', '1']             | ['0', '0', '1', '1']        | Sorting binary digits          |\n| 3          | ['10101', '11111', '10001']      | ['10001', '10101', '11111'] | Binary numbers as strings       |\n| 4          | ['1100', '1010', '1111', '1001'] | ['1001', '1010', '1100', '1111'] | Sorting binary numbers        |\n| 5          | ['10000', '11111', '11010']      | ['10000', '11010', '11111'] | Sorting binary strings         |\n| 6          | ['0', '0', '0', '1']             | ['0', '0', '0', '1']        | Identical elements             |\n| 7          | ['11010', '10101', '11100']      | ['10101', '11010', '11100'] | Binary strings sorting         |\n| 8          | ['1100', '1010', '1101']         | ['1010', '1100', '1101']    | Sorting binary strings         |\n| 9          | ['1', '10', '100', '1000']       | ['1', '10', '100', '1000']  | Binary number strings          |\n| 10         | ['110', '101', '100', '111']     | ['100', '101', '110', '111'] | Binary numbers in string form   |\n",
+        "example": {
+          "input": "['110', '101', '111', '100']",
+          "output": "['100', '101', '110', '111']",
+          "explanation": "The binary numbers are sorted in ascending order."
+        },
+        "answer": "class Solution:\n    def sortBinaryArray(self, binaries):\n        return sorted(binaries, key=lambda x: int(x, 2))"
+      }
+    ]
+  }
+  

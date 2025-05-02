@@ -1,0 +1,205 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "title": "Is Palindrome",
+        "description": "Check if the given string is a palindrome.\n\n| Test Case | Input                         | Expected Output | Notes                        |\n|-----------|-------------------------------|------------------|------------------------------|\n| 1         | \"racecar\"                     | true             | Normal case                  |\n| 2         | \"hello\"                       | false            | Not a palindrome             |\n| 3         | \"madam\"                       | true             | Palindrome                   |\n| 4         | \"A man a plan a canal Panama\" | true             | Ignore case/space            |\n| 5         | \"ab\"                          | false            | Not a palindrome             |\n| 6         | \"abba\"                        | true             | Palindrome                   |\n| 7         | \"abcba\"                       | true             | Palindrome                   |\n| 8         | \"abccba\"                      | true             | Palindrome                   |\n| 9         | \"\"                            | true             | Empty string                 |\n| 10        | \"No lemon, no melon\"          | true             | Palindrome with punctuation  |\n| 11        | \"Step on no pets\"             | true             | Palindrome with punctuation  |",
+        "example": {
+          "input": "\"madam\"",
+          "output": "true"
+        },
+        "answer": "def is_palindrome(s):\n    cleaned = ''.join(c.lower() for c in s if c.isalnum())\n    return cleaned == cleaned[::-1]"
+      },
+      {
+        "id": 2,
+        "title": "Check Anagram",
+        "description": "Determine if two strings are anagrams of each other.\n\n| Test Case | Input A     | Input B     | Expected Output | Notes                |\n|-----------|-------------|-------------|------------------|----------------------|\n| 1         | \"listen\"    | \"silent\"   | true             | Both are anagrams    |\n| 2         | \"triangle\"  | \"integral\" | true             | Both are anagrams    |\n| 3         | \"apple\"     | \"papel\"    | true             | Both are anagrams    |\n| 4         | \"rat\"       | \"car\"      | false            | Not an anagram       |\n| 5         | \"hello\"     | \"helloo\"   | false            | Different length     |\n| 6         | \"Dormitory\" | \"Dirty room\"| true             | Both are anagrams    |\n| 7         | \"night\"     | \"thing\"    | true             | Both are anagrams    |\n| 8         | \"abcd\"      | \"dcba\"     | true             | Both are anagrams    |\n| 9         | \"anagram\"   | \"nagaramm\" | false            | Extra 'm' in B       |\n| 10        | \"a\"         | \"a\"        | true             | Single character     |\n| 11        | \"\"          | \"\"         | true             | Both are empty       |",
+        "example": {
+          "input": "\"listen\", \"silent\"",
+          "output": "true"
+        },
+        "answer": "from collections import Counter\n\ndef is_anagram(a, b):\n    a_clean = ''.join(a.lower().split())\n    b_clean = ''.join(b.lower().split())\n    return Counter(a_clean) == Counter(b_clean)"
+      },
+      {
+        "id": 3,
+        "title": "First Non-Repeating Character",
+        "description": "Find the first character that does not repeat. Return -1 if none exists.\n\n| Test Case | Input          | Expected Output | Notes                     |\n|-----------|----------------|------------------|---------------------------|\n| 1         | \"leetcode\"     | \"l\"             | First non-repeating letter |\n| 2         | \"loveleetcode\" | \"v\"             | First non-repeating letter |\n| 3         | \"aabbcc\"       | -1               | All characters repeat      |\n| 4         | \"abcabcde\"     | \"d\"             | First non-repeating letter |\n| 5         | \"z\"            | \"z\"             | Single character string    |\n| 6         | \"\"             | -1               | Empty string               |\n| 7         | \"aabbc\"        | \"c\"             | First non-repeating letter |\n| 8         | \"xxyyz\"        | \"z\"             | First non-repeating letter |\n| 9         | \"1231234\"      | \"4\"             | Non-repeating at end       |\n| 10        | \"abacabad\"     | \"c\"             | First non-repeating letter |\n| 11        | \"aaaabbbbcccde\"| \"d\"             | First non-repeating letter |",
+        "example": {
+          "input": "\"loveleetcode\"",
+          "output": "\"v\""
+        },
+        "answer": "from collections import Counter\n\ndef first_non_repeating(s):\n    count = Counter(s)\n    for ch in s:\n        if count[ch] == 1:\n            return ch\n    return -1"
+      },
+      {
+        "id": 4,
+        "title": "Reverse Words in a Sentence",
+        "description": "Reverse the order of words in a sentence, trimming spaces.\n\n| Test Case | Input                        | Expected Output  | Notes                        |\n|-----------|-----------------------------|------------------|------------------------------|\n| 1         | \"Hello World\"               | \"World Hello\"   | Normal case                  |\n| 2         | \"  Hello   World  \"         | \"World Hello\"   | Extra spaces                 |\n| 3         | \"a\"                         | \"a\"             | Single word                  |\n| 4         | \"OpenAI is awesome\"         | \"awesome is OpenAI\" | Normal case            |\n| 5         | \"  fly me   to   the moon  \"| \"moon the to me fly\" | Multiple spaces  |\n| 6         | \"\"                          | \"\"              | Empty string                 |\n| 7         | \"one word\"                  | \"word one\"      | Two words                   |\n| 8         | \"  \"                        | \"\"              | Only spaces                  |\n| 9         | \"multiple   spaces here\"    | \"here spaces multiple\" | Multiple spaces       |\n| 10        | \"Python is great\"           | \"great is Python\" | Normal case                |\n| 11        | \"Reverse this\"              | \"this Reverse\"  | Two words                   |",
+        "example": {
+          "input": "\"OpenAI is awesome\"",
+          "output": "\"awesome is OpenAI\""
+        },
+        "answer": "def reverse_words(s):\n    return ' '.join(s.strip().split()[::-1])"
+      },
+      {
+        "id": 5,
+        "title": "Remove Duplicate Characters",
+        "description": "Remove duplicate characters, keeping the first occurrence.\n\n| Test Case | Input          | Expected Output | Notes                        |\n|-----------|----------------|------------------|------------------------------|\n| 1         | \"ababac\"       | \"abc\"           | Removes duplicates           |\n| 2         | \"hello\"        | \"helo\"          | Removes duplicates           |\n| 3         | \"abc\"          | \"abc\"           | No duplicates                |\n| 4         | \"\"             | \"\"              | Empty string                 |\n| 5         | \"aaaa\"         | \"a\"             | Removes duplicates           |\n| 6         | \"aabbccdd\"     | \"abcd\"          | Removes duplicates           |\n| 7         | \"mississippi\"  | \"misp\"          | Removes duplicates           |\n| 8         | \"123123\"       | \"123\"           | Removes duplicates           |\n| 9         | \"ABCA\"         | \"ABC\"           | Case-sensitive               |\n| 10        | \"zxyzzxy\"      | \"zxy\"           | Removes duplicates           |\n| 11        | \"@@!!##\"       | \"@!#\"           | Removes duplicates           |",
+        "example": {
+          "input": "\"mississippi\"",
+          "output": "\"misp\""
+        },
+        "answer": "def remove_duplicates(s):\n    seen = set()\n    result = []\n    for ch in s:\n        if ch not in seen:\n            seen.add(ch)\n            result.append(ch)\n    return ''.join(result)"
+      },
+      {
+        "id": 6,
+        "title": "Longest Substring Without Repeating Characters",
+        "description": "Find the length of the longest substring without repeating characters.\n\n| Test Case | Input             | Expected Output | Notes                        |\n|-----------|-------------------|------------------|------------------------------|\n| 1         | \"abcabcbb\"        | 3                | Substring \"abc\" is longest  |\n| 2         | \"bbbbb\"           | 1                | Only one character repeated   |\n| 3         | \"pwwkew\"          | 3                | Substring \"wke\" is longest  |\n| 4         | \"\"                | 0                | Empty string                 |\n| 5         | \"aab\"              | 2                | Substring \"ab\" is longest   |\n| 6         | \"auzfxk\"          | 6                | No repeating characters      |\n| 7         | \"abcdefgh\"        | 8                | No repeating characters      |\n| 8         | \"abcdeafgh\"       | 6                | Substring \"abcdef\" is longest |\n| 9         | \"abcdeabcd\"       | 5                | Substring \"abcde\" is longest |\n| 10        | \"xyxyxy\"          | 2                | Substring \"xy\" is longest   |",
+        "example": {
+          "input": "\"abcabcbb\"",
+          "output": "3"
+        },
+        "answer": "def length_of_longest_substring(s):\n    char_set = set()\n    left = 0\n    max_len = 0\n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_len = max(max_len, right - left + 1)\n    return max_len"
+      },
+      {
+        "id": 7,
+        "title": "Find All Anagrams in a String",
+        "description": "Given a string and a non-empty string p, find all the start indices of p's anagrams in the string s.\n\n| Test Case | Input S           | Input P           | Expected Output    | Notes                        |\n|-----------|-------------------|-------------------|---------------------|------------------------------|\n| 1         | \"cbaebabacd\"      | \"abc\"             | [0, 6]            | Anagrams of \"abc\" found    |\n| 2         | \"abab\"            | \"ab\"              | [0, 1, 2]          | All possible anagrams        |\n| 3         | \"abcd\"            | \"z\"               | []                  | No anagrams found            |\n| 4         | \"aabab\"           | \"ab\"              | [0, 2]             | Anagrams of \"ab\" found     |\n| 5         | \"xyzxyzxyz\"       | \"yz\"              | [1, 4, 7]          | Anagrams of \"yz\" found     |\n| 6         | \"abcdefgh\"        | \"ae\"              | [0]                 | Single anagram found         |\n| 7         | \"abcabcabc\"       | \"bca\"             | [0, 3, 6]          | Anagrams of \"bca\" found    |\n| 8         | \"cabcba\"          | \"abc\"             | [0, 3]             | Anagrams of \"abc\" found    |\n| 9         | \"aaabbbccc\"       | \"abc\"             | [0, 3, 6]          | Anagrams of \"abc\" found    |\n| 10        | \"abacbabc\"        | \"abc\"             | [0, 3]             | Anagrams of \"abc\" found    |",
+        "example": {
+          "input": "\"cbaebabacd\", \"abc\"",
+          "output": "[0, 6]"
+        },
+        "answer": "from collections import Counter\n\ndef find_anagrams(s, p):\n    p_count = Counter(p)\n    s_count = Counter(s[:len(p)])\n    result = []\n    if s_count == p_count:\n        result.append(0)\n    for i in range(len(p), len(s)):\n        s_count[s[i]] += 1\n        s_count[s[i - len(p)]] -= 1\n        if s_count[s[i - len(p)]] == 0:\n            del s_count[s[i - len(p)]]\n        if s_count == p_count:\n            result.append(i - len(p) + 1)\n    return result"
+      },
+      {
+        "id": 8,
+        "title": "String Compression",
+        "description": "Given an array of characters, compress it using the counts of repeated characters.\n\n| Test Case | Input            | Expected Output  | Notes                         |\n|-----------|------------------|------------------|-------------------------------|\n| 1         | ['a', 'a', 'b', 'b', 'c', 'c', 'c'] | ['a', '2', 'b', '2', 'c', '3'] | Normal case                  |\n| 2         | ['a', 'a', 'a']   | ['a', '3']       | Only one repeated character  |\n| 3         | ['a', 'b', 'c']   | ['a', 'b', 'c']  | No compression needed        |\n| 4         | ['a', 'a', 'a', 'b', 'b', 'a', 'a'] | ['a', '3', 'b', '2', 'a', '2'] | Mixed characters              |\n| 5         | ['z']             | ['z']            | Single character             |\n| 6         | ['a', 'b', 'b', 'b', 'c', 'c', 'c'] | ['a', 'b', '3', 'c', '3'] | Repeated characters          |\n| 7         | ['x', 'x', 'x', 'x', 'x', 'x'] | ['x', '6'] | Single repeated character    |\n| 8         | ['a', 'a', 'a', 'a', 'a'] | ['a', '5']       | Multiple identical chars    |\n| 9         | []                | []               | Empty array                 |\n| 10        | ['a', 'b', 'c', 'a', 'a'] | ['a', '1', 'b', '1', 'c', '1', 'a', '2'] | Alternating characters       |",
+        "example": {
+          "input": "['a', 'a', 'b', 'b', 'c', 'c', 'c']",
+          "output": "['a', '2', 'b', '2', 'c', '3']"
+        },
+        "answer": "def compress(chars):\n    write = 0\n    read = 0\n    while read < len(chars):\n        char = chars[read]\n        count = 1\n        while read + 1 < len(chars) and chars[read + 1] == char:\n            read += 1\n            count += 1\n        chars[write] = char\n        write += 1\n        if count > 1:\n            for c in str(count):\n                chars[write] = c\n                write += 1\n        read += 1\n    return chars[:write]"
+      },
+      {
+        "id": 9,
+        "title": "Valid Anagram",
+        "description": "Determine if one string is an anagram of another.\n\n| Test Case | Input A     | Input B     | Expected Output | Notes                        |\n|-----------|-------------|-------------|------------------|------------------------------|\n| 1         | \"anagram\"   | \"nagaram\"  | true             | Both are anagrams            |\n| 2         | \"rat\"       | \"car\"      | false            | Not an anagram               |\n| 3         | \"hello\"     | \"ollhe\"    | true             | Both are anagrams            |\n| 4         | \"abc\"       | \"cba\"      | true             | Both are anagrams            |\n| 5         | \"a\"         | \"b\"        | false            | Single characters not matching |\n| 6         | \"abcabc\"    | \"cbaabc\"   | true             | Both are anagrams            |\n| 7         | \"xyz\"       | \"zyx\"      | true             | Both are anagrams            |\n| 8         | \"abcd\"      | \"abdc\"     | true             | Both are anagrams            |\n| 9         | \"abcdefg\"   | \"gfedcba\"  | true             | Both are anagrams            |\n| 10        | \"pqrst\"     | \"qrstp\"    | true             | Both are anagrams            |",
+        "example": {
+          "input": "\"anagram\", \"nagaram\"",
+          "output": "true"
+        },
+        "answer": "def is_anagram(a, b):\n    return sorted(a) == sorted(b)"
+      },
+      {
+        "id": 10,
+        "title": "Palindrome Permutation",
+        "description": "Given a string, determine if a permutation of the string could form a palindrome.\n\n| Test Case | Input     | Expected Output | Notes                        |\n|-----------|-----------|------------------|------------------------------|\n| 1         | \"civic\"   | true             | \"civic\" itself is a palindrome |\n| 2         | \"ivicc\"   | true             | Can be rearranged as \"civic\" |\n| 3         | \"hello\"   | false            | Cannot be rearranged to form a palindrome |\n| 4         | \"racecar\" | true             | Already a palindrome |\n| 5         | \"abcde\"   | false            | Cannot be rearranged to form a palindrome |\n| 6         | \"aabbcc\"  | true             | Can be rearranged as \"abcabc\" |\n| 7         | \"abcabcba\"| true             | Palindrome as is            |\n| 8         | \"aabbbb\"  | true             | Can be rearranged to form a palindrome |\n| 9         | \"aa\"      | true             | Already a palindrome        |\n| 10        | \"abcd\"    | false            | Cannot form a palindrome    |",
+        "example": {
+          "input": "\"civic\"",
+          "output": "true"
+        },
+        "answer": "from collections import Counter\n\ndef can_permute_palindrome(s):\n    count = Counter(s)\n    odd_count = sum(1 for c in count.values() if c % 2 == 1)\n    return odd_count <= 1"
+      },
+      {
+        "id": 11,
+        "title": "Count and Say",
+        "description": "The count-and-say sequence is a sequence of digit strings defined by the following rules:\n1. 1 is the first term.\n2. To generate the next term, we describe the previous term by the number of digits (count) followed by the digit itself.\n\n| Test Case | Input N   | Expected Output  | Notes                        |\n|-----------|-----------|------------------|------------------------------|\n| 1         | 1         | \"1\"              | The first term is \"1\"       |\n| 2         | 4         | \"1211\"           | Describes \"21\"             |\n| 3         | 5         | \"111221\"         | Describes \"1211\"           |\n| 4         | 6         | \"312211\"         | Describes \"111221\"         |\n| 5         | 7         | \"13112221\"       | Describes \"312211\"         |\n| 6         | 8         | \"1113213211\"     | Describes \"13112221\"       |\n| 7         | 9         | \"31131211131221\" | Describes \"1113213211\"     |\n| 8         | 10        | \"13211311123113112211\" | Describes \"31131211131221\" |",
+        "example": {
+          "input": "4",
+          "output": "\"1211\""
+        },
+        "answer": "def count_and_say(n):\n    if n == 1:\n        return \"1\"\n    prev = \"1\"\n    for _ in range(2, n + 1):\n        curr = \"\"\n        count = 1\n        for i in range(1, len(prev)):\n            if prev[i] == prev[i - 1]:\n                count += 1\n            else:\n                curr += str(count) + prev[i - 1]\n                count = 1\n        curr += str(count) + prev[-1]\n        prev = curr\n    return prev"
+      },
+      {
+        "id": 12,
+        "title": "Minimum Window Substring",
+        "description": "Given two strings s and t, return the minimum window in s which will contain all the characters in t.\n\n| Test Case | Input S         | Input T        | Expected Output  | Notes                        |\n|-----------|-----------------|-----------------|------------------|------------------------------|\n| 1         | \"ADOBECODEBANC\" | \"ABC\"          | \"BANC\"            | Minimum window containing all chars of t |\n| 2         | \"ADOBECODEBANCCCC\" | \"AABC\"     | \"BAN\"             | Only one valid window        |\n| 3         | \"aaaaaaa\"       | \"aa\"           | \"aa\"               | Multiple valid windows        |\n| 4         | \"abcdefg\"       | \"xyz\"          | \"\"                  | No valid window                 |\n| 5         | \"abc\"           | \"c\"            | \"c\"                 | Single character valid         |\n| 6         | \"zxyzzxy\"       | \"xyz\"          | \"zxy\"               | Valid substring with repetition |\n| 7         | \"mnopq\"         | \"op\"           | \"op\"               | Direct substring match         |\n| 8         | \"abcabcabc\"     | \"bca\"          | \"bca\"             | All possible windows          |\n| 9         | \"aaaaa\"         | \"aa\"           | \"aa\"               | Multiple valid windows         |\n| 10        | \"fghij\"         | \"j\"            | \"j\"                 | Single character match         |",
+        "example": {
+          "input": "\"ADOBECODEBANC\", \"ABC\"",
+          "output": "\"BANC\""
+        },
+        "answer": "from collections import Counter\n\ndef min_window(s, t):\n    if not s or not t:\n        return \"\"\n    t_count = Counter(t)\n    s_count = Counter()\n    left, right = 0, 0\n    min_len = float('inf')\n    min_substr = \"\"\n    while right < len(s):\n        s_count[s[right]] += 1\n        while all(s_count[c] >= t_count[c] for c in t_count):\n            if right - left + 1 < min_len:\n                min_len = right - left + 1\n                min_substr = s[left:right + 1]\n            s_count[s[left]] -= 1\n            left += 1\n        right += 1\n    return min_substr"
+      },
+      {
+        "id": 13,
+        "title": "Longest Palindromic Substring",
+        "description": "Given a string s, return the longest palindromic substring in s.\n\n| Test Case | Input       | Expected Output  | Notes                        |\n|-----------|-------------|------------------|------------------------------|\n| 1         | \"babad\"     | \"bab\"           | Palindrome found is \"bab\"   |\n| 2         | \"cbbd\"      | \"bb\"            | Palindrome found is \"bb\"    |\n| 3         | \"a\"         | \"a\"              | Only one character is a palindrome |\n| 4         | \"acbdcba\"   | \"bdcdb\"         | Palindrome found is \"bdcdb\"  |\n| 5         | \"abcd\"      | \"a\"              | Shortest palindrome possible |\n| 6         | \"xabcdcdcba\" | \"abcdcdcba\"      | Palindrome is \"abcdcdcba\"   |\n| 7         | \"racecar\"    | \"racecar\"        | Entire string is a palindrome |\n| 8         | \"zzzzzzzzzz\" | \"zzzzzzzzzz\"    | Longest palindrome is the entire string |\n| 9         | \"xyzyx\"      | \"xyzyx\"          | Entire string is a palindrome |\n| 10        | \"abcdcdcba\"  | \"abcdcdcba\"      | Entire string is a palindrome |\n",
+        "example": {
+          "input": "\"babad\"",
+          "output": "\"bab\""
+        },
+        "answer": "def longest_palindromic_substring(s):\n    def expand_around_center(left, right):\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return s[left + 1:right]\n    if not s:\n        return \"\"\n    longest = \"\"\n    for i in range(len(s)):\n        odd_palindrome = expand_around_center(i, i)\n        even_palindrome = expand_around_center(i, i + 1)\n        longest = max(longest, odd_palindrome, even_palindrome, key=len)\n    return longest"
+      },
+      {
+        "id": 14,
+        "title": "String to Integer (atoi)",
+        "description": "Implement the function atoi which converts a string to an integer. The function should disregard leading whitespace characters, handle optional signs, and handle overflow scenarios.\n\n| Test Case | Input      | Expected Output | Notes                          |\n|-----------|------------|-----------------|-------------------------------|\n| 1         | \"42\"      | 42              | Valid integer conversion      |\n| 2         | \"-42\"     | -42             | Handles negative numbers       |\n| 3         | \"  4193 with words\" | 4193 | Leading spaces are ignored   |\n| 4         | \"words and 987\" | 0            | No valid integer at the start  |\n| 5         | \"3.14159\" | 3               | Only integer part considered   |\n| 6         | \"-91283472332\" | -91283472332 | Handling overflow              |\n| 7         | \"-000001\" | -1              | Handles leading zeros         |\n| 8         | \"+12345\"  | 12345           | Handles positive sign          |\n| 9         | \"21474836460\" | 2147483647    | Overflow to INT_MAX            |\n| 10        | \"-2147483649\" | -2147483648   | Underflow to INT_MIN           |",
+        "example": {
+          "input": "\"42\"",
+          "output": "42"
+        },
+        "answer": "def my_atoi(s):\n    s = s.strip()\n    if not s:\n        return 0\n    sign = 1\n    if s[0] == '-':\n        sign = -1\n        s = s[1:]\n    elif s[0] == '+':\n        s = s[1:]\n    result = 0\n    for char in s:\n        if char.isdigit():\n            result = result * 10 + int(char)\n        else:\n            break\n    result *= sign\n    INT_MAX, INT_MIN = 2147483647, -2147483648\n    return min(max(result, INT_MIN), INT_MAX)"
+      },
+      {
+        "id": 15,
+        "title": "Zigzag Conversion",
+        "description": "The string is written in a zigzag pattern on a given number of rows and then read line by line.\n\n| Test Case | Input String  | Input Rows | Expected Output | Notes                        |\n|-----------|---------------|------------|-----------------|------------------------------|\n| 1         | \"PAYPALISHIRING\" | 3        | \"PAHNAPLSIIGYIR\" | Zigzag pattern with 3 rows     |\n| 2         | \"AB\"          | 1          | \"AB\"             | Only one row                  |\n| 3         | \"ABCDEFGHIJKL\" | 4         | \"AGBFCEHIDJKL\"   | Multiple rows                |\n| 4         | \"A\"           | 1          | \"A\"               | Single character              |\n| 5         | \"ABCDEFG\"     | 2          | \"ACEGBDF\"         | Zigzag with 2 rows            |\n| 6         | \"HELLOZIGZAG\" | 3          | \"HZAGELLOZIG\"    | Multiple rows zigzag         |\n| 7         | \"ABCDEFGHIJKLM\" | 5         | \"AIBDJCFKGHLEML\"  | Zigzag pattern with 5 rows    |\n| 8         | \"ABCDEFGHI\"    | 3          | \"AEIBDFCHGI\"       | Pattern with 3 rows           |\n| 9         | \"HELLO\"        | 2          | \"HOLEL\"           | 2-row zigzag pattern          |\n| 10        | \"WORLDZIGZAG\" | 4          | \"WZLIDGROZAG\"      | 4-row zigzag pattern          |",
+        "example": {
+          "input": "\"PAYPALISHIRING\", 3",
+          "output": "\"PAHNAPLSIIGYIR\""
+        },
+        "answer": "def convert(s, num_rows):\n    if num_rows == 1:\n        return s\n    result = [''] * num_rows\n    current_row, going_down = 0, False\n    for char in s:\n        result[current_row] += char\n        if current_row == 0 or current_row == num_rows - 1:\n            going_down = not going_down\n        current_row += 1 if going_down else -1\n    return ''.join(result)"
+      },
+      {
+        "id": 16,
+        "title": "Longest Substring Without Repeating Characters",
+        "description": "Given a string, find the length of the longest substring without repeating characters.\n\n| Test Case | Input      | Expected Output | Notes                        |\n|-----------|------------|-----------------|------------------------------|\n| 1         | \"abcabcbb\" | 3               | \"abc\" is the longest substring |\n| 2         | \"bbbbb\"    | 1               | Only one unique character     |\n| 3         | \"pwwkew\"   | 3               | \"wke\" is the longest substring |\n| 4         | \"\"         | 0               | Empty string                  |\n| 5         | \"dvdf\"     | 3               | \"vdf\" is the longest substring |\n| 6         | \"aab\"      | 2               | \"ab\" is the longest substring |\n| 7         | \"tmmzuxt\"  | 6               | All characters are unique    |\n| 8         | \"xyzzxy\"   | 4               | \"xyzz\" is the longest substring |\n| 9         | \"aabbccddeeff\" | 2            | Each pair of repeating chars counts only once |\n| 10        | \"abcdefg\"  | 7               | All characters unique        |",
+        "example": {
+          "input": "\"abcabcbb\"",
+          "output": "3"
+        },
+        "answer": "def length_of_longest_substring(s):\n    char_set = set()\n    left = 0\n    max_len = 0\n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_len = max(max_len, right - left + 1)\n    return max_len"
+      },
+      {
+        "id": 17,
+        "title": "Word Pattern",
+        "description": "Given a pattern and a string str, find if str follows the same pattern.\n\n| Test Case | Input Pattern | Input String | Expected Output | Notes                       |\n|-----------|---------------|--------------|-----------------|-----------------------------|\n| 1         | \"abba\"        | \"dog cat cat dog\" | true           | Follows the same pattern  |\n| 2         | \"abba\"        | \"dog cat cat fish\" | false          | Does not follow the pattern |\n| 3         | \"abc\"         | \"dog dog dog\"     | false          | Each letter must map to a unique word |\n| 4         | \"a\"           | \"dog\"            | true           | Single character pattern   |\n| 5         | \"abab\"        | \"dog cat cat dog\" | true           | Maps correctly             |\n| 6         | \"abcde\"       | \"dog cat fish dog\" | false          | Not enough words for pattern |\n| 7         | \"xyz\"         | \"a b a\"          | false          | Does not follow pattern    |\n| 8         | \"ab\"          | \"a a a\"          | false          | Letters must map uniquely  |\n| 9         | \"aaa\"         | \"dog dog dog\"    | true           | Maps correctly             |\n| 10        | \"abcd\"        | \"one two three four\" | true          | Each pattern corresponds to a unique word |\n",
+        "example": {
+          "input": "\"abba\", \"dog cat cat dog\"",
+          "output": "true"
+        },
+        "answer": "def word_pattern(pattern, str):\n    words = str.split()\n    if len(pattern) != len(words):\n        return False\n    pattern_map = {}\n    word_map = {}\n    for p, w in zip(pattern, words):\n        if pattern_map.get(p, w) != w or word_map.get(w, p) != p:\n            return False\n        pattern_map[p] = w\n        word_map[w] = p\n    return True"
+      },
+      {
+        "id": 18,
+        "title": "Valid Anagram",
+        "description": "Given two strings, return true if they are anagrams of each other, and false otherwise. An anagram is a word or phrase formed by rearranging the letters of a different word.\n\n| Test Case | Input String 1 | Input String 2 | Expected Output | Notes                     |\n|-----------|----------------|----------------|-----------------|---------------------------|\n| 1         | \"anagram\"     | \"nagaram\"     | true            | Valid anagram             |\n| 2         | \"rat\"         | \"car\"         | false           | Different characters      |\n| 3         | \"listen\"      | \"silent\"      | true            | Valid anagram             |\n| 4         | \"hello\"       | \"olleh\"       | true            | Valid anagram             |\n| 5         | \"test\"        | \"tset\"        | true            | Rearranged characters     |\n| 6         | \"abcd\"        | \"abcc\"        | false           | Different characters      |\n| 7         | \"hello\"       | \"helo\"        | false           | Missing one character     |\n| 8         | \"a\"            | \"a\"           | true            | Single character         |\n| 9         | \"bb\"          | \"bb\"          | true            | Identical characters      |\n| 10        | \"abc\"         | \"acb\"         | true            | Valid anagram             |",
+        "example": {
+          "input": "\"anagram\", \"nagaram\"",
+          "output": "true"
+        },
+        "answer": "def is_anagram(s, t):\n    return sorted(s) == sorted(t)"
+      },
+      {
+        "id": 19,
+        "title": "Palindrome Permutation",
+        "description": "Given a string, determine if it can be rearranged to form a palindrome. A palindrome is a word that reads the same forward and backward.\n\n| Test Case | Input      | Expected Output | Notes                        |\n|-----------|------------|-----------------|------------------------------|\n| 1         | \"civic\"   | true            | Palindrome itself            |\n| 2         | \"ivicc\"   | true            | Can be rearranged as palindrome |\n| 3         | \"hello\"   | false           | Cannot form a palindrome    |\n| 4         | \"racecar\" | true            | Palindrome                   |\n| 5         | \"level\"   | true            | Palindrome                   |\n| 6         | \"world\"   | false           | Cannot form palindrome      |\n| 7         | \"aabbcc\"  | false           | More than one character with odd frequency |\n| 8         | \"aabbccdde\" | true           | Can form palindrome         |\n| 9         | \"abcabc\"  | true            | Can be rearranged as palindrome |\n| 10        | \"aaa\"     | true            | Palindrome                   |",
+        "example": {
+          "input": "\"civic\"",
+          "output": "true"
+        },
+        "answer": "def can_permute_palindrome(s):\n    freq = {}\n    for char in s:\n        freq[char] = freq.get(char, 0) + 1\n    odd_count = sum(1 for count in freq.values() if count % 2 != 0)\n    return odd_count <= 1"
+      },
+      {
+        "id": 20,
+        "title": "Group Anagrams",
+        "description": "Given an array of strings, group the anagrams together.\n\n| Test Case | Input Array                          | Expected Output                       | Notes                       |\n|-----------|--------------------------------------|-------------------------------------|-----------------------------|\n| 1         | [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"] | [[\"eat\", \"tea\", \"ate\"], [\"tan\", \"nat\"], [\"bat\"]] | Anagrams grouped together |\n| 2         | [\"abc\", \"bca\", \"cab\", \"xyz\"]   | [[\"abc\", \"bca\", \"cab\"], [\"xyz\"]] | Anagrams grouped            |\n| 3         | [\"hello\", \"oellh\", \"world\"]      | [[\"hello\", \"oellh\"], [\"world\"]]  | Anagrams grouped            |\n| 4         | [\"a\", \"b\", \"c\", \"d\"]           | [[\"a\"], [\"b\"], [\"c\"], [\"d\"]]    | No anagrams                  |\n| 5         | [\"eat\", \"tea\", \"tan\"]            | [[\"eat\", \"tea\"], [\"tan\"]]        | Grouped anagrams            |\n| 6         | [\"madam\", \"dama\", \"dam\", \"mad\"] | [[\"madam\", \"dama\", \"mad\"], [\"dam\"]] | Grouped anagrams           |\n| 7         | [\"one\", \"none\", \"neo\"]           | [[\"one\", \"neo\"], [\"none\"]]        | Grouped anagrams            |\n| 8         | [\"abc\", \"xyz\", \"cab\", \"yzx\"]    | [[\"abc\", \"cab\"], [\"xyz\", \"yzx\"]] | Grouped anagrams            |\n| 9         | [\"food\", \"odf\", \"doff\"]          | [[\"food\", \"odf\"], [\"doff\"]]       | Grouped anagrams            |\n| 10        | [\"fool\", \"loof\", \"foo\"]          | [[\"fool\", \"loof\"], [\"foo\"]]       | Grouped anagrams            |",
+        "example": {
+          "input": "[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]",
+          "output": "[[\"eat\", \"tea\", \"ate\"], [\"tan\", \"nat\"], [\"bat\"]]"
+        },
+        "answer": "def group_anagrams(strs):\n    anagram_map = {}\n    for s in strs:\n        sorted_str = ''.join(sorted(s))\n        if sorted_str not in anagram_map:\n            anagram_map[sorted_str] = []\n        anagram_map[sorted_str].append(s)\n    return list(anagram_map.values())"
+      }
+    ]
+  }
+  

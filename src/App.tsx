@@ -7,6 +7,8 @@ import BTData from "./data/BT.json";
 import DivideAndConquerData from "./data/DivideAndConquer.json";
 import linkedListData from "./data/linkedlist.json"; // Importing linked list data
 import arrayData from "./data/arrays.json";
+import stringData from "./data/strings.json";
+import sortingData from "./data/sorting.json";
 
 export interface Question {
   id: number;
@@ -51,11 +53,20 @@ function App() {
       name: "Linked List",
       questions: linkedListData.questions, // Include the linked list questions
     },
-    ,
     {
       id: "arrays", // Added Linked List topic
       name: "Arrays",
       questions: arrayData.questions, // Include the linked list questions
+    },
+    {
+      id: "strings", // Added Linked List topic
+      name: "Strings",
+      questions: stringData.questions, // Include the linked list questions
+    },
+    {
+      id: "sorting", // Added Linked List topic
+      name: "Sorting",
+      questions: sortingData.questions, // Include the linked list questions
     }
   ];
 
