@@ -11,6 +11,7 @@ import stringData from "./data/strings.json";
 import sortingData from "./data/sorting.json";
 import recursionData from "./data/recursion.json";
 import backtrackingData from "./data/backtracking.json";
+import SearchingAlgoData from "./data/SearchingAlgo.json";
 
 export interface Question {
   id: number;
@@ -36,19 +37,24 @@ function App() {
 
   const topics: Topic[] = [
     {
-      id: "hashing",
+      id: "hashing", // Added Hashing topic
       name: "Hashing",
       questions: hashingData.questions,
     },
     {
-      id: "BT",
+      id: "BT", // Added Binary tree topic
       name: "Binary Tree",
       questions: BTData.questions,
     },
     {
-      id: "D&C",
+      id: "D&C", // Added Divide and conquer topic
       name: "Divide and Conquer",
       questions: DivideAndConquerData.questions,
+    },
+    {
+      "id": "searchingalgo",
+      "name": "Searching Algorithms",
+      "questions": SearchingAlgoData.questions
     },
     {
       id: "linkedlist", // Added Linked List topic
