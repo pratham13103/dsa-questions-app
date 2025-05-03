@@ -12,6 +12,7 @@ import sortingData from "./data/sorting.json";
 import recursionData from "./data/recursion.json";
 import backtrackingData from "./data/backtracking.json";
 import SearchingAlgoData from "./data/SearchingAlgo.json";
+import TwoPointersData from "./data/TwoPointers.json";
 
 export interface Question {
   id: number;
@@ -55,6 +56,11 @@ function App() {
       "id": "searchingalgo",
       "name": "Searching Algorithms",
       "questions": SearchingAlgoData.questions
+    },
+    {
+      "id": "twopointer",
+      "name": "Two Pointers",
+      "questions": TwoPointersData.questions
     },
     {
       id: "linkedlist", // Added Linked List topic
