@@ -14,6 +14,7 @@ import backtrackingData from "./data/backtracking.json";
 import SearchingAlgoData from "./data/SearchingAlgo.json";
 import TwoPointersData from "./data/TwoPointers.json";
 import bitmanipulationData from "./data/bitmanipulation.json";
+import slidingwindowdata from "./data/slidingwindow.json";
 
 export interface Question {
   id: number;
@@ -62,6 +63,11 @@ function App() {
       "id": "twopointer",
       "name": "Two Pointers",
       "questions": TwoPointersData.questions
+    },
+    {
+      "id": "slidingwindow",
+      "name": "Sliding Window",
+      "questions": slidingwindowdata.questions
     },
     {
       id: "linkedlist", // Added Linked List topic
