@@ -85,7 +85,7 @@ function App() {
     },
     {
       id: "recursion", // Added Linked List topic
-      name: "Recusrion",
+      name: "Recursion",
       questions: recursionData.questions, // Include the linked list questions
     },
     {
