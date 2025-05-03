@@ -13,14 +13,15 @@ import recursionData from "./data/recursion.json";
 import backtrackingData from "./data/backtracking.json";
 import SearchingAlgoData from "./data/SearchingAlgo.json";
 import TwoPointersData from "./data/TwoPointers.json";
+import bitmanipulationData from "./data/bitmanipulation.json";
 
 export interface Question {
   id: number;
   title: string;
   description: string;
   example: {
-    input: string;
-    output: string;
+    input: string | string[];
+    output: string | string[] | string[][];
     explanation?: string;  // Explanation is optional
   };
   answer: string;
@@ -91,6 +92,11 @@ function App() {
       id: "backtracking", // Added Linked List topic
       name: "Backtracking",
       questions: backtrackingData.questions, // Include the linked list questions
+    },
+    {
+      id: "bitmanipulation", // Added Linked List topic
+      name: "Bit Manipulation",
+      questions: bitmanipulationData.questions, // Include the linked list questions
     }
 
   ];

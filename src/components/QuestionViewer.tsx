@@ -17,8 +17,8 @@ const QuestionViewer = ({ question }: QuestionViewerProps) => {
     );
   }
 
-  // Directly access the input, output and explaination from the example object
-  const { input, output, explaination } = question.example;
+  // Directly access the input, output and explanation from the example object
+  const { input, output, explanation } = question.example;
 
   return (
     <div className="flex-1 p-8 overflow-y-auto text-[20px] leading-relaxed">
@@ -45,9 +45,9 @@ const QuestionViewer = ({ question }: QuestionViewerProps) => {
               <span className="font-semibold">Output:</span> {output}
             </p>
           )}
-          {explaination && (
+          {explanation && (
             <p>
-              <span className="font-semibold">Explaination:</span> {explaination}
+              <span className="font-semibold">Explanation:</span> {explanation}
             </p>
           )}
         </div>

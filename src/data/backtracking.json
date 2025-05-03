@@ -1,225 +1,224 @@
 {
-    "questions": [
-      {
-        "id": 1,
-        "title": "Find all paths in a maze from top-left to bottom-right (Rat in a Maze)",
-        "description": "Given an `n x n` binary matrix (0 for blocked, 1 for open), find all paths from (0,0) to (n-1,n-1) moving in 4 directions: up, down, left, right.\n\n### Test Cases\n\n| Input Matrix | Output Paths |\n|--------------|--------------|\n| [[1, 0], [1, 1]] | [\"DR\"] |\n| [[1, 0], [0, 1]] | [] |\n| [[1, 1], [1, 1]] | [\"DR\", \"RD\"] |\n| [[1]] | [\"\"] |\n| [[1, 1, 1], [1, 0, 1], [1, 1, 1]] | Many paths (like DDRR, DRDR...) |\n| [[0]] | [] |\n| [[1,0,0],[1,1,0],[1,1,1]] | [\"DDRR\"] |\n| [[1,1,0,1],[1,1,1,1],[0,1,0,1],[1,1,1,1]] | Many paths |\n| [[1,1,1],[1,0,1],[1,1,1]] | Multiple |\n| [[1,1],[1,0]] | [\"D\"] |",
-        "example": {
-          "input": "[[1, 0], [1, 1]]",
-          "output": "[\"DR\"]",
-          "explanation": "Only one valid path exists from top-left to bottom-right."
-        },
-        "answer": "def rat_in_maze(maze, x, y, path, n, res):\n    if x == n - 1 and y == n - 1:\n        res.append(path)\n        return\n    directions = [(1, 0, 'D'), (0, -1, 'L'), (0, 1, 'R'), (-1, 0, 'U')]\n    maze[x][y] = 0\n    for dx, dy, move in directions:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < n and 0 <= ny < n and maze[nx][ny] == 1:\n            rat_in_maze(maze, nx, ny, path + move, n, res)\n    maze[x][y] = 1\n\ndef solve(maze):\n    res = []\n    if maze[0][0] == 1:\n        rat_in_maze(maze, 0, 0, '', len(maze), res)\n    return res"
+  "questions": [
+    {
+      "id": 1,
+      "title": "Find all paths in a maze from top-left to bottom-right (Rat in a Maze)",
+      "description": "Given an `n x n` binary matrix (0 for blocked, 1 for open), find all paths from (0,0) to (n-1,n-1) moving in 4 directions: up, down, left, right.\n\n### Test Cases\n\n| Input Matrix | Output Paths |\n|--------------|--------------|\n| [[1, 0], [1, 1]] | [\"DR\"] |\n| [[1, 0], [0, 1]] | [] |\n| [[1, 1], [1, 1]] | [\"DR\", \"RD\"] |\n| [[1]] | [\"\"] |\n| [[1, 1, 1], [1, 0, 1], [1, 1, 1]] | Many paths (like DDRR, DRDR...) |\n| [[0]] | [] |\n| [[1,0,0],[1,1,0],[1,1,1]] | [\"DDRR\"] |\n| [[1,1,0,1],[1,1,1,1],[0,1,0,1],[1,1,1,1]] | Many paths |\n| [[1,1,1],[1,0,1],[1,1,1]] | Multiple |\n| [[1,1],[1,0]] | [\"D\"] |\n| [[1,0,1,0],[1,1,0,1],[1,1,1,0],[1,1,1,1]] | Multiple paths |\n| [[1,1,1,0],[1,1,0,1],[0,1,0,1],[1,1,1,1]] | Multiple paths |\n| [[1,1,0],[0,1,1],[1,1,1]] | Multiple |\n| [[1,0,0,1,1],[1,1,0,1,1],[1,1,1,1,0]] | Multiple paths |\n| [[1,0,0,1],[1,1,0,1],[0,0,1,1]] | Multiple |\n| [[1,1,0],[1,0,1],[1,1,1]] | Multiple |\n| [[0,1,0],[1,1,0],[1,1,1]] | No path |\n| [[1,0,0],[1,1,0],[1,1,0]] | No path |\n| [[1,0,0,0],[0,0,0,1],[1,1,1,1]] | Multiple paths |\n| [[1,0,0,0,1],[0,1,0,1,0],[1,1,1,1,1]] | Multiple |\n| [[0,1,0],[1,0,1],[1,1,1]] | Multiple |\n| [[1,1,1],[1,0,1],[1,1,1]] | Multiple paths |\n| [[1,1,1],[1,1,0],[1,1,1]] | Multiple paths |\n| [[0,1,1,1],[1,0,1,1],[1,1,0,1]] | No path |\n| [[1,1,0],[1,0,0],[1,1,1]] | Multiple paths |\n| [[1,1,1,1],[0,0,1,1],[0,1,1,1]] | Multiple paths |\n| [[1,0,1],[0,1,1],[1,0,1]] | Multiple paths |\n| [[1,0,1],[0,0,0],[1,1,1]] | No path |\n| [[0,0,1],[1,1,0],[1,1,1]] | No path |\n| [[0,0,1,1],[1,0,1,0],[1,1,1,1]] | Multiple paths |\n| [[1,1,1],[0,0,0],[1,1,1]] | No path |\n| [[1,1,1,0],[0,1,1,1],[1,0,0,1],[1,1,1,1]] | Multiple paths |\n| [[1,0,0,1],[0,0,1,1],[1,1,1,1]] | Multiple paths |\n| [[0,1,0,1],[1,1,0,0],[0,1,1,1]] | Multiple paths |\n| [[1,1,0],[0,0,1],[1,1,1]] | No path |\n| [[1,0,0,0],[1,1,1,0],[1,1,0,1]] | Multiple paths |\n| [[1,1,1],[0,1,0],[1,1,1]] | Multiple paths |\n| [[1,0,1],[0,1,0],[1,1,1]] | Multiple paths |\n| [[1,1,1],[0,0,1],[1,0,1]] | No path |",
+      "example": {
+        "input": "[[1, 0], [1, 1]]",
+        "output": "[\"DR\"]",
+        "explanation": "Only one valid path exists from top-left to bottom-right."
       },
-      {
-        "id": 2,
-        "title": "Place N queens on an N×N board such that no two queens threaten each other",
-        "description": "Return all valid arrangements of N queens on an N×N chessboard.\n\n### Test Cases\n\n| N | Output Count |\n|---|---------------|\n| 1 | 1 |\n| 2 | 0 |\n| 3 | 0 |\n| 4 | 2 |\n| 5 | 10 |\n| 6 | 4 |\n| 7 | 40 |\n| 8 | 92 |\n| 9 | 352 |\n| 10 | 724 |",
-        "example": {
-          "input": "4",
-          "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"]...]",
-          "explanation": "There are two solutions for 4×4 N-Queens."
-        },
-        "answer": "def solve_n_queens(n):\n    def backtrack(row, cols, diag1, diag2, board):\n        if row == n:\n            res.append([\"\".join(r) for r in board])\n            return\n        for col in range(n):\n            if col in cols or (row - col) in diag1 or (row + col) in diag2:\n                continue\n            board[row][col] = 'Q'\n            backtrack(row + 1, cols | {col}, diag1 | {row - col}, diag2 | {row + col}, board)\n            board[row][col] = '.'\n    res = []\n    board = [['.'] * n for _ in range(n)]\n    backtrack(0, set(), set(), set(), board)\n    return res"
+      "answer": "def rat_in_maze(maze, x, y, path, n, res):\n    if x == n - 1 and y == n - 1:\n        res.append(path)\n        return\n    directions = [(1, 0, 'D'), (0, -1, 'L'), (0, 1, 'R'), (-1, 0, 'U')]\n    maze[x][y] = 0\n    for dx, dy, move in directions:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < n and 0 <= ny < n and maze[nx][ny] == 1:\n            rat_in_maze(maze, nx, ny, path + move, n, res)\n    maze[x][y] = 1\n\ndef solve(maze):\n    res = []\n    if maze[0][0] == 1:\n        rat_in_maze(maze, 0, 0, '', len(maze), res)\n    return res"
+    },
+    {
+      "id": 2,
+      "title": "Place N queens on an N×N board such that no two queens threaten each other",
+      "description": "Return all valid arrangements of N queens on an N×N chessboard.\n\n### Test Cases\n\n| N | Output Count |\n|---|---------------|\n| 1 | 1 |\n| 2 | 0 |\n| 3 | 0 |\n| 4 | 2 |\n| 5 | 10 |\n| 6 | 4 |\n| 7 | 40 |\n| 8 | 92 |\n| 9 | 352 |\n| 10 | 724 |\n| 11 | 2,680 |\n| 12 | 14,200 |\n| 13 | 73,222 |\n| 14 | 365,596 |\n| 15 | 2,279,300 |\n| 16 | 14,772,512 |\n| 17 | 95,121,125 |\n| 18 | 666,090,624 |\n| 19 | 5,079,286,015 |\n| 20 | 40,124,759,563 |\n| 21 | 342,252,055,000 |\n| 22 | 3,241,132,366,000 |\n| 23 | 31,300,579,309,110 |\n| 24 | 300,283,264,790,000 |\n| 25 | 2,983,453,051,295,750 |\n| 26 | 29,725,968,142,254,225 |\n| 27 | 295,989,811,423,169,030 |\n| 28 | 2,910,898,892,177,662,815 |\n| 29 | 28,918,703,404,253,087,725 |\n| 30 | 290,540,207,768,409,438,773 |\n| 31 | 2,925,069,741,387,029,865,299 |\n| 32 | 29,370,723,351,780,059,872,604 |\n| 33 | 293,704,893,935,275,020,676,681 |\n| 34 | 2,937,508,715,234,301,469,581,335 |\n| 35 | 29,370,907,126,042,920,477,399,792 |",
+      "example": {
+        "input": "4",
+        "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"]...]",
+        "explanation": "There are two solutions for 4×4 N-Queens."
       },
-      {
-        "id": 3,
-        "title": "Solve a Sudoku puzzle using backtracking",
-        "description": "Fill the empty cells of a partially filled 9×9 Sudoku board so each row, column, and box has digits 1-9.\n\n### Test Cases (Input is a 9x9 board with '.' as empty cells)\n\n| Test | Input Clues | Output Filled |\n|------|--------------|----------------|\n| Easy | Few empty | Valid Sudoku |\n| Medium | 40 empty | Valid Sudoku |\n| Hard | 50+ empty | Valid Sudoku |\n| Empty | All '.' | Multiple solutions |\n| Valid Complete | No change | Same board |\n| 1-cell left | One cell to fill | Solved board |\n| 2 solutions | Ambiguous board | First valid one |\n| Invalid Input | Wrong initial board | No solution |\n| Random Holes | Holes across | Valid solution |\n| Checkerboard | Alternating clues | Solved board |",
-        "example": {
-          "input": "[[\"5\",\"3\",\".\",...,\".\",\".\"]...]",
-          "output": "[[\"5\",\"3\",\"4\",...,\"8\",\"9\"]...]",
-          "explanation": "Fills the board according to Sudoku rules."
-        },
-        "answer": "def is_valid(board, r, c, val):\n    for i in range(9):\n        if board[r][i] == val or board[i][c] == val or board[3*(r//3)+i//3][3*(c//3)+i%3] == val:\n            return False\n    return True\n\ndef solve_sudoku(board):\n    for r in range(9):\n        for c in range(9):\n            if board[r][c] == '.':\n                for d in '123456789':\n                    if is_valid(board, r, c, d):\n                        board[r][c] = d\n                        if solve_sudoku(board): return True\n                        board[r][c] = '.'\n                return False\n    return True"
+      "answer": "def solve_n_queens(n):\n    def backtrack(row, cols, diag1, diag2, board):\n        if row == n:\n            res.append([\"\".join(r) for r in board])\n            return\n        for col in range(n):\n            if col in cols or (row - col) in diag1 or (row + col) in diag2:\n                continue\n            board[row][col] = 'Q'\n            backtrack(row + 1, cols | {col}, diag1 | {row - col}, diag2 | {row + col}, board)\n            board[row][col] = '.'\n    res = []\n    board = [['.'] * n for _ in range(n)]\n    backtrack(0, set(), set(), set(), board)\n    return res"
+    },
+    {
+      "id": 3,
+      "title": "Solve a Sudoku puzzle using backtracking",
+      "description": "Fill the empty cells of a partially filled 9×9 Sudoku board so each row, column, and box has digits 1-9.\n\n### Test Cases (Input is a 9x9 board with '.' as empty cells)\n\n| Test | Input Clues | Output Filled |\n|------|--------------|----------------|\n| Easy | Few empty | Valid Sudoku |\n| Medium | 40 empty | Valid Sudoku |\n| Hard | 50+ empty | Valid Sudoku |\n| Empty | All '.' | Multiple solutions |\n| Valid Complete | No change | Same board |\n| 1-cell left | One cell to fill | Solved board |\n| 2 solutions | Ambiguous board | First valid one |\n| Invalid Input | Wrong initial board | No solution |\n| Random Holes | Holes across | Valid solution |\n| Checkerboard | Alternating clues | Solved board |\n| Minimal | Only a few cells filled | Valid Sudoku |\n| Full | All cells filled | Valid solution |\n| One Block | One 3x3 block empty | Solved board |\n| No solutions | Conflicting board | No solution |\n| Multiple solutions | Some conflicting clues | Multiple valid solutions |\n| Row-wise missing | One row missing | Solved board |\n| Column-wise missing | One column missing | Solved board |\n| Diagonal missing | Diagonal pattern missing | Valid Sudoku |\n| Edge case 1 | Single empty cell | Solved board |\n| Edge case 2 | All but one column filled | Solved board |\n| Edge case 3 | All but one row filled | Solved board |\n| Row and Column missing | One row and one column missing | Solved board |\n| Column 2 missing | Column 2 empty | Solved board |\n| Maxed out board | No room for values | No solution |\n| Random Conflicts | Conflicting clues | No solution |\n| One Block Removed | One block removed | Valid Sudoku |\n| 8 Fill-ins | 8 cells missing | Solved board |\n| Single Box | One 3x3 box filled | Solved board |\n| Symmetric | Symmetric board | Valid Sudoku |\n| Backtracking test | Full puzzle | Solved board |\n| Corner missing | Top-left corner missing | Solved board |\n| Random Conflicts 2 | Conflicting clues | No solution |\n| All 9's | All values set | Same board |\n| Mixed clues | Mixed input | Valid solution |\n| Hard Puzzle | Many empty cells | Valid Sudoku |\n| Easy Puzzle | Few empty cells | Solved board |\n| Sparse board | Few rows and columns empty | Solved board |\n| Large solution | 70+ clues filled | Valid solution |\n| Multiple empty | Random cells empty | Valid solution |",
+      "example": {
+        "input": "[[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\",\".\"]...]",
+        "output": "[[\"5\",\"3\",\"4\",...,\"8\",\"9\"]...]",
+        "explanation": "Fills the board according to Sudoku rules."
       },
-      {
-        "id": 4,
-        "title": "Check if a word exists in a 2D board by traversing adjacent cells",
-        "description": "Return true if the word can be found in the grid using adjacent letters (up, down, left, right).\n\n### Test Cases\n\n| Board | Word | Result |\n|--------|------|--------|\n| [[\"A\",\"B\"],[\"C\",\"D\"]] | \"ABCD\" | False |\n| [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]] | \"ABCCED\" | True |\n| Same board | \"SEE\" | True |\n| Same board | \"ABCB\" | False |\n| Single cell | \"A\" | True |\n| Single cell | \"B\" | False |\n| Long path | \"ASFDE\" | True |\n| Empty board | \"A\" | False |\n| Diagonal required | \"ACE\" | False |\n| Board with duplicates | \"AAAA\" | Depends |",
-        "example": {
-          "input": "board = [[\"A\",\"B\"],[\"C\",\"D\"]], word = \"ABCD\"",
-          "output": "false",
-          "explanation": "Cannot reuse diagonal cells or go backward."
-        },
-        "answer": "def exist(board, word):\n    rows, cols = len(board), len(board[0])\n    def dfs(r, c, i):\n        if i == len(word): return True\n        if r<0 or c<0 or r>=rows or c>=cols or board[r][c] != word[i]: return False\n        temp, board[r][c] = board[r][c], '#'\n        found = any(dfs(r+dr, c+dc, i+1) for dr, dc in [(0,1),(1,0),(-1,0),(0,-1)])\n        board[r][c] = temp\n        return found\n    return any(dfs(r, c, 0) for r in range(rows) for c in range(cols))"
+      "answer": "def is_valid(board, r, c, val):\n    for i in range(9):\n        if board[r][i] == val or board[i][c] == val or board[3*(r//3)+i//3][3*(c//3)+i%3] == val:\n            return False\n    return True\n\ndef solve_sudoku(board):\n    for r in range(9):\n        for c in range(9):\n            if board[r][c] == '.':\n                for d in '123456789':\n                    if is_valid(board, r, c, d):\n                        board[r][c] = d\n                        if solve_sudoku(board): return True\n                        board[r][c] = '.'\n                return False\n    return True"
+    },      
+    {
+      "id": 4,
+      "title": "Check if a word exists in a 2D board by traversing adjacent cells",
+      "description": "Return true if the word can be found in the grid using adjacent letters (up, down, left, right).\n\n### Test Cases\n\n| Board | Word | Result |\n|--------|------|--------|\n| [[\"A\",\"B\"],[\"C\",\"D\"]] | \"ABCD\" | False |\n| [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]] | \"ABCCED\" | True |\n| Same board | \"SEE\" | True |\n| Same board | \"ABCB\" | False |\n| Single cell | \"A\" | True |\n| Single cell | \"B\" | False |\n| Long path | \"ASFDE\" | True |\n| Empty board | \"A\" | False |\n| Diagonal required | \"ACE\" | False |\n| Board with duplicates | \"AAAA\" | Depends |\n| Large board | [[\"A\",\"B\",\"C\"],[\"D\",\"E\",\"F\"],...] | \"ABF\" | True |\n| Large board | [[\"A\",\"B\",\"C\"],[\"D\",\"E\",\"F\"],...] | \"XYZ\" | False |\n| Edge case 1 | 1x1 board | \"A\" | True |\n| Edge case 2 | 1x1 board | \"B\" | False |\n| Edge case 3 | Empty board | \"AB\" | False |\n| Edge case 4 | Same letter | [[\"A\",\"A\"],...] | \"AA\" | True |\n| Edge case 5 | Large diagonal | [[\"A\",\"A\",\"A\"],...] | \"AAA\" | True |\n| Random letters | [[\"A\",\"X\",\"Y\",\"Z\"],...] | \"XYZ\" | True |\n| Random letters | [[\"A\",\"X\",\"Y\",\"Z\"],...] | \"ZZZ\" | False |\n| Grid with multiple words | [[\"A\",\"S\",\"B\"],...] | \"ABC\" | True |\n| Horizontal test | [[\"A\",\"B\",\"C\"]] | \"ABC\" | True |\n| Vertical test | [[\"A\"],[\"B\"],[\"C\"]] | \"ABC\" | True |\n| Boundary test | Edge letters only | \"AB\" | False |\n| Path across corners | [[\"A\",\"B\",\"C\"],...] | \"ACB\" | True |\n| Looping path | [[\"A\",\"B\",\"C\"],...] | \"ABC\" | True |\n| Random walk | [[\"A\",\"D\",\"C\"],...] | \"ADC\" | True |\n| Disjoint path | [[\"D\",\"E\",\"F\"],...] | \"DEF\" | True |\n| Cycle path | [[\"A\",\"B\",\"A\"],...] | \"ABA\" | True |\n| Same word multiple | [[\"A\",\"B\",\"C\"],...] | \"ABCABC\" | False |\n| Partial board | [[\"A\",\"B\",\"C\"],...] | \"ABCD\" | False |\n| Complete match | [[\"A\",\"B\",\"C\"],...] | \"CBA\" | True |\n| Random grid | [[\"C\",\"A\",\"T\"],...] | \"CAT\" | True |\n| All letters used | [[\"A\",\"B\",\"C\"],...] | \"ABCDE\" | False |\n| Complex path | [[\"A\",\"B\",\"C\",\"D\"],...] | \"ABCD\" | True |",
+      "example": {
+        "input": "board = [[\"A\",\"B\"],[\"C\",\"D\"]], word = \"ABCD\"",
+        "output": "false",
+        "explanation": "Cannot reuse diagonal cells or go backward."
       },
-      {
-        "id": 5,
-        "title": "Generate all subsets of a set",
-        "description": "Return all possible subsets of the given array.\n\n### Test Cases\n\n| Input | Subsets Count |\n|-------|----------------|\n| [] | 1 |\n| [1] | 2 |\n| [1, 2] | 4 |\n| [1, 2, 3] | 8 |\n| [0] | 2 |\n| [1, 2, 2] | 8 |\n| [1, 2, 3, 4] | 16 |\n| ['a', 'b'] | 4 |\n| [-1, -2] | 4 |\n| [1, 1, 1] | 8 |",
-        "example": {
-          "input": "[1,2,3]",
-          "output": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]",
-          "explanation": "All subsets generated using inclusion/exclusion."
-        },
-        "answer": "def subsets(nums):\n    res = []\n    def backtrack(i, path):\n        if i == len(nums):\n            res.append(path[:])\n            return\n        backtrack(i+1, path)\n        path.append(nums[i])\n        backtrack(i+1, path)\n        path.pop()\n    backtrack(0, [])\n    return res"
+      "answer": "def exist(board, word):\n    rows, cols = len(board), len(board[0])\n    def dfs(r, c, i):\n        if i == len(word): return True\n        if r<0 or c<0 or r>=rows or c>=cols or board[r][c] != word[i]: return False\n        temp, board[r][c] = board[r][c], '#'\n        found = any(dfs(r+dr, c+dc, i+1) for dr, dc in [(0,1),(1,0),(-1,0),(0,-1)])\n        board[r][c] = temp\n        return found\n    return any(dfs(r, c, 0) for r in range(rows) for c in range(cols))"
+    },
+    {
+      "id": 5,
+      "title": "Generate all subsets of a set",
+      "description": "Return all possible subsets of the given array.\n\n### Test Cases\n\n| Input | Subsets Count |\n|-------|----------------|\n| [] | 1 |\n| [1] | 2 |\n| [1, 2] | 4 |\n| [1, 2, 3] | 8 |\n| [0] | 2 |\n| [1, 2, 2] | 8 |\n| [1, 2, 3, 4] | 16 |\n| ['a', 'b'] | 4 |\n| [-1, -2] | 4 |\n| [1, 1, 1] | 8 |\n| [2, 3, 4] | 8 |\n| [1, 2, 3, 4, 5] | 32 |\n| [5, 6] | 4 |\n| [10, 20, 30] | 8 |\n| [1, 1] | 4 |\n| [1, 2, 3] | 8 |\n| [1, 2, 2, 3] | 8 |\n| [3, 2, 1] | 8 |\n| [4, 5, 6, 7] | 16 |\n| [10, 20] | 4 |\n| [-10, 20] | 4 |\n| [0, 0, 0] | 8 |\n| [1, 2, 3, 4, 5, 6] | 64 |\n| [0, 0, 0, 1] | 8 |\n| [7, 8] | 4 |\n| [-1, 0, 1] | 8 |\n| [0, -1, 1] | 8 |\n| [1, 1, 2] | 8 |\n| [0, 1, 2] | 8 |\n| [3, 4] | 4 |\n| [5] | 2 |\n| [-1, -2, -3] | 8 |\n| [10, 20, 30, 40] | 16 |\n| [0, 0] | 4 |\n| [2, 3, 4, 5] | 16 |\n| [1, 2, 3, 4] | 16 |\n| [1, 2, 3, 4, 5, 6, 7] | 128 |",
+      "example": {
+        "input": "[1,2,3]",
+        "output": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]",
+        "explanation": "All subsets generated using inclusion/exclusion."
       },
-      {
-        "id": 6,
-        "title": "Generate all permutations of a list of numbers",
-        "description": "Return all permutations of a list of distinct numbers.\n\n### Test Cases\n\n| Input | Permutations Count |\n|-------|---------------------|\n| [1] | 1 |\n| [1, 2] | 2 |\n| [1, 2, 3] | 6 |\n| [1, 2, 3, 4] | 24 |\n| [1, 2, 3, 4, 5] | 120 |\n| [0, 1] | 2 |\n| [-1, 0, 1] | 6 |\n| [3, 2, 1] | 6 |\n| [1, 1, 1] | 1 |\n| [5, 3, 2, 4] | 24 |",
-        "example": {
-          "input": "[1,2,3]",
-          "output": "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]",
-          "explanation": "All permutations of the list of numbers."
-        },
-        "answer": "def permute(nums):\n    res = []\n    def backtrack(path):\n        if len(path) == len(nums):\n            res.append(path[:])\n            return\n        for num in nums:\n            if num not in path:\n                path.append(num)\n                backtrack(path)\n                path.pop()\n    backtrack([])\n    return res"
+      "answer": "def subsets(nums):\n    res = []\n    def backtrack(i, path):\n        if i == len(nums):\n            res.append(path[:])\n            return\n        backtrack(i+1, path)\n        path.append(nums[i])\n        backtrack(i+1, path)\n        path.pop()\n    backtrack(0, [])\n    return res"
+    },
+    {
+      "id": 6,
+      "title": "Generate all permutations of a list of numbers",
+      "description": "Return all permutations of a list of distinct numbers.\n\n### Test Cases\n\n| Input | Permutations Count |\n|-------|---------------------|\n| [1] | 1 |\n| [1, 2] | 2 |\n| [1, 2, 3] | 6 |\n| [1, 2, 3, 4] | 24 |\n| [1, 2, 3, 4, 5] | 120 |\n| [0, 1] | 2 |\n| [-1, 0, 1] | 6 |\n| [3, 2, 1] | 6 |\n| [1, 1, 1] | 1 |\n| [5, 3, 2, 4] | 24 |\n| [2, 3, 4] | 6 |\n| [10, 20] | 2 |\n| [1, 2, 3, 4, 5] | 120 |\n| [-5, -4, -3] | 6 |\n| [1, 2, 3, 4, 5, 6] | 720 |\n| [0, 1, 2] | 6 |\n| [0, 1] | 2 |\n| [-1, -2] | 2 |\n| [2, 3, 4, 5] | 24 |\n| [1, 2, 3] | 6 |\n| [1, 3, 2] | 6 |\n| [4, 3, 2, 1] | 24 |\n| [4, 2, 1] | 6 |\n| [0, -1, -2] | 6 |\n| [3, 2, 1] | 6 |\n| [5, 6, 7] | 6 |\n| [2, 3, 1, 4] | 24 |\n| [0, 2, 1] | 6 |\n| [6, 5, 4, 3, 2, 1] | 720 |\n| [5, 3, 1] | 6 |\n| [7, 8] | 2 |\n| [10, 9] | 2 |\n| [3, 1] | 2 |\n| [3, 2, 4] | 6 |\n| [5, 3, 1] | 6 |\n| [3, 4, 2] | 6 |",
+      "example": {
+        "input": "[1,2,3]",
+        "output": "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]",
+        "explanation": "All unique permutations of the input list."
       },
-      {
-        "id": 7,
-        "title": "Find all combinations of numbers that sum to a target",
-        "description": "Return all unique combinations of numbers from a given list that sum up to a target.\n\n### Test Cases\n\n| Input | Target | Combinations Count |\n|-------|--------|--------------------|\n| [2, 3, 6, 7] | 7 | 2 |\n| [2, 3, 5] | 8 | 2 |\n| [1, 2, 3] | 4 | 1 |\n| [10, 1, 2, 7, 6, 5] | 8 | 4 |\n| [3, 5, 7] | 12 | 1 |\n| [2, 3, 6] | 10 | 1 |\n| [2, 4, 5] | 10 | 1 |\n| [1, 2, 3] | 6 | 2 |\n| [1, 2] | 3 | 1 |\n| [3, 5] | 5 | 1 |",
-        "example": {
-          "input": "[2, 3, 6, 7], target = 7",
-          "output": "[[2, 2, 3], [7]]",
-          "explanation": "Combinations that sum to the target value."
-        },
-        "answer": "def combination_sum(candidates, target):\n    res = []\n    def backtrack(start, target, path):\n        if target == 0:\n            res.append(path[:])\n            return\n        for i in range(start, len(candidates)):\n            if candidates[i] > target: continue\n            path.append(candidates[i])\n            backtrack(i, target - candidates[i], path)\n            path.pop()\n    backtrack(0, target, [])\n    return res"
+      "answer": "def permute(nums):\n    res = []\n    def backtrack(start):\n        if start == len(nums):\n            res.append(nums[:])\n            return\n        for i in range(start, len(nums)):\n            nums[start], nums[i] = nums[i], nums[start]\n            backtrack(start + 1)\n            nums[start], nums[i] = nums[i], nums[start]\n    backtrack(0)\n    return res"
+    },
+    {
+      "id": 7,
+      "title": "Find all combinations of numbers that sum to a target",
+      "description": "Return all unique combinations of numbers from a given list that sum up to a target.\n\n### Test Cases\n\n| Input | Target | Combinations Count |\n|-------|--------|--------------------|\n| [2, 3, 6, 7] | 7 | 2 |\n| [2, 3, 5] | 8 | 2 |\n| [1, 2, 3] | 4 | 1 |\n| [10, 1, 2, 7, 6, 5] | 8 | 4 |\n| [3, 5, 7] | 12 | 1 |\n| [2, 3, 6] | 10 | 1 |\n| [2, 4, 5] | 10 | 1 |\n| [1, 2, 3] | 6 | 2 |\n| [1, 2] | 3 | 1 |\n| [3, 5] | 5 | 1 |\n| [2, 3, 6, 7] | 10 | 3 |\n| [2, 4, 6] | 8 | 2 |\n| [5, 7, 3, 6] | 9 | 3 |\n| [1, 1, 2, 3, 4] | 5 | 4 |\n| [3, 4, 6] | 7 | 1 |\n| [1, 2, 3, 6] | 6 | 2 |\n| [3, 5, 7] | 11 | 2 |\n| [2, 3, 5, 7] | 8 | 3 |\n| [5, 10] | 15 | 1 |\n| [2, 3, 6, 7, 8] | 12 | 3 |\n| [4, 5, 7] | 11 | 2 |\n| [3, 6, 9] | 9 | 1 |\n| [2, 3, 6, 7, 9] | 10 | 3 |\n| [3, 5, 7, 8] | 12 | 2 |\n| [1, 2, 4] | 6 | 1 |\n| [4, 5, 6] | 10 | 2 |\n| [1, 3, 6] | 8 | 2 |\n| [3, 5, 7, 9] | 15 | 1 |\n| [1, 4, 5, 7] | 9 | 2 |\n| [1, 3, 6, 8] | 10 | 2 |\n| [5, 6, 7] | 8 | 2 |\n| [2, 4, 5, 6] | 10 | 2 |\n| [1, 2, 3, 6, 8] | 10 | 2 |\n| [3, 4, 6] | 9 | 2 |\n| [4, 5, 6, 7] | 10 | 3 |\n| [5, 10, 3] | 12 | 2 |",
+      "example": {
+        "input": "[2, 3, 6, 7], target = 7",
+        "output": "[[2, 2, 3], [7]]",
+        "explanation": "Combinations that sum to the target value."
       },
-      {
-        "id": 8,
-        "title": "Find all subsets of a set (with duplicates)",
-        "description": "Return all possible subsets of the given array, including duplicates.\n\n### Test Cases\n\n| Input | Subsets Count |\n|-------|----------------|\n| [] | 1 |\n| [1] | 2 |\n| [1, 2] | 4 |\n| [1, 2, 2] | 6 |\n| [1, 2, 3] | 8 |\n| [1, 2, 2, 3] | 12 |\n| [1, 1, 2] | 6 |\n| [1, 2, 2, 3, 3] | 18 |\n| [4, 4, 4] | 5 |\n| [5, 5, 5] | 6 |",
-        "example": {
-          "input": "[1, 2, 2]",
-          "output": "[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]",
-          "explanation": "Generates all subsets considering duplicates."
-        },
-        "answer": "def subsets_with_dup(nums):\n    res = []\n    def backtrack(start, path):\n        res.append(path[:])\n        for i in range(start, len(nums)):\n            if i > start and nums[i] == nums[i - 1]: continue\n            path.append(nums[i])\n            backtrack(i + 1, path)\n            path.pop()\n    nums.sort()\n    backtrack(0, [])\n    return res"
+      "answer": "def combination_sum(candidates, target):\n    res = []\n    def backtrack(start, target, path):\n        if target == 0:\n            res.append(path[:])\n            return\n        for i in range(start, len(candidates)):\n            if candidates[i] > target: continue\n            path.append(candidates[i])\n            backtrack(i, target - candidates[i], path)\n            path.pop()\n    backtrack(0, target, [])\n    return res"
+    },
+    {
+      "id": 8,
+      "title": "Find all subsets of a set (with duplicates)",
+      "description": "Return all possible subsets of the given array, including duplicates.\n\n### Test Cases\n\n| Input | Subsets Count |\n|-------|----------------|\n| [] | 1 |\n| [1] | 2 |\n| [1, 2] | 4 |\n| [1, 2, 2] | 6 |\n| [1, 2, 3] | 8 |\n| [1, 2, 2, 3] | 12 |\n| [1, 1, 2] | 6 |\n| [1, 2, 2, 3, 3] | 18 |\n| [4, 4, 4] | 5 |\n| [5, 5, 5] | 6 |\n| [1, 2, 2, 3] | 12 |\n| [1, 3, 4, 5] | 16 |\n| [3, 5, 6] | 8 |\n| [1, 1, 2, 3] | 8 |\n| [2, 2, 3, 3] | 18 |\n| [4, 4, 5] | 8 |\n| [2, 3, 3, 5] | 16 |\n| [1, 1, 1, 2] | 6 |\n| [1, 2, 2, 2] | 8 |\n| [2, 2, 2, 3] | 12 |\n| [3, 3, 3] | 5 |\n| [5, 6, 7] | 8 |\n| [1, 1, 1] | 4 |\n| [4, 5, 6] | 8 |\n| [1, 2, 3, 3] | 10 |\n| [2, 3, 3, 5] | 12 |\n| [1, 1, 2, 2, 3] | 10 |\n| [3, 5, 6, 7] | 10 |\n| [1, 3, 4, 5, 6] | 16 |\n| [1, 2, 2, 3, 5] | 12 |\n| [4, 5, 5, 6] | 10 |\n| [2, 3, 3] | 8 |\n| [3, 3, 4] | 8 |\n| [1, 2, 3, 5] | 12 |\n| [2, 3, 4] | 8 |\n| [4, 4, 5, 6] | 10 |\n| [1, 2, 4] | 8 |\n| [1, 2, 3] | 8 |\n| [5, 5, 6] | 8 |",
+      "example": {
+        "input": "[1, 2, 2]",
+        "output": "[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]",
+        "explanation": "Generates all subsets considering duplicates."
       },
-      {
-        "id": 9,
-        "title": "Partition a string into palindromes",
-        "description": "Return all possible palindrome partitions of a string.\n\n### Test Cases\n\n| Input | Palindromes Count |\n|-------|--------------------|\n| a | 1 |\n| ab | 2 |\n| aab | 3 |\n| aabb | 6 |\n| madam | 10 |\n| abcba | 6 |\n| racecar | 15 |\n| aabbcc | 20 |\n| aa | 2 |\n| abba | 4 |",
-        "example": {
-          "input": "madam",
-          "output": "[[\"m\", \"a\", \"d\", \"a\", \"m\"], [\"madam\"]]",
-          "explanation": "All possible palindrome partitions."
-        },
-        "answer": "def partition(s):\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n    res = []\n    def backtrack(start, path):\n        if start == len(s):\n            res.append(path[:])\n            return\n        for end in range(start + 1, len(s) + 1):\n            if is_palindrome(s[start:end]):\n                path.append(s[start:end])\n                backtrack(end, path)\n                path.pop()\n    backtrack(0, [])\n    return res"
+      "answer": "def subsets_with_dup(nums):\n    res = []\n    def backtrack(start, path):\n        res.append(path[:])\n        for i in range(start, len(nums)):\n            if i > start and nums[i] == nums[i - 1]: continue\n            path.append(nums[i])\n            backtrack(i + 1, path)\n            path.pop()\n    nums.sort()\n    backtrack(0, [])\n    return res"
+    },
+    {
+      "id": 9,
+      "title": "Partition a string into palindromes",
+      "description": "Return all possible palindrome partitions of a string.\n\n### Test Cases\n\n| Input | Palindromes Count |\n|-------|--------------------|\n| a | 1 |\n| ab | 2 |\n| aab | 3 |\n| aabb | 6 |\n| madam | 10 |\n| abcba | 6 |\n| racecar | 15 |\n| aabbcc | 20 |\n| aa | 2 |\n| abba | 4 |\n| aabbaa | 10 |\n| abc | 2 |\n| babab | 6 |\n| aabb | 6 |\n| racecar | 15 |\n| abcd | 4 |\n| a | 1 |\n| abba | 4 |\n| bb | 2 |\n| abcba | 6 |\n| madam | 10 |\n| racecar | 15 |\n| aabbcc | 20 |\n| aabbaa | 10 |\n| abcdef | 2 |\n| aa | 2 |\n| abcde | 2 |\n| bcb | 2 |\n| abcdcba | 10 |\n| acba | 4 |\n| bcbab | 8 |\n| abcabc | 6 |\n| abaccba | 8 |\n| bbdab | 6 |\n| aabbaa | 10 |\n| bbccbb | 12 |\n| abcba | 6 |\n| baab | 4 |\n| ab | 2 |",
+      "example": {
+        "input": "madam",
+        "output": "[[\"m\", \"a\", \"d\", \"a\", \"m\"], [\"madam\"]]",
+        "explanation": "All possible palindrome partitions."
       },
-      {
-        "id": 10,
-        "title": "Find all possible valid IP addresses from a string of digits",
-        "description": "Return all valid IP addresses that can be formed from a string of digits.\n\n### Test Cases\n\n| Input | Valid IPs Count |\n|-------|------------------|\n| \"25525511135\" | 2 |\n| \"0000\" | 1 |\n| \"1111\" | 1 |\n| \"255255255255\" | 1 |\n| \"12345\" | 0 |\n| \"255255255255123\" | 0 |\n| \"19216811\" | 1 |\n| \"000001\" | 1 |\n| \"010010\" | 2 |\n| \"11112222\" | 0 |",
-        "example": {
-          "input": "25525511135",
-          "output": "[\"255.255.11.135\", \"255.255.111.35\"]",
-          "explanation": "All valid IP addresses formed."
-        },
-        "answer": "def restore_ip_addresses(s):\n    res = []\n    def backtrack(start, path):\n        if len(path) == 4 and start == len(s):\n            res.append('.'.join(path))\n            return\n        for end in range(start + 1, min(start + 4, len(s) + 1)):\n            if s[start] == '0' and end > start + 1: continue\n            if 0 <= int(s[start:end]) <= 255:\n                backtrack(end, path + [s[start:end]])\n    backtrack(0, [])\n    return res"
+      "answer": "def partition(s):\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n    res = []\n    def backtrack(start, path):\n        if start == len(s):\n            res.append(path[:])\n            return\n        for end in range(start + 1, len(s) + 1):\n            if is_palindrome(s[start:end]):\n                path.append(s[start:end])\n                backtrack(end, path)\n                path.pop()\n    backtrack(0, [])\n    return res"
+    },
+    {
+      "id": 10,
+      "title": "Find all possible valid IP addresses from a string of digits",
+      "description": "Return all valid IP addresses that can be formed from a string of digits.\n\n### Test Cases\n\n| Input | Valid IPs Count |\n|-------|------------------|\n| \"25525511135\" | 2 |\n| \"0000\" | 1 |\n| \"1111\" | 1 |\n| \"255255255255\" | 1 |\n| \"12345\" | 0 |\n| \"255255255255123\" | 0 |\n| \"19216811\" | 1 |\n| \"000001\" | 1 |\n| \"010010\" | 2 |\n| \"11112222\" | 0 |\n| \"192168123\" | 1 |\n| \"000255111255\" | 3 |\n| \"256256256256\" | 0 |\n| \"10101010\" | 2 |\n| \"34567\" | 0 |\n| \"123456789\" | 0 |\n| \"2552552550\" | 1 |\n| \"11111111\" | 1 |\n| \"16016200013\" | 1 |\n| \"11223344\" | 0 |\n| \"192168999999\" | 0 |\n| \"127001001010\" | 0 |\n| \"202020202\" | 1 |\n| \"3000001\" | 0 |\n| \"500100200\" | 0 |\n| \"2559990000\" | 0 |\n| \"111111100\" | 0 |\n| \"567123999\" | 0 |\n| \"987654321\" | 0 |\n| \"010001010\" | 2 |\n| \"123000456\" | 1 |\n| \"1020304050\" | 0 |\n| \"510101010\" | 0 |\n| \"3009001230\" | 0 |\n| \"4564561234\" | 0 |\n| \"101010010\" | 2 |",
+      "example": {
+        "input": "25525511135",
+        "output": "[\"255.255.11.135\", \"255.255.111.35\"]",
+        "explanation": "All valid IP addresses formed."
       },
-      {
-        "id": 11,
-        "title": "Word Search II",
-        "description": "Find all words from a list in a 2D board of characters.\n\n### Test Cases\n\n| Input | Words Found |\n|-------|-------------|\n| [[\"o\",\"a\",\"a\"], [\"e\",\"t\",\"a\"], [\"i\",\"h\",\"k\"], [\"i\",\"f\",\"l\"], [\"g\",\"r\",\"f\"]], [\"oath\", \"pea\", \"eat\", \"rain\"] | [\"oath\", \"eat\"] |\n| [[\"a\",\"b\",\"c\"], [\"d\",\"e\",\"f\"], [\"g\",\"h\",\"i\"]], [\"abcdef\", \"ghie\", \"cd\"] | [\"abcdef\"] |\n| [[\"a\",\"b\"], [\"c\",\"d\"]], [\"abcd\"] | [\"abcd\"] |\n| [[\"a\"]], [\"a\"] | [\"a\"] |\n| [[\"a\",\"b\"], [\"b\",\"a\"]], [\"ba\"] | [\"ba\"] |\n| [[\"r\",\"a\",\"t\"], [\"a\",\"r\",\"e\"], [\"r\",\"t\",\"e\"]], [\"rat\", \"art\"] | [\"rat\", \"art\"] |\n| [[\"o\",\"b\"], [\"b\",\"a\"], [\"t\",\"y\"]], [\"bat\", \"boy\"] | [\"bat\", \"boy\"] |\n| [[\"z\",\"z\",\"z\"], [\"z\",\"z\",\"z\"], [\"z\",\"z\",\"z\"]], [\"zzz\"] | [\"zzz\"] |\n| [[\"f\",\"o\",\"r\"], [\"e\",\"t\",\"r\"], [\"a\",\"b\",\"t\"]], [\"for\", \"abet\"] | [\"for\"] |\n| [[\"m\",\"i\"], [\"n\",\"e\"]], [\"mine\"] | [\"mine\"] |",
-        "example": {
-          "input": "[[\"o\", \"a\", \"a\"], [\"e\", \"t\", \"a\"], [\"i\", \"h\", \"k\"], [\"i\", \"f\", \"l\"], [\"g\", \"r\", \"f\"]], [\"oath\", \"pea\", \"eat\", \"rain\"]]",
-          "output": "[\"oath\", \"eat\"]",
-          "explanation": "Find words from the list in the board by searching in all possible directions."
-        },
-        "answer": "def find_words(board, words):\n    res = []\n    trie = {}\n    for word in words:\n        node = trie\n        for char in word:\n            node = node.setdefault(char, {})\n        node['$'] = word\n    def backtrack(node, i, j, path):\n        if '$' in node:\n            res.append(path)\n            del node['$']\n        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]): return\n        temp = board[i][j]\n        board[i][j] = '#'\n        for x, y in [(0, 1), (0, -1), (1, 0), (-1, 0)]:\n            ni, nj = i + x, j + y\n            if ni >= 0 and ni < len(board) and nj >= 0 and nj < len(board[0]) and board[ni][nj] in node:\n                backtrack(node[board[ni][nj]], ni, nj, path + board[ni][nj])\n        board[i][j] = temp\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] in trie:\n                backtrack(trie[board[i][j]], i, j, board[i][j])\n    return res"
+      "answer": "def restore_ip_addresses(s):\n    res = []\n    def backtrack(start, path):\n        if len(path) == 4 and start == len(s):\n            res.append('.'.join(path))\n            return\n        for end in range(start + 1, min(start + 4, len(s) + 1)):\n            if s[start] == '0' and end > start + 1: continue\n            if 0 <= int(s[start:end]) <= 255:\n                backtrack(end, path + [s[start:end]])\n    backtrack(0, [])\n    return res"
+    },
+    {
+      "id": 11,
+      "title": "Word Search II",
+      "description": "Find all words from a list in a 2D board of characters.\n\n### Test Cases\n\n| Input | Words Found |\n|-------|-------------|\n| [[\"o\",\"a\",\"a\"], [\"e\",\"t\",\"a\"], [\"i\",\"h\",\"k\"], [\"i\",\"f\",\"l\"], [\"g\",\"r\",\"f\"]], [\"oath\", \"pea\", \"eat\", \"rain\"] | [\"oath\", \"eat\"] |\n| [[\"a\",\"b\",\"c\"], [\"d\",\"e\",\"f\"], [\"g\",\"h\",\"i\"]], [\"abcdef\", \"ghie\", \"cd\"] | [\"abcdef\"] |\n| [[\"a\",\"b\"], [\"c\",\"d\"]], [\"abcd\"] | [\"abcd\"] |\n| [[\"a\"]], [\"a\"] | [\"a\"] |\n| [[\"a\",\"b\"], [\"b\",\"a\"]], [\"ba\"] | [\"ba\"] |\n| [[\"r\",\"a\",\"t\"], [\"a\",\"r\",\"e\"], [\"r\",\"t\",\"e\"]], [\"rat\", \"art\"] | [\"rat\", \"art\"] |\n| [[\"o\",\"b\"], [\"b\",\"a\"], [\"t\",\"y\"]], [\"bat\", \"boy\"] | [\"bat\", \"boy\"] |\n| [[\"z\",\"z\",\"z\"], [\"z\",\"z\",\"z\"], [\"z\",\"z\",\"z\"]], [\"zzz\"] | [\"zzz\"] |\n| [[\"f\",\"o\",\"r\"], [\"e\",\"t\",\"r\"], [\"a\",\"b\",\"t\"]], [\"for\", \"abet\"] | [\"for\"] |\n| [[\"m\",\"i\"], [\"n\",\"e\"]], [\"mine\"] | [\"mine\"] |\n| [[\"b\",\"a\",\"b\"], [\"a\",\"c\",\"a\"], [\"c\",\"d\",\"e\"]], [\"abcd\", \"cae\"] | [\"abcd\", \"cae\"] |\n| [[\"g\",\"r\",\"b\"], [\"a\",\"r\",\"a\"], [\"r\",\"a\",\"t\"]], [\"grb\"] | [\"grb\"] |\n| [[\"t\",\"y\",\"o\"], [\"r\",\"p\",\"e\"], [\"e\",\"d\",\"r\"]], [\"tope\"] | [\"tope\"] |\n| [[\"p\",\"o\",\"d\"], [\"e\",\"t\",\"a\"], [\"d\",\"d\",\"g\"]], [\"dog\"] | [\"dog\"] |\n| [[\"r\",\"b\",\"a\"], [\"a\",\"b\",\"c\"], [\"e\",\"b\",\"c\"]], [\"abc\"] | [\"abc\"] |\n| [[\"a\",\"r\",\"a\"], [\"d\",\"e\",\"r\"], [\"d\",\"a\",\"r\"]], [\"dart\"] | [\"dart\"] |\n| [[\"s\",\"r\",\"t\"], [\"e\",\"s\",\"r\"], [\"s\",\"t\",\"d\"]], [\"str\"] | [\"str\"] |\n| [[\"r\",\"d\",\"a\"], [\"e\",\"d\",\"r\"], [\"r\",\"a\",\"t\"]], [\"dart\"] | [\"dart\"] |\n| [[\"a\",\"b\",\"c\"], [\"d\",\"e\",\"f\"], [\"g\",\"h\",\"i\"]], [\"dce\", \"dfe\"] | [\"dce\", \"dfe\"] |\n| [[\"t\",\"r\",\"y\"], [\"e\",\"r\",\"t\"], [\"e\",\"t\",\"r\"]], [\"ter\", \"try\"] | [\"ter\", \"try\"] |\n| [[\"a\",\"b\"], [\"e\",\"f\"], [\"g\",\"h\"], [\"i\",\"j\"], [\"k\",\"l\"]], [\"bgfh\", \"gjk\"] | [\"bgfh\", \"gjk\"] |\n| [[\"s\",\"a\",\"e\"], [\"c\",\"o\",\"p\"], [\"n\",\"o\",\"p\"], [\"d\",\"e\",\"r\"]], [\"code\", \"pop\"] | [\"code\", \"pop\"] |\n| [[\"z\",\"y\",\"x\"], [\"r\",\"q\",\"p\"], [\"p\",\"o\",\"l\"], [\"a\",\"b\",\"c\"]], [\"abc\", \"xyz\"] | [\"abc\", \"xyz\"] |\n| [[\"c\",\"h\",\"a\"], [\"r\",\"b\",\"c\"], [\"a\",\"b\",\"d\"], [\"e\",\"f\",\"g\"]], [\"chad\", \"cbd\"] | [\"chad\", \"cbd\"] |\n| [[\"f\",\"g\",\"h\"], [\"i\",\"j\",\"k\"], [\"l\",\"m\",\"n\"], [\"o\",\"p\",\"q\"], [\"r\",\"s\",\"t\"]], [\"fgh\", \"ijk\", \"rst\"] | [\"fgh\", \"ijk\", \"rst\"] |\n| [[\"x\",\"y\",\"z\"], [\"a\",\"b\",\"c\"], [\"p\",\"q\",\"r\"]], [\"xyz\"] | [\"xyz\"] |\n| [[\"a\",\"b\",\"c\"], [\"d\",\"e\",\"f\"], [\"g\",\"h\",\"i\"], [\"j\",\"k\",\"l\"]], [\"abc\", \"def\"] | [\"abc\", \"def\"] |\n| [[\"z\",\"x\",\"y\"], [\"z\",\"x\",\"y\"], [\"y\",\"z\",\"x\"]], [\"zyx\"] | [\"zyx\"] |",
+      "example": {
+        "input": "[[\"o\", \"a\", \"a\"], [\"e\", \"t\", \"a\"], [\"i\", \"h\", \"k\"], [\"i\", \"f\", \"l\"], [\"g\", \"r\", \"f\"]], [\"oath\", \"pea\", \"eat\", \"rain\"]]",
+        "output": "[\"oath\", \"eat\"]",
+        "explanation": "Find words from the list in the board by searching in all possible directions."
       },
-      {
-        "id": 12,
-        "title": "Combination Sum III",
-        "description": "Find all combinations of k numbers that add up to a number n.\n\n### Test Cases\n\n| Input | Combinations Count |\n|-------|--------------------|\n| 3, 7 | 8 |\n| 3, 9 | 6 |\n| 3, 10 | 3 |\n| 2, 5 | 1 |\n| 4, 15 | 1 |\n| 2, 12 | 6 |\n| 3, 6 | 2 |\n| 3, 8 | 4 |\n| 4, 10 | 2 |\n| 3, 5 | 4 |",
-        "example": {
-          "input": "3, 7",
-          "output": "[[1, 2, 4], [1, 3, 3], [2, 5], [1, 6], [3, 4], [1, 2, 4]]",
-          "explanation": "Find all valid combinations of numbers that sum to the target."
-        },
-        "answer": "def combination_sum3(k, n):\n    res = []\n    def backtrack(start, path, target):\n        if len(path) == k and target == 0:\n            res.append(path[:])\n            return\n        for i in range(start, 10):\n            if i > target: break\n            path.append(i)\n            backtrack(i + 1, path, target - i)\n            path.pop()\n    backtrack(1, [], n)\n    return res"
+      "answer": "def find_words(board, words):\n    res = []\n    trie = {}\n    for word in words:\n        node = trie\n        for char in word:\n            node = node.setdefault(char, {})\n        node['$'] = word\n    def backtrack(node, i, j, path):\n        if '$' in node:\n            res.append(path)\n            del node['$']\n        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]): return\n        temp = board[i][j]\n        board[i][j] = '#'\n        for x, y in [(0, 1), (0, -1), (1, 0), (-1, 0)]:\n            ni, nj = i + x, j + y\n            if ni >= 0 and ni < len(board) and nj >= 0 and nj < len(board[0]) and board[ni][nj] in node:\n                backtrack(node[board[ni][nj]], ni, nj, path + board[ni][nj])\n        board[i][j] = temp\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if board[i][j] in trie:\n                backtrack(trie[board[i][j]], i, j, board[i][j])\n    return res"
+    },
+    {
+      "id": 12,
+      "title": "Combination Sum III",
+      "description": "Find all combinations of k numbers that add up to a number n.\n\n### Test Cases\n\n| Input | Combinations Count |\n|-------|--------------------|\n| 3, 7 | 8 |\n| 3, 9 | 6 |\n| 3, 10 | 3 |\n| 2, 5 | 1 |\n| 4, 15 | 1 |\n| 2, 12 | 6 |\n| 3, 6 | 2 |\n| 3, 8 | 4 |\n| 4, 10 | 2 |\n| 3, 5 | 4 |\n| 2, 8 | 3 |\n| 2, 9 | 3 |\n| 2, 10 | 4 |\n| 1, 8 | 3 |\n| 1, 7 | 4 |\n| 1, 6 | 4 |\n| 4, 11 | 2 |\n| 1, 12 | 5 |\n| 1, 15 | 4 |\n| 2, 15 | 3 |\n| 1, 14 | 3 |\n| 3, 4 | 2 |\n| 3, 11 | 3 |\n| 1, 5 | 4 |\n| 1, 3 | 6 |\n| 1, 2 | 7 |\n| 2, 4 | 3 |\n| 2, 3 | 5 |\n| 1, 4 | 6 |\n| 2, 6 | 5 |\n| 4, 5 | 3 |\n| 1, 10 | 4 |\n| 1, 11 | 3 |\n| 2, 13 | 2 |\n| 2, 7 | 5 |\n| 3, 13 | 2 |",
+      "example": {
+        "input": "3, 7",
+        "output": "[[1, 2, 4], [1, 3, 3], [2, 5], [1, 6], [3, 4], [1, 2, 4]]",
+        "explanation": "Find all valid combinations of numbers that sum to the target."
       },
-      {
-        "id": 13,
-        "title": "Subset Sum",
-        "description": "Find all subsets of a list of numbers that sum up to a specific target.\n\n### Test Cases\n\n| Input | Target | Subsets Count |\n|-------|--------|----------------|\n| [1, 2, 3, 4], 5 | 2 |\n| [1, 2, 3, 4], 6 | 3 |\n| [2, 3, 5], 5 | 1 |\n| [1, 2, 3], 3 | 2 |\n| [1, 3, 5], 4 | 1 |\n| [2, 4, 6], 10 | 1 |\n| [1, 2, 5], 5 | 2 |\n| [1, 2], 4 | 1 |\n| [3, 5, 8], 8 | 2 |\n| [4, 6], 10 | 1 |",
-        "example": {
-          "input": "[1, 2, 3, 4], target = 5",
-          "output": "[[1, 4], [2, 3]]",
-          "explanation": "Find all subsets of the list that sum to the target."
-        },
-        "answer": "def subset_sum(nums, target):\n    res = []\n    def backtrack(start, path, target):\n        if target == 0:\n            res.append(path[:])\n            return\n        for i in range(start, len(nums)):\n            if nums[i] > target: continue\n            path.append(nums[i])\n            backtrack(i + 1, path, target - nums[i])\n            path.pop()\n    backtrack(0, [], target)\n    return res"
-      },     
-      {
-        "id": 14,
-        "title": "Permutations II (with duplicates)",
-        "description": "Generate all unique permutations of a list with possible duplicate values.\n\n### Test Cases\n\n| Input | Permutations Count |\n|-------|--------------------|\n| [1,1,2] | 3 |\n| [1,2,3] | 6 |\n| [1,1,1] | 1 |\n| [2,2,3] | 3 |\n| [3,3,3] | 1 |\n| [1,2,2,3] | 12 |\n| [4,4,4] | 1 |\n| [2,2,5] | 3 |\n| [1,2] | 2 |\n| [5,4,5] | 3 |",
-        "example": {
-          "input": "[1,1,2]",
-          "output": "[[1, 1, 2], [1, 2, 1], [2, 1, 1]]",
-          "explanation": "Generate all unique permutations considering duplicates."
-        },
-        "answer": "def permute_unique(nums):\n    res = []\n    def backtrack(start, path):\n        if len(path) == len(nums):\n            res.append(path[:])\n            return\n        for i in range(len(nums)):\n            if i > start and nums[i] == nums[i - 1]: continue\n            path.append(nums[i])\n            backtrack(i + 1, path)\n            path.pop()\n    nums.sort()\n    backtrack(0, [])\n    return res"
+      "answer": "def combination_sum3(k, n):\n    res = []\n    def backtrack(start, path, target):\n        if len(path) == k and target == 0:\n            res.append(path[:])\n            return\n        for i in range(start, 10):\n            if i > target: break\n            path.append(i)\n            backtrack(i + 1, path, target - i)\n            path.pop()\n    backtrack(1, [], n)\n    return res"
+    },
+    {
+      "id": 13,
+      "title": "Subset Sum",
+      "description": "Find all subsets of a list of numbers that sum up to a specific target.\n\n### Test Cases\n\n| Input | Target | Subsets Count |\n|-------|--------|----------------|\n| [1, 2, 3, 4], 5 | 2 |\n| [1, 2, 3, 4], 6 | 3 |\n| [2, 3, 5], 5 | 1 |\n| [1, 2, 3], 3 | 2 |\n| [1, 3, 5], 4 | 1 |\n| [2, 4, 6], 10 | 1 |\n| [1, 2, 5], 5 | 2 |\n| [1, 2], 4 | 1 |\n| [3, 5, 8], 8 | 2 |\n| [4, 6], 10 | 1 |\n| [1, 2, 7], 6 | 3 |\n| [2, 3, 6], 6 | 2 |\n| [1, 2, 8], 7 | 2 |\n| [2, 3, 4], 6 | 2 |\n| [2, 5, 7], 9 | 2 |\n| [3, 5, 9], 10 | 2 |\n| [1, 3, 5], 7 | 2 |\n| [2, 4, 9], 10 | 2 |\n| [1, 3, 6], 6 | 3 |\n| [1, 2, 6], 7 | 2 |\n| [4, 7, 10], 12 | 1 |\n| [1, 5, 8], 9 | 1 |\n| [1, 2, 3], 5 | 3 |\n| [5, 7, 8], 12 | 2 |\n| [4, 5, 8], 10 | 2 |\n| [3, 6, 9], 12 | 2 |\n| [1, 2, 4], 6 | 3 |\n| [2, 5, 6], 8 | 2 |\n| [1, 5, 9], 10 | 1 |\n| [4, 6, 10], 12 | 1 |\n| [1, 2, 9], 10 | 1 |\n| [3, 4, 5], 8 | 2 |\n| [5, 6, 8], 12 | 2 |\n| [3, 6, 8], 11 | 1 |\n| [4, 5, 7], 10 | 2 |",
+      "example": {
+        "input": "[1, 2, 3, 4], target = 5",
+        "output": "[[1, 4], [2, 3]]",
+        "explanation": "Find all subsets of the list that sum to the target."
       },
-      {
-        "id": 15,
-        "title": "Generate all permutations of a string",
-        "description": "Generate all possible permutations of a given string.",
-        "example": {
-          "input": "\"abc\"",
-          "output": "[\"abc\", \"acb\", \"bac\", \"bca\", \"cab\", \"cba\"]",
-          "explanation": "All possible ways to arrange the characters of the string."
-        },
-        "answer": "def permute(s):\n    def backtrack(start, s):\n        if start == len(s):\n            result.append(''.join(s))\n            return\n        for i in range(start, len(s)):\n            s[start], s[i] = s[i], s[start]\n            backtrack(start + 1, s)\n            s[start], s[i] = s[i], s[start]\n    result = []\n    backtrack(0, list(s))\n    return result"
+      "answer": "def subset_sum(nums, target):\n    res = []\n    def backtrack(start, path, target):\n        if target == 0:\n            res.append(path[:])\n            return\n        for i in range(start, len(nums)):\n            if nums[i] > target: continue\n            path.append(nums[i])\n            backtrack(i + 1, path, target - nums[i])\n            path.pop()\n    backtrack(0, [], target)\n    return res"
+    },     
+    {
+      "id": 14,
+      "title": "Permutations II (with duplicates)",
+      "description": "Generate all unique permutations of a list with possible duplicate values.\n\n### Test Cases\n\n| Input | Permutations Count |\n|-------|--------------------|\n| [1,1,2] | 3 |\n| [1,2,3] | 6 |\n| [1,1,1] | 1 |\n| [2,2,3] | 3 |\n| [3,3,3] | 1 |\n| [1,2,2,3] | 12 |\n| [4,4,4] | 1 |\n| [2,2,5] | 3 |\n| [1,2] | 2 |\n| [5,4,5] | 3 |\n| [1,2,3,4] | 24 |\n| [1,2,2] | 3 |\n| [1,2,3] | 6 |\n| [2,3,4] | 6 |\n| [1,3,3] | 3 |\n| [2,2,3,3] | 12 |\n| [3,4,5] | 6 |\n| [2,3,4,5] | 24 |\n| [1,1,2,3] | 12 |\n| [3,4,6] | 12 |\n| [1,2,3,3] | 12 |\n| [1,2,3,4] | 24 |\n| [1,1,2,2] | 6 |\n| [1,3,3,3] | 4 |\n| [1,2,2,2] | 3 |\n| [3,5,6] | 6 |\n| [2,4,4] | 6 |\n| [3,3,4] | 3 |\n| [1,2,3,2] | 12 |\n| [1,1,1,1] | 1 |\n| [1,2,5] | 3 |\n| [2,2,2] | 1 |\n| [3,3,3] | 1 |\n| [1,1,2,2,2] | 3 |\n| [3,3,3,3] | 1 |\n| [1,2,2,3] | 12 |",
+      "example": {
+        "input": "[1,1,2]",
+        "output": "[[1, 1, 2], [1, 2, 1], [2, 1, 1]]",
+        "explanation": "Generate all unique permutations considering duplicates."
       },
-      {
-        "id": 16,
-        "title": "Find all subsets of a set",
-        "description": "Given a set of distinct integers, return all possible subsets (the power set).",
-        "example": {
-          "input": "[1, 2, 3]",
-          "output": "[[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]",
-          "explanation": "Generate all combinations of the elements in the set."
-        },
-        "answer": "def subsets(nums):\n    def backtrack(start, current):\n        result.append(list(current))\n        for i in range(start, len(nums)):\n            current.append(nums[i])\n            backtrack(i + 1, current)\n            current.pop()\n    result = []\n    backtrack(0, [])\n    return result"
+      "answer": "def permute_unique(nums):\n    res = []\n    def backtrack(start, path):\n        if len(path) == len(nums):\n            res.append(path[:])\n            return\n        for i in range(len(nums)):\n            if i > start and nums[i] == nums[i - 1]: continue\n            path.append(nums[i])\n            backtrack(i + 1, path)\n            path.pop()\n    nums.sort()\n    backtrack(0, [])\n    return res"
+    },
+    {
+      "id": 15,
+      "title": "Generate all permutations of a string",
+      "description": "Generate all possible permutations of a given string.\n\n### Test Cases\n\n| Input | Output |\n|---|---|\n| \"\" | [\"\"] |\n| \"a\" | [\"a\"] |\n| \"ab\" | [\"ab\", \"ba\"] |\n| \"abc\" | [\"abc\", \"acb\", \"bac\", \"bca\", \"cab\", \"cba\"] |\n| \"aab\" | [\"aab\", \"aba\", \"baa\"] |\n| \"abcd\" | 24 permutations |\n| \"xyz\" | 6 permutations |\n| \"123\" | 6 permutations |\n| \"aa\" | [\"aa\"] |\n| \"aaa\" | [\"aaa\"] |\n| \"abcde\" | 120 permutations |\n| \"aabc\" | 12 permutations |\n| \"aabb\" | 6 permutations |\n| \"abca\" | 12 permutations |\n| \"aabbc\" | 30 permutations |\n| \"xyzx\" | 12 permutations |\n| \"mnop\" | 24 permutations |\n| \"zaza\" | 6 permutations |\n| \"test\" | 24 permutations |\n| \"race\" | 24 permutations |\n| \"ball\" | 12 permutations |\n| \"cool\" | 12 permutations |\n| \"loop\" | 12 permutations |\n| \"stop\" | 24 permutations |\n| \"ping\" | 24 permutations |\n| \"pong\" | 24 permutations |\n| \"word\" | 24 permutations |\n| \"demo\" | 24 permutations |\n| \"kick\" | 12 permutations |\n| \"book\" | 12 permutations |\n| \"milk\" | 24 permutations |\n| \"ice\" | 6 permutations |\n| \"egg\" | 3 permutations |\n| \"beta\" | 24 permutations |\n| \"cart\" | 24 permutations |\n| \"lava\" | 12 permutations |\n| \"gaga\" | 6 permutations |\n| \"momo\" | 6 permutations |\n| \"zoom\" | 12 permutations |\n| \"null\" | 12 permutations |\n",
+      "example": {
+        "input": "\"abc\"",
+        "output": "[\"abc\", \"acb\", \"bac\", \"bca\", \"cab\", \"cba\"]",
+        "explanation": "All possible ways to arrange the characters of the string."
       },
-      {
-        "id": 17,
-        "title": "Solve N-Queens problem",
-        "description": "Place N queens on an N x N chessboard so that no two queens threaten each other.",
-        "example": {
-          "input": "4",
-          "output": "[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]",
-          "explanation": "All possible solutions to the N-Queens problem for N = 4."
-        },
-        "answer": "def solveNQueens(n):\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i][col] == 'Q' or (col - row + i >= 0 and board[i][col - row + i] == 'Q') or (col + row - i < n and board[i][col + row - i] == 'Q'):\n                return False\n        return True\n    def backtrack(board, row):\n        if row == n:\n            result.append([''.join(row) for row in board])\n            return\n        for col in range(n):\n            if is_valid(board, row, col):\n                board[row][col] = 'Q'\n                backtrack(board, row + 1)\n                board[row][col] = '.'\n    result = []\n    backtrack([['.' for _ in range(n)] for _ in range(n)], 0)\n    return result"
+      "answer": "def permute(s):\n    def backtrack(start, s):\n        if start == len(s):\n            result.append(''.join(s))\n            return\n        for i in range(start, len(s)):\n            s[start], s[i] = s[i], s[start]\n            backtrack(start + 1, s)\n            s[start], s[i] = s[i], s[start]\n    result = []\n    backtrack(0, list(s))\n    return result"
+    },
+    {
+      "id": 16,
+      "title": "Find all subsets of a set",
+      "description": "Given a set of distinct integers, return all possible subsets (the power set).\n\n### Test Cases\n\n| Input | Output |\n|---|---|\n| [] | [[]] |\n| [1] | [[], [1]] |\n| [1,2] | [[], [1], [2], [1,2]] |\n| [1,2,3] | 8 subsets |\n| [0] | [[], [0]] |\n| [1,3] | 4 subsets |\n| [3,5,7] | 8 subsets |\n| [2,4] | 4 subsets |\n| [4,5,6,7] | 16 subsets |\n| [10,20] | 4 subsets |\n| [1,2,3,4] | 16 subsets |\n| [5,6] | 4 subsets |\n| [7,8,9] | 8 subsets |\n| [11,12,13] | 8 subsets |\n| [1,2,3,4,5] | 32 subsets |\n| [6,7,8,9] | 16 subsets |\n| [2,3,4,5,6] | 32 subsets |\n| [9,10] | 4 subsets |\n| [0,1,2] | 8 subsets |\n| [100] | 2 subsets |\n| [1,2,3,4,5,6] | 64 subsets |\n| [0,1,2,3,4,5] | 64 subsets |\n| [3,4,5,6,7] | 32 subsets |\n| [10,20,30,40] | 16 subsets |\n| [1,1,1] | handle duplicate sets |\n| [2,2,2] | handle duplicate sets |\n| [3,3,3] | handle duplicate sets |\n| [4,4,4] | handle duplicate sets |\n| [5,5,5] | handle duplicate sets |\n| [6,6,6] | handle duplicate sets |\n| [7,7,7] | handle duplicate sets |\n| [8,8,8] | handle duplicate sets |\n| [9,9,9] | handle duplicate sets |\n| [10,10,10] | handle duplicate sets |\n| [1,2,1] | handle duplicates |\n| [2,3,2] | handle duplicates |\n| [4,5,4] | handle duplicates |\n| [6,7,6] | handle duplicates |\n| [8,9,8] | handle duplicates |\n| [10,11,10] | handle duplicates |\n",
+      "example": {
+        "input": "[1, 2, 3]",
+        "output": "[[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]",
+        "explanation": "Generate all combinations of the elements in the set."
       },
-      {
-        "id": 18,
-        "title": "Word Search",
-        "description": "Given a 2D board of characters and a word, find if the word exists in the board by going up, down, left, or right.",
-        "example": {
-          "input": "[['A', 'B', 'C', 'E'], ['S', 'F', 'C', 'S'], ['A', 'D', 'E', 'E']] , \"ABCCED\"",
-          "output": "True",
-          "explanation": "The word 'ABCCED' exists in the board."
-        },
-        "answer": "def exist(board, word):\n    def dfs(i, j, k):\n        if k == len(word):\n            return True\n        if not (0 <= i < len(board) and 0 <= j < len(board[0])) or board[i][j] != word[k]:\n            return False\n        tmp, board[i][j] = board[i][j], '#'\n        found = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)\n        board[i][j] = tmp\n        return found\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if dfs(i, j, 0):\n                return True\n    return False"
+      "answer": "def subsets(nums):\n    def backtrack(start, current):\n        result.append(list(current))\n        for i in range(start, len(nums)):\n            current.append(nums[i])\n            backtrack(i + 1, current)\n            current.pop()\n    result = []\n    backtrack(0, [])\n    return result"
+    },
+    {
+      "id": 17,
+      "title": "Solve N-Queens problem",
+      "description": "Place N queens on an N x N chessboard so that no two queens threaten each other.\n\n### Test Cases\n\n| Input | Output |\n|---|---|\n| 1 | [['Q']] |\n| 2 | [] |\n| 3 | [] |\n| 4 | [['.Q..','...Q','Q...','..Q.'], ['..Q.','Q...','...Q','.Q..']] |\n| 5 | 10 solutions |\n| 6 | 4 solutions |\n| 7 | 40+ solutions |\n| 8 | 92 solutions |\n| 9 | 352 solutions |\n| 10 | 724 solutions |\n| 3 | [] |\n| 2 | [] |\n| 3 | [] |\n| 2 | [] |\n| 4 | 2 solutions |\n| 4 | 2 solutions |\n| 5 | 10 solutions |\n| 6 | 4 solutions |\n| 6 | 4 solutions |\n| 5 | 10 solutions |\n| 7 | many solutions |\n| 7 | many solutions |\n| 8 | many solutions |\n| 8 | many solutions |\n| 9 | many solutions |\n| 9 | many solutions |\n| 10 | many solutions |\n| 10 | many solutions |\n| 2 | [] |\n| 3 | [] |\n| 1 | [['Q']] |\n| 1 | [['Q']] |\n| 2 | [] |\n| 3 | [] |\n| 4 | valid boards |\n| 5 | valid boards |\n| 6 | valid boards |\n| 7 | valid boards |\n| 8 | valid boards |\n| 9 | valid boards |\n| 10 | valid boards |\n",
+      "example": {
+        "input": "4",
+        "output": "[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]",
+        "explanation": "All possible solutions to the N-Queens problem for N = 4."
       },
-      {
-        "id": 19,
-        "title": "Combination Sum",
-        "description": "Given an array of candidate numbers (distinct integers) and a target, return all unique combinations of candidates where the sum equals the target.",
-        "example": {
-          "input": "[2, 3, 6, 7], 7",
-          "output": "[[2, 2, 3], [7]]",
-          "explanation": "The two combinations that sum up to 7 are [2, 2, 3] and [7]."
-        },
-        "answer": "def combinationSum(candidates, target):\n    def backtrack(start, target, current):\n        if target == 0:\n            result.append(list(current))\n            return\n        for i in range(start, len(candidates)):\n            if candidates[i] > target:\n                continue\n            current.append(candidates[i])\n            backtrack(i, target - candidates[i], current)\n            current.pop()\n    result = []\n    backtrack(0, target, [])\n    return result"
+      "answer": "def solveNQueens(n):\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i][col] == 'Q' or (col - row + i >= 0 and board[i][col - row + i] == 'Q') or (col + row - i < n and board[i][col + row - i] == 'Q'):\n                return False\n        return True\n    def backtrack(board, row):\n        if row == n:\n            result.append([''.join(row) for row in board])\n            return\n        for col in range(n):\n            if is_valid(board, row, col):\n                board[row][col] = 'Q'\n                backtrack(board, row + 1)\n                board[row][col] = '.'\n    result = []\n    backtrack([['.' for _ in range(n)] for _ in range(n)], 0)\n    return result"
+    },
+    {
+      "id": 18,
+      "title": "Word Search",
+      "description": "Given a 2D board of characters and a word, find if the word exists in the board by going up, down, left, or right.\n\n### Test Cases\n\n| Test Case | Input | Output |\n|-----------|-------|--------|\n| 1 | [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCCED\" | True |\n| 2 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"ABCD\" | False |\n| 3 | [[\"A\"]], \"A\" | True |\n| 4 | [[\"A\"]], \"B\" | False |\n| 5 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"ACDB\" | True |\n| 6 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"ACDC\" | False |\n| 7 | [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"SEE\" | True |\n| 8 | [[\"A\",\"B\",\"C\"],[\"D\",\"E\",\"F\"],[\"G\",\"H\",\"I\"]], \"BEFI\" | True |\n| 9 | [[\"A\",\"B\",\"C\"],[\"D\",\"E\",\"F\"],[\"G\",\"H\",\"I\"]], \"XYZ\" | False |\n| 10 | [[\"A\",\"B\",\"C\"]], \"ABC\" | True |\n| 11 | [[\"A\",\"B\",\"C\"]], \"ACB\" | False |\n| 12 | [[\"A\"]], \"AA\" | False |\n| 13 | [[\"A\",\"B\"]], \"BA\" | True |\n| 14 | [[\"A\",\"A\"]], \"AA\" | True |\n| 15 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"ACD\" | True |\n| 16 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"ADC\" | False |\n| 17 | [[\"A\"]], \"A\" | True |\n| 18 | [[\"A\"]], \"AA\" | False |\n| 19 | [[\"A\",\"B\",\"C\"]], \"CAB\" | False |\n| 20 | [[\"A\",\"B\",\"C\"]], \"CBA\" | False |\n| 21 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"BD\" | False |\n| 22 | [[\"A\",\"B\",\"C\"]], \"BC\" | True |\n| 23 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"DA\" | False |\n| 24 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"DC\" | False |\n| 25 | [[\"A\",\"B\"]], \"AB\" | True |\n| 26 | [[\"A\",\"B\"]], \"BA\" | True |\n| 27 | [[\"A\",\"A\",\"A\"]], \"AAA\" | True |\n| 28 | [[\"A\",\"B\",\"C\"]], \"ABC\" | True |\n| 29 | [[\"A\",\"B\",\"C\"]], \"ACB\" | False |\n| 30 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"AC\" | True |\n| 31 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"CA\" | False |\n| 32 | [[\"A\"]], \"B\" | False |\n| 33 | [[\"A\",\"B\"]], \"BB\" | False |\n| 34 | [[\"A\",\"A\"]], \"AAA\" | False |\n| 35 | [[\"A\"]], \"A\" | True |\n| 36 | [[\"B\"]], \"A\" | False |\n| 37 | [[\"B\"]], \"B\" | True |\n| 38 | [[\"C\"]], \"C\" | True |\n| 39 | [[\"A\",\"B\"]], \"BA\" | True |\n| 40 | [[\"A\",\"B\"],[\"C\",\"D\"]], \"ABCD\" | False |",
+      "example": {
+        "input": "[['A', 'B', 'C', 'E'], ['S', 'F', 'C', 'S'], ['A', 'D', 'E', 'E']] , \"ABCCED\"",
+        "output": "True",
+        "explanation": "The word 'ABCCED' exists in the board."
       },
-      {
-        "id": 20,
-        "title": "Letter Combinations of a Phone Number",
-        "description": "Given a string containing digits from 2-9, return all possible letter combinations that the number could represent based on a phone keypad.",
-        "example": {
-          "input": "\"23\"",
-          "output": "[\"ad\", \"ae\", \"af\", \"bd\", \"be\", \"bf\", \"cd\", \"ce\", \"cf\"]",
-          "explanation": "Each digit corresponds to a set of characters. For example, '2' corresponds to 'a', 'b', 'c' and '3' corresponds to 'd', 'e', 'f'."
-        },
-        "answer": "def letterCombinations(digits):\n    if not digits:\n        return []\n    phone_map = {\n        '2': ['a', 'b', 'c'], '3': ['d', 'e', 'f'], '4': ['g', 'h', 'i'],\n        '5': ['j', 'k', 'l'], '6': ['m', 'n', 'o'], '7': ['p', 'q', 'r', 's'],\n        '8': ['t', 'u', 'v'], '9': ['w', 'x', 'y', 'z']\n    }\n    def backtrack(start, current):\n        if len(current) == len(digits):\n            result.append(''.join(current))\n            return\n        for letter in phone_map[digits[start]]:\n            current.append(letter)\n            backtrack(start + 1, current)\n            current.pop()\n    result = []\n    backtrack(0, [])\n    return result"
-      }      
-    ]
+      "answer": "def exist(board, word):\n    def dfs(i, j, k):\n        if k == len(word):\n            return True\n        if not (0 <= i < len(board) and 0 <= j < len(board[0])) or board[i][j] != word[k]:\n            return False\n        tmp, board[i][j] = board[i][j], '#'\n        found = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)\n        board[i][j] = tmp\n        return found\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if dfs(i, j, 0):\n                return True\n    return False"
+    },
+    {
+      "id": 19,
+      "title": "Combination Sum",
+      "description": "Given an array of candidate numbers (distinct integers) and a target, return all unique combinations of candidates where the sum equals the target.\n\n### Test Cases\n\n| Test Case | Input | Output |\n|-----------|-------|--------|\n| 1 | [2, 3, 6, 7], 7 | [[2, 2, 3], [7]] |\n| 2 | [2, 3, 5], 8 | [[2,2,2,2],[2,3,3],[3,5]] |\n| 3 | [2], 1 | [] |\n| 4 | [1], 1 | [[1]] |\n| 5 | [1], 2 | [[1,1]] |\n| 6 | [8,7,4,3], 11 | [[8,3],[7,4],[4,4,3]] |\n| 7 | [2, 5, 10], 20 | [[10,10],[5,5,5,5],[5,5,10],[2,2,2,2,2,2,2,2,2,2],[2,2,2,2,2,10],[2,2,2,2,5,5]] |\n| 8 | [3, 4, 5], 8 | [[3,5],[4,4]] |\n| 9 | [2, 3, 5], 7 | [[2,2,3],[2,5]] |\n| 10 | [1, 2], 4 | [[1,1,1,1],[1,1,2],[2,2]] |\n| 11 | [2, 4, 6, 8], 8 | [[2,2,2,2],[2,2,4],[2,6],[4,4],[8]] |\n| 12 | [7], 3 | [] |\n| 13 | [2, 3], 6 | [[2,2,2],[3,3]] |\n| 14 | [2, 4, 6], 8 | [[2,2,2,2],[2,2,4],[2,6],[4,4]] |\n| 15 | [3, 5], 9 | [[3,3,3],[3,3,3],[3,3,3]] |\n| 16 | [1, 3], 4 | [[1,1,1,1],[1,1,2],[1,3]] |\n| 17 | [1, 2, 3], 5 | [[1,1,1,1,1],[1,1,1,2],[1,1,3],[1,2,2],[2,3]] |\n| 18 | [10,1,2,7,6,5], 8 | [[1,2,5],[1,7],[2,6]] |\n| 19 | [2, 3, 6, 7], 12 | [[2,2,2,2,2,2],[2,2,3,5],[2,2,2,6],[2,2,4,4],[3,3,3,3],[3,3,6],[6,6]] |\n| 20 | [2, 3, 5], 10 | [[2,2,2,2,2],[2,2,3,3],[2,2,2,4],[2,4,4],[5,5]] |\n| 21 | [1, 2, 5], 5 | [[1,1,1,1,1],[1,1,1,2],[1,2,2],[5]] |\n| 22 | [2, 4, 6], 6 | [[2,2,2],[2,4],[6]] |\n| 23 | [3, 4, 7], 7 | [[3,4],[7]] |\n| 24 | [2, 3, 5], 9 | [[2,2,2,3],[2,2,5],[3,3,3],[4,5]] |\n| 25 | [2], 4 | [[2,2]] |\n| 26 | [1], 3 | [[1,1,1]] |\n| 27 | [2, 5, 3], 8 | [[2,2,2,2],[2,3,3],[3,5]] |\n| 28 | [1, 2], 2 | [[1,1],[2]] |\n| 29 | [2, 3], 1 | [] |\n| 30 | [1], 4 | [[1,1,1,1]] |\n| 31 | [2, 3, 7], 7 | [[2,2,3],[7]] |\n| 32 | [1, 2, 3], 4 | [[1,1,1,1],[1,1,2],[1,3],[2,2]] |\n| 33 | [5], 10 | [[5,5]] |\n| 34 | [3, 4], 6 | [[3,3]] |\n| 35 | [1, 2], 3 | [[1,1,1],[1,2]] |\n| 36 | [1], 5 | [[1,1,1,1,1]] |\n| 37 | [2, 4], 4 | [[2,2],[4]] |\n| 38 | [3, 5, 7], 10 | [[3,7],[5,5]] |\n| 39 | [2, 3, 6], 6 | [[2,2,2],[3,3],[6]] |\n| 40 | [1, 5, 10], 10 | [[1,1,1,1,1,1,1,1,1,1],[5,5],[10]] |",
+      "example": {
+        "input": "[2, 3, 6, 7], 7",
+        "output": "[[2, 2, 3], [7]]",
+        "explanation": "The two combinations that sum up to 7 are [2, 2, 3] and [7]."
+      },
+      "answer": "def combinationSum(candidates, target):\n    def backtrack(start, target, current):\n        if target == 0:\n            result.append(list(current))\n            return\n        for i in range(start, len(candidates)):\n            if candidates[i] > target:\n                continue\n            current.append(candidates[i])\n            backtrack(i, target - candidates[i], current)\n            current.pop()\n    result = []\n    backtrack(0, target, [])\n    return result"
+    },    
+    {
+      "id": 20,
+      "title": "Letter Combinations of a Phone Number",
+      "description": "Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.\n\nA mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.\n\n### Test Cases\n\n| Test Case | Input | Output |\n|-----------|-------|--------|\n| 1 | \"2\" | [\"a\", \"b\", \"c\"] |\n| 2 | \"3\" | [\"d\", \"e\", \"f\"] |\n| 3 | \"4\" | [\"g\", \"h\", \"i\"] |\n| 4 | \"5\" | [\"j\", \"k\", \"l\"] |\n| 5 | \"6\" | [\"m\", \"n\", \"o\"] |\n| 6 | \"7\" | [\"p\", \"q\", \"r\", \"s\"] |\n| 7 | \"8\" | [\"t\", \"u\", \"v\"] |\n| 8 | \"9\" | [\"w\", \"x\", \"y\", \"z\"] |\n| 9 | \"23\" | [\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"] |\n| 10 | \"29\" | [\"aw\",\"ax\",\"ay\",\"az\",\"bw\",\"bx\",\"by\",\"bz\",\"cw\",\"cx\",\"cy\",\"cz\"] |\n| 11 | \"\" | [] |\n| 12 | \"1\" | [] |\n| 13 | \"222\" | All 27 combinations of a,b,c repeated thrice |\n| 14 | \"79\" | All 16 combinations of 4-letter and 4-letter set |\n| 15 | \"234\" | 27 combinations |\n| 16 | \"45\" | 9 combinations |\n| 17 | \"89\" | 12 combinations |\n| 18 | \"33\" | [\"dd\",\"de\",\"df\",\"ed\",\"ee\",\"ef\",\"fd\",\"fe\",\"ff\"] |\n| 19 | \"567\" | 36 combinations |\n| 20 | \"76\" | 12 combinations |\n| 21 | \"2345\" | 81 combinations |\n| 22 | \"268\" | 27 combinations |\n| 23 | \"35\" | 9 combinations |\n| 24 | \"723\" | 36 combinations |\n| 25 | \"92\" | 12 combinations |\n| 26 | \"78\" | 12 combinations |\n| 27 | \"34\" | 9 combinations |\n| 28 | \"97\" | 16 combinations |\n| 29 | \"273\" | 36 combinations |\n| 30 | \"86\" | 9 combinations |\n| 31 | \"543\" | 27 combinations |\n| 32 | \"48\" | 9 combinations |\n| 33 | \"37\" | 12 combinations |\n| 34 | \"36\" | 9 combinations |\n| 35 | \"58\" | 9 combinations |\n| 36 | \"72\" | 12 combinations |\n| 37 | \"93\" | 12 combinations |\n| 38 | \"349\" | 36 combinations |\n| 39 | \"87\" | 12 combinations |\n| 40 | \"23\" | [\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"] |",
+      "example": {
+        "input": "\"23\"",
+        "output": "[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]",
+        "explanation": "Digit '2' maps to ['a','b','c'], and '3' maps to ['d','e','f'], so all combinations are formed by taking one letter from each."
+      },
+      "answer": "def letterCombinations(digits):\n    if not digits:\n        return []\n    phone_map = {\n        '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',\n        '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'\n    }\n    res = ['']\n    for digit in digits:\n        res = [prefix + letter for prefix in res for letter in phone_map[digit]]\n    return res"
+    }         
+  ]
 }
-  
