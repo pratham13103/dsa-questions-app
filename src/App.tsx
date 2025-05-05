@@ -15,6 +15,7 @@ import SearchingAlgoData from "./data/SearchingAlgo.json";
 import TwoPointersData from "./data/TwoPointers.json";
 import bitmanipulationData from "./data/bitmanipulation.json";
 import slidingwindowdata from "./data/slidingwindow.json";
+import heapsdata from "./data/heaps.json";
 
 export interface Question {
   id: number;
@@ -103,7 +104,12 @@ function App() {
       id: "bitmanipulation", // Added Linked List topic
       name: "Bit Manipulation",
       questions: bitmanipulationData.questions, // Include the linked list questions
-    }
+    },
+    {
+      id: "heaps", // Added Divide and conquer topic
+      name: "Heaps",
+      questions: heapsdata.questions,
+    },
 
   ];
 
