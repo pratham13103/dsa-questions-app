@@ -5,7 +5,7 @@ import ThemeToggle from "./components/ThemeToggle";
 import hashingData from "./data/hashing.json";
 import BTData from "./data/BT.json";
 import DivideAndConquerData from "./data/DivideAndConquer.json";
-import linkedListData from "./data/linkedlist.json"; // Importing linked list data
+import linkedListData from "./data/linkedlist.json"; // Importing linked list 
 import arrayData from "./data/arrays.json";
 import stringData from "./data/strings.json";
 import sortingData from "./data/sorting.json";
@@ -16,6 +16,8 @@ import TwoPointersData from "./data/TwoPointers.json";
 import bitmanipulationData from "./data/bitmanipulation.json";
 import slidingwindowdata from "./data/slidingwindow.json";
 import heapsdata from "./data/heaps.json";
+import MathAlgodata from "./data/MathAlgo.json";
+import segmentsdata from "./data/segments.json";
 
 export interface Question {
   id: number;
@@ -110,7 +112,16 @@ function App() {
       name: "Heaps",
       questions: heapsdata.questions,
     },
-
+    {
+      id: "mathalgo", // Added Divide and conquer topic
+      name: "Mathematical Algorithms",
+      questions: MathAlgodata.questions,
+    },
+    {
+      id: "segments", // Added Divide and conquer topic
+      name: "Segment Trees",
+      questions: segmentsdata.questions,
+    }
   ];
 
   useEffect(() => {
