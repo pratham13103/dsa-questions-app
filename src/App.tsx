@@ -5,7 +5,7 @@ import ThemeToggle from "./components/ThemeToggle";
 import hashingData from "./data/hashing.json";
 import BTData from "./data/BT.json";
 import DivideAndConquerData from "./data/DivideAndConquer.json";
-import linkedListData from "./data/linkedlist.json"; // Importing linked list 
+import linkedListData from "./data/linkedlist.json";
 import arrayData from "./data/arrays.json";
 import stringData from "./data/strings.json";
 import sortingData from "./data/sorting.json";
@@ -16,6 +16,12 @@ import TwoPointersData from "./data/TwoPointers.json";
 import bitmanipulationData from "./data/bitmanipulation.json";
 import slidingwindowdata from "./data/slidingwindow.json";
 import heapsdata from "./data/heaps.json";
+
+// ✅ Newly added imports
+import stackData from "./data/stack.json";
+import queueData from "./data/queue.json";
+import graphData from "./data/graph.json";
+import fastandslowpointersData from "./data/fastandslowpointers.json";
 
 export interface Question {
   id: number;
@@ -41,76 +47,96 @@ function App() {
 
   const topics: Topic[] = [
     {
-      id: "hashing", // Added Hashing topic
+      id: "hashing",
       name: "Hashing",
       questions: hashingData.questions,
     },
     {
-      id: "BT", // Added Binary tree topic
+      id: "BT",
       name: "Binary Tree",
       questions: BTData.questions,
     },
     {
-      id: "D&C", // Added Divide and conquer topic
+      id: "D&C",
       name: "Divide and Conquer",
       questions: DivideAndConquerData.questions,
     },
     {
-      "id": "searchingalgo",
-      "name": "Searching Algorithms",
-      "questions": SearchingAlgoData.questions
+      id: "searchingalgo",
+      name: "Searching Algorithms",
+      questions: SearchingAlgoData.questions,
     },
     {
-      "id": "twopointer",
-      "name": "Two Pointers",
-      "questions": TwoPointersData.questions
+      id: "twopointer",
+      name: "Two Pointers",
+      questions: TwoPointersData.questions,
     },
     {
-      "id": "slidingwindow",
-      "name": "Sliding Window",
-      "questions": slidingwindowdata.questions
+      id: "slidingwindow",
+      name: "Sliding Window",
+      questions: slidingwindowdata.questions,
     },
     {
-      id: "linkedlist", // Added Linked List topic
+      id: "linkedlist",
       name: "Linked List",
-      questions: linkedListData.questions, // Include the linked list questions
+      questions: linkedListData.questions,
     },
     {
-      id: "arrays", // Added Linked List topic
+      id: "arrays",
       name: "Arrays",
-      questions: arrayData.questions, // Include the linked list questions
+      questions: arrayData.questions,
     },
     {
-      id: "strings", // Added Linked List topic
+      id: "strings",
       name: "Strings",
-      questions: stringData.questions, // Include the linked list questions
+      questions: stringData.questions,
     },
     {
-      id: "sorting", // Added Linked List topic
+      id: "sorting",
       name: "Sorting",
-      questions: sortingData.questions, // Include the linked list questions
+      questions: sortingData.questions,
     },
     {
-      id: "recursion", // Added Linked List topic
+      id: "recursion",
       name: "Recursion",
-      questions: recursionData.questions, // Include the linked list questions
+      questions: recursionData.questions,
     },
     {
-      id: "backtracking", // Added Linked List topic
+      id: "backtracking",
       name: "Backtracking",
-      questions: backtrackingData.questions, // Include the linked list questions
+      questions: backtrackingData.questions,
     },
     {
-      id: "bitmanipulation", // Added Linked List topic
+      id: "bitmanipulation",
       name: "Bit Manipulation",
-      questions: bitmanipulationData.questions, // Include the linked list questions
+      questions: bitmanipulationData.questions,
     },
     {
-      id: "heaps", // Added Divide and conquer topic
+      id: "heaps",
       name: "Heaps",
       questions: heapsdata.questions,
     },
-
+    // ✅ Newly added topics below
+    {
+      id: "stack",
+      name: "Stack",
+      questions: stackData.questions,
+    },
+    {
+      id: "queue",
+      name: "Queue",
+      questions: queueData.questions,
+    },
+    {
+      id: "graph",
+      name: "Graph",
+      questions: graphData.questions,
+    },
+    {
+      id: "fastandslowpointers",
+      name: "Fast and Slow Pointers",
+      questions: fastandslowpointersData.questions,
+    },
   ];
 
   useEffect(() => {
@@ -134,9 +160,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
