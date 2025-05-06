@@ -16,6 +16,10 @@ import TwoPointersData from "./data/TwoPointers.json";
 import bitmanipulationData from "./data/bitmanipulation.json";
 import slidingwindowdata from "./data/slidingwindow.json";
 import heapsdata from "./data/heaps.json";
+import stackData from "./data/stack.json"; // Importing stack data
+import queueData from "./data/queue.json"; // Importing queue data
+import graphData from "./data/graph.json"; // Importing graph data
+import fastandslowpointersData from "./data/fastandslowpointers.json"; // Importing fast and slow pointers data
 
 export interface Question {
   id: number;
@@ -110,6 +114,27 @@ function App() {
       name: "Heaps",
       questions: heapsdata.questions,
     },
+    {
+      id: "stack", // Added Stack topic
+      name: "Stack",
+      questions: stackData.questions, // Include the stack questions
+    },
+    {
+      id: "queue", // Added Queue topic
+      name: "Queue",
+      questions: queueData.questions, // Include the queue questions
+    },
+    {
+      id : "graph", 
+      name : "Graph",
+      questions: graphData.questions
+    },
+    {
+      id : "fastandslowpointers",
+      name : "Fast and Slow Pointers",
+      questions: fastandslowpointersData.questions 
+    }
+    
 
   ];
 
