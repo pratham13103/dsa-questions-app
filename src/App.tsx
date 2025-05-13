@@ -16,6 +16,7 @@ import TwoPointersData from "./data/TwoPointers.json";
 import bitmanipulationData from "./data/bitmanipulation.json";
 import slidingwindowdata from "./data/slidingwindow.json";
 import heapsdata from "./data/heaps.json";
+import MathAlgodata from "./data/MathAlgo.json";
 
 // ✅ Newly added imports
 import stackData from "./data/stack.json";
@@ -116,7 +117,11 @@ function App() {
       name: "Heaps",
       questions: heapsdata.questions,
     },
-    // ✅ Newly added topics below
+    {
+      id: "mathalgo",
+      name: "Mathematical Algorithms",
+      questions: MathAlgodata.questions,
+    },
     {
       id: "stack",
       name: "Stack",
