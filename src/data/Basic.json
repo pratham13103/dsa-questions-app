@@ -1,0 +1,378 @@
+{
+  "questions":[
+  {
+    "id": 1,
+    "title": "Print “Hello, World!”",
+    "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | N/A | Hello, World! | Basic test |\n| 2 | N/A | Hello, World! | No input needed |\n| 3 | N/A | Hello, World! | Repeated test |\n| 4 | N/A | Hello, World! | Consistency check |\n| 5 | N/A | Hello, World! | Static output |\n| 6 | N/A | Hello, World! | Simple print |\n| 7 | N/A | Hello, World! | Output verification |\n| 8 | N/A | Hello, World! | Standard output |\n| 9 | N/A | Hello, World! | Basic functionality |\n| 10 | N/A | Hello, World! | Output check |\n| 11 | N/A | Hello, World! | Simple test |\n| 12 | N/A | Hello, World! | Output consistency |\n| 13 | N/A | Hello, World! | Basic print |\n| 14 | N/A | Hello, World! | Output test |\n| 15 | N/A | Hello, World! | Final check |",
+    "example": {
+      "input": "",
+      "output": "Hello, World!",
+      "explanation": "The program simply prints the greeting message."
+    },
+    "answer": "print(\"Hello, World!\")"
+  },
+  {
+    "id": 2,
+    "title": "Add Two Numbers",
+    "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 5 7 | 12 | Simple addition |\n| 2 | -3 10 | 7 | Negative and positive |\n| 3 | 0 0 | 0 | Zeroes |\n| 4 | 123 456 | 579 | Large numbers |\n| 5 | -5 -15 | -20 | Two negatives |\n| 6 | 1000 2000 | 3000 | Thousands addition |\n| 7 | -1000 500 | -500 | Negative and positive |\n| 8 | 999999 1 | 1000000 | Edge case |\n| 9 | -1 -1 | -2 | Small negatives |\n| 10 | 2147483647 1 | 2147483648 | Integer overflow test |\n| 11 | -2147483648 -1 | -2147483649 | Negative overflow test |\n| 12 | 0 100 | 100 | Zero and positive |\n| 13 | 0 -100 | -100 | Zero and negative |\n| 14 | 50 50 | 100 | Equal numbers |\n| 15 | -50 50 | 0 | Opposite numbers |",
+    "example": {
+      "input": "5 7",
+      "output": "12",
+      "explanation": "5 + 7 = 12"
+    },
+    "answer": "a, b = map(int, input().split())\nprint(a + b)"
+  },
+  {
+    "id": 3,
+    "title": "Convert Celsius to Fahrenheit",
+    "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 0 | 32.0 | Freezing point |\n| 2 | 100 | 212.0 | Boiling point |\n| 3 | -40 | -40.0 | Same in both scales |\n| 4 | 37 | 98.6 | Body temperature |\n| 5 | 25 | 77.0 | Room temperature |\n| 6 | -273.15 | -459.67 | Absolute zero |\n| 7 | 15.5 | 59.9 | Decimal input |\n| 8 | 30 | 86.0 | Warm day |\n| 9 | -10 | 14.0 | Negative temperature |\n| 10 | 0.5 | 32.9 | Small decimal |\n| 11 | 1000 | 1832.0 | Large temperature |\n| 12 | -1000 | -1768.0 | Large negative temperature |\n| 13 | 20 | 68.0 | Moderate temperature |\n| 14 | 50 | 122.0 | Hot day |\n| 15 | -50 | -58.0 | Cold day |",
+    "example": {
+      "input": "0",
+      "output": "32.0",
+      "explanation": "F = (0 * 9/5) + 32 = 32.0"
+    },
+    "answer": "c = float(input())\nf = (c * 9/5) + 32\nprint(f)"
+  },
+  {
+    "id": 4,
+    "title": "Find Maximum of Two Numbers",
+    "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 5 10 | 10 | Larger is second |\n| 2 | 20 10 | 20 | Larger is first |\n| 3 | -5 -10 | -5 | Negative numbers |\n| 4 | 100 100 | 100 | Equal values |\n| 5 | 0 50 | 50 | One is zero |\n| 6 | -100 0 | 0 | Negative and zero |\n| 7 | -50 -50 | -50 | Equal negatives |\n| 8 | 999999 1000000 | 1000000 | Large numbers |\n| 9 | -999999 -1000000 | -999999 | Large negatives |\n| 10 | 2147483647 0 | 2147483647 | Max int test |\n| 11 | -2147483648 -1 | -1 | Min int test |\n| 12 | 123456789 987654321 | 987654321 | Random large numbers |\n| 13 | 0 0 | 0 | Both zero |\n| 14 | -1 1 | 1 | Negative and positive |\n| 15 | 50 50 | 50 | Equal positives |",
+    "example": {
+      "input": "5 10",
+      "output": "10",
+      "explanation": "10 is greater than 5"
+    },
+    "answer": "a, b = map(int, input().split())\nprint(max(a, b))"
+  },
+  {
+    "id": 5,
+    "title": "Check Even or Odd",
+    "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 4 | Even | Standard even |\n| 2 | 7 | Odd | Standard odd |\n| 3 | 0 | Even | Zero is even |\n| 4 | -2 | Even | Negative even |\n| 5 | -3 | Odd | Negative odd |\n| 6 | 1000000 | Even | Large even |\n| 7 | 1000001 | Odd | Large odd |\n| 8 | -1000000 | Even | Large negative even |\n| 9 | -1000001 | Odd | Large negative odd |\n| 10 | 1 | Odd | Small odd |\n| 11 | 2 | Even | Small even |\n| 12 | -1 | Odd | Negative one |\n| 13 | -0 | Even | Negative zero |\n| 14 | 999999 | Odd | Large odd number |\n| 15 | 888888 | Even | Large even number |",
+    "example": {
+      "input": "4",
+      "output": "Even",
+      "explanation": "4 % 2 == 0 so it is even"
+    },
+    "answer": "n = int(input())\nprint(\"Even\" if n % 2 == 0 else \"Odd\")"
+  },
+  {
+  "id": 6,
+  "title": "Multiply Two Floating Point Numbers",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 1.2 3.4 | 4.08 | Positive floats |\n| 2 | 0.0 5.5 | 0.0 | Zero input |\n| 3 | 2.5 0.0 | 0.0 | Zero input |\n| 4 | -2.5 4.0 | -10.0 | Negative times positive |\n| 5 | -3.2 -2.0 | 6.4 | Negative times negative |\n| 6 | 0.1 0.2 | 0.02 | Small decimals |\n| 7 | 100.0 0.01 | 1.0 | Precision test |\n| 8 | 999.99 1.0 | 999.99 | Identity multiplication |\n| 9 | 1.111 1.111 | 1.234321 | Square of decimal |\n| 10 | 10.5 2.0 | 21.0 | Even output |\n| 11 | 3.3 3.3 | 10.89 | Float square |\n| 12 | 12.34 0.01 | 0.1234 | Decimal scale |\n| 13 | 1.0 1000.0 | 1000.0 | Simple identity |\n| 14 | 99999.99 0 | 0.0 | Zero input large number |\n| 15 | 123.456 0.789 | 97.442784 | Complex float multiply |",
+  "example": {
+    "input": "1.2 3.4",
+    "output": "4.08",
+    "explanation": "Multiplying 1.2 and 3.4 gives 4.08."
+  },
+  "answer": "a = float(input())\nb = float(input())\nprint(a * b)"
+},
+{
+  "id": 7,
+  "title": "Find Area of a Circle",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 1 | 3.14 | Unit radius |\n| 2 | 0 | 0.0 | Zero radius |\n| 3 | 2 | 12.56 | Small integer |\n| 4 | 3.5 | 38.465 | Float radius |\n| 5 | 10 | 314.0 | Large radius |\n| 6 | 0.1 | 0.0314 | Small decimal |\n| 7 | 5 | 78.5 | Mid-range radius |\n| 8 | 7.7 | 186.2654 | Complex decimal |\n| 9 | 100 | 31400.0 | Very large radius |\n| 10 | 12.5 | 490.625 | Float precision |\n| 11 | 1.414 | 6.28305544 | Root radius |\n| 12 | 2.2 | 15.1976 | Float example |\n| 13 | 4.4 | 60.8216 | Double float |\n| 14 | 0.01 | 0.000314 | Tiny radius |\n| 15 | 0.5 | 0.785 | Half unit radius |",
+  "example": {
+    "input": "1",
+    "output": "3.14",
+    "explanation": "Area = π * r^2 = 3.14 * 1 * 1 = 3.14."
+  },
+  "answer": "r = float(input())\nprint(3.14 * r * r)"
+},
+{
+  "id": 8,
+  "title": "Check Leap Year",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 2000 | Leap Year | Divisible by 400 |\n| 2 | 1900 | Not Leap Year | Divisible by 100 but not 400 |\n| 3 | 2020 | Leap Year | Divisible by 4 |\n| 4 | 2021 | Not Leap Year | Not divisible by 4 |\n| 5 | 2100 | Not Leap Year | Divisible by 100 only |\n| 6 | 2400 | Leap Year | Divisible by 400 |\n| 7 | 1996 | Leap Year | Divisible by 4 |\n| 8 | 1800 | Not Leap Year | Century non-leap year |\n| 9 | 1600 | Leap Year | Leap century |\n| 10 | 2024 | Leap Year | Upcoming leap year |\n| 11 | 2023 | Not Leap Year | Odd year |\n| 12 | 1988 | Leap Year | Classic leap |\n| 13 | 2022 | Not Leap Year | Common year |\n| 14 | 1700 | Not Leap Year | Century exception |\n| 15 | 1604 | Leap Year | Early leap |",
+  "example": {
+    "input": "2020",
+    "output": "Leap Year",
+    "explanation": "2020 is divisible by 4 and not by 100."
+  },
+  "answer": "year = int(input())\nif (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):\n    print(\"Leap Year\")\nelse:\n    print(\"Not Leap Year\")"
+},
+{
+  "id": 9,
+  "title": "Reverse a Number",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 123 | 321 | Basic case |\n| 2 | 100 | 1 | Leading zero dropped |\n| 3 | 4567 | 7654 | Normal case |\n| 4 | 0 | 0 | Zero input |\n| 5 | 101 | 101 | Palindrome number |\n| 6 | 9000 | 9 | Ending in zeros |\n| 7 | 111 | 111 | All same digits |\n| 8 | 1 | 1 | Single digit |\n| 9 | 876543 | 345678 | Large reverse |\n| 10 | 808 | 808 | Palindrome |\n| 11 | 1200 | 21 | Drop zeros |\n| 12 | 3333 | 3333 | All same large |\n| 13 | 123456789 | 987654321 | Full reverse |\n| 14 | 1001 | 1001 | Palindrome large |\n| 15 | 999 | 999 | Same digit test |",
+  "example": {
+    "input": "123",
+    "output": "321",
+    "explanation": "Reversed 123 becomes 321."
+  },
+  "answer": "n = int(input())\nrev = 0\nwhile n > 0:\n    rev = rev * 10 + n % 10\n    n //= 10\nprint(rev)"
+},
+{
+  "id": 10,
+  "title": "Count Digits in a Number",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 123 | 3 | 3 digits |\n| 2 | 0 | 1 | Edge case |\n| 3 | 99999 | 5 | Max digits |\n| 4 | 1 | 1 | Single digit |\n| 5 | 1234567890 | 10 | Long number |\n| 6 | 1000 | 4 | Leading zeros ignored |\n| 7 | 101 | 3 | Zeros in middle |\n| 8 | 11 | 2 | Short number |\n| 9 | 100000 | 6 | Six digits |\n| 10 | 987654 | 6 | Reverse series |\n| 11 | 22 | 2 | Repeat digit |\n| 12 | 12345 | 5 | Middle range |\n| 13 | 9 | 1 | Max single |\n| 14 | 100 | 3 | Leading zero ends |\n| 15 | 8080 | 4 | Alternating digits |",
+  "example": {
+    "input": "12345",
+    "output": "5",
+    "explanation": "12345 has 5 digits."
+  },
+  "answer": "n = int(input())\nif n == 0:\n    print(1)\nelse:\n    count = 0\n    while n > 0:\n        n //= 10\n        count += 1\n    print(count)"
+},
+{
+  "id": 11,
+  "title": "Check if Number is Prime",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 2 | Prime | Smallest prime |\n| 2 | 3 | Prime | Prime number |\n| 3 | 4 | Not Prime | First even non-prime |\n| 4 | 5 | Prime | Odd prime |\n| 5 | 1 | Not Prime | Edge case |\n| 6 | 0 | Not Prime | Edge case |\n| 7 | -5 | Not Prime | Negative number |\n| 8 | 11 | Prime | Prime test |\n| 9 | 15 | Not Prime | Divisible by 3 and 5 |\n| 10 | 17 | Prime | Prime number |\n| 11 | 19 | Prime | Odd prime |\n| 12 | 21 | Not Prime | Divisible by 3 and 7 |\n| 13 | 23 | Prime | Prime test |\n| 14 | 25 | Not Prime | Square of 5 |\n| 15 | 29 | Prime | Last in 20s |\n| 16 | 31 | Prime | Prime |\n| 17 | 33 | Not Prime | Odd non-prime |\n| 18 | 97 | Prime | Large prime |\n| 19 | 99 | Not Prime | Composite |\n| 20 | 101 | Prime | 3-digit prime |",
+  "example": {
+    "input": "7",
+    "output": "Prime",
+    "explanation": "7 is a prime number (only divisible by 1 and itself)."
+  },
+  "answer": "n = int(input())\nif n <= 1:\n    print(\"Not Prime\")\nelse:\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            print(\"Not Prime\")\n            break\n    else:\n        print(\"Prime\")"
+},
+{
+  "id": 12,
+  "title": "Calculate Factorial",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 0 | 1 | 0! is 1 |\n| 2 | 1 | 1 | 1! is 1 |\n| 3 | 2 | 2 | 2 × 1 |\n| 4 | 3 | 6 | 3 × 2 × 1 |\n| 5 | 4 | 24 | Normal case |\n| 6 | 5 | 120 | Standard factorial |\n| 7 | 6 | 720 | Mid range |\n| 8 | 7 | 5040 | Higher value |\n| 9 | 8 | 40320 | Large |\n| 10 | 9 | 362880 | Bigger number |\n| 11 | 10 | 3628800 | Max test case |\n| 12 | -1 | Invalid | Negative input |\n| 13 | -5 | Invalid | Error condition |\n| 14 | 11 | 39916800 | Larger factorial |\n| 15 | 12 | 479001600 | Boundary |\n| 16 | 13 | 6227020800 | Overflow warning |\n| 17 | 14 | 87178291200 | Increasing |\n| 18 | 15 | 1307674368000 | High value |\n| 19 | 20 | 2432902008176640000 | Very large |\n| 20 | -10 | Invalid | Negative input |",
+  "example": {
+    "input": "5",
+    "output": "120",
+    "explanation": "5! = 5 × 4 × 3 × 2 × 1 = 120"
+  },
+  "answer": "n = int(input())\nif n < 0:\n    print(\"Invalid\")\nelse:\n    fact = 1\n    for i in range(1, n + 1):\n        fact *= i\n    print(fact)"
+},
+{
+  "id": 13,
+  "title": "Find the Largest of Three Numbers",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 1 2 3 | 3 | Third is max |\n| 2 | 3 2 1 | 3 | First is max |\n| 3 | 2 3 1 | 3 | Middle is max |\n| 4 | 5 5 5 | 5 | All equal |\n| 5 | -1 -2 -3 | -1 | Negative numbers |\n| 6 | 0 1 2 | 2 | Positive max |\n| 7 | -1 0 -2 | 0 | Zero in middle |\n| 8 | 10 20 30 | 30 | Max at end |\n| 9 | 100 50 99 | 100 | First is max |\n| 10 | 5 9 5 | 9 | Middle max |\n| 11 | 9 9 3 | 9 | Tie case |\n| 12 | -5 -5 -5 | -5 | Equal negatives |\n| 13 | 0 0 0 | 0 | All zero |\n| 14 | 1 2 2 | 2 | Tie max |\n| 15 | -10 -2 -3 | -2 | Max is least negative |\n| 16 | 99 100 99 | 100 | Clear max |\n| 17 | 1 100 1 | 100 | Center max |\n| 18 | 100 1 1 | 100 | First is max |\n| 19 | 1 1 100 | 100 | Third max |\n| 20 | 50 50 100 | 100 | Third max again |",
+  "example": {
+    "input": "10 20 30",
+    "output": "30",
+    "explanation": "30 is the largest among 10, 20, and 30."
+  },
+  "answer": "a = int(input())\nb = int(input())\nc = int(input())\nprint(max(a, b, c))"
+},
+{
+  "id": 14,
+  "title": "Check Even or Odd",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 2 | Even | Small even |\n| 2 | 3 | Odd | Small odd |\n| 3 | 0 | Even | Zero is even |\n| 4 | -2 | Even | Negative even |\n| 5 | -3 | Odd | Negative odd |\n| 6 | 100 | Even | Large even |\n| 7 | 101 | Odd | Large odd |\n| 8 | 999 | Odd | High odd |\n| 9 | 998 | Even | High even |\n| 10 | 7 | Odd | Prime odd |\n| 11 | 6 | Even | Prime even |\n| 12 | 11 | Odd | Double digit odd |\n| 13 | 14 | Even | Div by 2 |\n| 14 | -101 | Odd | Negative large |\n| 15 | -100 | Even | Negative even |\n| 16 | 2000 | Even | Large number |\n| 17 | 1 | Odd | Smallest odd |\n| 18 | 8 | Even | Cube number |\n| 19 | 9 | Odd | Cube odd |\n| 20 | 12 | Even | Dozen |",
+  "example": {
+    "input": "5",
+    "output": "Odd",
+    "explanation": "5 is not divisible by 2, so it's odd."
+  },
+  "answer": "n = int(input())\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")"
+},
+{
+  "id": 15,
+  "title": "Check Positive, Negative, or Zero",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n| ---------- | ----- | --------------- | ----- |\n| 1 | 1 | Positive | Basic positive |\n| 2 | -1 | Negative | Basic negative |\n| 3 | 0 | Zero | Neutral |\n| 4 | 100 | Positive | Large positive |\n| 5 | -100 | Negative | Large negative |\n| 6 | 9999 | Positive | High input |\n| 7 | -9999 | Negative | Low input |\n| 8 | 50 | Positive | Mid-range |\n| 9 | -50 | Negative | Mid negative |\n| 10 | 10 | Positive | Double digit |\n| 11 | -10 | Negative | Double negative |\n| 12 | 0 | Zero | Repeat test |\n| 13 | 999 | Positive | Almost 1k |\n| 14 | -0 | Zero | Edge case |\n| 15 | 123 | Positive | Regular |\n| 16 | -321 | Negative | Reversed input |\n| 17 | 5 | Positive | Prime positive |\n| 18 | -7 | Negative | Prime negative |\n| 19 | 8 | Positive | Even positive |\n| 20 | -8 | Negative | Even negative |",
+  "example": {
+    "input": "-3",
+    "output": "Negative",
+    "explanation": "-3 is less than 0, so it's negative."
+  },
+  "answer": "n = int(input())\nif n > 0:\n    print(\"Positive\")\nelif n < 0:\n    print(\"Negative\")\nelse:\n    print(\"Zero\")"
+},
+{
+  "id": 16,
+  "title": "Swap Two Variables",
+  "description": "| Test Cases | Input A | Input B | Output A | Output B | Notes |\n|------------|---------|---------|----------|----------|-------|\n| 1 | 5 | 10 | 10 | 5 | Basic swap |\n| 2 | -1 | 3 | 3 | -1 | Negative and positive |\n| 3 | 0 | 7 | 7 | 0 | One zero |\n| 4 | 100 | 200 | 200 | 100 | Large values |\n| 5 | -50 | -25 | -25 | -50 | Both negative |\n| 6 | 999 | 1 | 1 | 999 | High-low swap |\n| 7 | 7 | 7 | 7 | 7 | Same values |\n| 8 | -1000 | 0 | 0 | -1000 | Edge case |\n| 9 | 1 | -1 | -1 | 1 | One positive, one negative |\n| 10 | 123 | 321 | 321 | 123 | Reverse digits swap |",
+  "example": {
+    "input": "a = 5\nb = 10",
+    "output": "a = 10\nb = 5",
+    "explanation": "The values are swapped using a temporary variable."
+  },
+  "answer": "a = int(input(\"Enter first number: \"))\nb = int(input(\"Enter second number: \"))\ntemp = a\na = b\nb = temp\nprint(\"a =\", a)\nprint(\"b =\", b)"
+},
+{
+  "id": 17,
+  "title": "Simple Interest Calculator",
+  "description": "| Test Cases | Principal | Rate (%) | Time (yrs) | Interest | Notes |\n|------------|-----------|----------|-------------|----------|-------|\n| 1 | 1000 | 5 | 2 | 100.0 | Basic |\n| 2 | 1200 | 4.5 | 3 | 162.0 | Float rate |\n| 3 | 500 | 10 | 1 | 50.0 | Short term |\n| 4 | 1500 | 7 | 4 | 420.0 | Large time |\n| 5 | 2000 | 0 | 5 | 0.0 | Zero interest |\n| 6 | 0 | 5 | 3 | 0.0 | Zero principal |\n| 7 | 2500 | 3.5 | 2 | 175.0 | Decimal rate |\n| 8 | 800 | 6 | 2.5 | 120.0 | Fractional time |\n| 9 | 1000 | 100 | 1 | 1000.0 | High rate |\n| 10 | 1000 | 5 | 0 | 0.0 | Zero time |",
+  "example": {
+    "input": "principal = 1000\nrate = 5\ntime = 2",
+    "output": "Simple Interest = 100.0",
+    "explanation": "Using SI = (P × R × T) / 100 → (1000 × 5 × 2)/100 = 100.0"
+  },
+  "answer": "p = float(input(\"Enter principal: \"))\nr = float(input(\"Enter rate: \"))\nt = float(input(\"Enter time: \"))\nsi = (p * r * t) / 100\nprint(\"Simple Interest =\", si)"
+},
+{
+  "id": 18,
+  "title": "Compound Interest Calculator",
+  "description": "| Test Cases | Principal | Rate (%) | Time (yrs) | Interest | Notes |\n|------------|-----------|----------|-------------|----------|-------|\n| 1 | 1000 | 5 | 2 | 102.5 | Standard |\n| 2 | 1500 | 4 | 3 | 187.49 | Large principal |\n| 3 | 2000 | 0 | 4 | 0.0 | Zero rate |\n| 4 | 500 | 10 | 1 | 50.0 | High rate short term |\n| 5 | 1000 | 5 | 0 | 0.0 | Zero time |\n| 6 | 1200 | 6.5 | 2.5 | 203.88 | Fractional time |\n| 7 | 0 | 10 | 2 | 0.0 | Zero principal |\n| 8 | 10000 | 3 | 5 | 1592.74 | Big numbers |\n| 9 | 100 | 100 | 1 | 100.0 | High rate |\n| 10 | 750 | 5.5 | 3 | 131.46 | Average case |",
+  "example": {
+    "input": "principal = 1000\nrate = 5\ntime = 2",
+    "output": "Compound Interest = 102.5",
+    "explanation": "Using CI = P * ((1 + R/100)^T - 1) → 1000 × ((1.05)^2 - 1) = 102.5"
+  },
+  "answer": "p = float(input(\"Enter principal: \"))\nr = float(input(\"Enter rate: \"))\nt = float(input(\"Enter time: \"))\nci = p * ((1 + r / 100) ** t - 1)\nprint(\"Compound Interest =\", round(ci, 2))"
+},
+{
+  "id": 19,
+  "title": "Sum of Digits of a Number",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n|------------|-------|------------------|-------|\n| 1 | 123 | 6 | 1+2+3 = 6 |\n| 2 | 4567 | 22 | Sum of 4+5+6+7 |\n| 3 | 0 | 0 | Edge case |\n| 4 | 9 | 9 | Single digit |\n| 5 | 1001 | 2 | 1+0+0+1 |\n| 6 | 999 | 27 | All same digits |\n| 7 | 10 | 1 | Includes 0 |\n| 8 | 321 | 6 | Reverse of 123 |\n| 9 | 1111 | 4 | Repeated ones |\n| 10 | 9876 | 30 | Large sum |",
+  "example": {
+    "input": "123",
+    "output": "6",
+    "explanation": "Sum of digits: 1 + 2 + 3 = 6"
+  },
+  "answer": "n = int(input())\ntotal = 0\nwhile n > 0:\n    total += n % 10\n    n //= 10\nprint(total)"
+},
+{
+  "id": 20,
+  "title": "Check Palindrome Number",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n|------------|-------|------------------|-------|\n| 1 | 121 | Palindrome | Same forwards & backwards |\n| 2 | 123 | Not Palindrome | Different in reverse |\n| 3 | 0 | Palindrome | Edge case |\n| 4 | 9 | Palindrome | Single digit |\n| 5 | 11 | Palindrome | Double digits |\n| 6 | 1221 | Palindrome | Even digits |\n| 7 | 1001 | Palindrome | Includes 0s |\n| 8 | 12321 | Palindrome | Odd digits |\n| 9 | 1231 | Not Palindrome | Near miss |\n| 10 | 98789 | Palindrome | Larger number |",
+  "example": {
+    "input": "121",
+    "output": "Palindrome",
+    "explanation": "121 reversed is still 121."
+  },
+  "answer": "n = int(input())\noriginal = n\nreverse = 0\nwhile n > 0:\n    digit = n % 10\n    reverse = reverse * 10 + digit\n    n //= 10\nif original == reverse:\n    print(\"Palindrome\")\nelse:\n    print(\"Not Palindrome\")"
+},
+{
+  "id": 21,
+  "title": "Count Vowels in a String",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n|------------|-------|------------------|-------|\n| 1 | hello | 2 | e, o |\n| 2 | world | 1 | o |\n| 3 | abcde | 2 | a, e |\n| 4 | xyz | 0 | No vowels |\n| 5 | AEIOU | 5 | All capital vowels |\n| 6 | python | 1 | o only |\n| 7 | OpenAI | 4 | o, e, A, I |\n| 8 | rhythm | 0 | No vowels |\n| 9 | Education | 5 | e, u, a, i, o |\n| 10 | Vowels | 2 | o, e |",
+  "example": {
+    "input": "hello",
+    "output": "2",
+    "explanation": "The vowels in 'hello' are 'e' and 'o'."
+  },
+  "answer": "s = input()\nvowels = 'aeiouAEIOU'\ncount = 0\nfor ch in s:\n    if ch in vowels:\n        count += 1\nprint(count)"
+},
+{
+  "id": 22,
+  "title": "Calculate Power of a Number",
+  "description": "| Test Cases | Base | Exponent | Expected Output | Notes |\n|------------|------|----------|-----------------|-------|\n| 1  | 2  | 3  | 8    | 2^3 = 8 |\n| 2  | 5  | 0  | 1    | Any number^0 = 1 |\n| 3  | 10 | 2  | 100  | 10^2 = 100 |\n| 4  | 3  | 4  | 81   | 3^4 = 81 |\n| 5  | 7  | 1  | 7    | Exponent 1 |\n| 6  | 0  | 5  | 0    | 0 to any positive power = 0 |\n| 7  | 1  | 100| 1    | 1 to any power = 1 |\n| 8  | 2  | 10 | 1024 | Larger power |\n| 9  | 4  | 3  | 64   | 4^3 = 64 |\n| 10 | 6  | 2  | 36   | 6^2 = 36 |\n| 11 | 9  | 0  | 1    | Zero exponent again |\n| 12 | 2  | 5  | 32   | 2^5 = 32 |\n| 13 | 3  | 0  | 1    | Zero exponent |\n| 14 | 8  | 2  | 64   | 8^2 = 64 |\n| 15 | 5  | 3  | 125  | 5^3 = 125 |\n| 16 | 2  | 1  | 2    | Power 1 |\n| 17 | 10 | 0  | 1    | Zero exponent |\n| 18 | 0  | 0  | 1    | 0^0 is generally 1 in programming |\n| 19 | 7  | 2  | 49   | 7^2 = 49 |\n| 20 | 2  | 8  | 256  | 2^8 = 256 |",
+  "example": {
+    "input": "2 3",
+    "output": "8",
+    "explanation": "2 raised to the power 3 is 8."
+  },
+  "answer": "base, exp = map(int, input().split())\nresult = 1\nfor _ in range(exp):\n    result *= base\nprint(result)"
+},
+{
+  "id": 23,
+  "title": "Convert Decimal to Binary",
+  "description": "| Test Cases | Input (Decimal) | Expected Output (Binary) | Notes |\n|------------|-----------------|--------------------------|-------|\n| 1  | 0   | 0        | Edge case, zero |\n| 2  | 1   | 1        | Smallest positive |\n| 3  | 2   | 10       | First binary with two digits |\n| 4  | 5   | 101      | Mixed bits |\n| 5  | 10  | 1010     | Larger number |\n| 6  | 15  | 1111     | All ones |\n| 7  | 16  | 10000    | Power of two |\n| 8  | 31  | 11111    | All ones, larger |\n| 9  | 32  | 100000   | Power of two |\n| 10 | 100 | 1100100  | Larger decimal |\n| 11 | 255 | 11111111 | Max 8-bit number |\n| 12 | 4   | 100      | Small power of two |\n| 13 | 7   | 111      | Just below power of two |\n| 14 | 3   | 11       | Two bit number |\n| 15 | 50  | 110010   | Random number |\n| 16 | 64  | 1000000  | Power of two |\n| 17 | 127 | 1111111  | 7-bit max |\n| 18 | 20  | 10100    | Mixed bits |\n| 19 | 8   | 1000     | Power of two |\n| 20 | 13  | 1101     | Random number |",
+  "example": {
+    "input": "10",
+    "output": "1010",
+    "explanation": "Decimal 10 in binary is 1010."
+  },
+  "answer": "n = int(input())\nif n == 0:\n    print(0)\nelse:\n    binary = ''\n    while n > 0:\n        binary = str(n % 2) + binary\n        n //= 2\n    print(binary)"
+},
+{
+  "id": 24,
+  "title": "Find Fibonacci Series up to N",
+  "description": "| Test Cases | Input (N) | Expected Output | Notes |\n|------------|-----------|-----------------|-------|\n| 1 | 0   |             | No output |\n| 2 | 1   | 0           | First element only |\n| 3 | 2   | 0 1         | Two elements |\n| 4 | 5   | 0 1 1 2 3   | Standard test |\n| 5 | 10  | 0 1 1 2 3 5 8 | N=10 as limit |\n| 6 | 13  | 0 1 1 2 3 5 8 13 | Includes 13 |\n| 7 | 20  | 0 1 1 2 3 5 8 13 | Stops before 21 |\n| 8 | 21  | 0 1 1 2 3 5 8 13 21 | Includes 21 |\n| 9 | 50  | 0 1 1 2 3 5 8 13 21 34 | Larger N |\n| 10 | 100 | 0 1 1 2 3 5 8 13 21 34 55 89 | N=100 boundary |",
+  "example": {
+    "input": "10",
+    "output": "0 1 1 2 3 5 8",
+    "explanation": "Fibonacci series up to 10 includes values less than or equal to 10."
+  },
+  "answer": "n = int(input())\na, b = 0, 1\nwhile a <= n:\n    print(a, end=' ')\n    a, b = b, a + b"
+},
+{
+  "id": 25,
+  "title": "Reverse a String",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n|------------|-------|------------------|-------|\n| 1 | hello     | olleh        | Lowercase test |\n| 2 | world     | dlrow        | Common word |\n| 3 | a         | a            | Single char |\n| 4 | ab        | ba           | Two chars |\n| 5 | racecar   | racecar      | Palindrome |\n| 6 | Python    | nohtyP       | Capital letters |\n| 7 | 12345     | 54321        | Numbers as string |\n| 8 | abcd123   | 321dcba      | Alphanumeric |\n| 9 | ''        | ''           | Empty string |\n| 10 | test case | esac tset   | With space |",
+  "example": {
+    "input": "hello",
+    "output": "olleh",
+    "explanation": "Reversing 'hello' gives 'olleh'."
+  },
+  "answer": "s = input()\nprint(s[::-1])"
+},
+{
+  "id": 26,
+  "title": "Check Anagram of Two Strings",
+  "description": "| Test Cases | Input 1 | Input 2 | Expected Output | Notes |\n|------------|---------|----------|------------------|-------|\n| 1 | listen   | silent   | Yes | Simple anagram |\n| 2 | triangle | integral | Yes | Common anagram |\n| 3 | apple    | pplea    | Yes | Scrambled letters |\n| 4 | hello    | world    | No  | Different letters |\n| 5 | a        | a        | Yes | Single char |\n| 6 | ab       | ba       | Yes | Two letters |\n| 7 | abcd     | dcba     | Yes | Reverse order |\n| 8 | abc      | ab       | No  | Different lengths |\n| 9 |     |      | Yes | Empty strings |\n| 10 | AaBb    | bBaA     | Yes | Case insensitive if normalized |",
+  "example": {
+    "input": "listen\nsilent",
+    "output": "Yes",
+    "explanation": "Both strings contain the same characters in different order, so they are anagrams."
+  },
+  "answer": "s1 = input().replace(' ', '').lower()\ns2 = input().replace(' ', '').lower()\nif sorted(s1) == sorted(s2):\n    print(\"Yes\")\nelse:\n    print(\"No\")"
+},
+{
+  "id": 27,
+  "title": "Find GCD of Two Numbers",
+  "description": "| Test Cases | Input A | Input B | Expected Output | Notes |\n|------------|---------|---------|------------------|-------|\n| 1  | 0   | 0   | 0    | Edge case, both zero |\n| 2  | 0   | 5   | 5    | One zero |\n| 3  | 5   | 0   | 5    | One zero |\n| 4  | 5   | 10  | 5    | One is multiple of other |\n| 5  | 10  | 15  | 5    | Common divisor |\n| 6  | 7   | 13  | 1    | Co-prime |\n| 7  | 100 | 25  | 25   | Divides perfectly |\n| 8  | 12  | 18  | 6    | Common factors |\n| 9  | 81  | 27  | 27   | Power of a factor |\n| 10 | 56  | 98  | 14   | Real-world example |\n| 11 | 60  | 48  | 12   | Multiple factors |\n| 12 | 101 | 103 | 1    | Large co-primes |\n| 13 | 14  | 49  | 7    | Factor within |\n| 14 | 99  | 121 | 11   | Mixed prime multiples |\n| 15 | 24  | 36  | 12   | Classic GCD |\n| 16 | 120 | 80  | 40   | Large inputs |\n| 17 | 18  | 42  | 6    | Arbitrary inputs |\n| 18 | 270 | 192 | 6    | Euclidean GCD test |\n| 19 | 37  | 600 | 1    | Prime vs composite |\n| 20 | 1   | 1   | 1    | Smallest positive case |",
+  "example": {
+    "input": "36\n60",
+    "output": "12",
+    "explanation": "The greatest common divisor of 36 and 60 is 12."
+  },
+  "answer": "a = int(input())\nb = int(input())\nwhile b:\n    a, b = b, a % b\nprint(a)"
+},
+{
+  "id": 28,
+  "title": "Find LCM of Two Numbers",
+  "description": "| Test Cases | Input A | Input B | Expected Output | Notes |\n|------------|---------|---------|------------------|-------|\n| 1  | 0   | 0   | 0      | Edge case |\n| 2  | 0   | 7   | 0      | One zero |\n| 3  | 6   | 0   | 0      | One zero |\n| 4  | 5   | 10  | 10     | Multiple relation |\n| 5  | 7   | 3   | 21     | Co-prime |\n| 6  | 8   | 12  | 24     | Small LCM |\n| 7  | 15  | 20  | 60     | Common multiples |\n| 8  | 9   | 6   | 18     | Shared factor |\n| 9  | 21  | 6   | 42     | Real-life example |\n| 10 | 14  | 28  | 28     | One is multiple |\n| 11 | 100 | 25  | 100    | Divides perfectly |\n| 12 | 13  | 17  | 221    | Large prime inputs |\n| 13 | 30  | 45  | 90     | General case |\n| 14 | 36  | 60  | 180    | Same example as GCD |\n| 15 | 1   | 99  | 99     | Minimum multiplier |\n| 16 | 100 | 200 | 200    | One divides other |\n| 17 | 18  | 42  | 126    | Complex LCM |\n| 18 | 270 | 192 | 8640   | Euclidean check |\n| 19 | 50  | 75  | 150    | Common real values |\n| 20 | 11  | 121 | 121    | One is square of other |",
+  "example": {
+    "input": "12\n15",
+    "output": "60",
+    "explanation": "LCM(12, 15) = 12 × 15 / GCD(12, 15) = 180 / 3 = 60."
+  },
+  "answer": "a = int(input())\nb = int(input())\ndef gcd(x, y):\n    while y:\n        x, y = y, x % y\n    return x\nlcm = abs(a * b) // gcd(a, b) if a and b else 0\nprint(lcm)"
+},
+{
+  "id": 29,
+  "title": "Count Words in a String",
+  "description": "| Test Cases | Input String | Expected Output | Notes |\n|------------|--------------|------------------|-------|\n| 1  | \"\" | 0 | Empty string |\n| 2  | \"Hello\" | 1 | Single word |\n| 3  | \"Hello World\" | 2 | Two words |\n| 4  | \"  Leading spaces\" | 2 | Leading space ignored |\n| 5  | \"Trailing spaces   \" | 2 | Trailing space ignored |\n| 6  | \"Multiple   spaces between words\" | 4 | Multiple spaces handled |\n| 7  | \" One two three \" | 3 | Surrounded by spaces |\n| 8  | \"word1 word2 word3 word4\" | 4 | Standard case |\n| 9  | \"   \" | 0 | Only spaces |\n| 10 | \"New\\nLine\" | 2 | Line break counts as separator |\n| 11 | \"Tab\\tseparated words\" | 3 | Tabs count as separators |\n| 12 | \"Mix of\\n spaces\\tand tabs\" | 5 | Mixed separators |\n| 13 | \"Word1, Word2, Word3\" | 3 | Punctuation-separated words |\n| 14 | \"123 456 789\" | 3 | Numbers as words |\n| 15 | \"Hello-World\" | 1 | Hyphenated word counts as one |\n| 16 | \"One.Word,Two\" | 2 | Period counts as separator |\n| 17 | \"Wow! So cool.\" | 3 | With punctuation |\n| 18 | \"word 1word anotherWord\" | 3 | Compound words |\n| 19 | \"word\\n\\t\\nword\" | 2 | Whitespace variety |\n| 20 | \"End.\" | 1 | With period at end |",
+  "example": {
+    "input": "Hello from OpenAI",
+    "output": "3",
+    "explanation": "The input contains 3 space-separated words."
+  },
+  "answer": "s = input()\nwords = s.split()\nprint(len(words))"
+},
+{
+  "id": 30,
+  "title": "Convert Binary to Decimal",
+  "description": "| Test Cases | Input (Binary) | Expected Output (Decimal) | Notes |\n|------------|----------------|----------------------------|-------|\n| 1  | 0     | 0     | Edge case |\n| 2  | 1     | 1     | Smallest positive |\n| 3  | 10    | 2     | Basic binary |\n| 4  | 101   | 5     | Mixed bits |\n| 5  | 110   | 6     | Simple binary |\n| 6  | 1111  | 15    | All ones |\n| 7  | 1000  | 8     | Power of 2 |\n| 8  | 1010  | 10    | Common value |\n| 9  | 1101  | 13    | Random binary |\n| 10 | 100000 | 32    | High bit |\n| 11 | 11111111 | 255 | Max 8-bit binary |\n| 12 | 1001001 | 73   | Arbitrary binary |\n| 13 | 1001 | 9      | Odd binary |\n| 14 | 110011 | 51    | Mixed pattern |\n| 15 | 100110 | 38    | Random pattern |\n| 16 | 101010 | 42    | Alternating bits |\n| 17 | 111000 | 56    | Leading ones |\n| 18 | 00001111 | 15  | Leading zeros |\n| 19 | 1111111111 | 1023 | 10-bit max |\n| 20 | 100000000 | 256 | Power of 2 high |",
+  "example": {
+    "input": "1010",
+    "output": "10",
+    "explanation": "Binary 1010 is decimal 10."
+  },
+  "answer": "binary = input()\ndecimal = 0\nfor digit in binary:\n    decimal = decimal * 2 + int(digit)\nprint(decimal)"
+},
+{
+  "id": 31,
+  "title": "Check Armstrong Number",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n|------------|-------|------------------|-------|\n| 1  | 0   | Yes | Edge case |\n| 2  | 1   | Yes | Single digit |\n| 3  | 5   | Yes | Single digit |\n| 4  | 9   | Yes | Single digit |\n| 5  | 10  | No  | Not Armstrong |\n| 6  | 153 | Yes | Classic Armstrong |\n| 7  | 370 | Yes | 3-digit Armstrong |\n| 8  | 371 | Yes | 3-digit Armstrong |\n| 9  | 407 | Yes | 3-digit Armstrong |\n| 10 | 100 | No  | 3-digit non-Armstrong |\n| 11 | 1634 | Yes | 4-digit Armstrong |\n| 12 | 9474 | Yes | 4-digit Armstrong |\n| 13 | 9475 | No  | Near Armstrong |\n| 14 | 8208 | Yes | 4-digit |\n| 15 | 407 | Yes | Repeated test |\n| 16 | 9474 | Yes | Repeated test |\n| 17 | 9475 | No  | Non-Armstrong |\n| 18 | 9926315 | Yes | 7-digit Armstrong |\n| 19 | 100000 | No | Large non-Armstrong |\n| 20 | 0 | Yes | Zero case |",
+  "example": {
+    "input": "153",
+    "output": "Yes",
+    "explanation": "1³ + 5³ + 3³ = 153, so it's an Armstrong number."
+  },
+  "answer": "n = int(input())\ntemp = n\ndigits = len(str(n))\nsum_ = 0\nwhile temp:\n    sum_ += (temp % 10) ** digits\n    temp //= 10\nprint(\"Yes\" if sum_ == n else \"No\")"
+},
+{
+  "id": 32,
+  "title": "Check Palindrome String",
+  "description": "| Test Cases | Input | Expected Output | Notes |\n|------------|--------|------------------|-------|\n| 1  | \"\"     | Yes | Empty is palindrome |\n| 2  | \"a\"    | Yes | Single letter |\n| 3  | \"aa\"   | Yes | Two same letters |\n| 4  | \"ab\"   | No  | Not a palindrome |\n| 5  | \"aba\"  | Yes | Classic case |\n| 6  | \"abba\" | Yes | Even length |\n| 7  | \"abcba\" | Yes | Odd length |\n| 8  | \"abcde\" | No  | Clearly not |\n| 9  | \"racecar\" | Yes | Palindrome |\n| 10 | \"RaceCar\" | No | Case-sensitive |\n| 11 | \"madam\" | Yes | Common example |\n| 12 | \"12321\" | Yes | Number string |\n| 13 | \"123321\" | Yes | Even numeric |\n| 14 | \"123456\" | No  | Not palindrome |\n| 15 | \"Noon\" | No | Case-sensitive |\n| 16 | \"noon\" | Yes | Case-corrected |\n| 17 | \"a b a\" | No | Spaces break symmetry |\n| 18 | \" abba \" | No | Whitespace matters |\n| 19 | \"nurses run\" | No | Needs cleaning to match |\n| 20 | \"level\" | Yes | Valid palindrome |",
+  "example": {
+    "input": "madam",
+    "output": "Yes",
+    "explanation": "The string reads the same forwards and backwards."
+  },
+  "answer": "s = input()\nprint(\"Yes\" if s == s[::-1] else \"No\")"
+},
+{
+  "id": 33,
+  "title": "Count Uppercase and Lowercase Letters in a String",
+  "description": "| Test Case | Input | Expected Output | Notes |\n|-----------|-------|------------------|-------|\n| 1 | Hello | Uppercase: 1, Lowercase: 4 | Mixed case |\n| 2 | WORLD | Uppercase: 5, Lowercase: 0 | All uppercase |\n| 3 | python | Uppercase: 0, Lowercase: 6 | All lowercase |\n| 4 | PyThOn | Uppercase: 3, Lowercase: 3 | Alternating |\n| 5 | 123abcDEF | Uppercase: 3, Lowercase: 3 | Includes digits |\n| 6 | '' | Uppercase: 0, Lowercase: 0 | Empty string |\n| 7 | C0d3InG | Uppercase: 3, Lowercase: 3 | With digits |\n| 8 | aBcDeFgHiJ | Uppercase: 5, Lowercase: 5 | Alternating letters |\n| 9 | #@Hello | Uppercase: 1, Lowercase: 4 | With symbols |\n| 10 | JavaSCRIPT | Uppercase: 8, Lowercase: 2 | Complex case |",
+  "example": {
+    "input": "HeLLo",
+    "output": "Uppercase: 3, Lowercase: 2",
+    "explanation": "H, L, L are uppercase; e, o are lowercase."
+  },
+  "answer": "s = input()\nupper = 0\nlower = 0\nfor ch in s:\n    if ch.isupper():\n        upper += 1\n    elif ch.islower():\n        lower += 1\nprint(f\"Uppercase: {upper}, Lowercase: {lower}\")"
+},
+{
+  "id": 34,
+  "title": "Count Frequency of Characters in a String",
+  "description": "| Test Case | Input | Expected Output | Notes |\n|-----------|-------|------------------|-------|\n| 1 | hello | h:1 e:1 l:2 o:1 | Simple case |\n| 2 | aabbcc | a:2 b:2 c:2 | Repeating chars |\n| 3 | abcABC | a:1 b:1 c:1 A:1 B:1 C:1 | Case-sensitive |\n| 4 | 123321 | 1:2 2:2 3:2 | Numeric string |\n| 5 | '' | (empty) | Empty string |\n| 6 | aaAA | a:2 A:2 | Case matters |\n| 7 | python3.9 | p:1 y:1 t:1 h:1 o:1 n:1 3:1 .:1 9:1 | With symbols |\n| 8 |   | ' ':1 | Space only |\n| 9 | a b a b | a:2 b:2 ' ':2 | With spaces |\n| 10 | $$$$ | $:4 | Special characters only |",
+  "example": {
+    "input": "banana",
+    "output": "b:1 a:3 n:2",
+    "explanation": "b occurs once, a three times, n twice."
+  },
+  "answer": "s = input()\nfreq = {}\nfor ch in s:\n    freq[ch] = freq.get(ch, 0) + 1\nfor k in sorted(freq):\n    print(f\"{k}:{freq[k]}\", end=' ')"
+}
+]
+}
