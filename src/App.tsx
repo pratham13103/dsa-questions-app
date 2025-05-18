@@ -24,6 +24,7 @@ import stackData from "./data/stack.json";
 import queueData from "./data/queue.json";
 import graphData from "./data/graph.json";
 import fastandslowpointersData from "./data/fastandslowpointers.json";
+import BasicData from "./data/Basic.json";
 
 export interface Question {
   id: number;
@@ -48,6 +49,11 @@ function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   const topics: Topic[] = [
+    {
+      id: "basic",
+      name: "Basic Coding",
+      questions: BasicData.questions,
+    },
     {
       id: "hashing",
       name: "Hashing",
@@ -148,6 +154,7 @@ function App() {
       name: "Fast and Slow Pointers",
       questions: fastandslowpointersData.questions,
     },
+    
   ];
 
   useEffect(() => {
