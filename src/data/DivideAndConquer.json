@@ -9,7 +9,7 @@
             "output": "2",
             "explanation": "Element 5 is present at index 2."
           },
-          "answer": "def binarySearch(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid+1\n        else:\n            high = mid-1\n    return -1"
+          "answer": "print((lambda a: (lambda t, arr: (lambda f: f(f, 0, len(arr)-1))(lambda f,l,h: -1 if l>h else (m:=(l+h)//2, m if arr[m]==t else f(f,m+1,h) if arr[m]<t else f(f,l,m-1))[1]))(a[0],a[1:]))(list(map(int,input().split()))))"
         },
         {
             "id": 2,
@@ -20,7 +20,7 @@
               "output": "[1,2,3,5]",
               "explanation": "Merge sort recursively divides and merges arrays to sort them."
             },
-            "answer": "def mergeSort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr)//2\n    left = mergeSort(arr[:mid])\n    right = mergeSort(arr[mid:])\n    return merge(left, right)\n\ndef merge(left, right):\n    result = []\n    i=j=0\n    while i<len(left) and j<len(right):\n        if left[i]<right[j]:\n            result.append(left[i])\n            i+=1\n        else:\n            result.append(right[j])\n            j+=1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result"
+            "answer": "def mergeSort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr)//2\n    left = mergeSort(arr[:mid])\n    right = mergeSort(arr[mid:])\n    return merge(left, right)\n\ndef merge(left, right):\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\n# Read input from user or test case system\narr = list(map(int, input().split()))\nsorted_arr = mergeSort(arr)\nprint(\" \".join(map(str, sorted_arr)))"
           },
           {
             "id": 3,
@@ -29,7 +29,7 @@
             "example": {
               "input": "[3,6,8,10,1,2,1]",
               "output": "[1,1,2,3,6,8,10]",
-              "explanation": "Quick sort sorts the input array efficiently by recursive partitioning."
+              "explanation": "def quickSort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quickSort(left) + middle + quickSort(right)\n\n# Read input as space-separated integers\narr = list(map(int, input().split()))\n\n# Sort using quickSort\nsorted_arr = quickSort(arr)\n\n# Print result space-separated\nprint(\" \".join(map(str, sorted_arr)))"
             },
             "answer": "def quickSort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr)//2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quickSort(left) + middle + quickSort(right)"
           },
@@ -42,9 +42,9 @@
               "output": "Min: 1, Max: 3000",
               "explanation": "The minimum value is 1, and the maximum value is 3000."
             },
-            "answer": "def findMinMax(arr, low, high):\n    if low == high:\n        return (arr[low], arr[low])\n    if high == low+1:\n        return (min(arr[low], arr[high]), max(arr[low], arr[high]))\n    mid = (low + high)//2\n    min1, max1 = findMinMax(arr, low, mid)\n    min2, max2 = findMinMax(arr, mid+1, high)\n    return (min(min1, min2), max(max1, max2))"
+            "answer": "def findMinMax(arr, low, high):\n    if low == high:\n        return (arr[low], arr[low])\n    if high == low + 1:\n        return (min(arr[low], arr[high]), max(arr[low], arr[high]))\n    mid = (low + high) // 2\n    min1, max1 = findMinMax(arr, low, mid)\n    min2, max2 = findMinMax(arr, mid + 1, high)\n    return (min(min1, min2), max(max1, max2))\n\n# Read input\narr = list(map(int, input().split()))\n\n# Call the function\nminimum, maximum = findMinMax(arr, 0, len(arr) - 1)\n\n# Print output\nprint(minimum, maximum)"
           },
-          {
+            {
             "id": 5,
             "title": "Find k-th Smallest Element",
             "description": "Find the k-th smallest element in an array using quick select.\n\n| Test Case | Input                                     | Expected Output | Notes                        |\n|-----------|-------------------------------------------|-----------------|------------------------------|\n| 1         | [7, 10, 4, 3, 20, 15], k=3              | 7               | Standard test case           |\n| 2         | [5, 2, 9, 1, 6, 3], k=4                 | 6               | Random values                |\n| 3         | [11, 12, 15, 13, 18, 14], k=2            | 12              | Small test case              |\n| 4         | [1, 3, 5, 7, 9, 2], k=5                 | 9               | Sorted array                 |\n| 5         | [100, 50, 75, 25, 10, 60, 35], k=4       | 50              | Unsorted values              |\n| 6         | [-5, -1, -3, -10, -2], k=3               | -3              | All negative numbers         |\n| 7         | [1, 1, 1, 1], k=3                       | 1               | All identical elements       |\n| 8         | [0, 5, 10, 15, 20], k=2                 | 5               | Increasing order             |\n| 9         | [6, 3, 8, 1, 4], k=1                    | 1               | Single smallest element      |\n| 10        | [10, 20, 30, 40, 50], k=5                | 50              | Largest element in sorted array |",
@@ -64,7 +64,7 @@
               "output": "2",
               "explanation": "The majority element (appearing more than n/2 times) in the array is 2."
             },
-            "answer": "def majorityElement(nums):\n    count, candidate = 0, None\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n    return candidate"
+            "answer": "def majorityElement(nums):\n    count, candidate = 0, None\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    # After finding the candidate, check if it really is a majority\n    if nums.count(candidate) > len(nums) // 2:\n        return candidate\n    else:\n        return nums[0]  # Return the first element if no majority exists\n\n# Read input\nnums = list(map(int, input().strip().split()))\n\n# Print result\nprint(majorityElement(nums))"
           },
           {
             "id": 7,
@@ -75,7 +75,7 @@
               "output": "3",
               "explanation": "There are 3 inversions: (2,1), (4,1), (4,3)."
             },
-            "answer": "def mergeSortCount(arr):\n    if len(arr) <= 1:\n        return arr, 0\n    mid = len(arr)//2\n    left, invLeft = mergeSortCount(arr[:mid])\n    right, invRight = mergeSortCount(arr[mid:])\n    merged, invSplit = mergeCount(left, right)\n    return merged, invLeft + invRight + invSplit\n\ndef mergeCount(left, right):\n    result, i, j, inv = [], 0, 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            inv += len(left) - i\n            j += 1\n    result += left[i:]\n    result += right[j:]\n    return result, inv"
+            "answer": "def mergeSortCount(arr):\n    if len(arr) <= 1:\n        return arr, 0\n    mid = len(arr)//2\n    left, invLeft = mergeSortCount(arr[:mid])\n    right, invRight = mergeSortCount(arr[mid:])\n    merged, invSplit = mergeCount(left, right)\n    return merged, invLeft + invRight + invSplit\n\ndef mergeCount(left, right):\n    result, i, j, inv = [], 0, 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            inv += len(left) - i\n            j += 1\n    result += left[i:]\n    result += right[j:]\n    return result, inv\n\narr = list(map(int, input().split()))\n_, inv_count = mergeSortCount(arr)\nprint(inv_count)"
           },
           {
             "id": 8,
@@ -163,7 +163,7 @@
                 "output": "4",
                 "explanation": "The target 0 is found at index 4 in the rotated sorted array."
             },
-            "answer": "def search(nums, target):\n    low, high = 0, len(nums)-1\n    while low <= high:\n        mid = (low+high)//2\n        if nums[mid]==target:\n            return mid\n        if nums[low]<=nums[mid]:\n            if nums[low]<=target<nums[mid]:\n                high = mid-1\n            else:\n                low = mid+1\n        else:\n            if nums[mid]<target<=nums[high]:\n                low = mid+1\n            else:\n                high = mid-1\n    return -1"
+            "answer": "def search(nums, target):\n    low, high = 0, len(nums) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[low] == nums[mid] == nums[high]:\n            low += 1\n            high -= 1\n        elif nums[low] <= nums[mid]:  # Left half is sorted\n            if nums[low] <= target < nums[mid]:\n                high = mid - 1\n            else:\n                low = mid + 1\n        else:  # Right half is sorted\n            if nums[mid] < target <= nums[high]:\n                low = mid + 1\n            else:\n                high = mid - 1\n    return -1\n\n# Input: target is first number, rest is rotated sorted array\nfull_input = list(map(int, input().split()))\ntarget = full_input[0]\nnums = full_input[1:]\n\n# Do search in nums (no slicing needed), and output directly\nprint(search(nums, target))"
         },
         {
             "id": 17,
@@ -240,7 +240,7 @@
         "output": "2",
         "explanation": "The array is rotated 2 times, the minimum element is at index 2."
       },
-      "answer": "def find_rotation(arr):\n    low = 0\n    high = len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] > arr[high]:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return low"
+      "answer": "def find_rotation(arr):\n    low = 0\n    high = len(arr) - 1\n    while low < high:\n        mid = (low + high) // 2\n        if arr[mid] > arr[high]:\n            low = mid + 1\n        else:\n            high = mid\n    return low\n\n# Example usage:\narr = list(map(int, input().split()))\nprint(find_rotation(arr))"
     },
     {
     "id": 24,
@@ -251,7 +251,7 @@
         "output": "2",
         "explanation": "The floor value of sqrt(8) is 2."
     },
-    "answer": "def sqrt(n):\n    low, high = 0, n\n    ans = 0\n    while low <= high:\n        mid = (low + high) // 2\n        if mid * mid == n:\n            return mid\n        if mid * mid < n:\n            low = mid + 1\n            ans = mid\n        else:\n            high = mid - 1\n    return ans"
+    "answer": "def sqrt(n):\n    low, high = 0, n\n    ans = 0\n    \n    while low <= high:\n        mid = (low + high) // 2\n        if mid * mid == n:\n            return mid\n        if mid * mid < n:\n            low = mid + 1\n            ans = mid\n        else:\n            high = mid - 1\n    \n    return ans\n\n# Read input and compute result\nn = int(input())\nprint(sqrt(n))"
 },
 {
     "id": 25,
@@ -284,7 +284,7 @@
     "output": "5",
     "explanation": "The median of the array [7, 4, 6, 3, 9, 1] is 5, which is the middle element after sorting the array."
   },
-  "answer": "import random\n\n def quickSelect(nums, k):\n     if len(nums) == 1:\n         return nums[0]\n     pivot = random.choice(nums)\n     lows = [el for el in nums if el < pivot]\n     highs = [el for el in nums if el > pivot]\n     pivots = [el for el in nums if el == pivot]\n     if k < len(lows):\n         return quickSelect(lows, k)\n     elif k < len(lows) + len(pivots):\n         return pivots[0]\n     else:\n         return quickSelect(highs, k - len(lows) - len(pivots))\n\n def findMedian(nums):\n     n = len(nums)\n     if n % 2 == 1:\n         return quickSelect(nums, n//2)\n     else:\n         return 0.5 * (quickSelect(nums, n//2-1) + quickSelect(nums, n//2))"
+  "answer": "import random\n\n# Quickselect algorithm to find the k-th smallest element\ndef quickSelect(nums, k):\n    if len(nums) == 1:\n        return nums[0]\n    \n    pivot = random.choice(nums)  # Randomly choose a pivot\n    lows = [el for el in nums if el < pivot]\n    highs = [el for el in nums if el > pivot]\n    pivots = [el for el in nums if el == pivot]\n    \n    # Check the size of the partitions and the correct index to select\n    if k < len(lows):\n        return quickSelect(lows, k)  # k-th smallest is in the low partition\n    elif k < len(lows) + len(pivots):\n        return pivots[0]  # The pivot is the k-th smallest\n    else:\n        return quickSelect(highs, k - len(lows) - len(pivots))  # k-th smallest is in the high partition\n\n# Function to find the median using quickSelect\ndef findMedian(nums):\n    n = len(nums)\n    if n % 2 == 1:\n        # For odd-length arrays, median is the middle element\n        return quickSelect(nums, n // 2)\n    else:\n        # For even-length arrays, median is the average of the two middle elements\n        mid1 = quickSelect(nums, n // 2 - 1)\n        mid2 = quickSelect(nums, n // 2)\n        return (mid1 + mid2) / 2\n\n# Example usage\nnums = list(map(int, input().split()))  # Accept input\nmedian = findMedian(nums)\n\n# If the result is a whole number, return it as an integer; otherwise, return as float\nif median.is_integer():\n    print(int(median))\nelse:\n    print(median)"
 },
 {
   "id": 28,
@@ -317,7 +317,7 @@
     "output": "4",
     "explanation": "There are 4 1's in the sorted binary array."
   },
-  "answer": "def countOnes(arr):\n    low = 0\n    high = len(arr) - 1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == 0:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return len(arr) - low"
+  "answer": "def countOnes(arr):\n    # Check if the array is sorted\n    if arr == sorted(arr):\n        # If sorted, use binary search\n        low = 0\n        high = len(arr) - 1\n        while low <= high:\n            mid = (low + high) // 2\n            if arr[mid] == 0:\n                low = mid + 1  # Move to the right half\n            else:\n                high = mid - 1  # Move to the left half\n        return len(arr) - low  # The count of ones is the remaining elements from 'low'\n    else:\n        # If unsorted, count the number of 1's directly\n        return arr.count(1)\n\n# Accept input from the user\narr = list(map(int, input().split()))\n\n# Print the result\nprint(countOnes(arr))"
 }          
                                                                                                 
   ]

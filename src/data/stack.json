@@ -53,7 +53,7 @@
           "output": "'3 2 +'",
           "explanation": "Simple infix to postfix conversion."
         },
-        "answer": "def infix_to_postfix(expression):\n    precedence = {'+': 1, '-': 1, '*': 2, '/': 2}\n    stack = []\n    output = []\n    for char in expression:\n        if char.isalnum():\n            output.append(char)\n        elif char == '(':\n            stack.append(char)\n        elif char == ')':\n            while stack and stack[-1] != '(': \n                output.append(stack.pop())\n            stack.pop()  # remove '('\n        else:\n            while stack and precedence.get(char, 0) <= precedence.get(stack[-1], 0):\n                output.append(stack.pop())\n            stack.append(char)\n    while stack:\n        output.append(stack.pop())\n    return ''.join(output)"
+        "answer": "class Stack:\n    def __init__(self):\n        self.stack = []\n\n    def push(self, x):\n        self.stack.append(x)\n\n    def pop(self):\n        return self.stack.pop() if not self.isEmpty() else None\n\n    def peek(self):\n        return self.stack[-1] if not self.isEmpty() else None\n\n    def isEmpty(self):\n        return len(self.stack) == 0\n\n\ndef precedence(op):\n    if op == '+' or op == '-':\n        return 1\n    if op == '*' or op == '/':\n        return 2\n    if op == '^':\n        return 3\n    return 0\n\n\ndef infix_to_postfix(expression):\n    result = \"\"\n    stack = Stack()\n\n    for ch in expression:\n        if ch.isalnum():  # operand\n            result += ch\n        elif ch == '(': \n            stack.push(ch)\n        elif ch == ')':\n            while not stack.isEmpty() and stack.peek() != '(': \n                result += stack.pop()\n            stack.pop()  # pop '('\n        else:  # operator\n            while (not stack.isEmpty() and precedence(stack.peek()) >= precedence(ch)):\n                result += stack.pop()\n            stack.push(ch)\n\n    while not stack.isEmpty():\n        result += stack.pop()\n\n    return result\n\n\n# Input\nexpr = input()\n# Output\nprint(infix_to_postfix(expr))"
       },
       {
         "id": 6,
@@ -64,7 +64,7 @@
           "output": "true",
           "explanation": "The parentheses are properly balanced."
         },
-        "answer": "def is_balanced(expression):\n    stack = []\n    for char in expression:\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if not stack or stack[-1] != '(': \n                return False\n            stack.pop()\n    return len(stack) == 0"
+        "answer": "class Stack:\n    def __init__(self):\n        self.stack = []\n\n    def push(self, x):\n        self.stack.append(x)\n\n    def pop(self):\n        return self.stack.pop() if not self.isEmpty() else None\n\n    def peek(self):\n        return self.stack[-1] if not self.isEmpty() else None\n\n    def isEmpty(self):\n        return len(self.stack) == 0\n\n\ndef is_balanced(expression):\n    stack = Stack()\n    for char in expression:\n        if char == '(': \n            stack.push(char)\n        elif char == ')':\n            if stack.isEmpty():\n                return False\n            stack.pop()\n    return stack.isEmpty()\n\n\n# Input\nexpr = input()\n# Output\nprint(is_balanced(expr))"
       },
       {
         "id": 7,
@@ -85,7 +85,7 @@
           "output": "[3, 2, 1]",
           "explanation": "After reversing, the elements appear in reverse order."
         },
-        "answer": "def reverse_stack(stack):\n    if len(stack) > 0:\n        temp = stack.pop()\n        reverse_stack(stack)\n        insert_at_bottom(stack, temp)\n    return stack\n\ndef insert_at_bottom(stack, item):\n    if len(stack) == 0:\n        stack.append(item)\n    else:\n        temp = stack.pop()\n        insert_at_bottom(stack, item)\n        stack.append(temp)"
+        "answer": "def insertAtBottom(stack, item):\n    if not stack:\n        stack.append(item)\n    else:\n        temp = stack.pop()\n        insertAtBottom(stack, item)\n        stack.append(temp)\n\ndef reverseStack(stack):\n    if stack:\n        temp = stack.pop()\n        reverseStack(stack)\n        insertAtBottom(stack, temp)\n\nstack = list(map(int, input().split()))\nreverseStack(stack)\nprint(*stack)"
       },
       {
         "id": 9,
@@ -174,7 +174,7 @@
           "output": "[3, 2, 1]",
           "explanation": "Reverse by recursive call and insert at bottom."
         },
-        "answer": "def insertAtBottom(stack, item):\n    if not stack:\n        stack.append(item)\n    else:\n        temp = stack.pop()\n        insertAtBottom(stack, item)\n        stack.append(temp)\n\ndef reverseStack(stack):\n    if stack:\n        temp = stack.pop()\n        reverseStack(stack)\n        insertAtBottom(stack, temp)"
+        "answer": "def insertAtBottom(stack, item):\n    if not stack:\n        stack.append(item)\n    else:\n        temp = stack.pop()\n        insertAtBottom(stack, item)\n        stack.append(temp)\n\ndef reverseStack(stack):\n    if stack:\n        temp = stack.pop()\n        reverseStack(stack)\n        insertAtBottom(stack, temp)\n\nstack = list(map(int, input().split()))\nreverseStack(stack)\nprint(*stack)"
       },
       {
         "id": 18,
@@ -196,7 +196,7 @@
           "output": "10",
           "explanation": "Max area from bar 2 to bar 3 with height 5."
         },
-        "answer": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    i = 0\n    while i < len(heights):\n        if not stack or heights[i] >= heights[stack[-1]]:\n            stack.append(i)\n            i += 1\n        else:\n            top = stack.pop()\n            width = i if not stack else i - stack[-1] - 1\n            max_area = max(max_area, heights[top] * width)\n    while stack:\n        top = stack.pop()\n        width = i if not stack else i - stack[-1] - 1\n        max_area = max(max_area, heights[top] * width)\n    return max_area"
+        "answer": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    i = 0\n    while i < len(heights):\n        if not stack or heights[i] >= heights[stack[-1]]:\n            stack.append(i)\n            i += 1\n        else:\n            top = stack.pop()\n            width = i if not stack else i - stack[-1] - 1\n            max_area = max(max_area, heights[top] * width)\n    while stack:\n        top = stack.pop()\n        width = i if not stack else i - stack[-1] - 1\n        max_area = max(max_area, heights[top] * width)\n    return max_area\n\nheights = list(map(int, input().split()))\nprint(largestRectangleArea(heights))"
       },
       {
         "id": 20,
