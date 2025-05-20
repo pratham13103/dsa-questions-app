@@ -25,6 +25,7 @@ import queueData from "./data/queue.json";
 import graphData from "./data/graph.json";
 import fastandslowpointersData from "./data/fastandslowpointers.json";
 import BasicData from "./data/Basic.json";
+import BasicIIData from "./data/BasicII.json";
 
 export interface Question {
   id: number;
@@ -32,7 +33,7 @@ export interface Question {
   description: string;
   example: {
     input: string | string[];
-    output: string | string[] | string[][];
+    output: string | boolean | string[] | string[][] | number[];
     explanation?: string;  // Explanation is optional
   };
   answer: string;
@@ -53,6 +54,11 @@ function App() {
       id: "basic",
       name: "Basic Coding",
       questions: BasicData.questions,
+    },
+    {
+      id: "basicII",
+      name: "Basic Coding II",
+      questions: BasicIIData.questions,
     },
     {
       id: "hashing",

@@ -67,20 +67,17 @@
         },
         "answer": "# Definition for singly-linked list node\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution:\n    def mergeTwoLists(self, l1, l2):\n        # Create a dummy node to simplify the merge process\n        dummy = ListNode(0)\n        current = dummy\n        \n        # Merge the two lists\n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        # Attach any remaining elements\n        current.next = l1 or l2\n        \n        # Return the merged list (skip the dummy node)\n        return dummy.next\n\n# Helper function to create a linked list from a list\ndef create_linked_list(values):\n    if not values:\n        return None\n    head = ListNode(values[0])\n    current = head\n    for val in values[1:]:\n        current.next = ListNode(val)\n        current = current.next\n    return head\n\n# Helper function to convert a linked list to a Python list\ndef linked_list_to_list(node):\n    result = []\n    while node:\n        result.append(node.val)\n        node = node.next\n    return result\n\n# Read the two input lists directly\ninput_list1, input_list2 = eval(input().strip())\nl1 = create_linked_list(input_list1)\nl2 = create_linked_list(input_list2)\n\n# Merge the two lists\nsolution = Solution()\nresult_list_node = solution.mergeTwoLists(l1, l2)\n\n# Print the result as a list\nprint(linked_list_to_list(result_list_node))"
       },
-      {
-        "id": 7,
-        "title": "Flatten a multilevel doubly linked list",
-        "description": "Write a function to flatten a multilevel doubly linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1->2->3], 3->[4->5] | None | [1->2->3->4->5] | One level of nesting |\n| 2          | [1->2], 2->[3], 3->[4] | None | [1->2->3->4] | Multiple nested levels |\n| 3          | [1] | None | [1] | Single node |\n| 4          | [] | None | [] | Empty list |\n| 5          | [1->2->3], 2->[4->5], 5->[6] | None | [1->2->4->5->6->3] | Deep nesting |\n| 6          | [1->2->3], 1->[4], 4->[5] | None | [1->4->5->2->3] | Child before sibling |\n| 7          | [10], 10->[20], 20->[30->40] | None | [10->20->30->40] | Complex multilevel |\n| 8          | [1->2], 1->[3->4], 4->[5] | None | [1->3->4->5->2] | Mid-child node |\n| 9          | [1], 1->[2], 2->[3], 3->[4] | None | [1->2->3->4] | Deep chain |\n| 10         | [1->2->3], 2->[] | None | [1->2->3] | Empty child list |",
-        "example": {
-          "input": "[1->2->3], where 3 has child [4->5]",
-          "output": "[1->2->3->4->5]",
-          "explanation": "Children are flattened into the main list."
-        },
-        "answer": {
-  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ndef sum_of_linked_list(head):\n    sum_val = 0\n    current = head\n    while current:\n        sum_val += current.data\n        current = current.next\n    return sum_val\n\nif __name__ == \"__main__\":\n    input_str = input()\n    nodes_str = input_str.split(\"->\")\n    head = None\n    current = None\n    for node_str in nodes_str:\n        data_str = node_str.strip()\n        if data_str == \"NULL\":\n            break\n        data = int(data_str)\n        new_node = Node(data)\n        if not head:\n            head = new_node\n            current = head\n        else:\n            current.next = new_node\n            current = new_node\n\n    result = sum_of_linked_list(head)\n    print(result)"
-}
-
-      },
+       {
+    "id": 7,
+    "title": "Find the Sum of All Node Values in a Linked List",
+    "description": "Calculate the sum of all node values in a singly linked list.",
+    "example": {
+      "input": "1 -> 2 -> 3 -> 4 -> 5 -> NULL",
+      "output": "15",
+      "explanation": "The sum of the node values is 1 + 2 + 3 + 4 + 5 = 15."
+    },
+    "answer": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ndef sum_of_linked_list(head):\n    sum_val = 0\n    current = head\n    while current:\n        sum_val += current.data\n        current = current.next\n    return sum_val\n\nif __name__ == \"__main__\":\n    # Create the linked list: 1 -> 2 -> 3 -> 4 -> 5 -> NULL\n    head = Node(1)\n    head.next = Node(2)\n    head.next.next = Node(3)\n    head.next.next.next = Node(4)\n    head.next.next.next.next = Node(5)\n\n    result = sum_of_linked_list(head)\n    print(result)\n"
+  },
       {
         "id": 8,
         "title": "Convert a Binary Tree to Doubly Linked List",
@@ -127,16 +124,16 @@
         "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef deleteNode(node):\n    if not node or not node.next:\n        return\n    node.val = node.next.val\n    node.next = node.next.next\n\ndef list_to_linked_list(arr):\n    if not arr:\n        return None\n    head = ListNode(arr[0])\n    current = head\n    for val in arr[1:]:\n        current.next = ListNode(val)\n        current = current.next\n    return head\n\ndef linked_list_to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\narr = list(map(int, input().split()))\ntarget = int(input())\nhead = list_to_linked_list(arr)\ncurrent = head\nwhile current and current.val != target:\n    current = current.next\nif current and current.next:\n    deleteNode(current)\nprint(linked_list_to_list(head))"
       },
       {
-        "id": 12,
-        "title": "Merge two sorted linked lists",
-        "description": "Merge two sorted linked lists into one sorted linked list.\n\n| Test Cases | Input Array | Target | Expected Output | Notes |\n|------------|-------------|--------|-----------------|-------|\n| 1          | [1,3,5], [2,4,6] | None | [1,2,3,4,5,6] | Basic merge |\n| 2          | [1], [2] | None | [1,2] | Two nodes |\n| 3          | [1,2,3], [] | None | [1,2,3] | One empty list |\n| 4          | [], [4,5] | None | [4,5] | Other list empty |\n| 5          | [1,2], [3,4,5] | None | [1,2,3,4,5] | Uneven lengths |\n| 6          | [], [] | None | [] | Empty lists |\n| 7          | [5,10], [3,8] | None | [3,5,8,10] | Random order |\n| 8          | [2,3], [1,4] | None | [1,2,3,4] | Simple merge |\n| 9          | [10,20], [5,15] | None | [5,10,15,20] | Middle insertion |\n| 10         | [1,3,5], [2,4,6,8] | None | [1,2,3,4,5,6,8] | Different lengths |",
-        "example": {
-          "input": "[1,3,5], [2,4,6]",
-          "output": "[1,2,3,4,5,6]",
-          "explanation": "Lists are merged by comparing nodes."
-        },
-        "answer": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ndef swap_nodes(head, x, y):\n    if x == y:\n        return head\n\n    prev_x = None\n    curr_x = head\n    while curr_x and curr_x.data != x:\n        prev_x = curr_x\n        curr_x = curr_x.next\n\n    prev_y = None\n    curr_y = head\n    while curr_y and curr_y.data != y:\n        prev_y = curr_y\n        curr_y = curr_y.next\n\n    if not curr_x or not curr_y:\n        return head\n\n    if prev_x:\n        prev_x.next = curr_y\n    else:\n        head = curr_y\n\n    if prev_y:\n        prev_y.next = curr_x\n    else:\n        head = curr_x\n\n    temp = curr_y.next\n    curr_y.next = curr_x.next\n    curr_x.next = temp\n\n    return head\n\ndef print_linked_list(head):\n    current = head\n    while current:\n        print(current.data, end=\" -> \")\n        current = current.next\n    print(\"NULL\")\n\nif __name__ == \"__main__\":\n    input_str = input()\n    swap_str = input()\n\n    list_part, swap_part = input_str.split(\", Swap \")\n    nodes_str = list_part.split(\"->\")\n    swap_values = list(map(int, swap_part.split(\" and \")))\n    x = swap_values[0]\n    y = swap_values[1]\n\n    head = None\n    current_node = None\n    for node_str in nodes_str:\n        data_str = node_str.strip()\n        if data_str == \"NULL\":\n            break\n        data = int(data_str)\n        new_node = Node(data)\n        if not head:\n            head = new_node\n            current_node = head\n        else:\n            current_node.next = new_node\n            current_node = new_node\n\n    modified_head = swap_nodes(head, x, y)\n    print_linked_list(modified_head)"
-      },         
+    "id": 12,
+    "title": "Swap Nodes in a Linked List",
+    "description": "Given a singly linked list, swap two nodes in the list without changing the node data.",
+    "example": {
+      "input": "1 -> 2 -> 3 -> 4 -> 5 -> NULL, Swap 2 and 4",
+      "output": "1 -> 4 -> 3 -> 2 -> 5 -> NULL",
+      "explanation": "Nodes at positions 2 and 4 are swapped."
+    },
+    "answer": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ndef swap_nodes(head, x, y):\n    if x == y:\n        return head\n\n    prev_x = None\n    curr_x = head\n    while curr_x and curr_x.data != x:\n        prev_x = curr_x\n        curr_x = curr_x.next\n\n    prev_y = None\n    curr_y = head\n    while curr_y and curr_y.data != y:\n        prev_y = curr_y\n        curr_y = curr_y.next\n\n    if not curr_x or not curr_y:\n        return head  # x or y not found\n\n    if prev_x:\n        prev_x.next = curr_y\n    else:\n        head = curr_y\n\n    if prev_y:\n        prev_y.next = curr_x\n    else:\n        head = curr_x\n\n    temp = curr_y.next\n    curr_y.next = curr_x.next\n    curr_x.next = temp\n\n    return head\n\ndef print_linked_list(head):\n    current = head\n    while current:\n        print(current.data, end=\" -> \")\n        current = current.next\n    print(\"NULL\")\n\nif __name__ == \"__main__\":\n    # Create the linked list: 1 -> 2 -> 3 -> 4 -> 5 -> NULL\n    head = Node(1)\n    head.next = Node(2)\n    head.next.next = Node(3)\n    head.next.next.next = Node(4)\n    head.next.next.next.next = Node(5)\n\n    x = 2\n    y = 4\n    head = swap_nodes(head, x, y)\n    print_linked_list(head)\n"
+  },        
       {
         "id": 13,
         "title": "Sort a linkedd list using Merge Sort",
@@ -174,16 +171,16 @@
       },
       
       {
-        "id": 16,
-        "title": "Find the intersection point of two linked lists",
-        "description": "Find the node at which two singly linked lists intersect.\n\n| Test Cases | List A         | List B         | Expected Output | Notes |\n|------------|----------------|----------------|------------------|-------|\n| 1          | [1,2,3,4,5]     | [9,4,5]        | 4                | Intersect at 4 |\n| 2          | [1,2,3]         | [4,5,6]        | None             | No intersection |\n| 3          | [1]             | [1]            | 1                | Same node |\n| 4          | []              | []             | None             | Empty lists |\n| 5          | [10,20]         | [15,20]        | 20               | Common node at end |\n| 6          | [5,6,7]         | [6,7,8]        | 6                | Intersect at start |\n| 7          | [1,2]           | [2,3]          | 2                | Small intersection |\n| 8          | [100,200]       | [300,400]      | None             | No intersection |\n| 9          | [3,4,5]         | [2,4,5]        | 4                | Intersect in middle |\n| 10         | [5,10,15]       | [10,15,20]     | 10               | Common node at start |",
-        "example": {
-          "input": "[1, 2, 3, 4, 5], [9, 4, 5]",
-          "output": "4",
-          "explanation": "Lists intersect at node with value 4."
-        },
-        "answer": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ndef length_of_linked_list(head):\n    count = 0\n    current = head\n    while current:\n        count += 1\n        current = current.next\n    return count\n\nif __name__ == \"__main__\":\n    input_str = input()\n    nodes_str = input_str.split(\"->\")\n    head = None\n    current = None\n    for node_str in nodes_str:\n        data_str = node_str.strip()\n        if data_str == \"NULL\":\n            break\n        data = int(data_str)\n        new_node = Node(data)\n        if not head:\n            head = new_node\n            current = head\n        else:\n            current.next = new_node\n            current = new_node\n\n    result = length_of_linked_list(head)\n    print(result)"
-      },
+    "id": 16,
+    "title": "Find the Length of a Linked List",
+    "description": "Given a singly linked list, find the number of nodes in the list.",
+    "example": {
+      "input": "1 -> 2 -> 3 -> 4 -> 5 -> NULL",
+      "output": "5",
+      "explanation": "The linked list contains 5 nodes."
+    },
+    "answer": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ndef length_of_linked_list(head):\n    count = 0\n    current = head\n    while current:\n        count += 1\n        current = current.next\n    return count\n\nif __name__ == \"__main__\":\n    # Create the linked list: 1 -> 2 -> 3 -> 4 -> 5 -> NULL\n    head = Node(1)\n    head.next = Node(2)\n    head.next.next = Node(3)\n    head.next.next.next = Node(4)\n    head.next.next.next.next = Node(5)\n\n    result = length_of_linked_list(head)\n    print(result)\n"
+  },
       
       {
         "id": 17,
@@ -232,7 +229,7 @@
         "answer": "class ListNode:\n def __init__(self, val=0, next=None):\n  self.val = val\n  self.next = next\nclass Solution:\n def mergeTwoLists(self, l1, l2):\n  dummy = ListNode(0)\n  current = dummy\n  while l1 and l2:\n   if l1.val < l2.val:\n    current.next = l1\n    l1 = l1.next\n   else:\n    current.next = l2\n    l2 = l2.next\n   current = current.next\n  current.next = l1 or l2\n  return dummy.next\ndef create_linked_list(values):\n if not values:\n  return None\n head = ListNode(values[0])\n current = head\n for val in values[1:]:\n  current.next = ListNode(val)\n  current = current.next\n return head\ndef linked_list_to_list(node):\n result = []\n while node:\n  result.append(node.val)\n  node = node.next\n return result\ninput_list1, input_list2 = eval(input().strip())\nl1 = create_linked_list(input_list1)\nl2 = create_linked_list(input_list2)\nsolution = Solution()\nresult_list_node = solution.mergeTwoLists(l1, l2)\nprint(linked_list_to_list(result_list_node))"
       }
       
-      
+       
       
     ]
   }
