@@ -20,7 +20,7 @@
               "output": "2",
               "explanation": "After removing the duplicates, the new length is 2."
             },
-            "answer": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n    return i+1"
+            "answer": "def remove_duplicates_from_input(input_line):\n    nums = list(map(int, input_line.strip().split()))\n    if not nums:\n        print(0)\n        return\n\n    i = 0\n    for j in range(1, len(nums)):\n        if nums[j] != nums[i]:\n            i += 1\n            nums[i] = nums[j]\n\n    print(i + 1)\n\n# 🚨 This takes user input (not hardcoded anymore)\nif __name__ == \"__main__\":\n    input_line = input()\n    remove_duplicates_from_input(input_line)"
           },
           {
             "id": 3,
@@ -42,7 +42,7 @@
               "output": "[1,3,12,0,0]",
               "explanation": "Move all zeroes to the end while maintaining the order of other elements."
             },
-            "answer": "def moveZeroes(nums):\n    lastNonZeroFoundAt = 0\n    for i in range(len(nums)):\n        if nums[i] != 0:\n            nums[lastNonZeroFoundAt], nums[i] = nums[i], nums[lastNonZeroFoundAt]\n            lastNonZeroFoundAt += 1"
+            "answer": "def moveZeroes(nums):\n    lastNonZeroFoundAt = 0\n    for i in range(len(nums)):\n        if nums[i] != 0:\n            nums[lastNonZeroFoundAt], nums[i] = nums[i], nums[lastNonZeroFoundAt]\n            lastNonZeroFoundAt += 1\n\ninput_nums = input()\nnums = list(map(int, input_nums.split()))\nmoveZeroes(nums)\nprint(\" \".join(map(str, nums)))"
           },
           {
             "id": 5,
@@ -53,7 +53,7 @@
               "output": "True",
               "explanation": "Both strings evaluate to 'ac', so they are equal after applying the backspaces."
             },
-            "answer": "def backspaceCompare(s, t):\n    def build(string):\n        res = []\n        for ch in string:\n            if ch != '#':\n                res.append(ch)\n            elif res:\n                res.pop()\n        return ''.join(res)\n    return build(s) == build(t)"
+            "answer": "def backspaceCompare(s, t):\n    def build(string):\n        res = []\n        for ch in string:\n            if ch != '#':\n                res.append(ch)\n            elif res:\n                res.pop()\n        return ''.join(res)\n    return build(s) == build(t)\n\ns, t = input().split()\nprint(backspaceCompare(s, t))"
           },
           {
             "id": 6,
@@ -109,7 +109,7 @@
             "output": "3",
             "explanation": "The longest substring without repeating characters is 'abc' with length 3."
           },
-          "answer": "def lengthOfLongestSubstring(s):\n    charSet = set()\n    left = 0\n    res = 0\n    for right in range(len(s)):\n        while s[right] in charSet:\n            charSet.remove(s[left])\n            left += 1\n        charSet.add(s[right])\n        res = max(res, right-left+1)\n    return res"
+          "answer": "def lengthOfLongestSubstring(s):\n    char_index = {}  # Dictionary to store the last seen index of characters\n    left = 0         # Start of the current window\n    max_len = 0      # Max length of substring without repeating characters\n\n    for right in range(len(s)):\n        # If the character is repeated and inside the current window, move left pointer\n        if s[right] in char_index and char_index[s[right]] >= left:\n            left = char_index[s[right]] + 1  # Slide the window forward\n        \n        # Update the last seen index of the character\n        char_index[s[right]] = right\n        \n        # Update the max length found so far\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n\n# Take user input\ninput_str = input().strip()\n\n# Call the function and print the result\nprint(lengthOfLongestSubstring(input_str))"
         },
         {
           "id": 11,
@@ -120,7 +120,7 @@
             "output": "['o','l','l','e','h']",
             "explanation": "The string is reversed in-place to become ['o','l','l','e','h']."
           },
-          "answer": "def reverseString(s):\n    left, right = 0, len(s)-1\n    while left < right:\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1"
+          "answer": "def reverseString(s):\n    left, right = 0, len(s)-1\n    while left < right:\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1\n\n# Take user input, split it into a list of characters\ninput_str = input().strip().split()\n\n# Reverse the input string\nreverseString(input_str)\n\n# Output the reversed string, joining the characters back with a space\nprint(\" \".join(input_str))"
         },
         {
           "id": 12,
@@ -175,7 +175,7 @@
                 "output": "[0,0,1,1,2,2]",
                 "explanation": "The array is sorted by grouping the 0s, 1s, and 2s in the correct order."
               },
-              "answer": "def sortColors(nums):\n    low, mid, high = 0, 0, len(nums)-1\n    while mid <= high:\n        if nums[mid] == 0:\n            nums[low], nums[mid] = nums[mid], nums[low]\n            low += 1\n            mid += 1\n        elif nums[mid] == 1:\n            mid += 1\n        else:\n            nums[mid], nums[high] = nums[high], nums[mid]\n            high -= 1"
+              "answer": "def sortColors(nums):\n    low, mid, high = 0, 0, len(nums) - 1\n    while mid <= high:\n        if nums[mid] == 0:\n            nums[low], nums[mid] = nums[mid], nums[low]\n            low += 1\n            mid += 1\n        elif nums[mid] == 1:\n            mid += 1\n        else:\n            nums[mid], nums[high] = nums[high], nums[mid]\n            high -= 1\n\nif __name__ == \"__main__\":\n    nums = list(map(int, input().split()))\n    sortColors(nums)\n    print(*nums)"
             },
             {
               "id": 17,
@@ -186,7 +186,7 @@
                 "output": "True",
                 "explanation": "A pair (6,3) with difference 3 exists in the array."
               },
-              "answer": "def findPair(nums, diff):\n    nums_set = set(nums)\n    for num in nums:\n        if num + diff in nums_set:\n            return True\n    return False"
+              "answer": "def findPairWithDiff(arr):\n    diff = arr[0]\n    nums = arr[1:]\n    nums_set = set(nums)\n    for num in nums:\n        if num + diff in nums_set or num - diff in nums_set:\n            return True\n    return False\n\nif __name__ == \"__main__\":\n    arr = list(map(int, input().split()))\n    print(findPairWithDiff(arr))"
             },
             {
               "id": 18,
@@ -241,7 +241,7 @@
                 "output": "True",
                 "explanation": "The linked list is the same forwards and backwards, so it is a palindrome."
               },
-              "answer": "class Solution:\n    def isPalindrome(self, head):\n        vals = []\n        while head:\n            vals.append(head.val)\n            head = head.next\n        return vals == vals[::-1]"
+              "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution:\n    def isPalindrome(self, head):\n        # Fast and slow pointers to find the middle of the list\n        slow, fast = head, head\n        while fast and fast.next:\n            slow = slow.next\n            fast = fast.next.next\n        \n        # Reverse the second half of the list\n        prev, curr = None, slow\n        while curr:\n            next_node = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next_node\n        \n        # Compare the first and second halves\n        left, right = head, prev\n        while right:  # No need to check left if right is exhausted\n            if left.val != right.val:\n                return False\n            left = left.next\n            right = right.next\n        return True\n\n# Function to create a linked list from an input list of integers\ndef create_linked_list(arr):\n    head = ListNode(arr[0])\n    current = head\n    for val in arr[1:]:\n        current.next = ListNode(val)\n        current = current.next\n    return head\n\nif __name__ == \"__main__\":\n    arr = list(map(int, input().split()))\n    head = create_linked_list(arr)\n    solution = Solution()\n    print(solution.isPalindrome(head))"
             },
             {
               "id": 22,
@@ -274,7 +274,7 @@
                 "output": "[9,7,8]",
                 "explanation": "Partition the string into substrings where each letter appears only once in each substring, resulting in the partitions [9,7,8]."
               },
-              "answer": "def partitionLabels(S):\n    last = {char: i for i, char in enumerate(S)}\n    start, end = 0, 0\n    result = []\n    for i, char in enumerate(S):\n        end = max(end, last[char])\n        if i == end:\n            result.append(i - start + 1)\n            start = i + 1\n    return result"
+              "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef removeNthFromEnd(head, n):\n    dummy = ListNode(0)\n    dummy.next = head\n    fast = slow = dummy\n    for _ in range(n + 1):\n        if fast:\n            fast = fast.next\n        else:\n            return head\n    while fast:\n        fast = fast.next\n        slow = slow.next\n    slow.next = slow.next.next\n    return dummy.next\n\n# Read input\narr = list(map(int, input().split()))\nn = arr[0]\nvalues = arr[1:]\n\n# Build linked list\nhead = None\ncurr = None\nfor val in values:\n    node = ListNode(val)\n    if not head:\n        head = node\n        curr = node\n    else:\n        curr.next = node\n        curr = node\n\n# Remove node\nhead = removeNthFromEnd(head, n)\n\n# Print result\nif not head:\n    print(\"null\")\nelse:\n    result = []\n    while head:\n        result.append(str(head.val))\n        head = head.next\n    print(\" \".join(result))"
             },
             {
               "id": 25,
@@ -296,7 +296,7 @@
                 "output": "2",
                 "explanation": "After removal of 3, the list becomes [2,2]."
               },
-              "answer": "def removeElement(nums, val):\n    i = 0\n    for num in nums:\n        if num != val:\n            nums[i] = num\n            i += 1\n    return i"
+              "answer": "def removeElement(nums, val):\n    i = 0\n    for num in nums:\n        if num != val:\n            nums[i] = num\n            i += 1\n    return i\n\n# Input handling\narr = list(map(int, input().split()))\nval = arr[0]\nnums = arr[1:]\n\n# Output the result\nprint(removeElement(nums, val))"
             },
             {
               "id": 27,
@@ -307,7 +307,7 @@
                 "output": "True",
                 "explanation": "The string can become a palindrome after deleting 'b'."
               },
-              "answer": "def validPalindrome(s):\n    def is_pali(i, j):\n        while i < j:\n            if s[i] != s[j]: return False\n            i, j = i+1, j-1\n        return True\n\n    i, j = 0, len(s) - 1\n    while i < j:\n        if s[i] != s[j]:\n            return is_pali(i+1, j) or is_pali(i, j-1)\n        i, j = i+1, j-1\n    return True"
+              "answer": "def validPalindrome(s):\n    def is_pali(i, j):\n        while i < j:\n            if s[i] != s[j]:\n                return False\n            i += 1\n            j -= 1\n        return True\n\n    i, j = 0, len(s) - 1\n    while i < j:\n        if s[i] != s[j]:\n            return is_pali(i + 1, j) or is_pali(i, j - 1)\n        i += 1\n        j -= 1\n    return True\n\ns = input().strip()\nprint(validPalindrome(s))"
             },
             {
               "id": 28,
@@ -318,7 +318,7 @@
                 "output": "2",
                 "explanation": "The duplicate number in the array is 2."
               },
-              "answer": "def findDuplicate(nums):\n    slow, fast = nums[0], nums[0]\n    while True:\n        slow = nums[slow]\n        fast = nums[nums[fast]]\n        if slow == fast:\n            break\n    slow = nums[0]\n    while slow != fast:\n        slow = nums[slow]\n        fast = nums[fast]\n    return slow"
+              "answer": "def findDuplicate(nums):\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return num\n        seen.add(num)\n\nnums = list(map(int, input().split()))\nprint(findDuplicate(nums))"
             },
             {
               "id": 29,
@@ -329,7 +329,7 @@
                 "output": "2",
                 "explanation": "The minimum number of operations to make all elements equal is 2."
               },
-              "answer": "def minOperations(n):\n    return (n*n)//4"
+              "answer": "def minOperations(n):\n    return (n * n) // 4\n\nn = int(input())\nprint(minOperations(n))"
             },
             {
               "id": 30,
@@ -340,7 +340,7 @@
                 "output": "5",
                 "explanation": "The shortest subarray that needs to be sorted is from index 1 to index 5."
               },
-              "answer": "def findUnsortedSubarray(nums):\n    left, right = 0, len(nums) - 1\n    while left < len(nums) - 1 and nums[left] <= nums[left + 1]:\n        left += 1\n    while right > 0 and nums[right] >= nums[right - 1]:\n        right -= 1\n    if left >= right:\n        return 0\n    min_val, max_val = min(nums[left:right+1]), max(nums[left:right+1])\n    while left >= 0 and nums[left] > min_val:\n        left -= 1\n    while right < len(nums) and nums[right] < max_val:\n        right += 1\n    return right - left - 1"
+              "answer": "def findUnsortedSubarray(nums):\n    n = len(nums)\n    left, right = 0, n - 1\n\n    while left < n - 1 and nums[left] <= nums[left + 1]:\n        left += 1\n    if left == n - 1:\n        return 0\n\n    while right > 0 and nums[right] >= nums[right - 1]:\n        right -= 1\n\n    min_val = min(nums[left:right+1])\n    max_val = max(nums[left:right+1])\n\n    while left > 0 and nums[left - 1] > min_val:\n        left -= 1\n    while right < n - 1 and nums[right + 1] < max_val:\n        right += 1\n\n    return right - left + 1\n\nnums = list(map(int, input().split()))\nprint(findUnsortedSubarray(nums))"
             }
     
         ]

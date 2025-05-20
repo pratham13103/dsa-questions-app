@@ -65,7 +65,7 @@
             "output": "[3,3,5,5,6,7]",
             "explanation": "The maximum in each sliding window of size 3."
           },
-          "answer": "from collections import deque\ndef maxSlidingWindow(nums, k):\n    dq = deque()\n    res = []\n    for i, n in enumerate(nums):\n        while dq and nums[dq[-1]] < n:\n            dq.pop()\n        dq.append(i)\n        if dq[0] == i - k:\n            dq.popleft()\n        if i >= k - 1:\n            res.append(nums[dq[0]])\n    return res"
+          "answer": "from collections import deque\ndef maxSlidingWindow(nums, k):\n    dq = deque()\n    res = []\n    for i, n in enumerate(nums):\n        while dq and nums[dq[-1]] < n:\n            dq.pop()\n        dq.append(i)\n        if dq[0] <= i - k:\n            dq.popleft()\n        if i >= k - 1:\n            res.append(nums[dq[0]])\n    return res\narr = list(map(int, input().split()))\nk, nums = arr[0], arr[1:]\nprint(*maxSlidingWindow(nums, k))"
         },
         {
           "id": 7,
@@ -87,7 +87,7 @@
             "output": "4",
             "explanation": "All oranges rot in 4 minutes."
           },
-          "answer": "from collections import deque\ndef orangesRotting(grid):\n    rows, cols = len(grid), len(grid[0])\n    q = deque()\n    fresh = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 2:\n                q.append((r, c))\n            elif grid[r][c] == 1:\n                fresh += 1\n    minutes = 0\n    while q and fresh:\n        for _ in range(len(q)):\n            r, c = q.popleft()\n            for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n                nr, nc = r+dr, c+dc\n                if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]==1:\n                    grid[nr][nc]=2\n                    fresh -= 1\n                    q.append((nr, nc))\n        minutes += 1\n    return minutes if fresh==0 else -1"
+          "answer": "from collections import deque\nimport sys\n\ndef orangesRotting(grid):\n    rows, cols = len(grid), len(grid[0])\n    q = deque()\n    fresh = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 2:\n                q.append((r, c))\n            elif grid[r][c] == 1:\n                fresh += 1\n\n    minutes = 0\n    while q and fresh:\n        for _ in range(len(q)):\n            r, c = q.popleft()\n            for dr, dc in [(-1,0), (1,0), (0,-1), (0,1)]:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:\n                    grid[nr][nc] = 2\n                    fresh -= 1\n                    q.append((nr, nc))\n        minutes += 1\n\n    return minutes if fresh == 0 else -1\n\n# Read entire input (multiple lines or single line)\nlines = sys.stdin.read().splitlines()\ngrid = [list(map(int, line.split())) for line in lines]\n\n# Output\nprint(orangesRotting(grid))"
         },
         {
           "id": 9,
@@ -98,7 +98,7 @@
             "output": "['1','10','11','100','101']",
             "explanation": "Binary numbers from 1 to 5."
           },
-          "answer": "from collections import deque\ndef generateBinaryNumbers(N):\n    res = []\n    q = deque()\n    q.append('1')\n    for _ in range(N):\n        s = q.popleft()\n        res.append(s)\n        q.append(s+'0')\n        q.append(s+'1')\n    return res"
+          "answer": "from collections import deque\ndef generateBinaryNumbers(N):\n    res = []\n    q = deque()\n    q.append('1')\n    for _ in range(N):\n        s = q.popleft()\n        res.append(s)\n        q.append(s + '0')\n        q.append(s + '1')\n    return res\nprint(' '.join(generateBinaryNumbers(int(input()))))"
         },
         {
           "id": 10,
@@ -109,7 +109,7 @@
             "output": "[1,3,2,4]",
             "explanation": "First half [1,2], second half [3,4], interleaved."
           },
-          "answer": "from collections import deque\ndef interleaveQueue(q):\n    n = len(q)//2\n    first = deque()\n    for _ in range(n):\n        first.append(q.popleft())\n    while first:\n        q.append(first.popleft())\n        q.append(q.popleft())\n    return list(q)"
+          "answer": "from collections import deque\nimport sys\n\ndef interleaveQueue(q):\n    n = len(q) // 2\n    first_half = deque()\n    \n    for _ in range(n):\n        first_half.append(q.popleft())\n\n    while first_half:\n        q.append(first_half.popleft())\n        q.append(q.popleft())\n\n    return list(q)\n\n# Read input from stdin\ninput_data = list(map(int, sys.stdin.read().split()))\nq = deque(input_data)\n\n# Output result\nprint(*interleaveQueue(q))"
         },
     
             {
@@ -121,7 +121,7 @@
                 "output": "[3,2,1,4,5]",
                 "explanation": "First 3 elements reversed."
               },
-              "answer": "from collections import deque\ndef reverseKElements(q, k):\n    stack = []\n    for _ in range(k):\n        stack.append(q.popleft())\n    while stack:\n        q.append(stack.pop())\n    for _ in range(len(q)-k):\n        q.append(q.popleft())\n    return list(q)"
+              "answer": "from collections import deque\nimport sys\n\ndef reverseKElements(q, k):\n    if k > len(q) or k < 0:\n        return list(q)  # Invalid k, return as is\n\n    stack = []\n    for _ in range(k):\n        stack.append(q.popleft())\n\n    while stack:\n        q.append(stack.pop())\n\n    for _ in range(len(q) - k):\n        q.append(q.popleft())\n\n    return list(q)\n\n# Read input: first number is k, rest is queue\ndata = list(map(int, sys.stdin.read().split()))\nk = data[0]\nq = deque(data[1:])\n\n# Output result\nprint(*reverseKElements(q, k))"
             },
             {
               "id": 12,
@@ -154,7 +154,8 @@
                 "output": "[5,4,3,2,1]",
                 "explanation": "Queue reversed recursively."
               },
-              "answer": "from collections import deque\ndef reverseQueue(q):\n    if not q:\n        return deque()\n    x = q.popleft()\n    res = reverseQueue(q)\n    res.append(x)\n    return res"
+              "answer": "from collections import deque\nimport sys\n\ndef reverseQueue(q):\n    if not q:\n        return deque()\n    x = q.popleft()\n    res = reverseQueue(q)\n    res.append(x)\n    return res\n\n# Read input\ndata = list(map(int, sys.stdin.read().split()))\nq = deque(data)\n\n# Reverse queue recursively\nq = reverseQueue(q)\n\n# Output\nif not q:\n    print(\"empty array\")\nelse:\n    print(*q)"
+
             },
             {
               "id": 15,
@@ -165,7 +166,7 @@
                 "output": "[[2,1,2],[1,0,1],[0,0,0]]",
                 "explanation": "Each cell shows distance to nearest 1."
               },
-              "answer": "from collections import deque\ndef nearestOne(mat):\n    n, m = len(mat), len(mat[0])\n    res = [[-1]*m for _ in range(n)]\n    q = deque()\n    for i in range(n):\n        for j in range(m):\n            if mat[i][j] == 1:\n                res[i][j] = 0\n                q.append((i,j))\n    dirs = [(-1,0),(1,0),(0,-1),(0,1)]\n    while q:\n        i,j = q.popleft()\n        for di,dj in dirs:\n            ni,nj = i+di,j+dj\n            if 0<=ni<n and 0<=nj<m and res[ni][nj]==-1:\n                res[ni][nj] = res[i][j]+1\n                q.append((ni,nj))\n    return res"
+              "answer": "from collections import deque\nimport sys\n\n# Read input as flat list\ndata = list(map(int, sys.stdin.read().split()))\nmat = [data[i:i+3] for i in range(0, 9, 3)]\n\nn, m = 3, 3\nres = [[-1]*m for _ in range(n)]\nq = deque()\n\n# Collect all positions with 1s\nfor i in range(n):\n    for j in range(m):\n        if mat[i][j] == 1:\n            res[i][j] = 0\n            q.append((i, j))\n\n# BFS for shortest distance to 1\ndirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]\nwhile q:\n    i, j = q.popleft()\n    for di, dj in dirs:\n        ni, nj = i + di, j + dj\n        if 0 <= ni < n and 0 <= nj < m and res[ni][nj] == -1:\n            res[ni][nj] = res[i][j] + 1\n            q.append((ni, nj))\n\n# Print output row-wise (with newlines)\nfor row in res:\n    print(*row)"
             },
             {
               "id": 16,

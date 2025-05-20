@@ -9,7 +9,8 @@
         "output": "[0,1,2,3]",
         "explanation": "BFS traversal from node 0."
       },
-      "answer": "from collections import deque\ndef bfs(graph, start):\n    visited = set()\n    order = []\n    q = deque([start])\n    while q:\n        node = q.popleft()\n        if node not in visited:\n            visited.add(node)\n            order.append(node)\n            for neighbor in graph.get(node, []):\n                if neighbor not in visited:\n                    q.append(neighbor)\n    return order"
+      "answer":"from collections import deque\nimport ast\n\ndef bfs(graph, start):\n    visited = set()\n    order = []\n    q = deque([start])\n    while q:\n        node = q.popleft()\n        if node not in visited:\n            visited.add(node)\n            order.append(node)\n            for neighbor in sorted(graph.get(node, [])):\n                if neighbor not in visited:\n                    q.append(neighbor)\n    return order\n\ngraph = ast.literal_eval(input().strip())\nstart = int(input().strip())\nprint(bfs(graph, start))"
+
     },
     {
       "id": 2,
@@ -20,7 +21,8 @@
         "output": "[0,1,3,2]",
         "explanation": "DFS traversal from node 0."
       },
-      "answer": "def dfs(graph, start):\n    visited = set()\n    order = []\n    def helper(node):\n        if node not in visited:\n            visited.add(node)\n            order.append(node)\n            for neighbor in graph.get(node, []):\n                helper(neighbor)\n    helper(start)\n    return order"
+      "answer": "def dfs(graph, start):\n    visited = set()\n    order = []\n\n    def helper(node):\n        if node not in visited:\n            visited.add(node)\n            order.append(node)\n            for neighbor in sorted(graph.get(node, [])):\n                helper(neighbor)\n\n    helper(start)\n    return order\n\nimport ast\ngraph = ast.literal_eval(input().strip())\nstart = int(input().strip())\nprint(dfs(graph, start))"
+
     },
     {
       "id": 3,
@@ -31,7 +33,8 @@
         "output": "True",
         "explanation": "Cycle exists."
       },
-      "answer": "def hasCycleUndirected(graph, n):\n    visited = [False]*n\n    def dfs(u, parent):\n        visited[u] = True\n        for v in graph.get(u, []):\n            if not visited[v]:\n                if dfs(v, u):\n                    return True\n            elif v != parent:\n                return True\n        return False\n    for i in range(n):\n        if not visited[i]:\n            if dfs(i, -1):\n                return True\n    return False"
+      "answer": "def hasCycleUndirected(graph, n):\n    visited = [False] * n\n    def dfs(node, parent):\n        visited[node] = True\n        for neighbor in graph.get(node, []):\n            if not visited[neighbor]:\n                if dfs(neighbor, node):\n                    return True\n            elif neighbor != parent:\n                return True\n        return False\n\n    for i in range(n):\n        if not visited[i]:\n            if dfs(i, -1):\n                return True\n    return False\n\nimport ast\ngraph = ast.literal_eval(input().strip())\nn = int(input().strip())\nprint(hasCycleUndirected(graph, n))"
+
     },
     {
       "id": 4,
@@ -42,7 +45,8 @@
         "output": "True",
         "explanation": "Cycle exists."
       },
-      "answer": "def hasCycleDirected(graph, n):\n    visited = [0]*n\n    def dfs(u):\n        if visited[u] == 1:\n            return True\n        if visited[u] == 2:\n            return False\n        visited[u] = 1\n        for v in graph.get(u, []):\n            if dfs(v):\n                return True\n        visited[u] = 2\n        return False\n    for i in range(n):\n        if visited[i] == 0:\n            if dfs(i):\n                return True\n    return False"
+      "answer": "def hasCycleDirected(graph, n):\n    visited = [0] * n  # 0 = unvisited, 1 = visiting, 2 = visited\n    \n    def dfs(node):\n        if visited[node] == 1:\n            return True\n        if visited[node] == 2:\n            return False\n        visited[node] = 1\n        for neighbor in graph.get(node, []):\n            if dfs(neighbor):\n                return True\n        visited[node] = 2\n        return False\n\n    for i in range(n):\n        if visited[i] == 0:\n            if dfs(i):\n                return True\n    return False\n\ngraph = eval(input())\nn = int(input())\nprint(hasCycleDirected(graph, n))"
+
     },
     {
       "id": 5,
@@ -53,7 +57,8 @@
         "output": "[0,1,2]",
         "explanation": "One valid topological order."
       },
-      "answer": "from collections import deque, defaultdict\ndef topoSort(graph, n):\n    indegree = [0]*n\n    for u in graph:\n        for v in graph[u]:\n            indegree[v] += 1\n    q = deque([i for i in range(n) if indegree[i]==0])\n    order = []\n    while q:\n        u = q.popleft()\n        order.append(u)\n        for v in graph.get(u, []):\n            indegree[v] -= 1\n            if indegree[v] == 0:\n                q.append(v)\n    return order if len(order)==n else []"
+      "answer": "from collections import deque, defaultdict\n\ndef topo_sort():\n    graph = eval(input())\n    n = int(input())\n    indegree = [0] * n\n    for u in graph:\n        for v in graph[u]:\n            indegree[v] += 1\n    q = deque([i for i in range(n) if indegree[i] == 0])\n    order = []\n    while q:\n        node = q.popleft()\n        order.append(node)\n        for neighbor in graph.get(node, []):\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                q.append(neighbor)\n    print(order)\n\ntopo_sort()"
+
     },
     {
         "id": 6,
@@ -64,7 +69,8 @@
           "output": "1",
           "explanation": "There is only one island."
         },
-        "answer": "def numIslands(grid):\n    if not grid: return 0\n    n, m = len(grid), len(grid[0])\n    def dfs(i, j):\n        if i<0 or i>=n or j<0 or j>=m or grid[i][j]!='1': return\n        grid[i][j] = '#'\n        for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n            dfs(i+di, j+dj)\n    count = 0\n    for i in range(n):\n        for j in range(m):\n            if grid[i][j] == '1' or grid[i][j] == 1:\n                dfs(i, j)\n                count += 1\n    return count"
+        "answer": "def num_islands(grid):\n    if not grid:\n        return 0\n    n, m = len(grid), len(grid[0])\n    def dfs(i, j):\n        if i < 0 or i >= n or j < 0 or j >= m or grid[i][j] != 1:\n            return\n        grid[i][j] = -1\n        for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            dfs(i + di, j + dj)\n    island_count = 0\n    for i in range(n):\n        for j in range(m):\n            if grid[i][j] == 1:\n                dfs(i, j)\n                island_count += 1\n    return island_count\n\nimport ast\ngrid = ast.literal_eval(input())\nprint(num_islands(grid))"
+
       },
       {
         "id": 7,
@@ -75,7 +81,8 @@
           "output": "[[2,2,2],[2,2,0],[2,0,1]]",
           "explanation": "Flood fill from (1,1) with color 2."
         },
-        "answer": "def floodFill(image, sr, sc, color):\n    orig = image[sr][sc]\n    if orig == color: return image\n    n, m = len(image), len(image[0])\n    def dfs(i, j):\n        if i<0 or i>=n or j<0 or j>=m or image[i][j]!=orig: return\n        image[i][j] = color\n        for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n            dfs(i+di, j+dj)\n    dfs(sr, sc)\n    return image"
+        "answer": "def floodFill(image, sr, sc, color):\n    original_color = image[sr][sc]\n    if original_color == color:\n        return image\n\n    rows, cols = len(image), len(image[0])\n\n    def dfs(r, c):\n        if r < 0 or c < 0 or r >= rows or c >= cols or image[r][c] != original_color:\n            return\n        image[r][c] = color\n        dfs(r - 1, c)\n        dfs(r + 1, c)\n        dfs(r, c - 1)\n        dfs(r, c + 1)\n\n    dfs(sr, sc)\n    return image\n\ngrid = eval(input())\nsr, sc, new_color = map(int, input().split())\nresult = floodFill(grid, sr, sc, new_color)\nprint(result)"
+
       },
       
          {
@@ -98,7 +105,8 @@
             "output": "True",
             "explanation": "4-node cycle is bipartite."
           },
-          "answer": "def isBipartite(graph):\n    color = {}\n    for node in range(len(graph)):\n        if node not in color:\n            stack = [node]\n            color[node] = 0\n            while stack:\n                u = stack.pop()\n                for v in graph[u]:\n                    if v not in color:\n                        color[v] = color[u]^1\n                        stack.append(v)\n                    elif color[v] == color[u]:\n                        return False\n    return True"
+          "answer":"def isBipartite(graph):\n    color = {}\n    for node in range(len(graph)):\n        if node not in color:\n            stack = [node]\n            color[node] = 0\n            while stack:\n                u = stack.pop()\n                for v in graph[u]:\n                    if v not in color:\n                        color[v] = color[u] ^ 1\n                        stack.append(v)\n                    elif color[v] == color[u]:\n                        return False\n    return True\n\ninput_str = input(\"\")\ngraph = eval(input_str)\nresult = isBipartite(graph)\nprint(result)"
+
         },
         {
     "id": 10,

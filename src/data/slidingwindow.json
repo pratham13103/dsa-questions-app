@@ -42,7 +42,7 @@
                 "output": "4",
                 "explanation": "The longest subarray with sum less than or equal to 11 is [2, 3, 4, 5], which has a sum of 11."
             },
-            "answer": "def longestSubarrayWithSumLessThanOrEqualToK(arr, k):\n    window_sum, max_len = 0, 0\n    start = 0\n    for end in range(len(arr)):\n        window_sum += arr[end]\n        while window_sum > k:\n            window_sum -= arr[start]\n            start += 1\n        max_len = max(max_len, end - start + 1)\n    return max_len"
+            "answer": "s = input().strip()\n\nif s.lower() == 'null':\n    print(1)\nelse:\n    max_len = 0\n    start = 0\n    char_index = {}\n\n    for i in range(len(s)):\n        if s[i] in char_index and char_index[s[i]] >= start:\n            start = char_index[s[i]] + 1\n        char_index[s[i]] = i\n        max_len = max(max_len, i - start + 1)\n\n    print(max_len)"
         },               
         {
             "id": 5,
@@ -75,7 +75,7 @@
               "output": "12.75",
               "explanation": "The subarray [12,-5,-6,50] has the maximum average = 51/4 = 12.75"
             },
-            "answer": "def findMaxAverage(nums, k):\n    total = sum(nums[:k])\n    max_total = total\n    for i in range(k, len(nums)):\n        total += nums[i] - nums[i - k]\n        max_total = max(max_total, total)\n    return max_total / k"
+            "answer": "data = list(map(int, input().split()))\nk = data[0]\nnums = data[1:]\n\nwindow_sum = sum(nums[:k])\nmax_sum = window_sum\n\nfor i in range(k, len(nums)):\n    window_sum += nums[i] - nums[i - k]\n    if window_sum > max_sum:\n        max_sum = window_sum\n\nmax_avg = max_sum / k\nprint(max_avg)"
           },
           {
             "id": 8,
@@ -86,7 +86,7 @@
               "output": "3",
               "explanation": "Deleting the 0 yields [1,1,1], length = 3."
             },
-            "answer": "def longestSubarray(nums):\n    left = zero_count = 0\n    max_len = 0\n    for right in range(len(nums)):\n        if nums[right] == 0:\n            zero_count += 1\n        while zero_count > 1:\n            if nums[left] == 0:\n                zero_count -= 1\n            left += 1\n        max_len = max(max_len, right - left)\n    return max_len"
+            "answer": "def longest_subarray_after_deleting_one(nums):\n    if len(nums) == 1:\n        return 1 if nums[0] == 1 else 0\n    \n    left = 0\n    zeros_count = 0\n    max_len = 0\n    \n    for right in range(len(nums)):\n        if nums[right] == 0:\n            zeros_count += 1\n        \n        while zeros_count > 1:\n            if nums[left] == 0:\n                zeros_count -= 1\n            left += 1\n        \n        max_len = max(max_len, right - left)\n    \n    if zeros_count == 0:\n        return len(nums) - 1\n    \n    return max_len\n\nnums = list(map(int, input().split()))\nprint(longest_subarray_after_deleting_one(nums))"
         },        
         {
             "id": 9,
@@ -97,7 +97,7 @@
               "output": "2",
               "explanation": "Subarrays [1,1,2,1], [1,2,1,1] have exactly 3 odd numbers."
             },
-            "answer": "def numberOfSubarrays(nums, k):\n    from collections import defaultdict\n    count = defaultdict(int)\n    count[0] = 1\n    res = odd_count = 0\n    for num in nums:\n        odd_count += num % 2\n        res += count[odd_count - k]\n        count[odd_count] += 1\n    return res"
+            "answer": "def count_nice_subarrays(nums, k):\n    count = 0\n    odd_count = 0\n    prefix_counts = {0: 1}\n    for num in nums:\n        if num % 2 == 1:\n            odd_count += 1\n        if odd_count - k in prefix_counts:\n            count += prefix_counts[odd_count - k]\n        prefix_counts[odd_count] = prefix_counts.get(odd_count, 0) + 1\n    return count\n\ndata = list(map(int, input().split()))\nk = data[0]\nnums = data[1:]\n\nprint(count_nice_subarrays(nums, k))"
           },
           {
             "id": 10,
@@ -108,7 +108,7 @@
                 "output": "3",
                 "explanation": "The longest substring with at most two distinct characters is 'ece', which has a length of 3."
             },
-            "answer": "def longestSubstringWithTwoDistinctChars(s):\n    start = 0\n    max_len = 0\n    char_map = {}\n    for end in range(len(s)):\n        char_map[s[end]] = end\n        while len(char_map) > 2:\n            start = min(char_map.values()) + 1\n            del char_map[s[start - 1]]\n        max_len = max(max_len, end - start + 1)\n    return max_len"
+            "answer": "def length_of_longest_substring_two_distinct(s: str) -> int:\n    from collections import defaultdict\n\n    left = 0\n    max_length = 0\n    char_count = defaultdict(int)\n\n    for right in range(len(s)):\n        char_count[s[right]] += 1\n\n        while len(char_count) > 2:\n            char_count[s[left]] -= 1\n            if char_count[s[left]] == 0:\n                del char_count[s[left]]\n            left += 1\n\n        max_length = max(max_length, right - left + 1)\n\n    return max_length\n\ns = input().strip()\nprint(length_of_longest_substring_two_distinct(s))"
         },        
           {
             "id": 11,
@@ -142,7 +142,7 @@
               "output": "39",
               "explanation": "The maximum sum subarray of size 4 is [10, 23, 3, 1]."
             },
-            "answer": "def maxSumSubarray(arr, k):\n    window_sum = sum(arr[:k])\n    max_sum = window_sum\n    for i in range(k, len(arr)):\n        window_sum += arr[i] - arr[i - k]\n        max_sum = max(max_sum, window_sum)\n    return max_sum"
+            "answer": "data = list(map(int, input().split()))\nk = data[0]\narr = data[1:]\n\nif len(arr) < k:\n    print(0)\nelse:\n    window_sum = sum(arr[:k])\n    max_sum = window_sum\n\n    for i in range(k, len(arr)):\n        window_sum = window_sum - arr[i - k] + arr[i]\n        max_sum = max(max_sum, window_sum)\n\n    print(max_sum)"
           },
           {
             "id": 14,

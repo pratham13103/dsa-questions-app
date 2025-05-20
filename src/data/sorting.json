@@ -9,7 +9,9 @@
         "output": "[1, 2, 5, 5, 6, 9]",
         "explanation": "The array is sorted in ascending order."
       },
-      "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      "answer": "class Solution:\n    def mergeSort(self, nums):\n        if len(nums) > 1:\n            mid = len(nums) // 2\n            left = nums[:mid]\n            right = nums[mid:]\n\n            self.mergeSort(left)\n            self.mergeSort(right)\n\n            i = j = k = 0\n\n            while i < len(left) and j < len(right):\n                if left[i] < right[j]:\n                    nums[k] = left[i]\n                    i += 1\n                else:\n                    nums[k] = right[j]\n                    j += 1\n                k += 1\n\n            while i < len(left):\n                nums[k] = left[i]\n                i += 1\n                k += 1\n\n            while j < len(right):\n                nums[k] = right[j]\n                j += 1\n                k += 1\n\n    def sortArray(self, nums):\n        self.mergeSort(nums)\n        return nums\n\nnums = list(map(int, input().split()))\nsolution = Solution()\nsorted_nums = solution.sortArray(nums)\nprint(*sorted_nums)"
+
+
     },      
     {
       "id": 2,
@@ -20,7 +22,9 @@
         "output": "['apple', 'banana', 'cherry']",
         "explanation": "The array is already sorted by string lengths."
       },
-      "answer": "class Solution:\n    def sortByLength(self, strings):\n        return sorted(strings, key=len)"
+      "answer": "strings = input().split()\nstrings.sort(key=len)\nprint(*strings)"
+
+
     },
     {
       "id": 3,
@@ -31,7 +35,8 @@
         "output": "[9, 6, 5, 5, 2, 1]",
         "explanation": "The array is sorted in descending order."
       },
-      "answer": "class Solution:\n    def sortArrayDesc(self, nums):\n        return sorted(nums, reverse=True)"
+      "answer": "nums = list(map(int, input().split()))\nnums.sort(reverse=True)\nprint(*nums)"
+
     },
     {
       "id": 4,
@@ -53,7 +58,8 @@
         "output": "[2, 2, 3, 3, 1, 1, 1]",
         "explanation": "The numbers are sorted based on their frequency, and in case of equal frequency, by their values."
       },
-      "answer": "class Solution:\n    def frequencySort(self, nums):\n        from collections import Counter\n        count = Counter(nums)\n        return sorted(nums, key=lambda x: (count[x], x))"
+      "answer": "def sort_by_frequency(nums):\n    frequency = {}\n    for num in nums:\n        frequency[num] = frequency.get(num, 0) + 1\n    nums.sort(key=lambda x: (frequency[x], x))\n    return nums\n\nnums = list(map(int, input().split()))\nresult = sort_by_frequency(nums)\nprint(*result)"
+
     },      
     {
       "id": 6,
@@ -64,7 +70,8 @@
         "output": "[-2, -1, 5, 5, 6, 9]",
         "explanation": "The array is sorted with both positive and negative numbers in ascending order."
       },
-      "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      "answer": "nums = list(map(int, input().split()))\nnums.sort()\nprint(*nums)"
+
     },      
     {
       "id": 7,
@@ -86,7 +93,7 @@
         "output": "[-5, -1, 0, 2, 6, 9]",
         "explanation": "The array is sorted in ascending order including negative, zero, and positive numbers."
       },
-      "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      "answer": "nums = list(map(int, input().split()))\nnums.sort()\nprint(*nums)"
     },      
     {
       "id": 9,
@@ -108,7 +115,7 @@
         "output": "[1, 2, 3, 'apple', 'banana']",
         "explanation": "The integers are sorted in ascending order, and the strings follow alphabetically."
       },
-      "answer": "class Solution:\n    def sortArray(self, elements):\n        return sorted(elements, key=lambda x: (isinstance(x, int), x))"
+      "answer": "mixed = input().split()\nnums = []\nwords = []\nfor item in mixed:\n if item.lstrip('-').isdigit():\n  nums.append(int(item))\n else:\n  words.append(item)\nnums.sort()\nwords.sort()\nprint(*nums, *words)"
     },      
     {
       "id": 11,
@@ -119,7 +126,7 @@
         "output": "[0.99, 1.41, 2.71, 3.14]",
         "explanation": "The floating-point numbers are sorted in ascending order."
       },
-      "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      "answer": "nums = list(map(float, input().split()))\nnums.sort()\nprint(*nums)"
     },      
     {
       "id": 12,
@@ -130,7 +137,7 @@
         "output": "['2025-03-15', '2025-04-01', '2025-05-20']",
         "explanation": "The dates are sorted in chronological order from earliest to latest."
       },
-      "answer": "class Solution:\n    def sortDates(self, dates):\n        return sorted(dates)"
+      "answer": "dates = input().split()\ndates.sort()\nprint(*dates)"
     },      
     {
       "id": 13,
@@ -141,7 +148,7 @@
         "output": "['a', 'b', 'c', 'd']",
         "explanation": "The characters are sorted in lexicographical order."
       },
-      "answer": "class Solution:\n    def sortCharacters(self, characters):\n        return sorted(characters)"
+      "answer": "chars = input().split()\nchars.sort()\nprint(*chars)"
     },      
     {
       "id": 14,
@@ -152,7 +159,7 @@
         "output": "[-2, -1, 0, 1, 3]",
         "explanation": "The integers are sorted in ascending order, with negative values first."
       },
-      "answer": "class Solution:\n    def sortArray(self, nums):\n        return sorted(nums)"
+      "answer": "nums = list(map(int, input().replace(',', ' ').replace('[', '').replace(']', '').split()))\nnums.sort()\nprint(*nums)"
     },      
     {
       "id": 15,
@@ -163,7 +170,7 @@
         "output": "['kiwi', 'apple', 'banana']",
         "explanation": "The strings are sorted by their lengths, shortest to longest."
       },
-      "answer": "class Solution:\n    def sortStringsByLength(self, strings):\n        return sorted(strings, key=len)"
+      "answer": "strings = input().split()\nstrings.sort(key=len)\nprint(*strings)"
     },      
     {
       "id": 16,
@@ -185,7 +192,7 @@
         "output": "[1.8, 2.5, 3.1, 4.3]",
         "explanation": "The array of floating-point numbers is sorted in ascending order."
       },
-      "answer": "class Solution:\n    def sortFloatArray(self, nums):\n        return sorted(nums)"
+      "answer": "nums = list(map(float, input().split()))\nnums.sort()\nprint(*nums)"
     },      
     {
       "id": 18,
@@ -196,7 +203,7 @@
         "output": "['apple', 'banana', 'cherry']",
         "explanation": "The strings are sorted alphabetically."
       },
-      "answer": "class Solution:\n    def sortStringsAlphabetically(self, strings):\n        return sorted(strings)"
+      "answer": "strings = input().split()\nstrings.sort()\nprint(*strings)"
     },      
     {
       "id": 19,
@@ -207,7 +214,7 @@
         "output": "[{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 28}, {'name': 'John', 'age': 30}]",
         "explanation": "The list of dictionaries is sorted by the 'age' key in ascending order."
       },
-      "answer": "class Solution:\n    def sortDictsByKey(self, dicts, key):\n        return sorted(dicts, key=lambda x: x[key])"
+      "answer": "import sys\nlines = sys.stdin.read().strip().split('\n')\ndicts = []\nfor line in lines:\n    name, age = line.split()\n    dicts.append({'name': name, 'age': int(age)})\ndicts.sort(key=lambda x: x['age'])\nfor d in dicts:\n    print(d['name'], d['age'])"
     },      
     {
       "id": 20,
@@ -229,7 +236,7 @@
           "output": "[1, 5, 7, 8, 9, 10]",
           "explanation": "The array is sorted using Quick Sort."
       },
-      "answer": "class Solution:\n    def quickSort(self, nums):\n        if len(nums) <= 1:\n            return nums\n        pivot = nums[len(nums) // 2]\n        left = [x for x in nums if x < pivot]\n        middle = [x for x in nums if x == pivot]\n        right = [x for x in nums if x > pivot]\n        return self.quickSort(left) + middle + self.quickSort(right)"
+      "answer": "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[0]\n    left = [x for x in arr[1:] if x < pivot]\n    right = [x for x in arr[1:] if x >= pivot]\n    return quick_sort(left) + [pivot] + quick_sort(right)\n\narr = list(map(int, input().split()))\nsorted_arr = quick_sort(arr)\nprint(*sorted_arr)"
     },    
     {
       "id": 22,
@@ -240,10 +247,10 @@
           "output": "[1, 5, 7, 8, 9, 10]",
           "explanation": "The array is sorted using Merge Sort."
       },
-      "answer": "class Solution:\n    def mergeSort(self, nums):\n        if len(nums) <= 1:\n            return nums\n        mid = len(nums) // 2\n        left = self.mergeSort(nums[:mid])\n        right = self.mergeSort(nums[mid:])\n        return self.merge(left, right)\n    def merge(self, left, right):\n        result = []\n        while left and right:\n            if left[0] < right[0]:\n                result.append(left.pop(0))\n            else:\n                result.append(right.pop(0))\n        result += left + right\n        return result"
+      "answer": "def merge_sort(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        L = arr[:mid]\n        R = arr[mid:]\n\n        merge_sort(L)\n        merge_sort(R)\n\n        i = j = k = 0\n\n        # Merge the sorted halves\n        while i < len(L) and j < len(R):\n            if L[i] < R[j]:\n                arr[k] = L[i]\n                i += 1\n            else:\n                arr[k] = R[j]\n                j += 1\n            k += 1\n\n        # Copy any remaining elements\n        while i < len(L):\n            arr[k] = L[i]\n            i += 1\n            k += 1\n        while j < len(R):\n            arr[k] = R[j]\n            j += 1\n            k += 1\n\narr = list(map(int, input().split()))\nmerge_sort(arr)\nprint(*arr)"
     },    
     {
-      "id": 41,
+      "id": 22,
       "title": "Bubble Sort - Sort an Array of Integers",
       "description": "Sort the array using Bubble Sort algorithm.\n\n| Test Cases | nums                  | Expected Output     | Notes                       |\n|------------|-----------------------|---------------------|-----------------------------|\n| 1          | [10, 7, 8, 9, 1, 5]    | [1, 5, 7, 8, 9, 10] | Simple case                  |\n| 2          | [3, 1, 4, 1, 5, 9]    | [1, 1, 3, 4, 5, 9]  | Array with duplicates        |\n| 3          | [8, 2, 5, 3]          | [2, 3, 5, 8]        | Small array                  |\n| 4          | [5, 4, 3, 2, 1]       | [1, 2, 3, 4, 5]     | Reverse order                |\n| 5          | [0, 2, 3, 5, 1]       | [0, 1, 2, 3, 5]     | Mix of elements              |\n| 6          | [100, 34, 23, 50]     | [23, 34, 50, 100]   | Random numbers               |\n| 7          | [1000, 999, 998]      | [998, 999, 1000]    | Large numbers                |\n| 8          | [7, 6, 5, 3, 4]       | [3, 4, 5, 6, 7]     | Simple shuffle               |\n| 9          | [100, 200, 150]       | [100, 150, 200]     | Already sorted               |\n| 10         | [30, 20, 10, 0]       | [0, 10, 20, 30]     | Descending order             |\n| 11         | [1, 3, 2, 4, 5]       | [1, 2, 3, 4, 5]     | Already almost sorted        |\n| 12         | [12, 10, 11, 15, 20]  | [10, 11, 12, 15, 20]| Sorted in blocks             |\n| 13         | [9, 7, 5, 3, 1]       | [1, 3, 5, 7, 9]     | Odd sequence                  |\n| 14         | [2, 4, 6, 8, 10]      | [2, 4, 6, 8, 10]    | Already sorted               |\n| 15         | [5, 3, 2, 7, 8, 9]    | [2, 3, 5, 7, 8, 9]  | Random sequence              |\n| 16         | [20, 18, 16, 14, 12]  | [12, 14, 16, 18, 20]| Even numbers in descending   |\n| 17         | [1, 2, 3, 4, 5, 6]    | [1, 2, 3, 4, 5, 6]  | Already sorted               |\n| 18         | [10, 20, 30, 25, 15]  | [10, 15, 20, 25, 30]| Simple sequence              |\n| 19         | [3, 6, 1, 9, 4, 7]    | [1, 3, 4, 6, 7, 9]  | Random order                 |\n| 20         | [10, 10, 10, 10]      | [10, 10, 10, 10]    | All identical elements       |\n| 21         | [8, 6, 7, 5, 3, 9, 1] | [1, 3, 5, 6, 7, 8, 9]| Random order                 |\n| 22         | [20, 40, 60, 80, 100] | [20, 40, 60, 80, 100]| Already sorted               |\n| 23         | [1, 2, 3, 4, 5, 6, 7] | [1, 2, 3, 4, 5, 6, 7]| Already sorted               |\n| 24         | [5, 4, 3, 2]          | [2, 3, 4, 5]        | Reverse sorted               |\n| 25         | [0, 2, 4, 8, 6]       | [0, 2, 4, 6, 8]     | Mix of even numbers          |\n| 26         | [2, 1, 3, 5]          | [1, 2, 3, 5]        | Simple sequence              |\n| 27         | [100, 300, 200]       | [100, 200, 300]     | Small set of numbers         |\n| 28         | [45, 90, 75, 30]      | [30, 45, 75, 90]    | Random order                 |\n| 29         | [9, 5, 6, 1]          | [1, 5, 6, 9]        | Small numbers                |\n| 30         | [10, 20, 30, 40]      | [10, 20, 30, 40]    | Already sorted               |\n| 31         | [3, 6, 8, 2, 1]       | [1, 2, 3, 6, 8]     | Random small numbers         |\n| 32         | [18, 15, 13, 10]      | [10, 13, 15, 18]    | Descending order             |\n| 33         | [10, 25, 40, 35]      | [10, 25, 35, 40]    | Random numbers               |\n| 34         | [5, 4, 3, 6, 1, 2]    | [1, 2, 3, 4, 5, 6]  | Random sequence              |\n| 35         | [100, 50, 25, 75, 10] | [10, 25, 50, 75, 100]| Random order                 |\n| 36         | [30, 20, 10]          | [10, 20, 30]        | Descending order             |\n| 37         | [5, 10, 5, 1, 7, 2]   | [1, 2, 5, 5, 7, 10] | Small mixed numbers          |\n| 38         | [1000, 2000, 500, 100] | [100, 500, 1000, 2000] | Large numbers             |\n| 39         | [100, 99, 101, 98]    | [98, 99, 100, 101]  | Close numbers                |\n| 40         | [0, -1, 3, 2, -5]     | [-5, -1, 0, 2, 3]   | Mix of positive and negative |\n",
       "example": {
@@ -251,7 +258,7 @@
           "output": "[1, 5, 7, 8, 9, 10]",
           "explanation": "The array is sorted using Bubble Sort."
       },
-      "answer": "class Solution:\n    def bubbleSort(self, nums):\n        n = len(nums)\n        for i in range(n):\n            for j in range(0, n-i-1):\n                if nums[j] > nums[j+1]:\n                    nums[j], nums[j+1] = nums[j+1], nums[j]\n        return nums"
+      "answer": "arr = list(map(int, input().split()))\nn = len(arr)\nfor i in range(n):\n    for j in range(0, n-i-1):\n        if arr[j] > arr[j+1]:\n            arr[j], arr[j+1] = arr[j+1], arr[j]\nprint(*arr)"
     },         
     {
       "id": 24,
@@ -262,7 +269,7 @@
           "output": "[1, 5, 7, 8, 9, 10]",
           "explanation": "The array is sorted using Heap Sort."
       },
-      "answer": "import heapq\nclass Solution:\n    def heapSort(self, nums):\n        heapq.heapify(nums)\n        return [heapq.heappop(nums) for _ in range(len(nums))]"
+      "answer": "def heapify(arr, n, i):\n    largest = i\n    left = 2 * i + 1\n    right = 2 * i + 2\n    if left < n and arr[left] > arr[largest]:\n        largest = left\n    if right < n and arr[right] > arr[largest]:\n        largest = right\n    if largest != i:\n        arr[i], arr[largest] = arr[largest], arr[i]\n        heapify(arr, n, largest)\narr = list(map(int, input().split()))\nn = len(arr)\nfor i in range(n // 2 - 1, -1, -1):\n    heapify(arr, n, i)\nfor i in range(n-1, 0, -1):\n    arr[i], arr[0] = arr[0], arr[i]\n    heapify(arr, i, 0)\nprint(*arr)"
     },    
     {
       "id": 25,
@@ -273,7 +280,7 @@
           "output": "[1, 5, 7, 8, 9, 10]",
           "explanation": "The array is sorted using Selection Sort."
       },
-      "answer": "class Solution:\n    def selectionSort(self, nums):\n        for i in range(len(nums)):\n            min_index = i\n            for j in range(i+1, len(nums)):\n                if nums[j] < nums[min_index]:\n                    min_index = j\n            nums[i], nums[min_index] = nums[min_index], nums[i]\n        return nums"
+      "answer": "arr = list(map(int, input().split()))\nn = len(arr)\nfor i in range(n):\n    min_idx = i\n    for j in range(i + 1, n):\n        if arr[j] < arr[min_idx]:\n            min_idx = j\n    arr[i], arr[min_idx] = arr[min_idx], arr[i]\nprint(*arr)"
     },    
     {
       "id": 26,
@@ -284,7 +291,7 @@
           "output": "[1, 5, 7, 8, 9, 10]",
           "explanation": "The array is sorted using Insertion Sort."
       },
-      "answer": "class Solution:\n    def insertionSort(self, nums):\n        for i in range(1, len(nums)):\n            key = nums[i]\n            j = i - 1\n            while j >= 0 and key < nums[j]:\n                nums[j + 1] = nums[j]\n                j -= 1\n            nums[j + 1] = key\n        return nums"
+      "answer": "arr = list(map(int, input().split()))\nfor i in range(1, len(arr)):\n    key = arr[i]\n    j = i - 1\n    while j >= 0 and arr[j] > key:\n        arr[j + 1] = arr[j]\n        j -= 1\n    arr[j + 1] = key\nprint(*arr)"
     }      
   ]
 }

@@ -9,7 +9,7 @@
         "output": "True",
         "explanation": "Cycle at node 3."
       },
-      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    return False"
+      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    return False\n\ndef build_linked_list(values, pos):\n    if not values:\n        return None\n    nodes = [ListNode(val) for val in values]\n    for i in range(len(nodes) - 1):\n        nodes[i].next = nodes[i + 1]\n    if pos != -1:\n        nodes[-1].next = nodes[pos]\n    return nodes[0]\n\narr = list(map(int, input().split()))\npos = int(input())\nhead = build_linked_list(arr, pos)\nprint(hasCycle(head))"
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
         "output": "3",
         "explanation": "Cycle at node 3."
       },
-      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef detectCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            break\n    else:\n        return None\n    slow = head\n    while slow != fast:\n        slow = slow.next\n        fast = fast.next\n    return slow"
+      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef detectCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            slow = head\n            while slow != fast:\n                slow = slow.next\n                fast = fast.next\n            return slow.val\n    return None\n\ndef build_linked_list(values, pos):\n    if not values:\n        return None\n    nodes = [ListNode(val) for val in values]\n    for i in range(len(nodes) - 1):\n        nodes[i].next = nodes[i + 1]\n    if pos != -1:\n        nodes[-1].next = nodes[pos]\n    return nodes[0]\n\narr = list(map(int, input().split()))\npos = int(input())\nhead = build_linked_list(arr, pos)\nprint(detectCycle(head))"
     },
     {
       "id": 3,
@@ -31,7 +31,8 @@
         "output": "3",
         "explanation": "Middle node is 3."
       },
-      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef middleNode(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    return slow"
+      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef middleNode(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    return slow\n\ndef createLinkedList(elements):\n    head = None\n    tail = None\n    for val in elements:\n        new_node = ListNode(val)\n        if not head:\n            head = new_node\n            tail = new_node\n        else:\n            tail.next = new_node\n            tail = new_node\n    return head\n\nif __name__ == \"__main__\":\n    input_list_str = input()\n    try:\n        elements_str = input_list_str.strip(\"[]\").split(\",\")\n        elements = [int(x.strip()) for x in elements_str if x.strip()]\n    except ValueError:\n        elements = []\n\n    head = createLinkedList(elements)\n    middle = middleNode(head)\n    if middle:\n        print(middle.val)\n    else:\n        print(None)"
+
     },
     {
       "id": 4,
@@ -42,7 +43,8 @@
         "output": "True",
         "explanation": "Odd palindrome."
       },
-      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef isPalindrome(head):\n    vals = []\n    while head:\n        vals.append(head.val)\n        head = head.next\n    return vals == vals[::-1]"
+      "answer": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef isPalindrome(head):\n    if not head or not head.next:\n        return True\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    prev = None\n    curr = slow\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    first_half_ptr = head\n    second_half_ptr = prev\n    while second_half_ptr:\n        if first_half_ptr.val != second_half_ptr.val:\n            return False\n        first_half_ptr = first_half_ptr.next\n        second_half_ptr = second_half_ptr.next\n    return True\n\ndef createLinkedList(elements):\n    head = None\n    tail = None\n    for val in elements:\n        new_node = ListNode(val)\n        if not head:\n            head = new_node\n            tail = new_node\n        else:\n            tail.next = new_node\n            tail = new_node\n    return head\n\nif __name__ == \"__main__\":\n    input_list_str = input()\n    try:\n        elements_str = input_list_str.strip(\"[]\").split(\",\")\n        elements = [int(x.strip()) for x in elements_str if x.strip()]\n    except ValueError:\n        elements = []\n    head = createLinkedList(elements)\n    result = isPalindrome(head)\n    print(result)"
+
     },
     {
       "id": 5,
@@ -53,7 +55,8 @@
         "output": "True",
         "explanation": "19 is a happy number."
       },
-      "answer": "def isHappy(n):\n    seen = set()\n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = sum(int(x) ** 2 for x in str(n))\n    return n == 1"
+      "answer": "def isHappy(n):\n    seen = set()\n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = sum(int(x) ** 2 for x in str(n))\n    return n == 1\n\nif __name__ == \"__main__\":\n    num = int(input())\n    result = isHappy(num)\n    print(result)"
+
     }
   ]
 }

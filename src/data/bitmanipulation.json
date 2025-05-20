@@ -9,7 +9,7 @@
           "output": "true",
           "explanation": "\"nagaram\" is a rearrangement of \"anagram\"."
         },
-        "answer": "def is_anagram(s: str, t: str) -> bool:\n    return sorted(s) == sorted(t)"
+        "answer": "from collections import Counter\ndef is_anagram(s: str, t: str) -> bool:\n    if len(s) != len(t):\n        return False\n    return Counter(s) == Counter(t)\ns = input().strip()\nt = input().strip()\nprint(is_anagram(s, t))"
       },
       {
         "id": 2,
@@ -20,7 +20,7 @@
           "output": "3",
           "explanation": "The answer is \"abc\", with the length of 3."
         },
-        "answer": "def length_of_longest_substring(s: str) -> int:\n    char_index = {}\n    left = max_len = 0\n    for right in range(len(s)):\n        if s[right] in char_index and char_index[s[right]] >= left:\n            left = char_index[s[right]] + 1\n        char_index[s[right]] = right\n        max_len = max(max_len, right - left + 1)\n    return max_len"
+"answer" :"def length_of_longest_substring(s: str) -> int:\n    if s == \"null\":\n        return 0\n    char_index = {}\n    left = max_len = 0\n    for right in range(len(s)):\n        if s[right] in char_index and char_index[s[right]] >= left:\n            left = char_index[s[right]] + 1\n        char_index[s[right]] = right\n        max_len = max(max_len, right - left + 1)\n    return max_len\ns = input().strip()\nprint(length_of_longest_substring(s))"
       },
       {
         "id": 3,
@@ -31,7 +31,8 @@
           "output": "true",
           "explanation": "After cleaning: \"amanaplanacanalpanama\", which is a palindrome."
         },
-        "answer": "def is_palindrome(s: str) -> bool:\n    cleaned = ''.join(c.lower() for c in s if c.isalnum())\n    return cleaned == cleaned[::-1]"
+        "answer": "def is_palindrome(s: str) -> bool:\n    cleaned = ''.join(c.lower() for c in s if c.isalnum())\n    return cleaned == cleaned[::-1]\n\ns = input().strip()\nprint(is_palindrome(s))"
+
       },
       {
         "id": 4,
@@ -42,7 +43,8 @@
           "output": "[[\"eat\",\"tea\",\"ate\"],[\"tan\",\"nat\"],[\"bat\"]]",
           "explanation": "Each group contains anagrams of one another."
         },
-        "answer": "from collections import defaultdict\n\ndef group_anagrams(strs):\n    anagrams = defaultdict(list)\n    for word in strs:\n        key = ''.join(sorted(word))\n        anagrams[key].append(word)\n    return list(anagrams.values())"
+        "answer": "from collections import defaultdict\nwords = input().split()\nanagrams = defaultdict(list)\norder = {}\nfor word in words:\n    key = ''.join(sorted(word))\n    if key not in order:\n        order[key] = len(order)\n    anagrams[key].append(word)\nsorted_groups = sorted(anagrams.items(), key=lambda x: order[x[0]])\nfor _, group in sorted_groups:\n    print(' '.join(group))"
+
       },
       {
         "id": 5,
@@ -53,7 +55,8 @@
           "output": "true",
           "explanation": "All brackets are correctly closed and nested."
         },
-        "answer": "def is_valid(s: str) -> bool:\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in mapping:\n            top = stack.pop() if stack else '#'\n            if mapping[char] != top:\n                return False\n        else:\n            stack.append(char)\n    return not stack"
+        "answer": "s = input()\nstack = []\nmapping = {')': '(', '}': '{', ']': '['}\n\nfor char in s:\n    if char in mapping:\n        top = stack.pop() if stack else '#'\n        if mapping[char] != top:\n            print(False)\n            break\n    else:\n        stack.append(char)\nelse:\n    print(not stack)"
+
       },
       {
         "id": 6,
@@ -64,7 +67,8 @@
           "output": "2",
           "explanation": "\"ll\" is found in \"hello\" at index 2."
         },
-        "answer": "def strStr(haystack: str, needle: str) -> int:\n    if not needle:\n        return 0\n    for i in range(len(haystack) - len(needle) + 1):\n        if haystack[i:i+len(needle)] == needle:\n            return i\n    return -1"
+        "answer": "haystack, needle = input().split()\nif needle == \"\":\n    print(0)\nelse:\n    found = False\n    for i in range(len(haystack) - len(needle) + 1):\n        if haystack[i:i+len(needle)] == needle:\n            print(i)\n            found = True\n            break\n    if not found:\n        print(-1)"
+
       },
       {
         "id": 7,
@@ -75,7 +79,8 @@
           "output": "\"blue is sky the\"",
           "explanation": "Words are reversed with single space between them."
         },
-        "answer": "def reverseWords(s: str) -> str:\n    return ' '.join(s.strip().split()[::-1])"
+        "answer": "s = input()\nprint(' '.join(s.strip().split()[::-1]))"
+
       },
       {
         "id": 8,
@@ -97,7 +102,8 @@
           "output": "[\"a\",\"2\",\"b\",\"2\",\"c\",\"3\"]",
           "explanation": "Characters are grouped and counts are added."
         },
-        "answer": "def compress(chars):\n    i = 0\n    res = 0\n    while i < len(chars):\n        char = chars[i]\n        count = 0\n        while i < len(chars) and chars[i] == char:\n            i += 1\n            count += 1\n        chars[res] = char\n        res += 1\n        if count > 1:\n            for c in str(count):\n                chars[res] = c\n                res += 1\n    return res"
+        "answer": "def compress(chars):\n    i = 0\n    res = 0\n    while i < len(chars):\n        char = chars[i]\n        count = 0\n        while i < len(chars) and chars[i] == char:\n            i += 1\n            count += 1\n        chars[res] = char\n        res += 1\n        if count > 1:\n            for c in str(count):\n                chars[res] = c\n                res += 1\n    return res\n\nchars = input().split()\nlength = compress(chars)\nprint(*chars[:length])"
+
       },
       {
         "id": 10,
@@ -108,7 +114,8 @@
           "output": "\"56088\"",
           "explanation": "123 * 456 = 56088"
         },
-        "answer": "def multiply(num1: str, num2: str) -> str:\n    if num1 == \"0\" or num2 == \"0\": return \"0\"\n    res = [0] * (len(num1) + len(num2))\n    for i in range(len(num1) - 1, -1, -1):\n        for j in range(len(num2) - 1, -1, -1):\n            mul = int(num1[i]) * int(num2[j])\n            p1, p2 = i + j, i + j + 1\n            total = mul + res[p2]\n            res[p2] = total % 10\n            res[p1] += total // 10\n    result = ''.join(map(str, res)).lstrip('0')\n    return result"
+        "answer":"def multiply(num1: str, num2: str) -> str:\n    if num1 == \"0\" or num2 == \"0\":\n        return \"0\"\n    res = [0] * (len(num1) + len(num2))\n    for i in range(len(num1) - 1, -1, -1):\n        for j in range(len(num2) - 1, -1, -1):\n            mul = int(num1[i]) * int(num2[j])\n            p1, p2 = i + j, i + j + 1\n            total = mul + res[p2]\n            res[p2] = total % 10\n            res[p1] += total // 10\n    result = ''.join(map(str, res)).lstrip('0')\n    return result\n\nnum1, num2 = input().split()\nprint(multiply(num1, num2))"
+
       },
       {
         "id": 11,
@@ -119,7 +126,8 @@
           "output": "2",
           "explanation": "Binary of 5 is 101, which has 2 set bits."
         },
-        "answer": "def count_set_bits(n):\n    count = 0\n    while n:\n        count += n & 1\n        n >>= 1\n    return count"
+        "answer": "def count_set_bits(n):\n    count = 0\n    while n:\n        count += n & 1\n        n >>= 1\n    return count\n\n# Input and output\nn = int(input())  # Taking a single integer input\n\n# Printing the count of set bits for that single number\nprint(count_set_bits(n))"
+
       },
       {
         "id": 12,
@@ -130,7 +138,8 @@
           "output": "true",
           "explanation": "16 is a power of 2"
         },
-        "answer": "def is_power_of_two(n):\n    return n > 0 and (n & (n - 1)) == 0"
+        "answer": "def is_power_of_two(n):\n    return n > 0 and (n & (n - 1)) == 0\n\n# Input and output\nn = int(input())\nprint(is_power_of_two(n))"
+
       },
       {
         "id": 13,
@@ -141,7 +150,8 @@
           "output": "4",
           "explanation": "All other numbers appear twice, except 4."
         },
-        "answer": "def single_number(nums):\n    result = 0\n    for num in nums:\n        result ^= num\n    return result"
+        "answer": "def single_number(nums):\n    result = 0\n    for num in nums:\n        result ^= num\n    return result\n\n# Input and output\nnums = list(map(int, input().split()))  # Taking a list of numbers as input\nprint(single_number(nums))"
+
       },
       {
         "id": 14,
@@ -152,7 +162,8 @@
           "output": "1",
           "explanation": "Only 1 appears once; all others appear twice."
         },
-        "answer": "def singleNumber(nums):\n    res = 0\n    for num in nums:\n        res ^= num\n    return res"
+        "answer": "def singleNumber(nums):\n    res = 0\n    for num in nums:\n        res ^= num\n    return res\n\n# Input and output\nnums = list(map(int, input().split()))  # Taking a list of integers as input\nprint(singleNumber(nums))"
+
       },
       {
         "id": 15,
@@ -174,7 +185,8 @@
           "output": "2",
           "explanation": "Numbers 0 to 3 are expected, but 2 is missing."
         },
-        "answer": "def missingNumber(nums):\n    n = len(nums)\n    xor_all = 0\n    xor_arr = 0\n    for i in range(n + 1):\n        xor_all ^= i\n    for num in nums:\n        xor_arr ^= num\n    return xor_all ^ xor_arr"
+        "answer": "def missingNumber(nums):\n    n = len(nums)\n    xor_all = 0\n    xor_arr = 0\n    for i in range(n + 1):\n        xor_all ^= i\n    for num in nums:\n        xor_arr ^= num\n    return xor_all ^ xor_arr\n\n# Input and output\nnums = list(map(int, input().split()))  # Take space-separated input and convert to integers\nprint(missingNumber(nums))"
+
       }           
     ]
   }
