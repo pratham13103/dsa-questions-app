@@ -20,7 +20,7 @@
           "output": "True",
           "explanation": "The value '1' appears twice in the list."
         },
-        "answer": "class Solution:\n    def containsDuplicate(self, nums):\n        seen = set()\n        for num in nums:\n            if num in seen:\n                return True\n            seen.add(num)\n        return False"
+        "answer": "def has_duplicates(nums): seen = set(); return any(num in seen or seen.add(num) for num in nums)\\ninput_str = input().strip()\\nif input_str.lower().startswith(\"input:\"): input_str = input_str[6:].strip()\\nnums = list(map(int, input_str.split()))\\nprint(has_duplicates(nums))"
       },
       {
         "id": 3,
@@ -42,7 +42,8 @@
           "output": "True",
           "explanation": "The number 19 is a happy number as it eventually leads to 1."
         },
-        "answer": "def isHappy(n):\n    seen = set()\n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = sum(int(i) ** 2 for i in str(n))\n    return n == 1"
+        "answer": "def is_happy(n): seen = set(); while n != 1 and n not in seen: seen.add(n); n = sum(int(digit) ** 2 for digit in str(n)); return n == 1\\nif __name__ == \"__main__\":\\n    n = int(input().strip())\\n    print(is_happy(n))"
+
       },
       {
         "id": 5,
@@ -53,7 +54,8 @@
           "output": "4",
           "explanation": "The number 4 appears only once in the array."
         },
-        "answer": "def singleNumber(nums):\n    res = 0\n    for num in nums:\n        res ^= num\n    return res"
+        "answer": "def single_number(nums): result = 0; for num in nums: result ^= num; return result\\nif __name__ == \\\"__main__\\\":\\n    nums = list(map(int, input().strip().split()))\\n    print(single_number(nums))"
+
       },
       {
         "id": 6,
@@ -75,7 +77,8 @@
           "output": "[1, 2]",
           "explanation": "The function returns the two most frequent elements: 1 (appears 3 times) and 2 (appears 2 times)."
         },
-        "answer": "from collections import Counter\n\ndef topKFrequent(nums, k):\n    count = Counter(nums)\n    return [item for item, freq in count.most_common(k)]"
+        "answer":"from collections import Counter\\ndef top_k_frequent(nums, k): count = Counter(nums); most_common = count.most_common(k); return [num for num, freq in most_common]\\ninput_str = input().strip()\\ntokens = list(map(int, input_str.split()))\\nk = tokens[0]\\nnums = tokens[1:]\\nresult = top_k_frequent(nums, k)\\nprint(\" \".join(map(str, result)))"
+
       },
       {
         "id": 8,
@@ -97,7 +100,8 @@
           "output": "True",
           "explanation": "Both strings map the same characters to each other in a one-to-one manner."
         },
-        "answer": "def isIsomorphic(s, t):\n    return len(set(zip(s,t))) == len(set(s)) == len(set(t))"
+        "answer": "def is_isomorphic(s: str, t: str) -> bool: if len(s) != len(t): return False; map_s_t = {}; map_t_s = {}; for c1, c2 in zip(s, t): if (c1 in map_s_t and map_s_t[c1] != c2) or (c2 in map_t_s and map_t_s[c2] != c1): return False; map_s_t[c1] = c2; map_t_s[c2] = c1; return True\\ns1 = input().strip()\\ns2 = input().strip()\\nprint(is_isomorphic(s1, s2))"
+
       },
       {
         "id": 10,
@@ -108,7 +112,8 @@
           "output": "2",
           "explanation": "There are two subarrays with sum equal to 2: [1,1] and [1,1]."
         },
-        "answer": "from collections import defaultdict\n\ndef subarraySum(nums, k):\n    count = 0\n    curr_sum = 0\n    hashmap = defaultdict(int)\n    hashmap[0] = 1\n    for num in nums:\n        curr_sum += num\n        count += hashmap[curr_sum - k]\n        hashmap[curr_sum] += 1\n    return count"
+        "answer":"from collections import defaultdict\\ndef subarray_sum(nums, k): count = 0; prefix_sum = 0; prefix_counts = defaultdict(int); prefix_counts[0] = 1;\\nfor num in nums: prefix_sum += num; if prefix_sum - k in prefix_counts: count += prefix_counts[prefix_sum - k]; prefix_counts[prefix_sum] += 1;\\nreturn count\\ninput_str = input().strip()\\ntokens = list(map(int, input_str.split()))\\nk = tokens[0]\\nnums = tokens[1:]\\nresult = subarray_sum(nums, k)\\nprint(result)"
+
       },
       {
         "id": 11,
@@ -130,7 +135,8 @@
           "output": "2",
           "explanation": "The majority element is 2, which appears 4 times, more than n/2."
         },
-        "answer": "def majorityElement(nums):\n    count = 0\n    candidate = None\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += (1 if num == candidate else -1)\n    return candidate"
+        "answer": "def majority_element(nums): count = 0; candidate = None; for num in nums: if count == 0: candidate = num; count += 1 if num == candidate else -1; return candidate\\ninput_list = list(map(int, input().split()))\\nprint(majority_element(input_list))"
+
       },
       {
         "id": 13,
@@ -141,7 +147,8 @@
           "output": "0",
           "explanation": "'l' is the first unique character."
         },
-        "answer": "from collections import Counter\n\ndef firstUniqChar(s):\n    count = Counter(s)\n    for i, c in enumerate(s):\n        if count[c] == 1:\n            return i\n    return -1"
+        "answer": "def first_unique_char(s): from collections import Counter; count = Counter(s); for i, ch in enumerate(s): if count[ch] == 1: return i; return -1\\ns = input()\\nprint(first_unique_char(s))"
+
       },
       {
         "id": 14,
@@ -152,7 +159,8 @@
           "output": "[0, 6]",
           "explanation": "Anagrams of \"abc\" start at index 0 and 6."
         },
-        "answer": "from collections import Counter\n\ndef findAnagrams(s, p):\n    p_count = Counter(p)\n    s_count = Counter()\n    res = []\n    for i in range(len(s)):\n        s_count[s[i]] += 1\n        if i >= len(p):\n            s_count[s[i-len(p)]] -= 1\n            if s_count[s[i-len(p)]] == 0:\n                del s_count[s[i-len(p)]]\n        if s_count == p_count:\n            res.append(i - len(p) + 1)\n    return res"
+        "answer": "from collections import Counter\\ndef find_anagrams(s: str, p: str): result = []; p_len = len(p); p_count = Counter(p); window_count = Counter(); for i in range(len(s)): window_count[s[i]] += 1; if i >= p_len: if window_count[s[i - p_len]] == 1: del window_count[s[i - p_len]]; else: window_count[s[i - p_len]] -= 1; if window_count == p_count: result.append(i - p_len + 1); return result\\ns = \"abab\"\\np = \"ab\"\\noutput = find_anagrams(s, p)\\nprint(*output)"
+
       },
       {
         "id": 15,
@@ -174,7 +182,8 @@
           "output": "4",
           "explanation": "The prime numbers less than 10 are: 2, 3, 5, 7."
         },
-        "answer": "def countPrimes(n):\n    if n < 2: return 0\n    primes = [True] * n\n    primes[0] = primes[1] = False\n    for i in range(2, int(n**0.5)+1):\n        if primes[i]:\n            primes[i*i:n:i] = [False]*len(primes[i*n:i])\n    return sum(primes)"
+        "answer": "def count_primes(n): if n < 2: return 0; is_prime = [True] * n; is_prime[0] = is_prime[1] = False; for i in range(2, int(n ** 0.5) + 1): if is_prime[i]: for j in range(i * i, n, i): is_prime[j] = False; return sum(is_prime)\\nn = int(input())\\nprint(count_primes(n))"
+
       },
       {
         "id": 17,
@@ -196,7 +205,8 @@
           "output": "3",
           "explanation": "III = 1 + 1 + 1."
         },
-        "answer": "def romanToInt(s):\n    roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    res = 0\n    for i in range(len(s)):\n        if i+1 < len(s) and roman[s[i]] < roman[s[i+1]]:\n            res -= roman[s[i]]\n        else:\n            res += roman[s[i]]\n    return res"
+        "answer": "def roman_to_int(s): roman_map = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}; total = 0; prev_value = 0; for char in reversed(s): curr_value = roman_map[char]; if curr_value < prev_value: total -= curr_value; else: total += curr_value; prev_value = curr_value; return total\\ns = input()\\nprint(roman_to_int(s))"
+
       },
       {
         "id": 19,
@@ -218,7 +228,8 @@
           "output": "3",
           "explanation": "The longest substring without repeating characters is 'abc'."
         },
-        "answer": "def lengthOfLongestSubstring(s):\n    seen = {}\n    left = res = 0\n    for right, c in enumerate(s):\n        if c in seen and seen[c] >= left:\n            left = seen[c] + 1\n        seen[c] = right\n        res = max(res, right - left + 1)\n    return res"
+        "answer": "def length_of_longest_substring(s): char_set = set(); left = 0; max_length = 0; for right in range(len(s)): while s[right] in char_set: char_set.remove(s[left]); left += 1; char_set.add(s[right]); max_length = max(max_length, right - left + 1); return max_length\\ns = input()\\nprint(length_of_longest_substring(s))"
+
       },
       {
         "id": 21,
@@ -240,7 +251,8 @@
           "output": "True",
           "explanation": "Both arrays can be made equal after reordering."
         },
-        "answer": "def canBeEqual(target, arr):\n    return sorted(target) == sorted(arr)"
+        "answer": "from collections import Counter\\ndef can_be_equal(target, arr): return Counter(target) == Counter(arr)\\ntarget = list(map(int, input().split()))\\narr = list(map(int, input().split()))\\nprint(can_be_equal(target, arr))"
+
       },
       {
         "id": 23,
@@ -251,7 +263,8 @@
           "output": "4",
           "explanation": "The bottom left tree value is 4."
         },
-        "answer": "def findBottomLeftValue(root):\n    queue = [root]\n    while queue:\n        node = queue.pop(0)\n        if node.right: queue.append(node.right)\n        if node.left: queue.append(node.left)\n    return node.val"
+        "answer":"class TreeNode: def __init__(self, val=0, left=None, right=None): self.val = val; self.left = left; self.right = right\\nfrom collections import deque\\ndef findBottomLeftValue(root): if not root: return None; queue = deque([root]); bottom_left_value = root.val; while queue: level_size = len(queue); for i in range(level_size): node = queue.popleft(); if i == 0: bottom_left_value = node.val; if node.left: queue.append(node.left); if node.right: queue.append(node.right); return bottom_left_value\\ndef build_tree(values): if not values: return None; root = TreeNode(values[0]); queue = deque([root]); index = 1; while index < len(values): node = queue.popleft(); if values[index] is not None: node.left = TreeNode(values[index]); queue.append(node.left); index += 1; if index < len(values) and values[index] is not None: node.right = TreeNode(values[index]); queue.append(node.right); index += 1; return root\\nvalues = list(map(int, input().split()))\\nroot = build_tree(values)\\nprint(findBottomLeftValue(root))"
+
       },      
       {
         "id": 24,
@@ -262,7 +275,8 @@
           "output": "[1 -> None, 2 -> 3, 3 -> None, 4 -> 5, 5 -> 6, 6 -> 7, 7 -> None]",
           "explanation": "The next right pointers are populated for each node."
         },
-        "answer": "def connect(root):\n    if not root: return root\n    queue = [root]\n    while queue:\n        prev = None\n        for i in range(len(queue)):\n            node = queue.pop(0)\n            if prev: prev.next = node\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n            prev = node\n    return root"
+        "answer":"class Node: def __init__(self, val=0, left=None, right=None, next=None): self.val = val; self.left = left; self.right = right; self.next = next\\ndef connect(root): if not root: return None; leftmost = root; while leftmost.left: head = leftmost; while head: head.left.next = head.right; if head.next: head.right.next = head.next.left; head = head.next; leftmost = leftmost.left; return root\\ndef print_next_pointers_single_line(root): level_start = root; output = []; while level_start: curr = level_start; while curr: nxt_val = curr.next.val if curr.next else \"None\"; output.append(f\"{curr.val} -> {nxt_val}\"); curr = curr.next; level_start = level_start.left; print(\" \".join(output))\\ndef build_perfect_binary_tree(vals): nodes = [Node(val) for val in vals]; n = len(vals); for i in range(n): left_index = 2*i + 1; right_index = 2*i + 2; if left_index < n: nodes[i].left = nodes[left_index]; if right_index < n: nodes[i].right = nodes[right_index]; return nodes[0] if nodes else None\\nvals = list(map(int, input().split()))\\nroot = build_perfect_binary_tree(vals)\\nconnect(root)\\nprint_next_pointers_single_line(root)"
+
       },      
       {
         "id": 25,
@@ -273,7 +287,8 @@
           "output": "true",
           "explanation": "The target 7 is found in the left subtree of the root."
         },
-        "answer": "def searchBST(root, target):\n    if not root: return False\n    if root.val == target: return True\n    elif target < root.val: return searchBST(root.left, target)\n    else: return searchBST(root.right, target)"
+        "answer":"class TreeNode: def __init__(self, val=0): self.val = val; self.left = None; self.right = None\\ndef insert(root, val): if root is None: return TreeNode(val); if val < root.val: root.left = insert(root.left, val); else: root.right = insert(root.right, val); return root\\ndef search_bst(root, target): if root is None: return False; if root.val == target: return True; elif target < root.val: return search_bst(root.left, target); else: return search_bst(root.right, target)\\ninput_values = list(map(int, input().split()))\\ntarget = input_values[0]\\nbst_values = input_values[1:]\\nroot = None\\nfor val in bst_values: root = insert(root, val)\\nprint(str(search_bst(root, target)).lower())"
+
       }                                               
     ]
 }

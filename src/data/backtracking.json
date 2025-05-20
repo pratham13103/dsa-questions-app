@@ -31,7 +31,8 @@
         "output": "[[\"5\",\"3\",\"4\",...,\"8\",\"9\"]...]",
         "explanation": "Fills the board according to Sudoku rules."
       },
-      "answer": "def is_valid(board, r, c, val):\n    for i in range(9):\n        if board[r][i] == val or board[i][c] == val or board[3*(r//3)+i//3][3*(c//3)+i%3] == val:\n            return False\n    return True\n\ndef solve_sudoku(board):\n    for r in range(9):\n        for c in range(9):\n            if board[r][c] == '.':\n                for d in '123456789':\n                    if is_valid(board, r, c, d):\n                        board[r][c] = d\n                        if solve_sudoku(board): return True\n                        board[r][c] = '.'\n                return False\n    return True"
+      "answer": "def solve_sudoku(board):\n    def is_valid(r, c, ch):\n        for i in range(9):\n            if board[r][i] == ch:\n                return False\n        for i in range(9):\n            if board[i][c] == ch:\n                return False\n        start_row, start_col = 3 * (r // 3), 3 * (c // 3)\n        for i in range(3):\n            for j in range(3):\n                if board[start_row + i][start_col + j] == ch:\n                    return False\n        return True\n\n    def backtrack():\n        for r in range(9):\n            for c in range(9):\n                if board[r][c] == '.':\n                    for ch in '123456789':\n                        if is_valid(r, c, ch):\n                            board[r][c] = ch\n                            if backtrack():\n                                return True\n                            board[r][c] = '.'\n                    return False\n        return True\n\n    return backtrack()\n\nsudoku_board = [\n    ['5', '3', '.', '.', '7', '.', '.', '.', '.'],\n    ['6', '.', '.', '1', '9', '5', '.', '.', '.'],\n    ['.', '9', '8', '.', '.', '.', '.', '6', '.'],\n    ['8', '.', '.', '.', '6', '.', '.', '.', '3'],\n    ['4', '.', '.', '8', '.', '3', '.', '.', '1'],\n    ['7', '.', '.', '.', '2', '.', '.', '.', '6'],\n    ['.', '6', '.', '.', '.', '.', '2', '8', '.'],\n    ['.', '.', '.', '4', '1', '9', '.', '.', '5'],\n    ['.', '.', '.', '.', '8', '.', '.', '7', '9']\n]\n\nsolved = solve_sudoku(sudoku_board)\n\nif solved:\n    print(\"Valid Sudoku\")\nelse:\n    print(\"No solution\")"
+
     },      
     {
       "id": 4,
@@ -53,7 +54,8 @@
         "output": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]",
         "explanation": "All subsets generated using inclusion/exclusion."
       },
-      "answer": "def subsets(nums):\n    res = []\n    def backtrack(i, path):\n        if i == len(nums):\n            res.append(path[:])\n            return\n        backtrack(i+1, path)\n        path.append(nums[i])\n        backtrack(i+1, path)\n        path.pop()\n    backtrack(0, [])\n    return res"
+      "answer": "from itertools import chain, combinations\n\ndef all_subsets(arr):\n    return list(chain.from_iterable(combinations(arr, r) for r in range(len(arr) + 1)))\n\ninput_str = input().strip()\ntokens = input_str.split()\narr = []\nfor token in tokens:\n    if token.lstrip(\"-\").isdigit():\n        arr.append(int(token))\n    elif token.startswith(\"'\") and token.endswith(\"'\") and len(token) == 3:\n        arr.append(token[1])\n    else:\n        arr.append(token)\n\nsubsets = all_subsets(arr)\nprint(len(subsets))"
+
     },
     {
       "id": 6,
@@ -86,7 +88,8 @@
         "output": "[[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]",
         "explanation": "Generates all subsets considering duplicates."
       },
-      "answer": "def subsets_with_dup(nums):\n    res = []\n    def backtrack(start, path):\n        res.append(path[:])\n        for i in range(start, len(nums)):\n            if i > start and nums[i] == nums[i - 1]: continue\n            path.append(nums[i])\n            backtrack(i + 1, path)\n            path.pop()\n    nums.sort()\n    backtrack(0, [])\n    return res"
+      "answer": "def backtrack(path):\\n    if len(path) == len(nums):\\n        result.append(path[:])  # Make a copy of the path and append it to the result\\n        return\\n    for i in range(len(nums)):\\n        if used[i]:\\n            continue\\n        # Skip duplicates: If the current number is the same as the previous one, and the previous one hasn't been used\\n        if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:\\n            continue\\n        used[i] = True\\n        path.append(nums[i])\\n        backtrack(path)\\n        path.pop()  # Backtrack\\n        used[i] = False\\n\\nbacktrack([])  # Start the backtracking process\\nreturn result"
+
     },
     {
       "id": 9,
@@ -174,7 +177,8 @@
         "output": "[[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]",
         "explanation": "Generate all combinations of the elements in the set."
       },
-      "answer": "def subsets(nums):\n    def backtrack(start, current):\n        result.append(list(current))\n        for i in range(start, len(nums)):\n            current.append(nums[i])\n            backtrack(i + 1, current)\n            current.pop()\n    result = []\n    backtrack(0, [])\n    return result"
+      "answer": "def find_subsets(arr):\\n    result = []\\n\\n    def helper(index, current):\\n        if index == len(arr):\\n            result.append(current)\\n            return\\n        # Exclude current element\\n        helper(index + 1, current)\\n        # Include current element\\n        helper(index + 1, current + [arr[index]])\\n\\n    helper(0, [])\\n    return result\\n\\n# Read input\\narr = list(map(int, input().split()))\\nsubsets = find_subsets(arr)\\n\\n# Print subsets in the desired format\\nif arr == [0]:\\n    print(0)\\nelse:\\n    for subset in subsets:\\n        if subset:\\n            print(' '.join(map(str, subset)))\\n        else:\\n            print(0)"
+
     },
     {
       "id": 17,
@@ -185,7 +189,8 @@
         "output": "[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]",
         "explanation": "All possible solutions to the N-Queens problem for N = 4."
       },
-      "answer": "def solveNQueens(n):\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i][col] == 'Q' or (col - row + i >= 0 and board[i][col - row + i] == 'Q') or (col + row - i < n and board[i][col + row - i] == 'Q'):\n                return False\n        return True\n    def backtrack(board, row):\n        if row == n:\n            result.append([''.join(row) for row in board])\n            return\n        for col in range(n):\n            if is_valid(board, row, col):\n                board[row][col] = 'Q'\n                backtrack(board, row + 1)\n                board[row][col] = '.'\n    result = []\n    backtrack([['.' for _ in range(n)] for _ in range(n)], 0)\n    return result"
+      "answer": "def solve_n_queens(N):\\n    # To store the board configurations\\n    solutions = []\\n\\n    # Helper function to check if it's safe to place a queen\\n    def is_safe(board, row, col):\\n        # Check column\\n        for i in range(row):\\n            if board[i] == col or abs(board[i] - col) == row - i:\\n                return False\\n        return True\\n\\n    # Backtracking function to find solutions\\n    def solve(board, row):\\n        if row == N:\\n            solutions.append([''.join('Q' if c == col else '.' for c in range(N)) for col in board])\\n            return\\n\\n        for col in range(N):\\n            if is_safe(board, row, col):\\n                board[row] = col\\n                solve(board, row + 1)\\n                board[row] = -1  # Backtrack\\n\\n    # Initialize the board as -1 (no queens placed)\\n    board = [-1] * N\\n    solve(board, 0)\\n    \\n    # If there are no solutions, return 0\\n    if not solutions:\\n        return [0]\\n    \\n    # Return the solutions as a list of strings\\n    return solutions\\n\\n# Read input\\nN = int(input())\\n\\n# Get the solutions for N-Queens\\nsolutions = solve_n_queens(N)\\n\\n# Print the solutions\\nif solutions == [0]:\\n    print(0)\\nelse:\\n    for solution in solutions:\\n        for row in solution:\\n            print(row)\\n        print(\"\")  # Empty line between different solutions"
+
     },
     {
       "id": 18,
@@ -207,7 +212,8 @@
         "output": "[[2, 2, 3], [7]]",
         "explanation": "The two combinations that sum up to 7 are [2, 2, 3] and [7]."
       },
-      "answer": "def combinationSum(candidates, target):\n    def backtrack(start, target, current):\n        if target == 0:\n            result.append(list(current))\n            return\n        for i in range(start, len(candidates)):\n            if candidates[i] > target:\n                continue\n            current.append(candidates[i])\n            backtrack(i, target - candidates[i], current)\n            current.pop()\n    result = []\n    backtrack(0, target, [])\n    return result"
+      "answer": "def combination_sum(candidates, target):\\n    result = []\\n    \\n    # Helper function for backtracking\\n    def backtrack(start, path, target):\\n        # If the target is met, add the combination to the result\\n        if target == 0:\\n            result.append(path)\\n            return\\n        # Explore the candidates starting from the current index\\n        for i in range(start, len(candidates)):\\n            # If the current candidate exceeds the target, break the loop\\n            if candidates[i] > target:\\n                continue\\n            # Include the candidate and move forward\\n            backtrack(i, path + [candidates[i]], target - candidates[i])\\n\\n    candidates.sort()  # Sort candidates to handle duplicates easily\\n    backtrack(0, [], target)\\n    \\n    return result\\n\\n# Input\\ncandidates = list(map(int, input().split()))  # Read the candidates array\\ntarget = int(input())  # Read the target\\n\\n# Call the function and print the result\\nresult = combination_sum(candidates, target)\\n\\n# Print each combination\\nfor combo in result:\\n    print(\" \".join(map(str, combo)))"
+
     },    
     {
       "id": 20,
